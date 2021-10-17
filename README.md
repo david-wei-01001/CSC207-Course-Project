@@ -1,6 +1,13 @@
-## Replace this README.md!
+# course-project-whatever-you-want
+If you cannot find the source file
 
-This is a standard README.md file for you to replace. You'll want to include your own content here!
+File -> project structure -> select JAVA 17 as your JDK -> apply -> create an out file in “course-project-whatever-you-want” and indicate it as the file project compiler output to -> modules -> click “+” sign -> import module -> select “course-project-whatever-you-want” -> next all the way until finish -> apply -> ok
 
-MD (Markdown) files use [Markdown formatting](https://guides.github.com/features/mastering-markdown/): 
-these look very much like .txt files, so you can write them in a very similar way.
+Notes:
+
+Please avoid typo when running the program
+	
+If the program crashes, please run again and enter only regular inputs
+
+“{1=CS Introduction Series}” indicates that the id of the Tech Tree “CS Introduction Series” is “1”. Enter the id “1” to select the Tech Tree.
+
