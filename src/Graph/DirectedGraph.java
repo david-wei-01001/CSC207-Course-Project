@@ -89,6 +89,9 @@ public class DirectedGraph {
                 edge[1].minusInLevel();
             }
         }
+        if(edge[1].getInLevel() == 0){
+            currentUnlock.add(edge[1].getName());
+        }
     }
 
     /**
@@ -99,6 +102,12 @@ public class DirectedGraph {
      */
     public void deleteVertex(String name) {
         Vertex delete = (Vertex) vertices.get(name)[0];
+        for (Vertex v: (ArrayList<Vertex>) vertices.get(name)[1]){
+            v.minusInLevel();
+            if (v.getInLevel() == 0){
+                currentUnlock.add(v.getName());
+            }
+        }
         for (String vertexName : vertices.keySet()){
             if (((ArrayList<Vertex>) vertices.get(vertexName)[1]).contains(delete)) {
                 Vertex[] edge = {(Vertex) vertices.get(vertexName)[0], delete};
@@ -106,6 +115,12 @@ public class DirectedGraph {
             }
         }
         vertices.remove(name);
+        if(currentUnlock.contains(name)){
+            currentUnlock.remove(name);
+        }
+        if(completed.contains(name)){
+            completed.remove(name);
+        }
     }
 
     /**

@@ -184,9 +184,6 @@ public class DirectedGraphTest {
         graph.addEdge(v6);
         graph.addEdge(vx);
         graph.deleteEdge(vx);
-        //TODO: 这个地方我测试出bug了，也不能说是bug，就是如果delete一个边，他的unlocked数组是不改变的。我们应该改变吗？如果想要看的话
-        //就把comment取消
-        //比如说a->b，因为a level=0，他被放进unlocke， 当我们删除掉这个边，a还在这个array里面
 //        assertEquals(graph.availableVertex(), 0);
         assertEquals(JavaIntro.getInLevel(), 1);
     }

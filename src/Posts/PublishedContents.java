@@ -1,8 +1,9 @@
 package Posts;
 
-public class PublishedContents implements Likable{
+public class PublishedContents implements Likable, Visualable{
     private String id;
     private int numLike;
+    private boolean visual = true;
 
     public PublishedContents(String id) {
         this.id = id;
@@ -20,5 +21,20 @@ public class PublishedContents implements Likable{
     @Override
     public void like() {
         numLike += 1;
+    }
+
+    @Override
+    public void setAsVisualable() {
+        visual = true;
+    }
+
+    @Override
+    public void setAsUnvisualable() {
+        visual = false;
+    }
+
+    @Override
+    public boolean visulableStatus() {
+        return visual;
     }
 }

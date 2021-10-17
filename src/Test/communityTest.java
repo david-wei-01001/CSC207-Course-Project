@@ -54,14 +54,15 @@ public class communityTest {
 
     @Test(timeout = 50)
     public void testDelete() throws HasPost.PostNotFoundException {
-        Post post1 = new Post("abc", community.getNextId());
+        Post post0 = new Post("abc", community.getNextId());
+        community.add(post0);
+        Post post1 = new Post("123", community.getNextId());
         community.add(post1);
-        Post post2 = new Post("abc", community.getNextId());
-        community.add(post2);
         community.delete("Post #1");
         assertTrue(community.getMapOfPost().containsKey("Post #0"));
-        assertEquals(community.getMapOfPost().get("Post #0"), post1);
-        assertEquals(community.getNumPosts(), 1);
+        assertEquals(community.getMapOfPost().get("Post #0"), post0);
+        assertTrue(!community.getMapOfPost().get("Post #1").visulableStatus());
+        assertEquals(community.getNumPosts(), 2);
     }
 
     @Test(timeout = 50)

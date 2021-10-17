@@ -18,7 +18,9 @@ public class Vertex {
     }
 
     public void minusInLevel(){
-        inLevel -= 1;
+        if(inLevel != 0){
+            inLevel -= 1;
+        }
     }
 
     public int getInLevel(){

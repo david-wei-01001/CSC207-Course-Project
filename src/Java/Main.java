@@ -25,7 +25,6 @@ public class Main {
         if(action.equals("Quit")){
             System.exit(0);
         }
-
     }
 
 

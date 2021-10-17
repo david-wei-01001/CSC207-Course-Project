@@ -20,8 +20,7 @@ public class Community implements HasPost{
     @Override
     public void delete(String id) throws PostNotFoundException {
         if (mapOfPost.containsKey(id)) {
-            mapOfPost.remove(id);
-            numPosts -= 1;
+            mapOfPost.get(id).setAsUnvisualable();
         } else {
             throw ABSENT;
         }
@@ -30,7 +29,9 @@ public class Community implements HasPost{
     public String displayPosts() {
         StringBuilder result = new StringBuilder();
         for (Post post : mapOfPost.values()) {
-            result.append(post.toString()).append("\n");
+            if(post.visulableStatus()) {
+                result.append(post.toString()).append("\n");
+            }
         }
         return result.toString();
     }
