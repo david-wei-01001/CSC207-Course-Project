@@ -1,0 +1,6 @@
+Class name: Rewardable
+
+Responsibilities:
+addPoint()
+reducePoint()
+calculateRewardPoint()

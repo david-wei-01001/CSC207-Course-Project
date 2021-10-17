@@ -1,0 +1,10 @@
+Class name: Comment
+Parent class: PublishedContent
+Implement interface: Likeable
+                     Rewardable
+
+Responsibilities:
+getNumberOfLikes()
+
+Collaborators:
+Post

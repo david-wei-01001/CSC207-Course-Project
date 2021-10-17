@@ -1,0 +1,5 @@
+create a post
+delete a post
+comment a post
+delete comment
+change user name

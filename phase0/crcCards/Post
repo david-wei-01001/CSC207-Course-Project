@@ -1,0 +1,19 @@
+Class name: Post
+Parent class: PublishedContent
+Implement interface: Commentable,
+                     Likeable,
+                     ViewsCountable,
+                     CanAddPictures
+                     HasTag
+                     Comparable<Post>
+
+Responsibilities:
+compareTo()
+getTag()
+getNumberOfViews()
+getListofPictures()
+getListOfComments()
+getNumberOfLikes()
+
+Collaborators:
+Comment

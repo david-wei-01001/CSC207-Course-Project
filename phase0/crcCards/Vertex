@@ -1,0 +1,15 @@
+Class name: Vertex
+Implement interface: Rewardable
+
+Responsibilities:
+Vertex()
+adjacent()
+setGoal()
+get/setName()
+getCommunity()
+unlock()
+
+
+
+Collaborators:
+Edge

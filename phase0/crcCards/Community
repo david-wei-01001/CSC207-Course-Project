@@ -1,0 +1,18 @@
+Class name: Vertex
+Implement interface: Rewardable,
+                     Searchable
+                     HasPost
+
+
+Responsibilities:
+getListOfPost()
+getName()
+displayPost([rank method])
+changeName()
+addPost()
+deletePost()
+
+
+
+Collaborators:
+Vertex

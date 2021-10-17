@@ -1,0 +1,14 @@
+Class name: User
+
+Responsibilities:
+User()
+getName()
+setName()
+addListOfGraph()
+getListOfGraph()
+
+Collaborators:
+TechniqueGraph
+Report
+RewardPoints
+Resource

@@ -1,0 +1,16 @@
+Class name: Comment
+Parent class: PublishedContent
+Implement interface: Searchable
+                     Postable
+                     Likeable
+                     Comparable<T extends Graph>
+
+
+Responsibilities:
+GraphManager()
+getAllGraphs()
+addGraph()
+
+
+Collaborators:
+Graph
