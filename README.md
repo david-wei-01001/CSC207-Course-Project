@@ -10,4 +10,3 @@ Please avoid typo when running the program
 If the program crashes, please run again and enter only regular inputs
 
 “{1=CS Introduction Series}” indicates that the id of the Tech Tree “CS Introduction Series” is “1”. Enter the id “1” to select the Tech Tree.
-
