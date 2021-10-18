@@ -5,10 +5,10 @@ Intro
 
 There are generally a series of steps to learning anything. For example, student A who wants to learn to build an android app would first need to learn java, design concepts, version control, etc. This app represents these steps using a technical tree, where each node represents a step and each directed edge represents the order in which users are suggested to complete the steps. A technical tree for student A may look like something similar to below:
 
-Java Basics → Design Concepts ↘ 
+          Java Basics → Design Concepts ↘ 
 
-                            app development
-      Version Control ↗
+                                          app development
+                        Version Control ↗
 
 There may also be other technical trees, such as a Math technical tree, for learning various concepts in different areas.
 
