@@ -1,30 +1,42 @@
 package Posts;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Community implements HasPost{
+public class Community implements HasPost, Serializable {
     private HashMap<String, Post> mapOfPost = new HashMap<>();
-    private int numPosts;
+    private int numberOfPosts;
     private String nameOfCommunity;
+
+
 
     public Community(String name){
         nameOfCommunity = name;
     }
 
+
     @Override
-    public void add(PublishedContents content) {
-        mapOfPost.put(content.getId(), ((Post) content));
-        numPosts += 1;
+    public void add(String content) {
+        Post postToAdd = new Post(content, getNextId());
+        mapOfPost.put(postToAdd.getId(), postToAdd);
+        numberOfPosts += 1;
     }
+
+
 
     @Override
     public void delete(String id) throws PostNotFoundException {
         if (mapOfPost.containsKey(id)) {
             mapOfPost.get(id).setAsUnvisualable();
         } else {
+
+
+
             throw ABSENT;
         }
     }
+
+
 
     public String displayPosts() {
         StringBuilder result = new StringBuilder();
@@ -36,14 +48,16 @@ public class Community implements HasPost{
         return result.toString();
     }
 
+
+
     public HashMap<String, Post> getMapOfPost() {
         return mapOfPost;
     }
 
-    public int getNumPosts(){
-        return numPosts;
+    public int getNumberOfPosts(){
+        return numberOfPosts;
     }
     public String getNextId(){
-        return "Post #" + numPosts;
+        return "Post #" + numberOfPosts;
     }
 }

@@ -1,10 +1,14 @@
 package Graph;
 
+import contants.Exceptions;
+
 import java.util.HashMap;
 
 public class GraphManager {
-    private HashMap<String, DirectedGraph> mapOfGraph = new HashMap<>();
-    private int numGraph;
+    private HashMap<String, DirectedGraph> mapOfGraphs = new HashMap<>();
+    private int numberOfGraphs;
+    private DirectedGraph currentGraph;
+
 
     public GraphManager() {
 
@@ -15,6 +19,7 @@ public class GraphManager {
         Vertex Intro236 = new Vertex("CSC236");
         Vertex Intro209 = new Vertex("CSC209");
         Vertex Intro263 = new Vertex("CSC263");
+
         Vertex[] Starter = {pythonIntro};
         DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
         Vertex[] v1 = {pythonIntro, JavaIntro};
@@ -23,6 +28,7 @@ public class GraphManager {
         Vertex[] v4 = {Intro236, Intro263};
         Vertex[] v5 = {JavaIntro, Intro209};
         Vertex[] v6 = {pythonIntro, Intro165};
+
         graph.addEdge(v1);
         graph.addEdge(v2);
         graph.addEdge(v3);
@@ -34,13 +40,34 @@ public class GraphManager {
     }
 
     public HashMap<String, DirectedGraph> getAllGraphs(){
-        return mapOfGraph;
+        return mapOfGraphs;
     }
 
     public void addGraph(DirectedGraph graph) {
-        numGraph += 1;
-        mapOfGraph.put(Integer.toString(numGraph), graph);
+        numberOfGraphs += 1;
+        mapOfGraphs.put(Integer.toString(numberOfGraphs), graph);
 
+    }
+
+
+
+    /**
+     * change String graphName to enum in the future
+     * @param graphNumber
+     * @throws Exception
+     */
+    public void setCurrentGraph(String graphNumber) throws Exception {
+        if (mapOfGraphs.containsKey(graphNumber)) {
+            this.currentGraph = mapOfGraphs.get(graphNumber);
+        } else {
+            throw new Exception(Exceptions.CANNOT_RECOGNIZE_TREE);
+        }
+    }
+
+
+
+    public DirectedGraph getCurrentGraph() {
+        return currentGraph;
     }
 
 

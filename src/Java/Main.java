@@ -3,9 +3,7 @@ package Java;
 import Graph.DirectedGraph;
 import Graph.GraphManager;
 import Graph.Vertex;
-import Posts.Post;
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.util.Scanner;
 
 import static Java.TempMainWalkThroughHelper.*;
@@ -33,17 +31,32 @@ public class Main {
         GraphManager graphManager = new GraphManager();
         // Create the user
         init();
+
         UserManager manager = new UserManager();
+
         User user = newUser();
-        manager.addUser(user);
+
+        //commenting the following line to resolve an error. the error arises
+        //from the change in parameter in User's constructor.
+
+//        manager.addNewUser(user);
+
         DirectedGraph graph = getGraph(graphManager);
+
         graph.availableVertex();
-        user.addListOfGraph(graph);
+
+        user.addGraph(graph);
+
         DirectedGraph userGraph = (DirectedGraph) user.getListOfGraph().get(0);
+
         Vertex node = gotVertex(userGraph);
+
         completeVertex(node, userGraph);
+
         Vertex node2 = gotVertex(userGraph);
+
         completeVertex(node2, userGraph);
+
         }
 
     }

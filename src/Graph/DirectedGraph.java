@@ -3,11 +3,12 @@
  */
 package Graph;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class DirectedGraph {
-    public static class VertexNotInGraphException extends Exception {
+public class DirectedGraph implements Serializable {
+    public static class VertexNotInGraphException extends Exception implements Serializable {
         public VertexNotInGraphException(String s) {
             super(s);
         }
@@ -23,6 +24,8 @@ public class DirectedGraph {
     private ArrayList<String> currentUnlock = new ArrayList<>();
     private ArrayList<String> completed = new ArrayList<>();
     private String goal;
+
+
     //TODO: May be in an separate interface
     private static final VertexNotInGraphException ABSENT =
             new VertexNotInGraphException("Vertex is absent in the graph.");
@@ -191,6 +194,5 @@ public class DirectedGraph {
     public HashMap<String, Object[]> getVertices(){
         return vertices;
     }
-
 
 }

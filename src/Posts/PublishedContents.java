@@ -1,6 +1,8 @@
 package Posts;
 
-public class PublishedContents implements Likable, Visualable{
+import java.io.Serializable;
+
+public class PublishedContents implements Likable, Visualable, Serializable {
     private String id;
     private int numLike;
     private boolean visual = true;
@@ -12,6 +14,7 @@ public class PublishedContents implements Likable, Visualable{
     public String getId() {
         return id;
     }
+
 
     @Override
     public int getNumberOfLike() {

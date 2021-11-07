@@ -71,12 +71,17 @@ public class TempMainWalkThroughHelper {
                     "Once you have completed, type yes below:");
             yes = scanner.nextLine();
         }
+
         System.out.println("Congratulations! You have completed this task! Next you need to make some post!");
         System.out.println("Please type in the content you want to post:");
         String content = scanner.nextLine();
         String postId = CommunityLibrary.getCommunity(node.getCommunityName()).getNextId();
         Post newPost = new Post(content, postId);
-        CommunityLibrary.getCommunity(node.getCommunityName()).add(newPost);
+
+        //commenting the following line to resolve an error. the error arises
+        //from the change in parameter in Post's constructor.
+
+//        CommunityLibrary.getCommunity(node.getCommunityName()).add(newPost);
         System.out.println("Congratulations! You have made your first post!");
         System.out.println("You have completed this node. Now you can proceed to the next node.");
         graph.complete(node.getName());
