@@ -34,6 +34,5 @@ public class SerializationTest {
         System.out.println(csIntroductorySeriesTreeToRead.getVertices());
         is.close();
 
-
     }
 }
