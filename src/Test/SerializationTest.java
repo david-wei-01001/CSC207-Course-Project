@@ -20,9 +20,10 @@ public class SerializationTest {
          * creating the file to save the particular instance of DirectedGraph to, and creating the
          * ObjectOutputStream object that saves it.
          */
-        String fileName = "Serialization.bin";
+        String fileName = "src/JSON/Serialization.json";
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
         os.writeObject(csIntroductorySeriesTreeToSave);
+//        os.writeObject("ok");
         os.close();
 
         /**

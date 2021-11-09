@@ -26,6 +26,7 @@ public class DirectedGraph implements Serializable {
     private String goal;
 
 
+
     //TODO: May be in an separate interface
     private static final VertexNotInGraphException ABSENT =
             new VertexNotInGraphException("Vertex is absent in the graph.");
@@ -71,6 +72,7 @@ public class DirectedGraph implements Serializable {
     }
 
     /**
+     * TODO: check this code with David
      * Delete the given edge from the graph. Though both
      * starting and ending vertices will remain in the graph,
      * the connection between them will be removed.
@@ -98,6 +100,7 @@ public class DirectedGraph implements Serializable {
     }
 
     /**
+     * TODO: check this code with David
      * Delete the given Vertex from the graph. All edges having
      * this vertex as the ending vertex will also be removed.
      *
@@ -111,7 +114,7 @@ public class DirectedGraph implements Serializable {
                 currentUnlock.add(v.getName());
             }
         }
-        for (String vertexName : vertices.keySet()){
+        for (String vertexName : vertices.keySet()) {
             if (((ArrayList<Vertex>) vertices.get(vertexName)[1]).contains(delete)) {
                 Vertex[] edge = {(Vertex) vertices.get(vertexName)[0], delete};
                 deleteEdge(edge);

@@ -4,6 +4,8 @@ import Graph.DirectedGraph;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /** TODO: add javadoc
  *
@@ -14,11 +16,13 @@ public class User implements Serializable {
     private String email;
     private String password;
     private ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
+    private Map<String, Boolean> mapOfAchievement = new HashMap<>();
 
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
+
     }
 
     public String getName() {

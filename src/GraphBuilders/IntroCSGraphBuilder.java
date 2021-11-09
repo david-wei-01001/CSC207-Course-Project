@@ -8,7 +8,6 @@ import java.util.Map;
 
 public class IntroCSGraphBuilder implements GraphBuilder {
 
-
     @Override
     public Map<String, Vertex> buildVertices() {
 
@@ -23,6 +22,7 @@ public class IntroCSGraphBuilder implements GraphBuilder {
 
         for (String vertexName : vertexNames) {
             result.put(vertexName, new Vertex(vertexName));
+
         }
 
         return result;
@@ -47,6 +47,7 @@ public class IntroCSGraphBuilder implements GraphBuilder {
     public DirectedGraph buildGraph() {
 
         Map<String, Vertex> vertices = buildVertices();
+
         Vertex[][] directedEdges = buildDirectedEdges(vertices);
         DirectedGraph result = new DirectedGraph(new Vertex[] {vertices.get("Introductory Python")},
                                             "CS Introduction Series");

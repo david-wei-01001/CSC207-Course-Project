@@ -12,7 +12,7 @@ public class Vertex implements Serializable {
 
     public Vertex(String name){
         this.name = name;
-        CommunityLibrary.addCommunity(name);
+//        CommunityLibrary.addCommunity(name);
     }
 
     public void addInLevel(){
