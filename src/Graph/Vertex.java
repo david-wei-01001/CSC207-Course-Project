@@ -3,14 +3,16 @@ package Graph;
 import Java.CommunityLibrary;
 import Posts.Community;
 
-public class Vertex {
+import java.io.Serializable;
+
+public class Vertex implements Serializable {
     private String name;
     private int inLevel;
 
 
     public Vertex(String name){
         this.name = name;
-        CommunityLibrary.addCommunity(name);
+//        CommunityLibrary.addCommunity(name);
     }
 
     public void addInLevel(){

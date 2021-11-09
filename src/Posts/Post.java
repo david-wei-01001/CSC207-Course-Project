@@ -1,5 +1,6 @@
 package Posts;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 public class Post extends PublishedContents implements HasPost {
@@ -30,8 +31,9 @@ public class Post extends PublishedContents implements HasPost {
     }
 
     @Override
-    public void add(PublishedContents content) {
-        mapOfComments.put(content.getId(), ((Comment) content));
+    public void add(String content) {
+        Comment commentToAdd = new Comment(content, getNextId());
+        mapOfComments.put(commentToAdd.getId(), commentToAdd);
         numComments += 1;
     }
 
@@ -44,6 +46,7 @@ public class Post extends PublishedContents implements HasPost {
         }
     }
 
+
     public int getNumComments(){
         return numComments;
     }
@@ -51,4 +54,5 @@ public class Post extends PublishedContents implements HasPost {
     public String getNextId(){
         return "Comment #" + numComments;
     }
+
 }
