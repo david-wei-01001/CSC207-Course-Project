@@ -4,7 +4,7 @@ import Graph.DirectedGraph;
 import Graph.GraphManager;
 import GraphBuilders.GraphArchitect;
 import Posts.Community;
-import contants.BuiltInGraphs;
+import constants.BuiltInGraphs;
 
 public class GraphCommunityFacade {
 

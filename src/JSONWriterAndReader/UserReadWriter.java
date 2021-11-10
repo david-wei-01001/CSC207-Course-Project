@@ -1,7 +1,7 @@
 package JSONWriterAndReader;
 
-import Java.User;
-import Java.UserManager;
+import User.User;
+import User.UserManager;
 
 import java.io.*;
 import java.util.HashMap;
