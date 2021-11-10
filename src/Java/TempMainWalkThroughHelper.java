@@ -4,7 +4,7 @@
 //import Graph.GraphManager;
 //import Graph.Vertex;
 //import Java.CommunityLibrary;
-//import Java.User;
+//import User.User;
 //import Posts.Post;
 //
 //import java.util.Scanner;

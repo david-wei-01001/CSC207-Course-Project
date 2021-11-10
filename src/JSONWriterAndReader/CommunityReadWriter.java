@@ -1,7 +1,6 @@
 package JSONWriterAndReader;
 
 import Java.CommunityLibrary;
-import Java.User;
 import Posts.Community;
 
 import java.io.*;
