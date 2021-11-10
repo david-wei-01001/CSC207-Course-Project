@@ -1,8 +1,8 @@
-package Java;
+package User;
 
 
 import Graph.DirectedGraph;
-import contants.Exceptions;
+import constants.Exceptions;
 
 import java.util.HashMap;
 import java.util.Map;

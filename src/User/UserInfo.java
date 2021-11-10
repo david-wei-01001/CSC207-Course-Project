@@ -1,12 +1,14 @@
-package Java;
+package User;
 
 import Graph.DirectedGraph;
 import Posts.Post;
-import contants.Achievements;
+import Resource.Resource;
+import constants.Achievements;
 
 import java.beans.PropertyChangeSupport;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +21,7 @@ public class UserInfo {
     private int totalLogins;
     private ArrayList<Post> listOfPost = new ArrayList<>();
     private ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
-
+    private ArrayList<Resource> listOfResource = new ArrayList<>();
     private Map<String, Boolean> mapOfAchievement = new HashMap<>();
 
     private final PropertyChangeSupport observable = new PropertyChangeSupport(this);
@@ -71,26 +73,5 @@ public class UserInfo {
 //            }
 //        }
 //    }
-
-//    private void checkAndNotifyPostAchievements(){
-//        for (int threshold : Achievements.ARRAY_OF_POST_THRESHOLDS) {
-//            if (listOfPost.size() == threshold) {
-//                observable.firePropertyChange("number of posts",
-//                                                    listOfPost.size() - 1,
-//                                                            listOfPost.size());
-//            }
-//        }
-//    }
-
-//    private void checkAndNotifyLoginAchievements() {
-//        for (int threshold : Achievements.ARRAY_OF_LOGIN_THRESHOLDS) {
-//            if (totalLogins == threshold) {
-//                observable.firePropertyChange("totalLogins", totalLogins - 1, totalLogins);
-//            }
-//        }
-//    }
-
-
-
 
 }
