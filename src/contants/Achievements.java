@@ -47,6 +47,7 @@ public class Achievements {
 
     public static final String[] ARRAY_OF_ALL_ACHIEVEMENTS = {FIRST_POST, FIRST_LOGIN, FIFTH_POST, TENTH_POST, FIRST_LOGIN};
 
+    //hello
 
 
 
