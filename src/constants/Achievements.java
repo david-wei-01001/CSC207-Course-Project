@@ -1,4 +1,4 @@
-package contants;
+package constants;
 
 public class Achievements {
 
