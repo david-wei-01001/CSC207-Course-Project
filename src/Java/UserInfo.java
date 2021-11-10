@@ -5,6 +5,7 @@ import Posts.Post;
 
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,8 @@ public class UserInfo {
     private String name;
     private String email;
     private String password;
+    private int rewardPoints;
+    private Date lastLogin;
     private ArrayList<Post> listOfPost = new ArrayList<>();
     private ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
     private Map<String, Boolean> mapOfAchievement = new HashMap<>();
