@@ -24,14 +24,7 @@ public class UserManager {
 
 
 
-    public void addNewUser(String name, String email, String password) throws Exception {
-        if (!libraryOfUsers.containsKey(name)) {
-            libraryOfUsers.put(name, new User(name, email, password));
-        } else {
-            throw new Exception(Exceptions.USER_ALREADY_EXISTS);
-        }
 
-    }
 
 
 
@@ -45,13 +38,7 @@ public class UserManager {
 
 
 
-    public void removeUser(String name) throws Exception {
-        if (libraryOfUsers.containsKey(name)) {
-            this.currentUser = libraryOfUsers.remove(name);
-        } else {
-            throw new Exception(Exceptions.CANNOT_RECOGNIZE_USER);
-        }
-    }
+
 
 
     /**
