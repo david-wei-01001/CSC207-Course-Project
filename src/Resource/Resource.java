@@ -9,8 +9,8 @@ public class Resource extends PublishedContents {
     private String description;
     private int downloadTimes;
 
-    public Resource(String content, String id, int point, String description) {
-        super(id);
+    public Resource(String content, String id, int point, String description, User creator) {
+        super(id, creator);
         this.content = content;
         this.pointsRequired = point;
         this.description = description;
