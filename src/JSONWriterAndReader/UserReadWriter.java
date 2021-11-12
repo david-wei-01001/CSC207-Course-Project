@@ -12,7 +12,7 @@ public class UserReadWriter implements ReadWriter {
     private String filePath;
 
     public UserReadWriter(UserManager userManager) {
-        this.libraryOfUsers = userManager.getLibraryOfUsers();
+        this.libraryOfUsers = userManager.getMapOfUserInfo();
         this.filePath = "src/JSON/LibraryOfUsersUsers.json";
     }
 
