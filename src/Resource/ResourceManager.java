@@ -12,8 +12,8 @@ public class ResourceManager implements HasResource, Serializable{
     private int numberOfResource;
 
     @Override
-    public void add(String content,int point, String description) {
-        Resource resourceToAdd = new Resource(content, getNextId(), point, description);
+    public void add(String content,int point, String description, User creator) {
+        Resource resourceToAdd = new Resource(content, getNextId(), point, description, creator);
         mapOfResource.put(resourceToAdd.getId(), resourceToAdd);
         numberOfResource += 1;
 

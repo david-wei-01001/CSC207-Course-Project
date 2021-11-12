@@ -61,6 +61,11 @@ public class UserInfo {
     }
 
 
+    public void setRewardPoints(int rewardPoints) {
+        this.rewardPoints = rewardPoints;
+    }
+
+
 
 
 
