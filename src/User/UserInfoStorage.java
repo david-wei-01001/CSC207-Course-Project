@@ -2,7 +2,6 @@ package User;
 
 import constants.Exceptions;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,7 +11,8 @@ import java.util.Map;
 public class UserInfoStorage {
 
     /**
-     * mapOfUserInfo Stores UserInfo of all Users in this program.
+     * Stores UserInfo of all Users in this program. Each key is a userName and the value is the UserInfo
+     * of the User with that userName.
      */
     private Map<String, UserInfo> mapOfUserInfo;
 
@@ -38,7 +38,7 @@ public class UserInfoStorage {
         if (!mapOfUserInfo.containsKey(userName)) {
             mapOfUserInfo.put(userName, new UserInfo(userName, email, password));
         } else {
-            throw new Exception(Exceptions.USER_ALREADY_EXISTS);
+            throw new Exception(Exceptions.USER_NAME_TAKEN);
         }
 
     }
@@ -55,5 +55,15 @@ public class UserInfoStorage {
         } else {
             throw new Exception(Exceptions.CANNOT_RECOGNIZE_USER);
         }
+    }
+
+    /**
+     * Check if mapOfUserInfo contains the UserInfo the User with the inputted userName.
+     *
+     * @param userName userName of the User being checked.
+     * @return true if mapOfUserInfo contains the UserInfo for the particular userName, false otherwise.
+     */
+    public boolean contains(String userName) {
+        return mapOfUserInfo.containsKey(userName);
     }
 }

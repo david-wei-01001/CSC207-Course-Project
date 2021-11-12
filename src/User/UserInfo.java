@@ -8,12 +8,11 @@ import constants.Achievements;
 import java.beans.PropertyChangeSupport;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class UserInfo {
-    private String name;
+    private String userName;
     private String email;
     private String password;
     private int rewardPoints;
@@ -26,8 +25,8 @@ public class UserInfo {
 
     private final PropertyChangeSupport observable = new PropertyChangeSupport(this);
 
-    public UserInfo(String name, String email, String password) {
-        this.name = name;
+    public UserInfo(String userName, String email, String password) {
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.rewardPoints = 0;
@@ -60,12 +59,55 @@ public class UserInfo {
         }
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String newName) {
+        this.userName = newName;
+    }
+
+    public void setEmail(String newEmail) {
+        email = newEmail;
+    }
+
+    public void setPassword(String newPassword) {
+        password = newPassword;
+    }
+
+    public int getRewardPoints() {
+        return this.rewardPoints;
+    }
+
+    public void setRewardPoints(int newRewardPoints) {
+        this.rewardPoints = newRewardPoints;
+    }
+
 
     public void setRewardPoints(int rewardPoints) {
         this.rewardPoints = rewardPoints;
     }
 
+    public void addGraph(DirectedGraph graph){
+        listOfGraph.add(graph);
+    }
 
+    public ArrayList<DirectedGraph> getListOfGraph(){
+        return this.listOfGraph;
+    }
+
+    public void addResource(Resource resource){
+        listOfResource.add(resource);
+    }
+
+    public ArrayList<Resource> getListOfResource(){
+        return this.listOfResource;
+    }
+
+    @Override
+    public String toString() {
+        return "User: " + this.userName;
+    }
 
 
 
