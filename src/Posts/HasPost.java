@@ -1,5 +1,7 @@
 package Posts;
 
+import User.User;
+
 public interface HasPost {
     class PostNotFoundException extends Exception {
         public PostNotFoundException () {
@@ -8,6 +10,6 @@ public interface HasPost {
     }
 
    PostNotFoundException ABSENT = new PostNotFoundException ();
-    void add(String content);
+    void add(String content, User creator);
     void delete(String id) throws  PostNotFoundException;
 }
