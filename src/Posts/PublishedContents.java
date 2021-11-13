@@ -1,5 +1,6 @@
 package Posts;
 
+import RewardSystem.RewardManager;
 import User.User;
 
 import java.io.Serializable;
@@ -28,7 +29,7 @@ public class PublishedContents implements Likable, Visualable, Serializable {
     @Override
     public void like() {
         numLike += 1;
-
+        RewardManager.addRewardPoint(creator, RewardManager.getPointsRewardedPerLike());
     }
 
     @Override
