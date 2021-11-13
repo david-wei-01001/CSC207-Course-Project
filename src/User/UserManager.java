@@ -15,7 +15,7 @@ public class UserManager {
     /**
      * The User currently using our application.
      */
-    private User currentUser;
+//    private User currentUser;
 
     /**
      * Stores UserInfo of all Users in this program. Each key is a userName and the value is the UserInfo
@@ -33,18 +33,6 @@ public class UserManager {
         this.mapOfUserInfo = mapOfUserInfo;
     }
 
-    /**
-     * Set currentUser to be the User with the inputted userName.
-     * @param userName userName of the User to be set as currentUser.
-     * @throws Exception if there is no User with the inputted userName.
-     */
-    public void setCurrentUserTo(String userName) throws Exception {
-        if (mapOfUserInfo.containsKey(userName)) {
-            this.currentUser = new User(mapOfUserInfo.get(userName));
-        } else {
-            throw new Exception(Exceptions.CANNOT_RECOGNIZE_USER);
-        }
-    }
 
     /**
      * Create a UserInfo for a new User and stores it in mapOfUserInfo.
@@ -77,11 +65,19 @@ public class UserManager {
         }
     }
 
+    public UserInfo getAUserInfo(String userName) throws Exception {
+        if (mapOfUserInfo.containsKey(userName)) {
+            return mapOfUserInfo.get(userName);
+        } else {
+            throw new Exception(Exceptions.CANNOT_RECOGNIZE_USER);
+        }
+    }
+
     /**
      * add a graph to current user
      */
-    public void addGraphToCurrentUser(DirectedGraph graph) {
-        currentUser.getUserInfo().addGraph(graph);
+    public void addGraphTo(User user, DirectedGraph graph) {
+        user.getUserInfo().addGraph(graph);
     }
 
 
@@ -90,30 +86,28 @@ public class UserManager {
      * @param newUserName currentUser's new userName.
      * @throws Exception if newUserName has been taken.
      */
-    public void setUserNameOfCurrentUser(String newUserName) throws Exception {
+    public void setUserNameOf(User user, String newUserName) throws Exception {
         if (!mapOfUserInfo.containsKey(newUserName)) {
-            currentUser.getUserInfo().setUserName(newUserName);
+            user.getUserInfo().setUserName(newUserName);
         } else {
             throw new Exception(Exceptions.USER_NAME_TAKEN);
         }
     }
 
-
-    public void setEmailOfCurrentUser(String newEmail) {
-        currentUser.getUserInfo().setEmail(newEmail);
+    /**
+     * TODO: upgrade this method so that so duplicated email address is allowed.
+     * @param user
+     * @param newEmail
+     */
+    public void setEmailOf(User user, String newEmail) {
+        user.getUserInfo().setEmail(newEmail);
     }
 
-    public void setPasswordOfCurrentUser(String newPassword) {
-        currentUser.getUserInfo().setPassword(newPassword);
+    public void setPasswordOf(User user, String newPassword) {
+        user.getUserInfo().setPassword(newPassword);
     }
 
     public Map<String, UserInfo> getMapOfUserInfo() {
         return mapOfUserInfo;
-    }
-
-
-
-    public User getCurrentUser() {
-        return currentUser;
     }
 }
