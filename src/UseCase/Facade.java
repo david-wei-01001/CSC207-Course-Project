@@ -8,6 +8,7 @@ import Resource.ResourceManager;
 import RewardSystem.RewardManager;
 import User.User;
 import User.UserManager;
+import constants.Achievements;
 
 public class Facade {
 
@@ -48,20 +49,59 @@ public class Facade {
         currentUser = new User(userManager.getAUserInfo(userName));
     }
 
+    /**
+     *
+     * @param graph
+     */
     public void addGraphToCurrentUser(DirectedGraph graph) {
         userManager.addGraphTo(currentUser, graph);
     }
 
+    /**
+     *
+     * @param newUserName
+     * @throws Exception
+     */
     public void setUserNameOfCurrentUser(String newUserName) throws Exception {
         userManager.setUserNameOf(currentUser, newUserName);
     }
 
+    /**
+     *
+     * @param newEmail
+     */
     public void setEmailOfCurrentUser(String newEmail) {
         userManager.setEmailOf(currentUser, newEmail);
     }
 
+    /**
+     *
+     * @param newPassword
+     *
+     *
+     *
+     */
     public void setPasswordOfCurrentUser(String newPassword) {
         userManager.setPasswordOf(currentUser, newPassword);
     }
 
+    public void downloadResource(String resourceId) {
+        resourceManager.downloadResource(currentUser, resourceId);
+    }
+
+    public void createPost(String communityName, String content) throws Exception {
+        communityLibrary.addPost(currentUser, communityName, content);
+        boolean achievementAwarded = achievementManager.requestAchievement(currentUser,
+                Achievements.ARRAY_OF_POST_THRESHOLDS,
+                Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
+                currentUser.getUserInfo().getListOfPost().size());
+//        if (achievementAwarded) {
+////            rewardManager.
+//        }
+
+    }
+
+    public void incrementTotalLogins() {
+
+    }
 }
