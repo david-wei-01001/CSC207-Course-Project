@@ -5,6 +5,7 @@ import User.User;
 
 public class Resource extends PublishedContents {
     private String content;
+    private User creator;
     private int pointsRequired;
     private String description;
     private int downloadTimes;
@@ -12,6 +13,7 @@ public class Resource extends PublishedContents {
     public Resource(String content, String id, int point, String description, User creator) {
         super(id, creator);
         this.content = content;
+        this.creator = creator;
         this.pointsRequired = point;
         this.description = description;
     }
