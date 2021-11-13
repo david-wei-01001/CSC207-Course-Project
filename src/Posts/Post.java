@@ -7,14 +7,12 @@ import java.util.HashMap;
 
 public class Post extends PublishedContents implements HasPost {
     private String content;
-    private User creator;
     private HashMap<String, Comment> mapOfComments = new HashMap<>();
     private int numComments;
 
     public Post(String content, String id, User creator) {
         super(id, creator);
         this.content = content;
-        this.creator = creator;
     }
 
     public HashMap<String, Comment> getMapOfComments(){
@@ -25,7 +23,7 @@ public class Post extends PublishedContents implements HasPost {
     public String toString() {
         return "Post{" +
                 "id=" + super.getId() +
-                ", creator=" + creator.getUserInfo().getUserName() + '\'' +
+                ", creator=" + this.getCreator().getUserInfo().getUserName() + '\'' +
                 ", content='" + content + '\'' +
                 ", listOfComments=" + mapOfComments +
                 '}';

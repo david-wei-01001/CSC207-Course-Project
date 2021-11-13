@@ -4,6 +4,7 @@ import AchievementSystem.AchievementManager;
 import Graph.DirectedGraph;
 import Graph.GraphManager;
 import Java.CommunityLibrary;
+import Posts.PublishedContents;
 import Resource.ResourceManager;
 import RewardSystem.RewardManager;
 import User.User;
@@ -62,6 +63,11 @@ public class Facade {
 
     public void setPasswordOfCurrentUser(String newPassword) {
         userManager.setPasswordOf(currentUser, newPassword);
+    }
+
+    public void like(PublishedContents publishedContents){
+        publishedContents.like();
+        rewardManager.addRewardPoint(publishedContents.getCreator(), rewardManager.getPointsRewardedPerLike());
     }
 
 }
