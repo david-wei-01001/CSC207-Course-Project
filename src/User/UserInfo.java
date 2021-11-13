@@ -35,6 +35,13 @@ public class UserInfo {
 
     private final PropertyChangeSupport observable = new PropertyChangeSupport(this);
 
+
+    /**
+     * Instantiates UserInfo with userName, email, and password of user.
+     * @param userName the user's username.
+     * @param email the user's email.
+     * @param password the user's password.
+     */
     public UserInfo(String userName, String email, String password) {
         this.userName = userName;
         this.email = email;
@@ -44,14 +51,21 @@ public class UserInfo {
         this.totalLogins = 0;
     }
 
+    /**
+     * Adds a Post to the user's listOfPosts.
+     * @param post the post that the user created.
+     */
     public void addPost(Post post){
         listOfPost.add(post);
         boolean trigger = RequestAchievement(Achievements.ARRAY_OF_POST_THRESHOLDS, Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT, listOfPost.size());
         if (trigger){
             this.setRewardPoints(Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(listOfPost.size()));
-        }
+        } //put it in facade when we write post()
     }
 
+    /**
+     * Increases the totalLogins by 1.
+     */
     public void incrementTotalLogins() {
         totalLogins += 1;
         boolean trigger = RequestAchievement(Achievements.ARRAY_OF_TOTAL_LOGINS_THRESHOLDS, Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT, totalLogins);
