@@ -1,7 +1,7 @@
 package GraphBuilders;
 
 import Graph.DirectedGraph;
-import contants.Exceptions;
+import constants.Exceptions;
 
 public class GraphArchitect {
 

@@ -1,7 +1,7 @@
 package Java;
 
 import Posts.Community;
-import contants.Exceptions;
+import constants.Exceptions;
 
 import java.util.HashMap;
 

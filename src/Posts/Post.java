@@ -1,5 +1,7 @@
 package Posts;
 
+import User.User;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -8,8 +10,8 @@ public class Post extends PublishedContents implements HasPost {
     private HashMap<String, Comment> mapOfComments = new HashMap<>();
     private int numComments;
 
-    public Post(String content, String id) {
-        super(id);
+    public Post(String content, String id, User creator) {
+        super(id, creator);
         this.content = content;
     }
 
@@ -31,7 +33,7 @@ public class Post extends PublishedContents implements HasPost {
     }
 
     @Override
-    public void add(String content) {
+    public void add(String content, User creator) {
         Comment commentToAdd = new Comment(content, getNextId());
         mapOfComments.put(commentToAdd.getId(), commentToAdd);
         numComments += 1;
