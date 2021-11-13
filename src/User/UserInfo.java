@@ -26,6 +26,13 @@ public class UserInfo {
 
     private final PropertyChangeSupport observable = new PropertyChangeSupport(this);
 
+
+    /**
+     * Instantiates UserInfo with userName, email, and password of user.
+     * @param userName the user's username.
+     * @param email the user's email.
+     * @param password the user's password.
+     */
     public UserInfo(String userName, String email, String password) {
         this.userName = userName;
         this.email = email;
@@ -35,6 +42,10 @@ public class UserInfo {
         this.totalLogins = 0;
     }
 
+    /**
+     * Adds a Post to the user's listOfPosts.
+     * @param post the post that the user created.
+     */
     public void addPost(Post post){
         listOfPost.add(post);
         boolean trigger = checkAndRequestAchievement(Achievements.ARRAY_OF_POST_THRESHOLDS, Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT, listOfPost.size());
@@ -43,6 +54,9 @@ public class UserInfo {
         }
     }
 
+    /**
+     * Increases the totalLogins by 1.
+     */
     public void incrementTotalLogins() {
         totalLogins += 1;
         boolean trigger = checkAndRequestAchievement(Achievements.ARRAY_OF_TOTAL_LOGINS_THRESHOLDS, Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT, totalLogins);
@@ -51,6 +65,14 @@ public class UserInfo {
         }
     }
 
+    /**
+     * Checks if any achievement's threshold is fulfilled. If so, mark the achievement's status as true in
+     * mapOfAchievement to indicate its fulfillment.
+     * @param thresholds the thresholds of all achievements.
+     * @param thresholdsToAchievement a Map of thresholds and their corresponding achievement.
+     * @param property the property that is checked to determine if it fulfills the thresholds of any achievement.
+     * @return returns ture iff any achievement's threshold is fulfilled.
+     */
     private boolean checkAndRequestAchievement(int[] thresholds, Map<Integer, String> thresholdsToAchievement, int property) {
         for (int threshold : thresholds) {
             if (property == threshold) {
