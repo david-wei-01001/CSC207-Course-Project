@@ -79,11 +79,6 @@ public class UserInfo {
         return this.rewardPoints;
     }
 
-    public void setRewardPoints(int newRewardPoints) {
-        this.rewardPoints = newRewardPoints;
-    }
-
-
     public void setRewardPoints(int rewardPoints) {
         this.rewardPoints = rewardPoints;
     }
