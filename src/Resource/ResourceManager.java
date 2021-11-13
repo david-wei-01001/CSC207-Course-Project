@@ -32,8 +32,8 @@ public class ResourceManager implements HasResource, Serializable{
         return "Resource #" + numberOfResource;
     }
 
-    public String download(User user, String id){
-        Resource resource = this.mapOfResource.get(id);
+    public String downloadResource(User user, String resourceId) {
+        Resource resource = this.mapOfResource.get(resourceId);
         if (user.getUserInfo().getRewardPoints() < resource.getPointsRequired()) {
             return "Sorry, you do not have enough points";
         }

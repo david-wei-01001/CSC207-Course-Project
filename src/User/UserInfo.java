@@ -3,7 +3,6 @@ package User;
 import Graph.DirectedGraph;
 import Posts.Post;
 import Resource.Resource;
-import RewardSystem.RewardManager;
 import constants.Achievements;
 
 import java.beans.PropertyChangeSupport;
@@ -19,20 +18,23 @@ public class UserInfo {
     private int rewardPoints;
     private LocalDate lastLogin;
     private int totalLogins;
+
+    public ArrayList<Post> getListOfPost() {
+        return listOfPost;
+    }
+
     private ArrayList<Post> listOfPost = new ArrayList<>();
     private ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
     private ArrayList<Resource> listOfResource = new ArrayList<>();
+
+    public Map<String, Boolean> getMapOfAchievement() {
+        return mapOfAchievement;
+    }
+
     private Map<String, Boolean> mapOfAchievement = new HashMap<>();
 
     private final PropertyChangeSupport observable = new PropertyChangeSupport(this);
 
-
-    /**
-     * Instantiates UserInfo with userName, email, and password of user.
-     * @param userName the user's username.
-     * @param email the user's email.
-     * @param password the user's password.
-     */
     public UserInfo(String userName, String email, String password) {
         this.userName = userName;
         this.email = email;
@@ -42,46 +44,23 @@ public class UserInfo {
         this.totalLogins = 0;
     }
 
-    /**
-     * Adds a Post to the user's listOfPosts.
-     * @param post the post that the user created.
-     */
     public void addPost(Post post){
         listOfPost.add(post);
-        boolean trigger = checkAndRequestAchievement(Achievements.ARRAY_OF_POST_THRESHOLDS, Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT, listOfPost.size());
+        boolean trigger = RequestAchievement(Achievements.ARRAY_OF_POST_THRESHOLDS, Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT, listOfPost.size());
         if (trigger){
             this.setRewardPoints(Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(listOfPost.size()));
         }
     }
 
-    /**
-     * Increases the totalLogins by 1.
-     */
     public void incrementTotalLogins() {
         totalLogins += 1;
-        boolean trigger = checkAndRequestAchievement(Achievements.ARRAY_OF_TOTAL_LOGINS_THRESHOLDS, Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT, totalLogins);
+        boolean trigger = RequestAchievement(Achievements.ARRAY_OF_TOTAL_LOGINS_THRESHOLDS, Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT, totalLogins);
         if(trigger){
             this.setRewardPoints(Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_REWARD.get(totalLogins));
         }
     }
 
-    /**
-     * Checks if any achievement's threshold is fulfilled. If so, mark the achievement's status as true in
-     * mapOfAchievement to indicate its fulfillment.
-     * @param thresholds the thresholds of all achievements.
-     * @param thresholdsToAchievement a Map of thresholds and their corresponding achievement.
-     * @param property the property that is checked to determine if it fulfills the thresholds of any achievement.
-     * @return returns ture iff any achievement's threshold is fulfilled.
-     */
-    private boolean checkAndRequestAchievement(int[] thresholds, Map<Integer, String> thresholdsToAchievement, int property) {
-        for (int threshold : thresholds) {
-            if (property == threshold) {
-                mapOfAchievement.replace(thresholdsToAchievement.get(property), false, true);
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     public void initializeMapOfAchievement() {
         for (String achievement : Achievements.ARRAY_OF_ALL_ACHIEVEMENTS) {
