@@ -3,6 +3,7 @@ package User;
 import Graph.DirectedGraph;
 import Posts.Post;
 import Resource.Resource;
+import RewardSystem.RewardManager;
 import constants.Achievements;
 
 import java.beans.PropertyChangeSupport;
@@ -36,21 +37,28 @@ public class UserInfo {
 
     public void addPost(Post post){
         listOfPost.add(post);
-        checkAndRequestAchievement(Achievements.ARRAY_OF_POST_THRESHOLDS, Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT, listOfPost.size());
-
+        boolean trigger = checkAndRequestAchievement(Achievements.ARRAY_OF_POST_THRESHOLDS, Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT, listOfPost.size());
+        if (trigger){
+            this.setRewardPoints(Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(listOfPost.size()));
+        }
     }
 
     public void incrementTotalLogins() {
         totalLogins += 1;
-        checkAndRequestAchievement(Achievements.ARRAY_OF_TOTAL_LOGINS_THRESHOLDS, Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT, totalLogins);
+        boolean trigger = checkAndRequestAchievement(Achievements.ARRAY_OF_TOTAL_LOGINS_THRESHOLDS, Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT, totalLogins);
+        if(trigger){
+            this.setRewardPoints(Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_REWARD.get(totalLogins));
+        }
     }
 
-    private void checkAndRequestAchievement(int[] thresholds, Map<Integer, String> thresholdsToAchievement, int property) {
+    private boolean checkAndRequestAchievement(int[] thresholds, Map<Integer, String> thresholdsToAchievement, int property) {
         for (int threshold : thresholds) {
             if (property == threshold) {
                 mapOfAchievement.replace(thresholdsToAchievement.get(property), false, true);
+                return true;
             }
         }
+        return false;
     }
 
     public void initializeMapOfAchievement() {
