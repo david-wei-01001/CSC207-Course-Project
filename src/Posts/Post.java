@@ -34,10 +34,11 @@ public class Post extends PublishedContents implements HasPost {
     }
 
     @Override
-    public void add(String content, User creator) {
-        Comment commentToAdd = new Comment(content, getNextId());
-        mapOfComments.put(commentToAdd.getId(), commentToAdd);
+    public String add(String content, User creator) {
+        String commentId = getNextId();
+        mapOfComments.put(commentId, new Comment(content, commentId, creator));
         numComments += 1;
+        return commentId;
     }
 
     @Override
