@@ -4,10 +4,12 @@ import AchievementSystem.AchievementManager;
 import Graph.DirectedGraph;
 import Graph.GraphManager;
 import Java.CommunityLibrary;
+import Posts.PublishedContents;
 import Resource.ResourceManager;
 import RewardSystem.RewardManager;
 import User.User;
 import User.UserManager;
+import User.InterfaceAction;
 
 public class Facade {
 
@@ -48,20 +50,41 @@ public class Facade {
         currentUser = new User(userManager.getAUserInfo(userName));
     }
 
-    public void addGraphToCurrentUser(DirectedGraph graph) {
-        userManager.addGraphTo(currentUser, graph);
+    public boolean checkUserLogin(){
+        return currentUser.getUserInfo() != null;
+    }
+
+    public void addGraphToCurrentUser(DirectedGraph graph) throws Exception {
+        if(checkUserLogin()){
+        userManager.addGraphTo(currentUser, graph);}
+        else{
+            InterfaceAction.loginOrSignup();
+        }
     }
 
     public void setUserNameOfCurrentUser(String newUserName) throws Exception {
-        userManager.setUserNameOf(currentUser, newUserName);
+        if(checkUserLogin()){
+            userManager.setUserNameOf(currentUser, newUserName);}
+        else{
+            InterfaceAction.loginOrSignup();
+        }
     }
 
-    public void setEmailOfCurrentUser(String newEmail) {
-        userManager.setEmailOf(currentUser, newEmail);
+    public void setEmailOfCurrentUser(String newEmail) throws Exception {
+        if(checkUserLogin()){
+            userManager.setEmailOf(currentUser, newEmail);}
+        else{
+            InterfaceAction.loginOrSignup();
+        }
     }
 
-    public void setPasswordOfCurrentUser(String newPassword) {
-        userManager.setPasswordOf(currentUser, newPassword);
+    public void setPasswordOfCurrentUser(String newPassword) throws Exception {
+        if(checkUserLogin()){
+            userManager.setPasswordOf(currentUser, newPassword);}
+        else{
+            InterfaceAction.loginOrSignup();
+        }
     }
+
 
 }

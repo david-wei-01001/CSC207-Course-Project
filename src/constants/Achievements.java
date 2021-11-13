@@ -30,9 +30,9 @@ public class Achievements {
     );
 
 
-    public static final String LOGIN_ACHIEVEMENT = "Login Achievement";
+    public static final String LOGIN_ACHIEVEMENT = "User.Login Achievement";
     public static final int FIRST_LOGIN_THRESHOLD = 1;
-    public static final String FIRST_LOGIN = "First Login";
+    public static final String FIRST_LOGIN = "First User.Login";
     public static final int FIRST_LOGIN_REWARD = 1;
 
     public static final int[] ARRAY_OF_TOTAL_LOGINS_THRESHOLDS = {FIRST_LOGIN_THRESHOLD};
