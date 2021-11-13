@@ -1,8 +1,7 @@
 package JSONWriterAndReader;
-
-import Java.User;
-import Java.UserInfo;
-import Java.UserManager;
+import User.User;
+import User.UserInfo;
+import User.UserManager;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
