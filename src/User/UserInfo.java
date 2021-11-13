@@ -7,7 +7,7 @@ import RewardSystem.RewardManager;
 import constants.Achievements;
 
 import java.beans.PropertyChangeSupport;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ public class UserInfo {
     private String email;
     private String password;
     private int rewardPoints;
-    private LocalDateTime lastLogin;
+    private LocalDate lastLogin;
     private int totalLogins;
     private ArrayList<Post> listOfPost = new ArrayList<>();
     private ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
@@ -31,7 +31,7 @@ public class UserInfo {
         this.email = email;
         this.password = password;
         this.rewardPoints = 0;
-        this.lastLogin = LocalDateTime.now();
+        this.lastLogin = LocalDate.now();
         this.totalLogins = 0;
     }
 
