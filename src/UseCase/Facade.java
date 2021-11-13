@@ -4,6 +4,7 @@ import AchievementSystem.AchievementManager;
 import Graph.DirectedGraph;
 import Graph.GraphManager;
 import Java.CommunityLibrary;
+import Posts.Post;
 import Posts.PublishedContents;
 import Resource.ResourceManager;
 import RewardSystem.RewardManager;
@@ -92,14 +93,16 @@ public class Facade {
     }
 
     public void createPost(String communityName, String content) throws Exception {
-        communityLibrary.addPost(currentUser, communityName, content);
+        String postId = communityLibrary.addPost(currentUser, communityName, content);
+        currentUser.getUserInfo().addToListOfPostId(postId);
         boolean achievementAwarded = achievementManager.requestAchievement(currentUser,
                 Achievements.ARRAY_OF_POST_THRESHOLDS,
                 Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
                 currentUser.getUserInfo().getListOfPost().size());
-//        if (achievementAwarded) {
-////            rewardManager.
-//        }
+        if (achievementAwarded) {
+            rewardManager.addRewardPoint(currentUser,
+                    Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(currentUser.getUserInfo().getListOfPost().size()));
+        }
 
     }
 

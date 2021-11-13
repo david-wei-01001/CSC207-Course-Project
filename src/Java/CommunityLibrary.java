@@ -34,9 +34,9 @@ public class CommunityLibrary {
     /**
      * TODO: implement this method
      */
-    public void addPost(User user, String communityName, String content) throws Exception {
+    public String addPost(User user, String communityName, String content) throws Exception {
         if (mapOfCommunity.containsKey(communityName)) {
-            mapOfCommunity.get(communityName).add(content, user);
+            return mapOfCommunity.get(communityName).add(content, user);
         } else {
             throw new Exception(Exceptions.CANNOT_RECOGNIZE_COMMUNITY);
         }
