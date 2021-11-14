@@ -120,4 +120,11 @@ public class UserManager {
         return mapOfUserInfo;
     }
 
+//    public UserInfo checkLoginInfo(String username, String password) {
+//        if (mapOfUserInfo.containsKey(username) && mapOfUserInfo.get(username).getPassword().equals(password)) {
+//            return mapOfUserInfo.get(username);
+//        } else {
+//            return new UserInfo(null,null,null);
+//        }
+//    }
 }
