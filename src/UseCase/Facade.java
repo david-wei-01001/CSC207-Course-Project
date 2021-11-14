@@ -98,16 +98,24 @@ public class Facade {
         boolean achievementAwarded = achievementManager.requestAchievement(currentUser,
                 Achievements.ARRAY_OF_POST_THRESHOLDS,
                 Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
-                currentUser.getUserInfo().getListOfPost().size());
+                currentUser.getUserInfo().getListOfPostId().size());
         if (achievementAwarded) {
             rewardManager.addRewardPoint(currentUser,
-                    Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(currentUser.getUserInfo().getListOfPost().size()));
+                    Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(currentUser.getUserInfo().getListOfPostId().size()));
         }
 
     }
 
     public void incrementTotalLogins() {
-
+        currentUser.getUserInfo().incrementTotalLogins();
+        boolean achievementAwarded = achievementManager.requestAchievement(currentUser,
+                Achievements.ARRAY_OF_TOTAL_LOGINS_THRESHOLDS,
+                Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT,
+                currentUser.getUserInfo().getTotalLogins());
+        if (achievementAwarded) {
+            rewardManager.addRewardPoint(currentUser,
+                    Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_REWARD.get(currentUser.getUserInfo().getTotalLogins()));
+        }
     }
 
     public void like(PublishedContents publishedContents){
