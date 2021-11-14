@@ -1,6 +1,7 @@
 package Java;
 
 import Posts.Community;
+import User.User;
 import constants.Exceptions;
 
 import java.util.HashMap;
@@ -33,7 +34,13 @@ public class CommunityLibrary {
     /**
      * TODO: implement this method
      */
-//    public void addPost();
+    public String addPost(User user, String communityName, String content) throws Exception {
+        if (mapOfCommunity.containsKey(communityName)) {
+            return mapOfCommunity.get(communityName).add(content, user);
+        } else {
+            throw new Exception(Exceptions.CANNOT_RECOGNIZE_COMMUNITY);
+        }
+    }
 
     /**
      * Delete an existing community

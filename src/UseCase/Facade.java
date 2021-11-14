@@ -4,12 +4,15 @@ import AchievementSystem.AchievementManager;
 import Graph.DirectedGraph;
 import Graph.GraphManager;
 import Java.CommunityLibrary;
+import Posts.Post;
 import Posts.PublishedContents;
 import Resource.ResourceManager;
 import RewardSystem.RewardManager;
 import User.User;
 import User.UserManager;
 import User.InterfaceAction;
+import constants.Achievements;
+
 
 public class Facade {
 
@@ -50,6 +53,7 @@ public class Facade {
         currentUser = new User(userManager.getAUserInfo(userName));
     }
 
+
     public boolean checkUserLogin(){
         return currentUser.getUserInfo() != null;
     }
@@ -60,8 +64,14 @@ public class Facade {
         else{
             InterfaceAction.loginOrSignup();
         }
+
     }
 
+    /**
+     *
+     * @param newUserName
+     * @throws Exception
+     */
     public void setUserNameOfCurrentUser(String newUserName) throws Exception {
         if(checkUserLogin()){
             userManager.setUserNameOf(currentUser, newUserName);}
@@ -69,6 +79,7 @@ public class Facade {
             InterfaceAction.loginOrSignup();
         }
     }
+
 
     public void setEmailOfCurrentUser(String newEmail) throws Exception {
         if(checkUserLogin()){
