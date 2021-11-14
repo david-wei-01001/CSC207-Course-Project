@@ -1,5 +1,7 @@
 package Posts;
 
+import User.User;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -16,10 +18,11 @@ public class Community implements HasPost, Serializable {
 
 
     @Override
-    public void add(String content) {
-        Post postToAdd = new Post(content, getNextId());
-        mapOfPost.put(postToAdd.getId(), postToAdd);
+    public String add(String content, User creator) {
+        String postId = getNextId();
+        mapOfPost.put(postId, new Post(content, postId, creator));
         numberOfPosts += 1;
+        return postId;
     }
 
 

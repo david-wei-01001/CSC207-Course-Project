@@ -12,8 +12,8 @@ public class ResourceManager implements HasResource, Serializable{
     private int numberOfResource;
 
     @Override
-    public void add(String content,int point, String description) {
-        Resource resourceToAdd = new Resource(content, getNextId(), point, description);
+    public void add(String content,int point, String description, User creator) {
+        Resource resourceToAdd = new Resource(content, getNextId(), point, description, creator);
         mapOfResource.put(resourceToAdd.getId(), resourceToAdd);
         numberOfResource += 1;
 
@@ -32,15 +32,15 @@ public class ResourceManager implements HasResource, Serializable{
         return "Resource #" + numberOfResource;
     }
 
-    public String download(User user, String id){
-        Resource resource = this.mapOfResource.get(id);
-        if (user.getRewardPoints() < resource.getPointsRequired()) {
+    public String downloadResource(User user, String resourceId) {
+        Resource resource = this.mapOfResource.get(resourceId);
+        if (user.getUserInfo().getRewardPoints() < resource.getPointsRequired()) {
             return "Sorry, you do not have enough points";
         }
         else{
-            int newPoints = user.getRewardPoints() - resource.getPointsRequired();
-            user.setRewardPoints(newPoints);
-            user.addResource(resource);
+            int newPoints = user.getUserInfo().getRewardPoints() - resource.getPointsRequired();
+            user.getUserInfo().setRewardPoints(newPoints);
+            user.getUserInfo().addResource(resource);
             resource.addDownloadTimes();
         }
         return resource.getContent();

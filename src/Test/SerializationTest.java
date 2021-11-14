@@ -3,6 +3,7 @@ package Test;
 import Graph.DirectedGraph;
 import GraphBuilders.GraphArchitect;
 
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -33,6 +34,5 @@ public class SerializationTest {
         DirectedGraph csIntroductorySeriesTreeToRead = (DirectedGraph) is.readObject(); //read object
         System.out.println(csIntroductorySeriesTreeToRead.getVertices());
         is.close();
-
     }
 }

@@ -1,20 +1,23 @@
 package AchievementSystem;
 
-import constants.Achievements;
+import User.User;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Map;
 
-public class AchievementManager implements PropertyChangeListener {
+public class AchievementManager {
 
-    
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-//        if (evt.getPropertyName().equals(Achievements.POST_ACHIEVEMENT)) {
-
-
+    public boolean requestAchievement(User user, int[] thresholds, Map<Integer, String> thresholdsToAchievement, int property) {
+        for (int threshold : thresholds) {
+            if (property == threshold) {
+                user.getUserInfo().getMapOfAchievement().replace(thresholdsToAchievement.get(property), false, true);
+                return true;
+            }
+        }
+        return false;
     }
+
 
 
 }

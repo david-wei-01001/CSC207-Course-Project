@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class Achievements {
 
-    public static final String POST_ACHIEVEMENT = "Post Achievement";
     public static final int FIRST_POST_THRESHOLD = 1;
     public static final String FIRST_POST = "First Post";
     public static final int FIRST_POST_REWARD = 1;
@@ -46,8 +45,4 @@ public class Achievements {
 
 
     public static final String[] ARRAY_OF_ALL_ACHIEVEMENTS = {FIRST_POST, FIRST_LOGIN, FIFTH_POST, TENTH_POST, FIRST_LOGIN};
-
-
-
-
 }
