@@ -18,7 +18,8 @@ public class UserInfo {
     private int rewardPoints;
     private LocalDate lastLogin;
     private int totalLogins;
-//    private ArrayList<Post> listOfPost = new ArrayList<>();
+
+    //    private ArrayList<Post> listOfPost = new ArrayList<>();
     private ArrayList<String> listOfPostId = new ArrayList<>();
     private ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
     private ArrayList<Resource> listOfResource = new ArrayList<>();
@@ -52,10 +53,6 @@ public class UserInfo {
 
     public void incrementTotalLogins() {
         totalLogins += 1;
-        boolean trigger = RequestAchievement(Achievements.ARRAY_OF_TOTAL_LOGINS_THRESHOLDS, Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT, totalLogins);
-        if(trigger){
-            this.setRewardPoints(Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_REWARD.get(totalLogins));
-        }
     }
 
 
@@ -109,6 +106,14 @@ public class UserInfo {
     @Override
     public String toString() {
         return "User: " + this.userName;
+    }
+
+    public ArrayList<String> getListOfPostId() {
+        return listOfPostId;
+    }
+
+    public int getTotalLogins() {
+        return totalLogins;
     }
 
 //    public ArrayList<Post> getListOfPost() {
