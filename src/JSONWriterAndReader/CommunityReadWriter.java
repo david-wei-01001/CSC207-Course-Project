@@ -1,9 +1,9 @@
 
 //package JSONWriterAndReader;
 //
-//import Java.CommunityLibrary;
+//import CommunitySystem.CommunityLibrary;
 //import Java.User;
-//import Posts.Community;
+//import CommunitySystem.Community;
 //
 //import java.io.*;
 //import java.util.HashMap;

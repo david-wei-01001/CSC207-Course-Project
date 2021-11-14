@@ -1,6 +1,6 @@
 //package Test;
 //
-//    import Posts.Community;
+//    import CommunitySystem.Community;
 //    import Posts.HasPost;
 //    import Posts.Post;
 //    import org.junit.Before;

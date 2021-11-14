@@ -1,6 +1,5 @@
-package Java;
+package CommunitySystem;
 
-import Posts.Community;
 import User.User;
 import constants.Exceptions;
 

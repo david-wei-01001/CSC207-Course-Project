@@ -1,10 +1,9 @@
-package UseCase;
+package User;
 
 import AchievementSystem.AchievementManager;
 import Graph.DirectedGraph;
 import Graph.GraphManager;
-import Java.CommunityLibrary;
-import Posts.Post;
+import CommunitySystem.CommunityLibrary;
 import Posts.PublishedContents;
 import Resource.ResourceManager;
 import RewardSystem.RewardManager;
@@ -12,7 +11,7 @@ import User.User;
 import User.UserManager;
 import constants.Achievements;
 
-public class Facade {
+public class UserActionFacade {
 
     private UserManager userManager;
     private RewardManager rewardManager;
@@ -23,12 +22,12 @@ public class Facade {
     private User currentUser;
 
 
-    public Facade(UserManager userManager,
-                  RewardManager rewardManager,
-                  AchievementManager achievementManager,
-                  GraphManager graphManager,
-                  CommunityLibrary communityLibrary,
-                  ResourceManager resourceManager) {
+    public UserActionFacade(UserManager userManager,
+                            RewardManager rewardManager,
+                            AchievementManager achievementManager,
+                            GraphManager graphManager,
+                            CommunityLibrary communityLibrary,
+                            ResourceManager resourceManager) {
 
         this.userManager = userManager;
         this.rewardManager = rewardManager;
@@ -123,5 +122,23 @@ public class Facade {
         rewardManager.addRewardPoint(publishedContents.getCreator(), rewardManager.getPointsRewardedPerLike());
     }
 
+    public CommunityLibrary getCommunityLibrary() {
+        return communityLibrary;
+    }
 
+    public ResourceManager getResourceManager() {
+        return resourceManager;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public AchievementManager getAchievementManager() {
+        return achievementManager;
+    }
+
+    public UserManager getUserManager() {
+        return userManager;
+    }
 }
