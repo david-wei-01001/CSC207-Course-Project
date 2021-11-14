@@ -38,5 +38,5 @@ A user registers his/her account and completes the first vertex.
 
   6. Program unlocks new nodes for the user:]
 
-    - New available nodes are “C++”, “Java” and “CSC165”.
+    - New available nodes are “C++”, “TechnicalTree” and “CSC165”.
     - [by completing the previous vertex in the graph using the complete() method]
