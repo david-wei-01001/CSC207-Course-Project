@@ -5,6 +5,9 @@ import constants.Exceptions;
 
 import java.util.HashMap;
 
+/**
+ * The use case that controls a user's interaction with the achievement system.
+ */
 public class CommunityLibrary {
     private HashMap<String, Community> mapOfCommunity = new HashMap<>();
     private Community currentCommunity;
@@ -31,7 +34,12 @@ public class CommunityLibrary {
     }
 
     /**
-     * TODO: implement this method
+     * Add a post to a community.
+     * @param user the user adding this post
+     * @param communityName the name of the community this post is being added to
+     * @param content the content of the post being added
+     * @return the id of the post being added.
+     * @throws Exception throws an exception if the community with the communityName is not found.
      */
     public String addPost(User user, String communityName, String content) throws Exception {
         if (mapOfCommunity.containsKey(communityName)) {
@@ -57,7 +65,6 @@ public class CommunityLibrary {
     public Community getCommunity(String name){
         return mapOfCommunity.get(name);
     }
-
 
 
     public Community getCurrentCommunity() {

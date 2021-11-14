@@ -1,5 +1,8 @@
 package constants;
 
+/**
+ * This class stores all exception messages of this program.
+ */
 public class Exceptions {
     /**
      * Exceptions class imitates that of JavaShell's.

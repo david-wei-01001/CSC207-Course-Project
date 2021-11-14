@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The class that stores all information of a user.
+ */
 public class UserInfo {
     private String userName;
     private String email;
@@ -42,21 +45,24 @@ public class UserInfo {
     }
 
 
-
-//    public void addPost(Post post){
-//        listOfPost.add(post);
-//    }
-
+    /**
+     * add a post id.
+     * @param id the id of the post being added.
+     */
     public void addToListOfPostId(String id) {
         this.listOfPostId.add(id);
     }
 
+    /**
+     * increase the total number of logins by 1.
+     */
     public void incrementTotalLogins() {
         totalLogins += 1;
     }
 
-
-
+    /**
+     * Initialize mapOfAchievement, with all achievement not received.
+     */
     public void initializeMapOfAchievement() {
         for (String achievement : Achievements.ARRAY_OF_ALL_ACHIEVEMENTS) {
             mapOfAchievement.put(achievement, false);
