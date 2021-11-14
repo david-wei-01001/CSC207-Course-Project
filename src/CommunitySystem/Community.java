@@ -1,5 +1,7 @@
-package Posts;
+package CommunitySystem;
 
+import Posts.HasPost;
+import Posts.Post;
 import User.User;
 
 import java.io.Serializable;
