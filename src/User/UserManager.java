@@ -38,7 +38,7 @@ public class UserManager {
      * Create a UserInfo for a new User and stores it in mapOfUserInfo.
      *
      * @param userName userName of the new User.
-     * @param email email address of the new User.
+     * @param email    email address of the new User.
      * @param password password of the new User.
      * @throws Exception throws an exception if the userName has been taken.
      */
@@ -65,6 +65,13 @@ public class UserManager {
         }
     }
 
+    /**
+     * Return UserInfo on given username.
+     *
+     * @param userName
+     * @return UserInfo
+     * @throws Exception
+     */
     public UserInfo getAUserInfo(String userName) throws Exception {
         if (mapOfUserInfo.containsKey(userName)) {
             return mapOfUserInfo.get(userName);
@@ -83,6 +90,7 @@ public class UserManager {
 
     /**
      * change the userName of currentUser to newUserName.
+     *
      * @param newUserName currentUser's new userName.
      * @throws Exception if newUserName has been taken.
      */
@@ -96,6 +104,7 @@ public class UserManager {
 
     /**
      * TODO: upgrade this method so that so duplicated email address is allowed.
+     *
      * @param user
      * @param newEmail
      */
@@ -110,4 +119,12 @@ public class UserManager {
     public Map<String, UserInfo> getMapOfUserInfo() {
         return mapOfUserInfo;
     }
+
+//    public UserInfo checkLoginInfo(String username, String password) {
+//        if (mapOfUserInfo.containsKey(username) && mapOfUserInfo.get(username).getPassword().equals(password)) {
+//            return mapOfUserInfo.get(username);
+//        } else {
+//            return new UserInfo(null,null,null);
+//        }
+//    }
 }

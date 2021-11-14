@@ -10,7 +10,6 @@ import java.util.HashMap;
  */
 public class CommunityLibrary {
     private HashMap<String, Community> mapOfCommunity = new HashMap<>();
-    private Community currentCommunity;
 
     /**
      * Check if this community exists or not
@@ -67,9 +66,11 @@ public class CommunityLibrary {
     }
 
 
+
     public Community getCurrentCommunity() {
         return currentCommunity;
     }
+
 
     public HashMap<String, Community> getMapOfCommunity() {
         return mapOfCommunity;

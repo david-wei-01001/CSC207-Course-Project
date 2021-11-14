@@ -41,11 +41,12 @@ public class Achievements {
             Map.entry(TENTH_POST_THRESHOLD, TENTH_POST_REWARD)
     );
 
+
     /**
      * The achievement that is awarded for the first login, and its corresponding threshold and reward point.
      */
     public static final int FIRST_LOGIN_THRESHOLD = 1;
-    public static final String FIRST_LOGIN = "First Login";
+    public static final String FIRST_LOGIN = "First User.Login";
     public static final int FIRST_LOGIN_REWARD = 1;
 
     public static final int[] ARRAY_OF_TOTAL_LOGINS_THRESHOLDS = {FIRST_LOGIN_THRESHOLD};
