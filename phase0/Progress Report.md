@@ -27,7 +27,7 @@ Frame works & drivers:
 
 Scenario Walkthrough Summary:
 
-After creating an account, users begin by selecting the Tech Tree, “CS Introductory Series”, and the node “Introductory Python”. After studying for Python, users return to “Tech Tree” to indicate that they have finished studying. Then, users can post their study notes in order to unlock the next nodes: “Introductory Java”, “Introductory C++” and “CSC165”.
+After creating an account, users begin by selecting the Tech Tree, “CS Introductory Series”, and the node “Introductory Python”. After studying for Python, users return to “Tech Tree” to indicate that they have finished studying. Then, users can post their study notes in order to unlock the next nodes: “Introductory TechnicalTree”, “Introductory C++” and “CSC165”.
 
 Skeleton Program:
 
@@ -49,8 +49,8 @@ Each Member’s Responsibility During P0:
 
 	construction of skeleton Program:
 		Alfred(Package Posts, Command Line UI)
-		David(Package Graph, Posts, Tests, Java)
-		SuTong(Package Java, Command Line UI)
+		David(Package Graph, Posts, Tests, TechnicalTree)
+		SuTong(Package TechnicalTree, Command Line UI)
 		Arthur(Package Tests)
 	specification, progress report & scenario walk-through
 		Coco
@@ -63,7 +63,7 @@ Discuss the implementation of all features of our application. These features in
 
 Open Question:
 
-How to implement Java GUI as our User Interface?
+How to implement TechnicalTree GUI as our User Interface?
 
 What has worked well so far:
 

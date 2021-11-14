@@ -1,9 +1,8 @@
-package Java;
+package CommunitySystem;
 
 import Graph.DirectedGraph;
 import Graph.GraphManager;
 import GraphBuilders.GraphArchitect;
-import Posts.Community;
 import constants.BuiltInGraphs;
 
 public class GraphCommunityFacade {
