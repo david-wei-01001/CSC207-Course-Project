@@ -1,8 +1,5 @@
 package Graph;
 
-import Java.CommunityLibrary;
-import Posts.Community;
-
 import java.io.Serializable;
 
 public class Vertex implements Serializable {

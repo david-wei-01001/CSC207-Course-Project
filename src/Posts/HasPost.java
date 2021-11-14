@@ -10,6 +10,6 @@ public interface HasPost {
     }
 
    PostNotFoundException ABSENT = new PostNotFoundException ();
-    void add(String content, User creator);
+    String add(String content, User creator);
     void delete(String id) throws  PostNotFoundException;
 }

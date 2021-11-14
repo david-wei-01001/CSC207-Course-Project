@@ -3,7 +3,6 @@ package User;
 import Graph.DirectedGraph;
 import Posts.Post;
 import Resource.Resource;
-import RewardSystem.RewardManager;
 import constants.Achievements;
 
 import java.beans.PropertyChangeSupport;
@@ -19,9 +18,16 @@ public class UserInfo {
     private int rewardPoints;
     private LocalDate lastLogin;
     private int totalLogins;
-    private ArrayList<Post> listOfPost = new ArrayList<>();
+
+    //    private ArrayList<Post> listOfPost = new ArrayList<>();
+    private ArrayList<String> listOfPostId = new ArrayList<>();
     private ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
     private ArrayList<Resource> listOfResource = new ArrayList<>();
+
+    public Map<String, Boolean> getMapOfAchievement() {
+        return mapOfAchievement;
+    }
+
     private Map<String, Boolean> mapOfAchievement = new HashMap<>();
 
     private final PropertyChangeSupport observable = new PropertyChangeSupport(this);
@@ -35,31 +41,21 @@ public class UserInfo {
         this.totalLogins = 0;
     }
 
-    public void addPost(Post post){
-        listOfPost.add(post);
-        boolean trigger = checkAndRequestAchievement(Achievements.ARRAY_OF_POST_THRESHOLDS, Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT, listOfPost.size());
-        if (trigger){
-            this.setRewardPoints(Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(listOfPost.size()));
-        }
+
+
+//    public void addPost(Post post){
+//        listOfPost.add(post);
+//    }
+
+    public void addToListOfPostId(String id) {
+        this.listOfPostId.add(id);
     }
 
     public void incrementTotalLogins() {
         totalLogins += 1;
-        boolean trigger = checkAndRequestAchievement(Achievements.ARRAY_OF_TOTAL_LOGINS_THRESHOLDS, Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT, totalLogins);
-        if(trigger){
-            this.setRewardPoints(Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_REWARD.get(totalLogins));
-        }
     }
 
-    private boolean checkAndRequestAchievement(int[] thresholds, Map<Integer, String> thresholdsToAchievement, int property) {
-        for (int threshold : thresholds) {
-            if (property == threshold) {
-                mapOfAchievement.replace(thresholdsToAchievement.get(property), false, true);
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     public void initializeMapOfAchievement() {
         for (String achievement : Achievements.ARRAY_OF_ALL_ACHIEVEMENTS) {
@@ -115,6 +111,18 @@ public class UserInfo {
     public String toString() {
         return "User: " + this.userName;
     }
+
+    public ArrayList<String> getListOfPostId() {
+        return listOfPostId;
+    }
+
+    public int getTotalLogins() {
+        return totalLogins;
+    }
+
+//    public ArrayList<Post> getListOfPost() {
+//        return listOfPost;
+//    }
 
 
 

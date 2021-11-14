@@ -1,5 +1,7 @@
-package Posts;
+package CommunitySystem;
 
+import Posts.HasPost;
+import Posts.Post;
 import User.User;
 
 import java.io.Serializable;
@@ -18,10 +20,11 @@ public class Community implements HasPost, Serializable {
 
 
     @Override
-    public void add(String content, User creator) {
-        Post postToAdd = new Post(content, getNextId(), creator);
-        mapOfPost.put(postToAdd.getId(), postToAdd);
+    public String add(String content, User creator) {
+        String postId = getNextId();
+        mapOfPost.put(postId, new Post(content, postId, creator));
         numberOfPosts += 1;
+        return postId;
     }
 
 

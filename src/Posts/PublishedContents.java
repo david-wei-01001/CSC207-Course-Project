@@ -21,6 +21,11 @@ public class PublishedContents implements Likable, Visualable, Serializable {
     }
 
 
+    public User getCreator() {
+        return creator;
+    }
+
+
     @Override
     public int getNumberOfLike() {
         return numLike;
@@ -29,7 +34,6 @@ public class PublishedContents implements Likable, Visualable, Serializable {
     @Override
     public void like() {
         numLike += 1;
-        RewardManager.addRewardPoint(creator, RewardManager.getPointsRewardedPerLike());
     }
 
     @Override

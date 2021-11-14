@@ -4,15 +4,15 @@ import User.User;
 
 public class RewardManager {
 
-    private static int pointsRewardedPerLike = 1;
-    private static int pointRewardedDailyLogin = 5;
+    private int pointsRewardedPerLike = 1;
+    private int pointRewardedDailyLogin = 5;
 
 
-    public static int getPointRewardedDailyLogin() {
+    public int getPointRewardedDailyLogin() {
         return pointRewardedDailyLogin;
     }
 
-    public static int getPointsRewardedPerLike() {
+    public int getPointsRewardedPerLike() {
         return pointsRewardedPerLike;
     }
 
@@ -21,7 +21,7 @@ public class RewardManager {
      * @param user the user that should be rewarded points.
      * @param point the amount of reward points that should be given.
      */
-    public static void addRewardPoint(User user, int point){
+    public void addRewardPoint(User user, int point){
         user.getUserInfo().setRewardPoints(point);
     }
 
