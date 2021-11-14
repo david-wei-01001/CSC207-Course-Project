@@ -1,16 +1,43 @@
 package Java;
 
+import AchievementSystem.AchievementManager;
 import Graph.DirectedGraph;
 import Graph.GraphManager;
 import Graph.Vertex;
-import Java.CommunityLibrary;
+import CommunitySystem.CommunityLibrary;
+import Resource.ResourceManager;
+import RewardSystem.RewardManager;
+import User.UserActionFacade;
+import User.UserInfo;
 import User.UserManager;
-import Posts.Post;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class helper {
-    public static void newUser(UserManager manager) {
+
+
+    public static UserActionFacade newFacade(){
+        GraphManager graphManager = new GraphManager();
+        Map<String, UserInfo> mapOfUserInfo = new HashMap<>();
+        UserManager userManager = new UserManager(mapOfUserInfo);
+        RewardManager rewardManager = new RewardManager();
+        AchievementManager achievementManager = new AchievementManager();
+        CommunityLibrary communityLibrary = new CommunityLibrary();
+        ResourceManager resourceManager = new ResourceManager();
+
+        return new UserActionFacade(userManager,
+                rewardManager,
+                achievementManager,
+                graphManager,
+                communityLibrary,
+                resourceManager
+        );
+    }
+
+
+    public static String newUser(UserManager manager) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to Tech Tree! We are happy to be with you! Please type your username below:");
         String username = scanner.nextLine();
@@ -20,7 +47,7 @@ public class helper {
         }
         System.out.println("Please type your email below:");
         String email = scanner.nextLine();
-        while (email.length() == 0 || !email.contains("@")) {
+        while (!email.contains("@")) {
             System.out.println("You have not put your email or the email you have put is invalid" +
                     ", please type your correct email below:");
             email = scanner.nextLine();
@@ -34,11 +61,11 @@ public class helper {
             password = scanner.nextLine();
 
         }
-        System.out.println("Congratulations! You have created your account!");
         try {
             manager.addNewUser(username, email, password);
+            return "Congratulations! You have created your account!";
         } catch (Exception e) {
-
+            return "The Username has already exists, please try again";
         }
     }
 
@@ -66,7 +93,7 @@ public class helper {
         return graph.availableVertex().get(number);
     }
 
-    public static void completeVertex(Vertex node, DirectedGraph graph){
+    public static void completeVertex(Vertex node, DirectedGraph graph, UserActionFacade facade){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Now please study the node you chose. Once you have completed, type \"Yes\" below:");
         String yes = scanner.nextLine();
@@ -78,9 +105,7 @@ public class helper {
         System.out.println("Congratulations! You have completed this task! Next you need to make some post!");
         System.out.println("Please type in the content you want to post:");
         String content = scanner.nextLine();
-        String postId = CommunityLibrary.getCommunity(node.getCommunityName()).getNextId();
-        Post newPost = new Post(content, postId);
-        CommunityLibrary.getCommunity(node.getCommunityName()).add(newPost);
+        facade.getCommunityLibrary().getCommunity(node.getCommunityName()).add(content, facade.getCurrentUser());
         System.out.println("Congratulations! You have made your first post!");
         System.out.println("You have completed this node. Now you can proceed to the next node.");
         graph.complete(node.getName());

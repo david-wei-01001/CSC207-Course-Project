@@ -1,13 +1,9 @@
 package Java;
 
 import Graph.DirectedGraph;
-import Graph.GraphManager;
 import Graph.Vertex;
-import Posts.Post;
 import java.util.Scanner;
-
-import User.User;
-import User.UserManager;
+import User.UserActionFacade;
 
 import static Java.helper.*;
 
@@ -31,20 +27,19 @@ public class phase1 {
 
 
     public static void main(String[] args){
-        // Create the graph
-        GraphManager graphManager = new GraphManager();
-        // Create the user
         init();
-        UserManager manager = new UserManager();
-        newUser(manager);
-        DirectedGraph graph = getGraph(graphManager);
+        UserActionFacade facade = newFacade();
+        while (newUser(facade.getUserManager()).equals("The Username has already exists, please try again")){
+            newUser(facade.getUserManager());
+        }
+        DirectedGraph graph = getGraph(facade.getGraphManager());
         graph.availableVertex();
-        user.addListOfGraph(graph);
-        DirectedGraph userGraph = (DirectedGraph) user.getListOfGraph().get(0);
+        facade.addGraphToCurrentUser(graph);
+        DirectedGraph userGraph = facade.getUserGraph().get(0);
         Vertex node = gotVertex(userGraph);
-        completeVertex(node, userGraph);
+        completeVertex(node, userGraph, facade);
         Vertex node2 = gotVertex(userGraph);
-        completeVertex(node2, userGraph);
+        completeVertex(node2, userGraph, facade);
     }
 
 }

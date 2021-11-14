@@ -17,6 +17,23 @@ public class UserInfo {
     private String password;
     private int rewardPoints;
     private LocalDate lastLogin;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public LocalDate getLastLogin() {
+        return lastLogin;
+    }
+
+    public PropertyChangeSupport getObservable() {
+        return observable;
+    }
+
     private int totalLogins;
 
     //    private ArrayList<Post> listOfPost = new ArrayList<>();
