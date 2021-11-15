@@ -15,15 +15,37 @@ public class UserInfo {
     private String userName;
     private String email;
     private String password;
+
+    public void setLastLogin(LocalDate lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public void setTotalLogins(int totalLogins) {
+        this.totalLogins = totalLogins;
+    }
+
+    public void setListOfPostId(ArrayList<String> listOfPostId) {
+        this.listOfPostId = listOfPostId;
+    }
+
+    public void setListOfGraph(ArrayList<DirectedGraph> listOfGraph) {
+        this.listOfGraph = listOfGraph;
+    }
+
+    public void setMapOfAchievement(Map<String, Boolean> mapOfAchievement) {
+        this.mapOfAchievement = mapOfAchievement;
+    }
+
     private int rewardPoints;
     private LocalDate lastLogin;
+    private int totalLogins;
+    //    private ArrayList<Post> listOfPost = new ArrayList<>();
+    private ArrayList<String> listOfPostId = new ArrayList<>();
+    private ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
+    private ArrayList<Resource> listOfResource = new ArrayList<>();
 
     public String getEmail() {
         return email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public LocalDate getLastLogin() {
@@ -33,13 +55,6 @@ public class UserInfo {
     public PropertyChangeSupport getObservable() {
         return observable;
     }
-
-    private int totalLogins;
-
-    //    private ArrayList<Post> listOfPost = new ArrayList<>();
-    private ArrayList<String> listOfPostId = new ArrayList<>();
-    private ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
-    private ArrayList<Resource> listOfResource = new ArrayList<>();
 
     public Map<String, Boolean> getMapOfAchievement() {
         return mapOfAchievement;
@@ -53,9 +68,6 @@ public class UserInfo {
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.rewardPoints = 0;
-        this.lastLogin = LocalDate.now();
-        this.totalLogins = 0;
     }
 
 

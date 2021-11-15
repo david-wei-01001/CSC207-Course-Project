@@ -31,7 +31,7 @@ public class InterfaceAction {
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
         String password = scanner.nextLine();
-        if(UserManager.checkLoginInfo(username, password).equals(new UserInfo(null,null,null)));
+//        if(UserManager.checkLoginInfo(username, password).equals(new UserInfo(null,null,null)));
         //need to change
     }
 

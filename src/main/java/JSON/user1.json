@@ -3,8 +3,8 @@
     "password": "qwertyui",
     "email": "123@admain.com",
     "rewardPoints":"999",
-    "lastlogin":"20220101",
-    "totallogin":"3",
+    "lastLogin":"2022-01-01",
+    "totalLogin":"3",
     "listOfPost":[],
     "listOfResource":[],
     "mapOfAchievement": {

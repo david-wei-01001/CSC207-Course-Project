@@ -1,4 +1,4 @@
-package JSONWriterAndReader;
+package JSON;
 import User.User;
 
 
