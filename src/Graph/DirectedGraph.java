@@ -26,7 +26,6 @@ public class DirectedGraph implements Serializable {
     private String goal;
 
 
-
     //TODO: May be in an separate interface
     private static final VertexNotInGraphException ABSENT =
             new VertexNotInGraphException("Vertex is absent in the graph.");

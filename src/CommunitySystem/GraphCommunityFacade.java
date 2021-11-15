@@ -5,6 +5,9 @@ import Graph.GraphManager;
 import GraphBuilders.GraphArchitect;
 import constants.BuiltInGraphs;
 
+/**
+ * This Facade class unifies communityLibrary and graphManager.
+ */
 public class GraphCommunityFacade {
 
     private GraphManager graphManager;
@@ -29,16 +32,19 @@ public class GraphCommunityFacade {
     private DirectedGraph currentGraph;
     private Community currentCommunity;
 
-    public GraphCommunityFacade(GraphManager graphManager, CommunityLibrary communityLibrary, boolean includeBuiltInGraph) {
+    /**
+     * @param includeBuiltInGraphs true if include all built-in graphs of this program.
+     */
+    public GraphCommunityFacade(GraphManager graphManager, CommunityLibrary communityLibrary, boolean includeBuiltInGraphs) {
         this.graphManager = graphManager;
         this.communityLibrary = communityLibrary;
 
-        if (includeBuiltInGraph) {
+        if (includeBuiltInGraphs) {
             GraphArchitect graphArchitect = new GraphArchitect();
             for (String builtInGraph : BuiltInGraphs.BUILT_IN_GRAPHS) {
                 try {
                     DirectedGraph graphToAdd = graphArchitect.setBuilderAndBuildGraph(builtInGraph);
-                    createVertices(graphToAdd);
+                    createCommunities(graphToAdd);
                     graphManager.addGraph(graphToAdd);
 
                 } catch (Exception e) {
@@ -48,7 +54,11 @@ public class GraphCommunityFacade {
         }
     }
 
-    private void createVertices(DirectedGraph graph) {
+    /**
+     * Create the communities corresponding to the vertices of the inputted graph
+     * @param graph the graph whose vertices' community need to be created
+     */
+    private void createCommunities(DirectedGraph graph) {
         for (String vertexName : graph.getVertices().keySet()) {
             communityLibrary.addCommunity(vertexName);
         }

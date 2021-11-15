@@ -2,7 +2,13 @@ package Posts;
 
 import User.User;
 
+/**
+ * A comment.
+ */
 public class Comment extends PublishedContents {
+    /**
+     * the content of a comment
+     */
     String content;
 
     public Comment(String content, String id, User creator) {
