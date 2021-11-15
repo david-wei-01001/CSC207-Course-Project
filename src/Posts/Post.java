@@ -45,6 +45,7 @@ public class Post extends PublishedContents implements HasPost {
     public void delete(String id) throws PostNotFoundException {
         if (mapOfComments.containsKey(id)) {
             mapOfComments.get(id).setAsUnvisualable();
+            this.numComments --;
         } else {
             throw ABSENT;
         }
