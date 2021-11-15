@@ -8,8 +8,14 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class ResourceManager implements HasResource, Serializable{
+
     private HashMap<String, Resource> mapOfResource = new HashMap<>();
     private int numberOfResource;
+
+    public HashMap<String, Resource> getMapOfResource() {
+        return mapOfResource;
+    }
+
 
     @Override
     public void add(String content,int point, String description, User creator) {

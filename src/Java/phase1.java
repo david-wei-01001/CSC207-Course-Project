@@ -1,5 +1,6 @@
 package Java;
 
+import CommunitySystem.GraphCommunityFacade;
 import Graph.DirectedGraph;
 import Graph.Vertex;
 import java.util.Scanner;
@@ -29,11 +30,12 @@ public class phase1 {
     public static void main(String[] args){
         init();
         UserActionFacade facade = newFacade();
-        while (newUser(facade.getUserManager()).equals("The Username has already exists, please try again")){
-            newUser(facade.getUserManager());
+        while (newUser(facade).equals("The Username has already exists, please try again")){
+            newUser(facade);
         }
-        DirectedGraph graph = getGraph(facade.getGraphManager());
-        graph.availableVertex();
+        GraphCommunityFacade facade1 = new GraphCommunityFacade(facade.getGraphManager(),
+                facade.getCommunityLibrary(), true);
+        DirectedGraph graph = getGraph(facade1.getGraphManager());
         facade.addGraphToCurrentUser(graph);
         DirectedGraph userGraph = facade.getUserGraph().get(0);
         Vertex node = gotVertex(userGraph);
