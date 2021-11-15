@@ -99,7 +99,6 @@ public class DirectedGraph implements Serializable {
     }
 
     /**
-     * TODO: check this code with David
      * Delete the given Vertex from the graph. All edges having
      * this vertex as the ending vertex will also be removed.
      *
