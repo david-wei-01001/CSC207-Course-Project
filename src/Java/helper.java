@@ -37,7 +37,7 @@ public class helper {
     }
 
 
-    public static String newUser(UserManager manager) {
+    public static String newUser(UserActionFacade facade) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to Tech Tree! We are happy to be with you! Please type your username below:");
         String username = scanner.nextLine();
@@ -62,7 +62,8 @@ public class helper {
 
         }
         try {
-            manager.addNewUser(username, email, password);
+            facade.getUserManager().addNewUser(username, email, password);
+            facade.setCurrentUserTo(username);
             return "Congratulations! You have created your account!";
         } catch (Exception e) {
             return "The Username has already exists, please try again";
@@ -110,4 +111,11 @@ public class helper {
         System.out.println("You have completed this node. Now you can proceed to the next node.");
         graph.complete(node.getName());
     }
+
+    public static void menu(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please choose what you want to proceed: 1. Check ");
+    }
+
+
 }

@@ -96,10 +96,6 @@ public class UserInfo {
         password = newPassword;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public int getRewardPoints() {
         return this.rewardPoints;
     }

@@ -4,6 +4,7 @@ package User;
 import Graph.DirectedGraph;
 import constants.Exceptions;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -11,6 +12,7 @@ import java.util.Map;
  */
 
 public class UserManager {
+
 
     /**
      * The User currently using our application.
@@ -120,11 +122,11 @@ public class UserManager {
         return mapOfUserInfo;
     }
 
-    public UserInfo checkLoginInfo(String username, String password) {
-        if (mapOfUserInfo.containsKey(username) && mapOfUserInfo.get(username).getPassword().equals(password)) {
-            return mapOfUserInfo.get(username);
-        } else {
-            return new UserInfo(null,null,null);
-        }
-    }
+//    public static UserInfo checkLoginInfo(String username, String password) {
+//        if (mapOfUserInfo.containsKey(username) && mapOfUserInfo.get(username).getPassword().equals(password)) {
+//            return mapOfUserInfo.get(username);
+//        } else {
+//            return new UserInfo(null,null,null);
+//        }
+//    }
 }
