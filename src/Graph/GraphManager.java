@@ -4,15 +4,13 @@ import constants.Exceptions;
 
 import java.util.HashMap;
 
+/**
+ *
+ */
 public class GraphManager {
     private HashMap<String, DirectedGraph> mapOfGraphs = new HashMap<>();
     private int numberOfGraphs;
     private DirectedGraph currentGraph;
-//    private User
-
-//    public GraphManager(User user) {
-//
-//    }
 
     public HashMap<String, DirectedGraph> getAllGraphs(){
         return mapOfGraphs;

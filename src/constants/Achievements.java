@@ -3,16 +3,28 @@ package constants;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class stores all achievements of this program.
+ */
 public class Achievements {
 
+    /**
+     * The achievement that is awarded for creating the first post, and its corresponding threshold and reward point.
+     */
     public static final int FIRST_POST_THRESHOLD = 1;
     public static final String FIRST_POST = "First Post";
     public static final int FIRST_POST_REWARD = 1;
 
+    /**
+     * The achievement that is awarded for creating the fifth post, and its corresponding threshold and reward point.
+     */
     public static final int FIFTH_POST_THRESHOLD = 5;
     public static final String FIFTH_POST = "Fifth Post";
     public static final int FIFTH_POST_REWARD = 5;
 
+    /**
+     * The achievement that is awarded for creating the tenth post, and its corresponding threshold and reward point.
+     */
     public static final int TENTH_POST_THRESHOLD = 10;
     public static final String TENTH_POST = "Tenth Post";
     public static final int TENTH_POST_REWARD = 10;
@@ -30,7 +42,9 @@ public class Achievements {
     );
 
 
-    public static final String LOGIN_ACHIEVEMENT = "User.Login Achievement";
+    /**
+     * The achievement that is awarded for the first login, and its corresponding threshold and reward point.
+     */
     public static final int FIRST_LOGIN_THRESHOLD = 1;
     public static final String FIRST_LOGIN = "First User.Login";
     public static final int FIRST_LOGIN_REWARD = 1;
