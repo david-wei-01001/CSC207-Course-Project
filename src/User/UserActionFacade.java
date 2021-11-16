@@ -10,6 +10,7 @@ import RewardSystem.RewardManager;
 import User.User;
 import User.UserManager;
 import constants.Achievements;
+import java.util.ArrayList;
 
 /**
  * The Facade class that unifies all actions of the user currently using our program.
@@ -23,6 +24,15 @@ public class UserActionFacade {
     private UserManager userManager;
     private RewardManager rewardManager;
     private AchievementManager achievementManager;
+
+    public RewardManager getRewardManager() {
+        return rewardManager;
+    }
+
+    public GraphManager getGraphManager() {
+        return graphManager;
+    }
+
     private GraphManager graphManager;
     private CommunityLibrary communityLibrary;
     private ResourceManager resourceManager;
@@ -184,5 +194,9 @@ public class UserActionFacade {
      */
     public UserManager getUserManager() {
         return userManager;
+    }
+
+    public ArrayList<DirectedGraph> getUserGraph(){
+        return currentUser.getUserInfo().getListOfGraph();
     }
 }
