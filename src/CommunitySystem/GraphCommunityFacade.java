@@ -55,4 +55,20 @@ public class GraphCommunityFacade {
         communityLibrary.setCurrentCommunity(communityName);
     }
 
+    public GraphManager getGraphManager() {
+        return graphManager;
+    }
+
+    public CommunityLibrary getCommunityLibrary() {
+        return communityLibrary;
+    }
+
+    public DirectedGraph getCurrentGraph() {
+        return currentGraph;
+    }
+
+    public Community getCurrentCommunity() {
+        return currentCommunity;
+    }
+
 }
