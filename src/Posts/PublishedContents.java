@@ -1,14 +1,13 @@
 package Posts;
 
-import RewardSystem.RewardManager;
 import User.User;
 
 import java.io.Serializable;
 
-public class PublishedContents implements Likable, Visualable, Serializable {
+public class PublishedContents implements Likable, Visible, Serializable {
     private String id;
     private int numLike;
-    private boolean visual = true;
+    private boolean visible = true;
     private User creator;
 
     public PublishedContents(String id, User creator) {
@@ -37,17 +36,17 @@ public class PublishedContents implements Likable, Visualable, Serializable {
     }
 
     @Override
-    public void setAsVisualable() {
-        visual = true;
+    public void setVisible() {
+        visible = true;
     }
 
     @Override
-    public void setAsUnvisualable() {
-        visual = false;
+    public void setInvisible() {
+        visible = false;
     }
 
     @Override
-    public boolean visulableStatus() {
-        return visual;
+    public boolean visibility() {
+        return visible;
     }
 }

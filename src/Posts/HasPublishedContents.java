@@ -2,7 +2,7 @@ package Posts;
 
 import User.User;
 
-public interface HasPost {
+public interface HasPublishedContents {
     class PostNotFoundException extends Exception {
         public PostNotFoundException () {
             super();
@@ -10,6 +10,8 @@ public interface HasPost {
     }
 
    PostNotFoundException ABSENT = new PostNotFoundException ();
-    String add(String content, User creator);
-    void delete(String id) throws  PostNotFoundException;
+
+    String addPublishedContent(String content, User creator);
+
+    void deletePublishedContent(String id) throws  PostNotFoundException;
 }

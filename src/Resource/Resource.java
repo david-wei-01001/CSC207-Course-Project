@@ -40,5 +40,14 @@ public class Resource extends PublishedContents {
         return this.content;
     }
 
+    @Override
+    public String toString() {
+        return "Resource{" +
+                "content='" + content + '\'' +
+                ", pointsRequired=" + pointsRequired +
+                ", description='" + description + '\'' +
+                ", downloadTimes=" + downloadTimes +
+                '}';
     }
+}
 
