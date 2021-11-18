@@ -5,9 +5,11 @@ import Posts.HasPublishedContents;
 import Posts.Post;
 import User.User;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.After;
 import User.UserInfo;
+import org.junit.rules.ExpectedException;
 
 import java.util.HashMap;
 
@@ -30,6 +32,9 @@ public class postTest {
 
     }
 
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
     @Test(timeout = 500)
     public void testAddCommentSuccessful() {
         Comment c1 = new Comment("testing", "Comment #0", user);
@@ -43,11 +48,57 @@ public class postTest {
         assertEquals(1, post.getNumberOfComments());
     }
 
+    /**
+     * TODO: @Alfred choose one from the previous one or this one.
+     */
+    @Test(timeout = 500)
+    public void testAddAndNumberOfComments() {
+        Comment c1 = new Comment("testing", "Comment #0", user);
+        HashMap<String, Comment> testmap = new HashMap<>();
+        testmap.put("Comment #0", c1);
+        assertEquals(testmap, post.getMapOfComments());
+        assertEquals(1, post.getNumberOfComments());
+
+    }
+
+    /**
+     * TODO: How can this be unsuccessful? In the method, a comment can always be added.
+     */
     @Test(timeout = 500)
     public void testAddCommentUnsuccessful() {}
 
+    @Test(timeout = 500)
+    public void testDeleteCommentUnsuccessful() throws HasPublishedContents.PostNotFoundException {
+        expectedException.expect(HasPublishedContents.PostNotFoundException.class);
+        post.deletePublishedContent("Comment #100");
+    }
+
+    @Test(timeout = 500)
+    public void testGetMapOfComments() {
+        HashMap<String, Comment> thisMap = post.getMapOfComments();
+        assertTrue(thisMap.containsKey("Comment #0"));
+        Comment thisComment = thisMap.get("Comment #0");
+        assertEquals("testing", thisComment.getContent());
+    }
+
     /**
-     * TODO: implement this test
+     * This test contains a mistake
+     * @throws HasPublishedContents.PostNotFoundException
+     */
+    @Test(timeout = 500)
+    public void testdeleteAndNumberOfComments() throws HasPublishedContents.PostNotFoundException {
+        Comment c = new Comment("testing", "Comment #0", user);
+        post.deletePublishedContent("Comment #0");
+        HashMap<String, Comment> testmap1 = new HashMap<>();
+        testmap1.put("Comment #0", c);
+        assertEquals(testmap1, post.getMapOfComments());
+        assertEquals(0, post.getNumberOfComments());
+//        TODO： what is the purpose of the following line?
+//        assertTrue(!post.getMapOfComments().get("1").visulableStatus());
+    }
+
+    /**
+     * TODO: @Alfred choose one from the previous one or this one.
      * This test contains a mistake
      * @throws HasPublishedContents.PostNotFoundException
      */
@@ -69,59 +120,21 @@ public class postTest {
     }
 
     @Test(timeout = 500)
-    public void testDeleteCommentUnsuccessful() {}
-
-    @Test(timeout = 500)
-    public void testAdd() {
-        Comment c1 = new Comment("testing", "Comment #0",user);
-        HashMap<String, Comment> testmap = new HashMap<>();
-        testmap.put("Comment #0", c1);
-        assertEquals(testmap,ps.getMapOfComments());
-        assertEquals(1, ps.getNumberOfComments());
-    public void testNumberOfComments() {
-
+    public void testgetNextIdNoDelete() {
+        post.addPublishedContent("debugging",user);
+        assertEquals("Comment #2", post.getNextId());
     }
 
     @Test(timeout = 500)
-    public void testGetNextId() {
-
+    public void testgetNextIdWithDelete() throws HasPublishedContents.PostNotFoundException {
+        post.addPublishedContent("debugging",user);
+        post.deletePublishedContent("Comment #0");
+        assertEquals("Comment #2", post.getNextId());
     }
 
     @Test(timeout = 500)
-    public void testGetContent() {
-
-    }
-
-    @Test(timeout = 500)
-    public void testdelete() throws HasPost.PostNotFoundException {
-        Comment c = new Comment("testing", "Comment #0",user);
-        ps.delete("Comment #0");
-        HashMap<String, Comment> testmap1 = new HashMap<>();
-        testmap1.put("Comment #0", c);
-        assertEquals(testmap1, ps.getMapOfComments());
-        assertEquals(0, ps.getNumberOfComments());
-        assertTrue(!ps.getMapOfComments().get("1").visulableStatus());
-    
-  public void testGetMapOfComments() {
-
-    }
-
-    @Test(timeout = 500)
-    public void testgetNextIdNoDelete() throws HasPost.PostNotFoundException {
-        ps.add("debugging",user);
-        assertEquals("Comment #2", ps.getNextId());
-    }
-
-    @Test(timeout = 500)
-    public void testgetNextIdWithDelete() throws HasPost.PostNotFoundException {
-        ps.add("debugging",user);
-        ps.delete("Comment #0");
-        assertEquals("Comment #2", ps.getNextId());
-    }
-
-    @Test(timeout = 500)
-    public void testgetContent() throws HasPost.PostNotFoundException {
-        assertEquals("nothing", ps.getContent());
+    public void testgetContent() {
+        assertEquals("nothing", post.getContent());
     }
 }
 

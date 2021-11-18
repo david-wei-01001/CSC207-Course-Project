@@ -34,7 +34,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
     public String addPublishedContent(String content, User creator) {
         String commentId = getNextId();
         mapOfComments.put(commentId, new Comment(content, commentId, creator));
-        numberOfComments += 1;
+        numberOfComments ++;
         return commentId;
     }
 
