@@ -15,7 +15,7 @@ public class communityTest {
     User user;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         community = new Community("hi");
         UserInfo userInfo = new UserInfo("Tong", "123@mail.com", "123");
         user = new User(userInfo);
@@ -38,8 +38,8 @@ public class communityTest {
         community.addPublishedContent(post2.getContent(),user);
         assertTrue(community.getMapOfPost().containsKey("Post #0"));
         assertTrue(community.getMapOfPost().containsKey("Post #1"));
-        assertEquals(community.getMapOfPost().get("Post #0").toString(), post1.toString());
-        assertEquals(community.getMapOfPost().get("Post #1").toString(), post2.toString());
+        assertEquals( post1.toString(),community.getMapOfPost().get("Post #0").toString());
+        assertEquals(post2.toString(),community.getMapOfPost().get("Post #1").toString());
     }
 
     @Test(timeout = 50)
@@ -48,16 +48,16 @@ public class communityTest {
         community.addPublishedContent(post1.getContent(),user);
         Post post2 = new Post("abc", community.getNextId(), user);
         community.addPublishedContent(post2.getContent(),user);
-        assertEquals(community.getNextId(), "Post #2");
+        assertEquals("Post #2",community.getNextId());
     }
 
-    @Test(timeout = 50)
+    @Test(timeout = 500)
     public void testGetNumPost() {
         Post post1 = new Post("abc", community.getNextId(),user);
         community.addPublishedContent(post1.getContent(),user);
         Post post2 = new Post("abc", community.getNextId(), user);
         community.addPublishedContent(post2.getContent(),user);
-        assertEquals(community.getNumberOfPosts(), 2);
+        assertEquals( 2,community.getNumberOfPosts());
     }
 
     @Test(timeout = 500)
@@ -68,9 +68,9 @@ public class communityTest {
         community.addPublishedContent(post1.getContent(),user);
         community.deletePublishedContent("Post #1");
         assertTrue(community.getMapOfPost().containsKey("Post #0"));
-        assertEquals(community.getMapOfPost().get("Post #0").toString(), post0.toString());
+        assertEquals( post0.toString(),community.getMapOfPost().get("Post #0").toString());
         assertFalse(community.getMapOfPost().get("Post #1").visibility());
-        assertEquals(community.getNumberOfPosts(), 2);
+        assertEquals(2,community.getNumberOfPosts());
     }
 
     @Test(timeout = 500)
@@ -90,6 +90,10 @@ public class communityTest {
      */
     @Test(timeout = 500)
     public void testToString() {
+        assertEquals("Community{" +
+                "mapOfPost=" + "{}" +
+                ", nameOfCommunity='" + "hi" + '\'' +
+                '}',community.toString());
 
     }
 }
