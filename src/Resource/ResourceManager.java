@@ -52,4 +52,8 @@ public class ResourceManager implements HasResource, Serializable{
         return resource.getContent();
     }
 
+    public int getNumberOfResources(){
+        return mapOfResource.size();
+    }
+
 }
