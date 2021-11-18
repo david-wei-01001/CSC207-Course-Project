@@ -56,8 +56,8 @@ public class ResourceManagerTest {
         manager.add(resource2.getContent(), resource2.getPointsRequired(), resource2.getDescription(),user);
         manager.delete("Resource #0");
         Assertions.assertTrue(manager.getMapOfResource().containsKey("Resource #1"));
-        assertFalse(manager.getMapOfResource().containsKey("Resource #0"));
-        Assertions.assertEquals(manager.getMapOfResource().get("Resource #1").toString(), resource1.toString());
+        Assertions.assertFalse(manager.getMapOfResource().get("Resource #0").visibility());
+        Assertions.assertEquals(manager.getMapOfResource().get("Resource #1").toString(), resource2.toString());
         Assertions.assertEquals(manager.getNumberOfResources(), 2);
     }
 
