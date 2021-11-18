@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * A post in which a user can share his/her reflection on a study session.???
  */
-public class Post extends PublishedContents implements HasPost {
+public class Post extends PublishedContents implements HasPublishedContents {
     /**
      * the content of this post.
      */
@@ -31,7 +31,7 @@ public class Post extends PublishedContents implements HasPost {
      * @return the id of the comment added.
      */
     @Override
-    public String add(String content, User creator) {
+    public String addPublishedContent(String content, User creator) {
         String commentId = getNextId();
         mapOfComments.put(commentId, new Comment(content, commentId, creator));
         numberOfComments += 1;
@@ -44,15 +44,14 @@ public class Post extends PublishedContents implements HasPost {
      * @throws PostNotFoundException if no comment with the inputted id was found.
      */
     @Override
-    public void delete(String id) throws PostNotFoundException {
+    public void deletePublishedContent(String id) throws PostNotFoundException {
         if (mapOfComments.containsKey(id)) {
-            mapOfComments.get(id).setAsUnvisualable();
-            this.numComments --;
+            mapOfComments.get(id).setInvisible();
+            this.numberOfComments --;
         } else {
             throw ABSENT;
         }
     }
-
 
     public int getNumberOfComments(){
         return numberOfComments;

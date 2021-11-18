@@ -20,37 +20,11 @@ public class UserInfo {
     private String password;
     private int rewardPoints;
     private LocalDate lastLogin;
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public LocalDate getLastLogin() {
-        return lastLogin;
-    }
-
-    public PropertyChangeSupport getObservable() {
-        return observable;
-    }
-
     private int totalLogins;
-
-    //    private ArrayList<Post> listOfPost = new ArrayList<>();
     private ArrayList<String> listOfPostId = new ArrayList<>();
     private ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
     private ArrayList<Resource> listOfResource = new ArrayList<>();
-
-    public Map<String, Boolean> getMapOfAchievement() {
-        return mapOfAchievement;
-    }
-
     private Map<String, Boolean> mapOfAchievement = new HashMap<>();
-
-    private final PropertyChangeSupport observable = new PropertyChangeSupport(this);
 
     public UserInfo(String userName, String email, String password) {
         this.userName = userName;
@@ -59,6 +33,7 @@ public class UserInfo {
         this.rewardPoints = 0;
         this.lastLogin = LocalDate.now();
         this.totalLogins = 0;
+        initializeMapOfAchievement();
     }
 
 
@@ -128,7 +103,18 @@ public class UserInfo {
 
     @Override
     public String toString() {
-        return "User: " + this.userName;
+        return "UserInfo{" +
+                "userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", rewardPoints=" + rewardPoints +
+                ", lastLogin=" + lastLogin +
+                ", totalLogins=" + totalLogins +
+                ", listOfPostId=" + listOfPostId +
+                ", listOfGraph=" + listOfGraph +
+                ", listOfResource=" + listOfResource +
+                ", mapOfAchievement=" + mapOfAchievement +
+                '}';
     }
 
     public ArrayList<String> getListOfPostId() {
@@ -137,6 +123,22 @@ public class UserInfo {
 
     public int getTotalLogins() {
         return totalLogins;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public LocalDate getLastLogin() {
+        return lastLogin;
+    }
+
+    public Map<String, Boolean> getMapOfAchievement() {
+        return mapOfAchievement;
     }
 
 //    public ArrayList<Post> getListOfPost() {

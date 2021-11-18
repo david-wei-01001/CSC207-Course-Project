@@ -1,7 +1,5 @@
 package Resource;
 
-import Posts.HasPost;
-import Posts.Post;
 import User.User;
 
 import java.io.Serializable;
@@ -10,7 +8,6 @@ import java.util.HashMap;
 public class ResourceManager implements HasResource, Serializable{
 
     private HashMap<String, Resource> mapOfResource = new HashMap<>();
-    private int numberOfResource;
 
     public HashMap<String, Resource> getMapOfResource() {
         return mapOfResource;
@@ -21,21 +18,24 @@ public class ResourceManager implements HasResource, Serializable{
     public void add(String content,int point, String description, User creator) {
         Resource resourceToAdd = new Resource(content, getNextId(), point, description, creator);
         mapOfResource.put(resourceToAdd.getId(), resourceToAdd);
-        numberOfResource += 1;
-
     }
 
+    /**
+     * TODO: Alfred: i dont think we should implement it this way
+     * @param id
+     * @throws PostNotFoundException
+     */
     @Override
     public void delete(String id) throws PostNotFoundException {
         if (mapOfResource.containsKey(id)) {
-            mapOfResource.get(id).setAsUnvisualable();
+            mapOfResource.get(id).setInvisible();
         } else {
             throw ABSENT;
         }
 
     }
     public String getNextId(){
-        return "Resource #" + numberOfResource;
+        return "Resource #" + mapOfResource.size();
     }
 
     public String downloadResource(User user, String resourceId) {

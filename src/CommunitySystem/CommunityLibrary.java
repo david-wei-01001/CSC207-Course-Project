@@ -42,7 +42,7 @@ public class CommunityLibrary {
      */
     public String addPost(User user, String communityName, String content) throws Exception {
         if (mapOfCommunity.containsKey(communityName)) {
-            return mapOfCommunity.get(communityName).add(content, user);
+            return mapOfCommunity.get(communityName).addPublishedContent(content, user);
         } else {
             throw new Exception(Exceptions.CANNOT_RECOGNIZE_COMMUNITY);
         }
@@ -67,23 +67,23 @@ public class CommunityLibrary {
 
 
 
-    public Community getCurrentCommunity() {
-        return currentCommunity;
-    }
-
-
-    public HashMap<String, Community> getMapOfCommunity() {
-        return mapOfCommunity;
-    }
-
-    public void setCurrentCommunity(String communityName) throws Exception {
-        if (checkCommunityExist(communityName)) {
-            this.currentCommunity = mapOfCommunity.get(communityName);
-        } else {
-            throw new Exception(Exceptions.CANNOT_RECOGNIZE_COMMUNITY);
-        }
-
-    }
+//    public Community getCurrentCommunity() {
+//        return currentCommunity;
+//    }
+//
+//
+//    public HashMap<String, Community> getMapOfCommunity() {
+//        return mapOfCommunity;
+//    }
+//
+//    public void setCurrentCommunity(String communityName) throws Exception {
+//        if (checkCommunityExist(communityName)) {
+//            this.currentCommunity = mapOfCommunity.get(communityName);
+//        } else {
+//            throw new Exception(Exceptions.CANNOT_RECOGNIZE_COMMUNITY);
+//        }
+//
+//    }
 }
 //
 //public class CommunityLibrary {

@@ -11,23 +11,6 @@ import constants.BuiltInGraphs;
 public class GraphCommunityFacade {
 
     private GraphManager graphManager;
-
-    public GraphManager getGraphManager() {
-        return graphManager;
-    }
-
-    public CommunityLibrary getCommunityLibrary() {
-        return communityLibrary;
-    }
-
-    public DirectedGraph getCurrentGraph() {
-        return currentGraph;
-    }
-
-    public Community getCurrentCommunity() {
-        return currentCommunity;
-    }
-
     private CommunityLibrary communityLibrary;
     private DirectedGraph currentGraph;
     private Community currentCommunity;
@@ -68,9 +51,9 @@ public class GraphCommunityFacade {
         graphManager.setCurrentGraph(graphId);
     }
 
-    public void setCurrentCommunity(String communityName) throws Exception {
-        communityLibrary.setCurrentCommunity(communityName);
-    }
+//    public void setCurrentCommunity(String communityName) throws Exception {
+//        communityLibrary.setCurrentCommunity(communityName);
+//    }
 
     public GraphManager getGraphManager() {
         return graphManager;

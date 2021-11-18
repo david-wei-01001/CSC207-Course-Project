@@ -26,14 +26,4 @@ public class Comment extends PublishedContents {
                 "content='" + content + '\'' +
                 '}';
     }
-
-    @Override
-    public int getNumberOfLike() {
-        return 0;
-    }
-
-    @Override
-    public void like() {
-
-    }
 }
