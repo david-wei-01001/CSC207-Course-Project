@@ -72,6 +72,12 @@ public class postTest {
     public void testDeleteCommentUnsuccessful() {}
 
     @Test(timeout = 500)
+    public void testAdd() {
+        Comment c1 = new Comment("testing", "Comment #0",user);
+        HashMap<String, Comment> testmap = new HashMap<>();
+        testmap.put("Comment #0", c1);
+        assertEquals(testmap,ps.getMapOfComments());
+        assertEquals(1, ps.getNumberOfComments());
     public void testNumberOfComments() {
 
     }
@@ -87,8 +93,35 @@ public class postTest {
     }
 
     @Test(timeout = 500)
-    public void testGetMapOfComments() {
+    public void testdelete() throws HasPost.PostNotFoundException {
+        Comment c = new Comment("testing", "Comment #0",user);
+        ps.delete("Comment #0");
+        HashMap<String, Comment> testmap1 = new HashMap<>();
+        testmap1.put("Comment #0", c);
+        assertEquals(testmap1, ps.getMapOfComments());
+        assertEquals(0, ps.getNumberOfComments());
+        assertTrue(!ps.getMapOfComments().get("1").visulableStatus());
+    
+  public void testGetMapOfComments() {
 
+    }
+
+    @Test(timeout = 500)
+    public void testgetNextIdNoDelete() throws HasPost.PostNotFoundException {
+        ps.add("debugging",user);
+        assertEquals("Comment #2", ps.getNextId());
+    }
+
+    @Test(timeout = 500)
+    public void testgetNextIdWithDelete() throws HasPost.PostNotFoundException {
+        ps.add("debugging",user);
+        ps.delete("Comment #0");
+        assertEquals("Comment #2", ps.getNextId());
+    }
+
+    @Test(timeout = 500)
+    public void testgetContent() throws HasPost.PostNotFoundException {
+        assertEquals("nothing", ps.getContent());
     }
 }
 
