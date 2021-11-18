@@ -1,6 +1,6 @@
 package CommunitySystem;
 
-import Posts.HasPost;
+import Posts.HasPublishedContents;
 import Posts.Post;
 import User.User;
 
@@ -10,9 +10,8 @@ import java.util.HashMap;
 /**
  * A community, where users add posts.
  */
-public class Community implements HasPost, Serializable {
+public class Community implements HasPublishedContents, Serializable {
     private HashMap<String, Post> mapOfPost = new HashMap<>();
-    private int numberOfPosts;
     private String nameOfCommunity;
 
 
@@ -21,6 +20,13 @@ public class Community implements HasPost, Serializable {
         nameOfCommunity = name;
     }
 
+    @Override
+    public String toString() {
+        return "Community{" +
+                "mapOfPost=" + mapOfPost +
+                ", nameOfCommunity='" + nameOfCommunity + '\'' +
+                '}';
+    }
 
     /**
      * add a post into this community.
@@ -29,22 +35,22 @@ public class Community implements HasPost, Serializable {
      * @return the id of the post being added.
      */
     @Override
-    public String add(String content, User creator) {
+    public String addPublishedContent(String content, User creator) {
         String postId = getNextId();
         mapOfPost.put(postId, new Post(content, postId, creator));
-        numberOfPosts += 1;
         return postId;
     }
 
     /**
+     * TODO: Alfred: i dont think we should implement it this way.
      * delete a post in this community.
      * @param id the id of the post being deleted
      * @throws PostNotFoundException if the post with the inputted id is not found in this community.
      */
     @Override
-    public void delete(String id) throws PostNotFoundException {
+    public void deletePublishedContent(String id) throws PostNotFoundException {
         if (mapOfPost.containsKey(id)) {
-            mapOfPost.get(id).setAsUnvisualable();
+            mapOfPost.get(id).setInvisible();
         } else {
             throw ABSENT;
         }
@@ -57,7 +63,7 @@ public class Community implements HasPost, Serializable {
     public String displayPosts() {
         StringBuilder result = new StringBuilder();
         for (Post post : mapOfPost.values()) {
-            if(post.visulableStatus()) {
+            if(post.visibility()) {
                 result.append(post.toString()).append("\n");
             }
         }
@@ -71,9 +77,10 @@ public class Community implements HasPost, Serializable {
     }
 
     public int getNumberOfPosts(){
-        return numberOfPosts;
+        return mapOfPost.size();
     }
+
     public String getNextId(){
-        return "Post #" + numberOfPosts;
+        return "Post #" + mapOfPost.size();
     }
 }

@@ -67,7 +67,7 @@ public class DirectedGraphTest {
     }
 
     @Test(timeout = 50)
-    public void testdeleteVertex() throws DirectedGraph.VertexNotInGraphException {
+    public void testDeleteVertex() throws DirectedGraph.VertexNotInGraphException {
         Vertex javaIntro = new Vertex("Introductory Java");
         Vertex python = graph.getVertex("Introductory Python");
         graph.addVertex(javaIntro);

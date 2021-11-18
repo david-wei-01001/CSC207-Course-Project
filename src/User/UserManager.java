@@ -105,7 +105,7 @@ public class UserManager {
     }
 
     /**
-     * TODO: upgrade this method so that so duplicated email address is allowed.
+     * TODO: upgrade this method so that no duplicated email address is allowed.
      *
      * @param user
      * @param newEmail
