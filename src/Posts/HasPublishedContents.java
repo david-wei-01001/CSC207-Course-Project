@@ -3,6 +3,7 @@ package Posts;
 import User.User;
 
 public interface HasPublishedContents {
+
     class PostNotFoundException extends Exception {
         public PostNotFoundException () {
             super();
