@@ -47,7 +47,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
     public void deletePublishedContent(String id) throws PostNotFoundException {
         if (mapOfComments.containsKey(id)) {
             mapOfComments.get(id).setInvisible();
-            this.numberOfComments --;
+//            this.numberOfComments --;
         } else {
             throw ABSENT;
         }
