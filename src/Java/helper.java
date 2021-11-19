@@ -82,7 +82,7 @@ public class helper {
         return manager.getAllGraphs().get(number);
     }
 
-    public static Vertex gotVertex(DirectedGraph graph){
+    public static Vertex gotVertex(DirectedGraph graph) throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please choose the node you want to start with:" + graph.availableVertex());
         String number = scanner.nextLine();

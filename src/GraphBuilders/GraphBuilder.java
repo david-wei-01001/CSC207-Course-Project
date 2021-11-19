@@ -11,5 +11,5 @@ public interface GraphBuilder {
 
     Vertex[][] buildDirectedEdges(Map<String, Vertex> vertices);
 
-    DirectedGraph buildGraph();
+    DirectedGraph buildGraph() throws Exception;
 }

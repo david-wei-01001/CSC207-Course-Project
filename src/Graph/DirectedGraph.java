@@ -13,11 +13,10 @@ public class DirectedGraph implements Serializable {
      * 2 where the first element is a Vertex which is the starting vertex of many edges and the second element is an
      * ArrayList containing all Vertices that is the ending vertex which the starting vertex points to.
      */
-    private final HashMap<String, Object[]> VERTICES = new HashMap<>();
+    private final HashMap<String, VertexArray> VERTICES = new HashMap<>();
     private final String NAME;
     private final ArrayList<String> CURRENTUNCLOCK = new ArrayList<>();
     private final ArrayList<String> COMPLETED = new ArrayList<>();
-    private String goal;
 
     public DirectedGraph(Vertex[] firstVertex, String name) {
         for(Vertex v: firstVertex){
@@ -35,10 +34,9 @@ public class DirectedGraph implements Serializable {
      * @param edge An array of length 2 which represents a directed edge
      *             containing the starting vertex at index 0 and ending vertex at index 1.
      */
-    public void addEdge(Vertex[] edge){
+    public void addEdge(Vertex[] edge) throws Exception {
         addVertex(edge[0]);
-        String name = edge[0].getName();
-        ((ArrayList<Vertex>) VERTICES.get(name)[1]).add(edge[1]);
+        getVertexArray(edge[0]).addEdge(edge[1]);
         addVertex(edge[1]);
         edge[1].addInLevel();
     }
@@ -53,8 +51,7 @@ public class DirectedGraph implements Serializable {
     public void addVertex(Vertex vertex) {
         String name = vertex.getName();
         if (!VERTICES.containsKey(name)) {
-            ArrayList<Vertex> ends = new ArrayList<>();
-            Object[] newEdge = {vertex, ends};
+            VertexArray newEdge = new VertexArray(vertex);
             VERTICES.put(name, newEdge);
         }
     }
@@ -68,19 +65,8 @@ public class DirectedGraph implements Serializable {
      *             containing the starting vertex at index 0 and ending vertex at index 1.
      */
     public void deleteEdge(Vertex[] edge) throws Exception {
-        String name = edge[0].getName();
-        if (!VERTICES.containsKey(name)) {
-            throw new Exception(Exceptions.Vertex_NOT_FOUND);
-        }
-        else {
-            ArrayList<Vertex> lst = ((ArrayList<Vertex>) VERTICES.get(name)[1]);
-            if (!lst.contains(edge[1])) {
-                throw new Exception(Exceptions.EDGE_NOT_FOUND);
-            } else {
-                lst.remove(edge[1]);
-                edge[1].minusInLevel();
-            }
-        }
+        getVertexArray(edge[0]).deleteEdge(edge[1]);
+        edge[1].minusInLevel();
         if(edge[1].getInLevel() == 0){
             CURRENTUNCLOCK.add(edge[1].getName());
         }
@@ -93,22 +79,41 @@ public class DirectedGraph implements Serializable {
      * @param name The name of vertex
      */
     public void deleteVertex(String name) throws Exception {
-        Vertex delete = (Vertex) VERTICES.get(name)[0];
-        for (Vertex v: (ArrayList<Vertex>) VERTICES.get(name)[1]){
+        Vertex delete = getVertexArray(name).getStart();
+        for (Vertex v: getVertexArray(name).getEnds()){
             v.minusInLevel();
             if (v.getInLevel() == 0){
                 CURRENTUNCLOCK.add(v.getName());
             }
         }
         for (String vertexName : VERTICES.keySet()) {
-            if (((ArrayList<Vertex>) VERTICES.get(vertexName)[1]).contains(delete)) {
-                Vertex[] edge = {(Vertex) VERTICES.get(vertexName)[0], delete};
+            if (getVertexArray(vertexName).getEnds().contains(delete)) {
+                Vertex[] edge = {getVertexArray(vertexName).getStart(), delete};
                 deleteEdge(edge);
             }
         }
         VERTICES.remove(name);
         CURRENTUNCLOCK.remove(name);
         COMPLETED.remove(name);
+    }
+
+    public VertexArray getVertexArray(String name) throws Exception {
+        if (!VERTICES.containsKey(name)) {
+            throw new Exception(Exceptions.Vertex_NOT_FOUND);
+        }
+        else {
+            return VERTICES.get(name);
+        }
+    }
+
+    public VertexArray getVertexArray(Vertex vertex) throws Exception {
+        String name = vertex.getName();
+        if (!VERTICES.containsKey(name)) {
+            throw new Exception(Exceptions.Vertex_NOT_FOUND);
+        }
+        else {
+            return VERTICES.get(name);
+        }
     }
 
     /**
@@ -119,7 +124,7 @@ public class DirectedGraph implements Serializable {
     public Vertex getVertex(String name) throws Exception {
         for (String vertexName : VERTICES.keySet()){
             if (vertexName.equals(name)) {
-                return ((Vertex) VERTICES.get(name)[0]);
+                return  getVertexArray(name).getStart();
             }
         }
         throw new Exception(Exceptions.Vertex_NOT_FOUND);
@@ -139,7 +144,7 @@ public class DirectedGraph implements Serializable {
         } else {
             COMPLETED.add(name);
             CURRENTUNCLOCK.remove(name);
-            for (Vertex next : ((ArrayList<Vertex>) VERTICES.get(name)[1])) {
+            for (Vertex next : getVertexArray(name).getEnds()) {
                 next.minusInLevel();
                 if(next.getInLevel() == 0){
                     CURRENTUNCLOCK.add(next.getName());}
@@ -161,11 +166,11 @@ public class DirectedGraph implements Serializable {
      * Return the vertex availiable now.
      * @return Vertices that availiable now.
      */
-    public HashMap<String, Vertex> availableVertex(){
+    public HashMap<String, Vertex> availableVertex() throws Exception {
         HashMap<String, Vertex> available = new HashMap<>();
         int count = 0;
         for (String name : CURRENTUNCLOCK) {
-            available.put(Integer.toString(count), (Vertex) (VERTICES.get(name)[0]));
+            available.put(Integer.toString(count), getVertexArray(name).getStart());
             count++;
         }
         return available;
@@ -177,7 +182,7 @@ public class DirectedGraph implements Serializable {
      * It should not be used for any other purpose.
      * @return Vertices
      */
-    public HashMap<String, Object[]> getVertices(){
+    public HashMap<String, VertexArray> getVertices(){
         return VERTICES;
     }
 
