@@ -11,8 +11,8 @@ import java.util.HashMap;
  * A community, where users add posts.
  */
 public class Community implements HasPublishedContents, Serializable {
-    private HashMap<String, Post> mapOfPost = new HashMap<>();
-    private String nameOfCommunity;
+    private final HashMap<String, Post> MAPOFPOST = new HashMap<>();
+    private final String nameOfCommunity;
 
 
 
@@ -23,7 +23,7 @@ public class Community implements HasPublishedContents, Serializable {
     @Override
     public String toString() {
         return "Community{" +
-                "mapOfPost=" + mapOfPost +
+                "mapOfPost=" + MAPOFPOST +
                 ", nameOfCommunity='" + nameOfCommunity + '\'' +
                 '}';
     }
@@ -37,7 +37,7 @@ public class Community implements HasPublishedContents, Serializable {
     @Override
     public String addPublishedContent(String content, User creator) {
         String postId = getNextId();
-        mapOfPost.put(postId, new Post(content, postId, creator));
+        MAPOFPOST.put(postId, new Post(content, postId, creator));
         return postId;
     }
 
@@ -49,8 +49,8 @@ public class Community implements HasPublishedContents, Serializable {
      */
     @Override
     public void deletePublishedContent(String id) throws PostNotFoundException {
-        if (mapOfPost.containsKey(id)) {
-            mapOfPost.get(id).setInvisible();
+        if (MAPOFPOST.containsKey(id)) {
+            MAPOFPOST.get(id).setInvisible();
         } else {
             throw ABSENT;
         }
@@ -62,7 +62,7 @@ public class Community implements HasPublishedContents, Serializable {
      */
     public String displayPosts() {
         StringBuilder result = new StringBuilder();
-        for (Post post : mapOfPost.values()) {
+        for (Post post : MAPOFPOST.values()) {
             if(post.visibility()) {
                 result.append(post.toString()).append("\n");
             }
@@ -73,14 +73,14 @@ public class Community implements HasPublishedContents, Serializable {
 
 
     public HashMap<String, Post> getMapOfPost() {
-        return mapOfPost;
+        return MAPOFPOST;
     }
 
     public int getNumberOfPosts(){
-        return mapOfPost.size();
+        return MAPOFPOST.size();
     }
 
     public String getNextId(){
-        return "Post #" + mapOfPost.size();
+        return "Post #" + MAPOFPOST.size();
     }
 }
