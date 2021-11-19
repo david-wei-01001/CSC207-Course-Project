@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class VertexArray {
 
-    private Vertex start;
+    private final Vertex start;
     private final ArrayList<Vertex> END = new ArrayList<>();
 
     public VertexArray(Vertex vert) {

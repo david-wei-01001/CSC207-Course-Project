@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class ResourceManager implements HasResource, Serializable{
 
-    private HashMap<String, Resource> mapOfResource = new HashMap<>();
+    private final HashMap<String, Resource> mapOfResource = new HashMap<>();
 
     public HashMap<String, Resource> getMapOfResource() {
         return mapOfResource;

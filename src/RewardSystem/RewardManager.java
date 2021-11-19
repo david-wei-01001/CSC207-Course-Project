@@ -4,8 +4,8 @@ import User.User;
 
 public class RewardManager {
 
-    private int pointsRewardedPerLike = 1;
-    private int pointRewardedDailyLogin = 5;
+    private final int pointsRewardedPerLike = 1;
+    private final int pointRewardedDailyLogin = 5;
 
 
     public int getPointRewardedDailyLogin() {
