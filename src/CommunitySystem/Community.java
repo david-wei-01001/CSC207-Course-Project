@@ -11,7 +11,7 @@ import java.util.HashMap;
  * A community, where users add posts.
  */
 public class Community implements HasPublishedContents, Serializable {
-    private final HashMap<String, Post> MAPOFPOST = new HashMap<>();
+    private final HashMap<String, Post> mapOfPost = new HashMap<>();
     private final String nameOfCommunity;
 
 
@@ -23,7 +23,7 @@ public class Community implements HasPublishedContents, Serializable {
     @Override
     public String toString() {
         return "Community{" +
-                "mapOfPost=" + MAPOFPOST +
+                "mapOfPost=" + mapOfPost +
                 ", nameOfCommunity='" + nameOfCommunity + '\'' +
                 '}';
     }
@@ -37,7 +37,7 @@ public class Community implements HasPublishedContents, Serializable {
     @Override
     public String addPublishedContent(String content, User creator) {
         String postId = getNextId();
-        MAPOFPOST.put(postId, new Post(content, postId, creator));
+        mapOfPost.put(postId, new Post(content, postId, creator));
         return postId;
     }
 
@@ -49,8 +49,8 @@ public class Community implements HasPublishedContents, Serializable {
      */
     @Override
     public void deletePublishedContent(String id) throws PostNotFoundException {
-        if (MAPOFPOST.containsKey(id)) {
-            MAPOFPOST.get(id).setInvisible();
+        if (mapOfPost.containsKey(id)) {
+            mapOfPost.get(id).setInvisible();
         } else {
             throw ABSENT;
         }
@@ -62,9 +62,9 @@ public class Community implements HasPublishedContents, Serializable {
      */
     public String displayPosts() {
         StringBuilder result = new StringBuilder();
-        for (Post post : MAPOFPOST.values()) {
+        for (Post post : mapOfPost.values()) {
             if(post.visibility()) {
-                result.append(post.toString()).append("\n");
+                result.append(post).append("\n");
             }
         }
         return result.toString();
@@ -73,14 +73,14 @@ public class Community implements HasPublishedContents, Serializable {
 
 
     public HashMap<String, Post> getMapOfPost() {
-        return MAPOFPOST;
+        return mapOfPost;
     }
 
     public int getNumberOfPosts(){
-        return MAPOFPOST.size();
+        return mapOfPost.size();
     }
 
     public String getNextId(){
-        return "Post #" + MAPOFPOST.size();
+        return "Post #" + mapOfPost.size();
     }
 }
