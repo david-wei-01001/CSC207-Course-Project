@@ -9,8 +9,6 @@ public class GraphArchitect {
 //        INTRODUCTORY_CS_SERIES;
 //    }
 
-    private GraphBuilder graphBuilder;
-
     /*
      * GraphArchitect imitates Class Chef in the lecture material.
      */
@@ -18,6 +16,7 @@ public class GraphArchitect {
     public DirectedGraph setBuilderAndBuildGraph(String treeName) throws Exception {
 
         // create more if statements when we come up with more built-in Technical Trees.
+        GraphBuilder graphBuilder;
         if (treeName.equals("Introductory CS Series")) {
             graphBuilder = new IntroCSGraphBuilder();
         } else {

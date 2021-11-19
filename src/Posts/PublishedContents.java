@@ -8,7 +8,7 @@ public class PublishedContents implements Likable, Visible, Serializable {
     private String id;
     private int numLike;
     private boolean visible = true;
-    private User creator;
+    private final User creator;
 
     public PublishedContents(String id, User creator) {
         this.id = id;

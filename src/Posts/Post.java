@@ -11,11 +11,11 @@ public class Post extends PublishedContents implements HasPublishedContents {
     /**
      * the content of this post.
      */
-    private String content;
+    private final String content;
     /**
      * The map of all comments to this post, with comment ids as keys and comments as values.
      */
-    private HashMap<String, Comment> mapOfComments = new HashMap<>();
+    private final HashMap<String, Comment> mapOfComments = new HashMap<>();
     private int numberOfComments;
 
     public Post(String content, String id, User creator) {

@@ -9,7 +9,7 @@ import java.util.HashMap;
  * The use case that controls a user's interaction with the achievement system.
  */
 public class CommunityLibrary {
-    private HashMap<String, Community> mapOfCommunity = new HashMap<>();
+    private final HashMap<String, Community> mapOfCommunity = new HashMap<>();
 
     /**
      * Check if this community exists or not

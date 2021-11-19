@@ -14,16 +14,14 @@ import java.util.Map;
 public class UserManager {
 
 
-    /**
-     * The User currently using our application.
-     */
+     // The User currently using our application.
 //    private User currentUser;
 
     /**
      * Stores UserInfo of all Users in this program. Each key is a userName and the value is the UserInfo
      * of the User with that userName.
      */
-    private Map<String, UserInfo> mapOfUserInfo;
+    private final Map<String, UserInfo> mapOfUserInfo;
 //    private UserInfoStorage userInfoStorage;
 
     /**

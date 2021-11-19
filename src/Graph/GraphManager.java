@@ -8,7 +8,7 @@ import java.util.HashMap;
  *
  */
 public class GraphManager {
-    private HashMap<String, DirectedGraph> mapOfGraphs = new HashMap<>();
+    private final HashMap<String, DirectedGraph> mapOfGraphs = new HashMap<>();
     private int numberOfGraphs;
     private DirectedGraph currentGraph;
 

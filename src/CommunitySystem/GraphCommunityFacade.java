@@ -10,8 +10,8 @@ import constants.BuiltInGraphs;
  */
 public class GraphCommunityFacade {
 
-    private GraphManager graphManager;
-    private CommunityLibrary communityLibrary;
+    private final GraphManager graphManager;
+    private final CommunityLibrary communityLibrary;
     private DirectedGraph currentGraph;
     private Community currentCommunity;
 
