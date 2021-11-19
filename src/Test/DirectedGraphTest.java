@@ -54,7 +54,7 @@ public class DirectedGraphTest {
     }
 
     @Test(timeout = 50)
-    public void testdeleteEdge() throws Exception {
+    public void testDeleteEdge() throws Exception {
         Vertex javaIntro = new Vertex("Introductory Java");
         Vertex python = graph.getVertex("Introductory Python");
         graph.addVertex(javaIntro);
