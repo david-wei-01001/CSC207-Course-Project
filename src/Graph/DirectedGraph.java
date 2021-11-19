@@ -68,10 +68,10 @@ public class DirectedGraph implements Serializable {
      * @param edge An array of length 2 which represents a directed edge
      *             containing the starting vertex at index 0 and ending vertex at index 1.
      */
-    public void deleteEdge(Vertex[] edge) {
+    public void deleteEdge(Vertex[] edge) throws Exception {
         String name = edge[0].getName();
         if (!VERTICES.containsKey(name)) {
-            System.out.println("Vertex is absent in the graph.");
+            throw new Exception(Exceptions.Vertex_NOT_FOUND);
         }
         else {
             ArrayList<Vertex> lst = ((ArrayList<Vertex>) VERTICES.get(name)[1]);
