@@ -80,7 +80,7 @@ public class DirectedGraph implements Serializable {
      */
     public void deleteVertex(String name) throws Exception {
         Vertex delete = getVertexArray(name).getStart();
-        for (Vertex v: getVertexArray(name).getEnds()){
+        for (Vertex v: getVertexArray(name)){
             v.minusInLevel();
             if (v.getInLevel() == 0){
                 CURRENTUNCLOCK.add(v.getName());
@@ -144,7 +144,7 @@ public class DirectedGraph implements Serializable {
         } else {
             COMPLETED.add(name);
             CURRENTUNCLOCK.remove(name);
-            for (Vertex next : getVertexArray(name).getEnds()) {
+            for (Vertex next : getVertexArray(name)) {
                 next.minusInLevel();
                 if(next.getInLevel() == 0){
                     CURRENTUNCLOCK.add(next.getName());}

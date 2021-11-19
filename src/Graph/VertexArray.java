@@ -1,10 +1,10 @@
 package Graph;
 
 import constants.Exceptions;
-
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class VertexArray {
+public class VertexArray implements Iterable<Vertex>{
 
     private final Vertex start;
     private final ArrayList<Vertex> END = new ArrayList<>();
@@ -36,5 +36,10 @@ public class VertexArray {
 
     public boolean isEnd(Vertex end) {
         return END.contains(end);
+    }
+
+    @Override
+    public Iterator<Vertex> iterator() {
+        return END.iterator();
     }
 }
