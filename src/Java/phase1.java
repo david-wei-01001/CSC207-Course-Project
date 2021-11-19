@@ -27,7 +27,7 @@ public class phase1 {
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception {
         init();
         UserActionFacade facade = newFacade();
         while (newUser(facade).equals("The Username has already exists, please try again")){

@@ -1,40 +1,29 @@
-/**
- * This file contains the implementation of DirectedGraph.
- */
 package Graph;
+
+import constants.Exceptions;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.ArrayList;
 
 public class DirectedGraph implements Serializable {
-    public static class VertexNotInGraphException extends Exception implements Serializable {
-        public VertexNotInGraphException(String s) {
-            super(s);
-        }
-    }
 
     /**
      * The key of VERTICES is a String which is the name of a Vertex, the value of the VERTICES is an Array of length
      * 2 where the first element is a Vertex which is the starting vertex of many edges and the second element is an
      * ArrayList containing all Vertices that is the ending vertex which the starting vertex points to.
      */
-    private HashMap<String, Object[]> vertices = new HashMap<>();
-    private String name;
-    private ArrayList<String> currentUnlock = new ArrayList<>();
-    private ArrayList<String> completed = new ArrayList<>();
+    private final HashMap<String, Object[]> VERTICES = new HashMap<>();
+    private final String NAME;
+    private final ArrayList<String> CURRENTUNCLOCK = new ArrayList<>();
+    private final ArrayList<String> COMPLETED = new ArrayList<>();
     private String goal;
-
-
-    //TODO: May be in an separate interface
-    private static final VertexNotInGraphException ABSENT =
-            new VertexNotInGraphException("Vertex is absent in the graph.");
 
     public DirectedGraph(Vertex[] firstVertex, String name) {
         for(Vertex v: firstVertex){
             addVertex(v);
-            currentUnlock.add(v.getName());}
-        this.name = name;
+            CURRENTUNCLOCK.add(v.getName());}
+        this.NAME = name;
     }
 
     /**
@@ -49,7 +38,7 @@ public class DirectedGraph implements Serializable {
     public void addEdge(Vertex[] edge){
         addVertex(edge[0]);
         String name = edge[0].getName();
-        ((ArrayList<Vertex>) vertices.get(name)[1]).add(edge[1]);
+        ((ArrayList<Vertex>) VERTICES.get(name)[1]).add(edge[1]);
         addVertex(edge[1]);
         edge[1].addInLevel();
     }
@@ -63,10 +52,10 @@ public class DirectedGraph implements Serializable {
      */
     public void addVertex(Vertex vertex) {
         String name = vertex.getName();
-        if (!vertices.containsKey(name)) {
+        if (!VERTICES.containsKey(name)) {
             ArrayList<Vertex> ends = new ArrayList<>();
             Object[] newEdge = {vertex, ends};
-            vertices.put(name, newEdge);
+            VERTICES.put(name, newEdge);
         }
     }
 
@@ -81,11 +70,11 @@ public class DirectedGraph implements Serializable {
      */
     public void deleteEdge(Vertex[] edge) {
         String name = edge[0].getName();
-        if (!vertices.containsKey(name)) {
+        if (!VERTICES.containsKey(name)) {
             System.out.println("Vertex is absent in the graph.");
         }
         else {
-            ArrayList<Vertex> lst = ((ArrayList<Vertex>) vertices.get(name)[1]);
+            ArrayList<Vertex> lst = ((ArrayList<Vertex>) VERTICES.get(name)[1]);
             if (!lst.contains(edge[1])) {
                 System.out.println("Vertex is absent in the graph, OR there is no relation between these two vertice");
             } else {
@@ -94,7 +83,7 @@ public class DirectedGraph implements Serializable {
             }
         }
         if(edge[1].getInLevel() == 0){
-            currentUnlock.add(edge[1].getName());
+            CURRENTUNCLOCK.add(edge[1].getName());
         }
     }
 
@@ -105,61 +94,56 @@ public class DirectedGraph implements Serializable {
      * @param name The name of vertex
      */
     public void deleteVertex(String name) {
-        Vertex delete = (Vertex) vertices.get(name)[0];
-        for (Vertex v: (ArrayList<Vertex>) vertices.get(name)[1]){
+        Vertex delete = (Vertex) VERTICES.get(name)[0];
+        for (Vertex v: (ArrayList<Vertex>) VERTICES.get(name)[1]){
             v.minusInLevel();
             if (v.getInLevel() == 0){
-                currentUnlock.add(v.getName());
+                CURRENTUNCLOCK.add(v.getName());
             }
         }
-        for (String vertexName : vertices.keySet()) {
-            if (((ArrayList<Vertex>) vertices.get(vertexName)[1]).contains(delete)) {
-                Vertex[] edge = {(Vertex) vertices.get(vertexName)[0], delete};
+        for (String vertexName : VERTICES.keySet()) {
+            if (((ArrayList<Vertex>) VERTICES.get(vertexName)[1]).contains(delete)) {
+                Vertex[] edge = {(Vertex) VERTICES.get(vertexName)[0], delete};
                 deleteEdge(edge);
             }
         }
-        vertices.remove(name);
-        if(currentUnlock.contains(name)){
-            currentUnlock.remove(name);
-        }
-        if(completed.contains(name)){
-            completed.remove(name);
-        }
+        VERTICES.remove(name);
+        CURRENTUNCLOCK.remove(name);
+        COMPLETED.remove(name);
     }
 
     /**
      * Given a name, return vertex
      * @param name The name of Vertex
      * @return Return the vertex with name
-     * @throws VertexNotInGraphException
      */
-    public Vertex getVertex(String name) throws VertexNotInGraphException{
-        for (String vertexName : vertices.keySet()){
+    public Vertex getVertex(String name) throws Exception {
+        for (String vertexName : VERTICES.keySet()){
             if (vertexName.equals(name)) {
-                return ((Vertex) vertices.get(name)[0]);
+                return ((Vertex) VERTICES.get(name)[0]);
             }
         }
-        throw ABSENT;
+        throw new Exception(Exceptions.Vertex_NOT_FOUND);
     }
 
     /**
      * To mark the complete for the vertex.
      * @param name: The name for vertex
      */
-    public void complete(String name) {
-        if (!vertices.containsKey(name)){
-            System.out.println("Vertex is absent in the graph.");
-        }else if (!currentUnlock.contains(name)){
-            System.out.println("This vertex is locked.");
-        } else if (completed.contains(name)) {
-            System.out.println("This vertex is already completed.");
+    public void complete(String name) throws Exception {
+        if (!VERTICES.containsKey(name)){
+            throw new Exception(Exceptions.Vertex_NOT_FOUND);
+        }else if (!CURRENTUNCLOCK.contains(name)){
+            throw new Exception(Exceptions.Vertex_LOCKED);
+        } else if (COMPLETED.contains(name)) {
+            throw new Exception(Exceptions.Vertex_ALREADY_COMPLETED);
         } else {
-            completed.add(name);
-            currentUnlock.remove(name);
-            for (Vertex next : ((ArrayList<Vertex>) vertices.get(name)[1])) {
+            COMPLETED.add(name);
+            CURRENTUNCLOCK.remove(name);
+            for (Vertex next : ((ArrayList<Vertex>) VERTICES.get(name)[1])) {
                 next.minusInLevel();
                 if(next.getInLevel() == 0){
-                    currentUnlock.add(next.getName());}
+                    CURRENTUNCLOCK.add(next.getName());}
             }
         }
 
@@ -171,7 +155,7 @@ public class DirectedGraph implements Serializable {
      */
     @Override
     public String toString() {
-        return name;
+        return NAME;
     }
 
     /**
@@ -181,8 +165,8 @@ public class DirectedGraph implements Serializable {
     public HashMap<String, Vertex> availableVertex(){
         HashMap<String, Vertex> available = new HashMap<>();
         int count = 0;
-        for (String name : currentUnlock) {
-            available.put(Integer.toString(count), (Vertex) (vertices.get(name)[0]));
+        for (String name : CURRENTUNCLOCK) {
+            available.put(Integer.toString(count), (Vertex) (VERTICES.get(name)[0]));
             count++;
         }
         return available;
@@ -190,10 +174,12 @@ public class DirectedGraph implements Serializable {
 
     /**
      * Return all vertices in the TechTree
+     * Only intended to be used for testing.
+     * It should not be used for any other purpose.
      * @return Vertices
      */
     public HashMap<String, Object[]> getVertices(){
-        return vertices;
+        return VERTICES;
     }
 
 }

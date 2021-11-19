@@ -37,6 +37,18 @@ public class GraphManager {
         }
     }
 
+    public void complete(String name) throws Exception {
+        currentGraph.complete(name);
+    }
+
+    public Vertex getVertex(String name) throws Exception {
+        return currentGraph.getVertex(name);
+    }
+
+    public String getName() {
+        return currentGraph.toString();
+    }
+
 
 
     public DirectedGraph getCurrentGraph() {

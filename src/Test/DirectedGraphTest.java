@@ -21,13 +21,13 @@ public class DirectedGraphTest {
     }
 
     @Test(timeout = 50)
-    public void testGetVertex() throws DirectedGraph.VertexNotInGraphException {
+    public void testGetVertex() throws Exception {
         Vertex python = graph.getVertex("Introductory Python");
         assertEquals("Introductory Python", python.getName());
     }
 
     @Test(timeout = 50)
-    public void testAddVertex() throws DirectedGraph.VertexNotInGraphException {
+    public void testAddVertex() throws Exception {
         Vertex javaIntro = new Vertex("Introductory Java");
         Vertex python = graph.getVertex("Introductory Python");
         graph.addVertex(javaIntro);
@@ -41,7 +41,7 @@ public class DirectedGraphTest {
     }
 
     @Test(timeout = 50)
-    public void testAddEdge() throws DirectedGraph.VertexNotInGraphException {
+    public void testAddEdge() throws Exception {
         Vertex javaIntro = new Vertex("Introductory Java");
         Vertex python = graph.getVertex("Introductory Python");
         graph.addVertex(javaIntro);
@@ -54,7 +54,7 @@ public class DirectedGraphTest {
     }
 
     @Test(timeout = 50)
-    public void testdeleteEdge() throws DirectedGraph.VertexNotInGraphException {
+    public void testdeleteEdge() throws Exception {
         Vertex javaIntro = new Vertex("Introductory Java");
         Vertex python = graph.getVertex("Introductory Python");
         graph.addVertex(javaIntro);
@@ -67,7 +67,7 @@ public class DirectedGraphTest {
     }
 
     @Test(timeout = 50)
-    public void testDeleteVertex() throws DirectedGraph.VertexNotInGraphException {
+    public void testDeleteVertex() throws Exception {
         Vertex javaIntro = new Vertex("Introductory Java");
         Vertex python = graph.getVertex("Introductory Python");
         graph.addVertex(javaIntro);
@@ -81,7 +81,7 @@ public class DirectedGraphTest {
     }
 
     @Test(timeout = 50)
-    public void testAvailableVertex() throws DirectedGraph.VertexNotInGraphException {
+    public void testAvailableVertex() throws Exception {
         Vertex javaIntro = new Vertex("Introductory Java");
         Vertex Intro165 = new Vertex("CSC165");
         Vertex python = graph.getVertex("Introductory Python");
@@ -99,7 +99,7 @@ public class DirectedGraphTest {
     }
 
     @Test(timeout = 50)
-    public void testCaseWithTwoPreqForAdd() throws DirectedGraph.VertexNotInGraphException {
+    public void testCaseWithTwoPreqForAdd() {
         Vertex pythonIntro = new Vertex("Introductory Python");
         Vertex compIntro = new Vertex("Introductory Combbb");
         Vertex Intro165 = new Vertex("CSC165");
@@ -128,7 +128,7 @@ public class DirectedGraphTest {
     }
 
     @Test(timeout = 50)
-    public void testCaseWithTwoPreqForComplete() throws DirectedGraph.VertexNotInGraphException {
+    public void testCaseWithTwoPreqForComplete() throws Exception {
         Vertex pythonIntro = new Vertex("Introductory Python");
         Vertex compIntro = new Vertex("Introductory Combbb");
         Vertex Intro165 = new Vertex("CSC165");
@@ -158,7 +158,7 @@ public class DirectedGraphTest {
         assertEquals(JavaIntro.getInLevel(), 1);
     }
     @Test(timeout = 50)
-    public void testCaseWithTwoPreqForDelete() throws DirectedGraph.VertexNotInGraphException {
+    public void testCaseWithTwoPreqForDelete() {
         Vertex pythonIntro = new Vertex("Introductory Python");
         Vertex compIntro = new Vertex("Introductory Combbb");
         Vertex Intro165 = new Vertex("CSC165");
