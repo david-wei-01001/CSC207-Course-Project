@@ -1,7 +1,7 @@
 package Resource;
 
 import Posts.PublishedContents;
-import User.User;
+import User.UserInfo;
 
 public class Resource extends PublishedContents {
     private String content;
@@ -9,7 +9,7 @@ public class Resource extends PublishedContents {
     private String description;
     private int downloadTimes;
 
-    public Resource(String content, String id, int point, String description, User creator) {
+    public Resource(String content, String id, int point, String description, UserInfo creator) {
         super(id, creator);
         this.content = content;
         this.pointsRequired = point;

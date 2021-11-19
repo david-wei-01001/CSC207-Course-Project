@@ -25,7 +25,6 @@ public class DirectedGraph implements Serializable {
     private ArrayList<String> completed = new ArrayList<>();
     private String goal;
 
-
     //TODO: May be in an separate interface
     private static final VertexNotInGraphException ABSENT =
             new VertexNotInGraphException("Vertex is absent in the graph.");
@@ -162,7 +161,6 @@ public class DirectedGraph implements Serializable {
                     currentUnlock.add(next.getName());}
             }
         }
-
     }
 
     /**
@@ -194,6 +192,10 @@ public class DirectedGraph implements Serializable {
      */
     public HashMap<String, Object[]> getVertices(){
         return vertices;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

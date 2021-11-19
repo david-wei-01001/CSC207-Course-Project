@@ -1,6 +1,6 @@
 package Posts;
 
-import User.User;
+import User.UserInfo;
 
 public interface HasPublishedContents {
 
@@ -12,7 +12,7 @@ public interface HasPublishedContents {
 
    PostNotFoundException ABSENT = new PostNotFoundException ();
 
-    String addPublishedContent(String content, User creator);
+    String addPublishedContent(String content, UserInfo creator);
 
     void deletePublishedContent(String id) throws  PostNotFoundException;
 }

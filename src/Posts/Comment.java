@@ -1,6 +1,6 @@
 package Posts;
 
-import User.User;
+import User.UserInfo;
 
 /**
  * A comment.
@@ -11,7 +11,7 @@ public class Comment extends PublishedContents {
      */
     String content;
 
-    public Comment(String content, String id, User creator) {
+    public Comment(String content, String id, UserInfo creator) {
         super(id, creator);
         this.content = content;
     }

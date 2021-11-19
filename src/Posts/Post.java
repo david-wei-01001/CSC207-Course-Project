@@ -1,6 +1,6 @@
 package Posts;
 
-import User.User;
+import User.UserInfo;
 
 import java.util.HashMap;
 
@@ -18,7 +18,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
     private HashMap<String, Comment> mapOfComments = new HashMap<>();
     private int numberOfComments;
 
-    public Post(String content, String id, User creator) {
+    public Post(String content, String id, UserInfo creator) {
         super(id, creator);
         this.content = content;
     }
@@ -31,7 +31,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
      * @return the id of the comment added.
      */
     @Override
-    public String addPublishedContent(String content, User creator) {
+    public String addPublishedContent(String content, UserInfo creator) {
         String commentId = getNextId();
         mapOfComments.put(commentId, new Comment(content, commentId, creator));
         numberOfComments ++;
@@ -69,7 +69,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
     public String toString() {
         return "Post{" +
                 "id=" + super.getId() +
-                ", creator=" + this.getCreator().getUserInfo().getUserName() + '\'' +
+                ", creator=" + this.getCreator().getUsername() + '\'' +
                 ", content='" + content + '\'' +
                 ", listOfComments=" + mapOfComments +
                 '}';

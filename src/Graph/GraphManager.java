@@ -9,23 +9,14 @@ import java.util.HashMap;
  */
 public class GraphManager {
     private HashMap<String, DirectedGraph> mapOfGraphs = new HashMap<>();
-    private int numberOfGraphs;
     private DirectedGraph currentGraph;
 
-    public HashMap<String, DirectedGraph> getAllGraphs(){
-        return mapOfGraphs;
-    }
-
     public void addGraph(DirectedGraph graph) {
-        numberOfGraphs += 1;
-        mapOfGraphs.put(Integer.toString(numberOfGraphs), graph);
-
+        mapOfGraphs.put(Integer.toString(mapOfGraphs.size()), graph);
     }
-
-
 
     /**
-     * change String graphName to enum in the future
+     *
      * @param graphId
      * @throws Exception
      */
@@ -41,6 +32,9 @@ public class GraphManager {
 
     public DirectedGraph getCurrentGraph() {
         return currentGraph;
+    }
+    public HashMap<String, DirectedGraph> getMapOfGraphs(){
+        return mapOfGraphs;
     }
 
 

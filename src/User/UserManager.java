@@ -1,10 +1,9 @@
 package User;
 
 
-import Graph.DirectedGraph;
+import GraphBuilders.GraphArchitect;
 import constants.Exceptions;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -15,16 +14,15 @@ public class UserManager {
 
 
     /**
-     * The User currently using our application.
+     * The info of the User currently using our application.
      */
-//    private User currentUser;
+    private UserInfo currentUserInfo;
 
     /**
      * Stores UserInfo of all Users in this program. Each key is a userName and the value is the UserInfo
      * of the User with that userName.
      */
     private Map<String, UserInfo> mapOfUserInfo;
-//    private UserInfoStorage userInfoStorage;
 
     /**
      * The constructor of UserManager.
@@ -44,27 +42,13 @@ public class UserManager {
      * @param password password of the new User.
      * @throws Exception throws an exception if the userName has been taken.
      */
-    public void addNewUser(String userName, String email, String password) throws Exception {
+    public void addNewUserInfo(String userName, String email, String password) throws Exception {
         if (!mapOfUserInfo.containsKey(userName)) {
             mapOfUserInfo.put(userName, new UserInfo(userName, email, password));
         } else {
             throw new Exception(Exceptions.USER_NAME_TAKEN);
         }
 
-    }
-
-    /**
-     * Remove the Userinfo of an existing User (who is being removed from this program) by userName.
-     *
-     * @param userName userName of the User to be removed
-     * @throws Exception throws an exception if the inputted userName does not exist.
-     */
-    public void removeUser(String userName) throws Exception {
-        if (mapOfUserInfo.containsKey(userName)) {
-            mapOfUserInfo.remove(userName);
-        } else {
-            throw new Exception(Exceptions.CANNOT_RECOGNIZE_USER);
-        }
     }
 
     /**
@@ -85,20 +69,26 @@ public class UserManager {
     /**
      * add a graph to current user
      */
-    public void addGraphTo(User user, DirectedGraph graph) {
-        user.getUserInfo().addGraph(graph);
+    public void addGraphToCurrent(String graphName) throws Exception {
+        if (!currentUserInfo.hasGraph(graphName)) {
+            GraphArchitect graphArchitect = new GraphArchitect();
+            currentUserInfo.addGraph(graphArchitect.setBuilderAndBuildGraph(graphName));
+        } else {
+            throw new Exception(Exceptions.GRAPH_ALREADY_EXISTS);
+        }
     }
 
-
     /**
-     * change the userName of currentUser to newUserName.
+     * change the userName of currentUser to newUsername.
      *
-     * @param newUserName currentUser's new userName.
-     * @throws Exception if newUserName has been taken.
+     * @param newUsername currentUser's new userName.
+     * @throws Exception if newUsername has been taken.
      */
-    public void setUserNameOf(User user, String newUserName) throws Exception {
-        if (!mapOfUserInfo.containsKey(newUserName)) {
-            user.getUserInfo().setUserName(newUserName);
+    public void setUserNameOfCurrent(String newUsername) throws Exception {
+        if (!mapOfUserInfo.containsKey(newUsername)) {
+            currentUserInfo.setUsername(newUsername);
+        } else if (newUsername.equals(currentUserInfo.getUsername())) {
+            throw new Exception(Exceptions.SAME_USERNAME_AS_CURRENT);
         } else {
             throw new Exception(Exceptions.USER_NAME_TAKEN);
         }
@@ -107,28 +97,45 @@ public class UserManager {
     /**
      * TODO: upgrade this method so that no duplicated email address is allowed.
      *
-     * @param user
      * @param newEmail
      */
-    public void setEmailOf(User user, String newEmail) {
-        user.getUserInfo().setEmail(newEmail);
+    public void setEmailOfCurrent(String newEmail) {
+        currentUserInfo.setEmail(newEmail);
     }
 
-    public void setPasswordOf(User user, String newPassword) {
-        user.getUserInfo().setPassword(newPassword);
+    public void setPasswordOfCurrent(String newPassword) {
+        currentUserInfo.setPassword(newPassword);
     }
 
     public Map<String, UserInfo> getMapOfUserInfo() {
         return mapOfUserInfo;
     }
 
+    public UserInfo getCurrentUserInfo() {
+        return currentUserInfo;
+    }
 
-//    public static UserInfo checkLoginInfo(String username, String password) {
+    public void setCurrentUserInfoTo(String username) throws Exception {
+        if (mapOfUserInfo.containsKey(username)) {
+            this.currentUserInfo = mapOfUserInfo.get(username);
+        } else {
+            throw new Exception(Exceptions.CANNOT_RECOGNIZE_USER);
+        }
+    }
 
-//        if (mapOfUserInfo.containsKey(username) && mapOfUserInfo.get(username).getPassword().equals(password)) {
-//            return mapOfUserInfo.get(username);
+    // we might not need to remove a userinfo. and correctly implementing removing an userinfo
+    // is difficult: what if the userinfo i am removing is the currentUserInfo
+//    /**
+//     //     * Remove the Userinfo of an existing User (who is being removed from this program) by userName.
+//     //     *
+//     //     * @param userName userName of the User to be removed
+//     //     * @throws Exception throws an exception if the inputted userName does not exist.
+//     //     */
+//    public void removeUserInfo(String userName) throws Exception {
+//        if (mapOfUserInfo.containsKey(userName)) {
+//            mapOfUserInfo.remove(userName);
 //        } else {
-//            return new UserInfo(null,null,null);
+//            throw new Exception(Exceptions.CANNOT_RECOGNIZE_USER);
 //        }
 //    }
 }

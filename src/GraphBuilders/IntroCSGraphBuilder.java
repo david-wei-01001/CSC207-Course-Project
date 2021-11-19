@@ -2,6 +2,7 @@ package GraphBuilders;
 
 import Graph.DirectedGraph;
 import Graph.Vertex;
+import constants.BuiltInGraphs;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +51,7 @@ public class IntroCSGraphBuilder implements GraphBuilder {
 
         Vertex[][] directedEdges = buildDirectedEdges(vertices);
         DirectedGraph result = new DirectedGraph(new Vertex[] {vertices.get("Introductory Python")},
-                                            "CS Introduction Series");
+                BuiltInGraphs.INTRODUCTORY_CS_SERIES);
         for (Vertex[] directedEdge : directedEdges) {
             result.addEdge(directedEdge);
         }

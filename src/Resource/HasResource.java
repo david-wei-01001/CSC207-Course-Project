@@ -1,7 +1,7 @@
 package Resource;
 
 
-import User.User;
+import User.UserInfo;
 
 public interface HasResource {
     class PostNotFoundException extends Exception {
@@ -11,6 +11,6 @@ public interface HasResource {
     }
 
     HasResource.PostNotFoundException ABSENT = new HasResource.PostNotFoundException();
-    void add(String content,int point, String description, User creator);
-    void delete(String id) throws HasResource.PostNotFoundException;
+    void addResource(String content, int point, String description);
+    void deleteResource(String id) throws HasResource.PostNotFoundException;
 }
