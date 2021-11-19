@@ -158,7 +158,7 @@ public class DirectedGraphTest {
         assertEquals(JavaIntro.getInLevel(), 1);
     }
     @Test(timeout = 50)
-    public void testCaseWithTwoPreqForDelete() {
+    public void testCaseWithTwoPreqForDelete() throws Exception {
         Vertex pythonIntro = new Vertex("Introductory Python");
         Vertex compIntro = new Vertex("Introductory Combbb");
         Vertex Intro165 = new Vertex("CSC165");

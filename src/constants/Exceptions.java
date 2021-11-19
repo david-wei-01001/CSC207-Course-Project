@@ -26,5 +26,7 @@ public class Exceptions {
     public static String Vertex_NOT_FOUND ="Vertex is absent in the graph.";
     public static String Vertex_LOCKED ="This vertex is locked.";
     public static String Vertex_ALREADY_COMPLETED ="This vertex is already completed.";
+    public static String EDGE_NOT_FOUND ="Vertex is absent in the graph, " +
+            "OR there is no relation between these two vertices";
 }
 

@@ -60,7 +60,6 @@ public class DirectedGraph implements Serializable {
     }
 
     /**
-     * TODO: check this code with David
      * Delete the given edge from the graph. Though both
      * starting and ending vertices will remain in the graph,
      * the connection between them will be removed.
@@ -76,7 +75,7 @@ public class DirectedGraph implements Serializable {
         else {
             ArrayList<Vertex> lst = ((ArrayList<Vertex>) VERTICES.get(name)[1]);
             if (!lst.contains(edge[1])) {
-                System.out.println("Vertex is absent in the graph, OR there is no relation between these two vertice");
+                throw new Exception(Exceptions.EDGE_NOT_FOUND);
             } else {
                 lst.remove(edge[1]);
                 edge[1].minusInLevel();
@@ -93,7 +92,7 @@ public class DirectedGraph implements Serializable {
      *
      * @param name The name of vertex
      */
-    public void deleteVertex(String name) {
+    public void deleteVertex(String name) throws Exception {
         Vertex delete = (Vertex) VERTICES.get(name)[0];
         for (Vertex v: (ArrayList<Vertex>) VERTICES.get(name)[1]){
             v.minusInLevel();
