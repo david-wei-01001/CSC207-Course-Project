@@ -6,8 +6,14 @@ import Graph.Vertex;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class is responsible to build the IntroCSGraph built-in default DirectedGraph
+ */
 public class IntroCSGraphBuilder implements GraphBuilder {
-
+    /**
+     * build vertices for a DirectedGraph.
+     * @return a Map maps the name of vertices to vertices itself
+     */
     @Override
     public Map<String, Vertex> buildVertices() {
 
@@ -28,7 +34,11 @@ public class IntroCSGraphBuilder implements GraphBuilder {
         return result;
     }
 
-
+    /**
+     * Build directed edges where vertices of edges are from vertices.
+     * @param vertices contains all vertex as building blocks of directed edges
+     * @return return an Array of DirectedEdges
+     */
     @Override
     public Vertex[][] buildDirectedEdges(Map<String, Vertex> vertices) {
 
@@ -42,7 +52,10 @@ public class IntroCSGraphBuilder implements GraphBuilder {
         };
     }
 
-
+    /**
+     * @return a DirectedGrah that is a built-in default graph
+     * @throws Exception if the name of the first vertex in edge does not exist in the DirectedGraph
+     */
     @Override
     public DirectedGraph buildGraph() throws Exception {
 
