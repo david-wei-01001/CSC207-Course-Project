@@ -11,9 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-/**
- * TODO: implement this test
- */
+
 public class ResourceManagerTest {
     ResourceManager manager;
     UserInfo userInfo;
