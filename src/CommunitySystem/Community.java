@@ -20,6 +20,9 @@ public class Community implements HasPublishedContents, Serializable {
         nameOfCommunity = name;
     }
 
+    /**
+     * @return the string representation of this community.
+     */
     @Override
     public String toString() {
         return "Community{" +
@@ -42,7 +45,6 @@ public class Community implements HasPublishedContents, Serializable {
     }
 
     /**
-     * TODO: Alfred: i dont think we should implement it this way.
      * delete a post in this community.
      * @param id the id of the post being deleted
      * @throws PostNotFoundException if the post with the inputted id is not found in this community.
@@ -71,15 +73,24 @@ public class Community implements HasPublishedContents, Serializable {
     }
 
 
-
+    /**
+     * @return the mapOfPost instance variable
+     */
     public HashMap<String, Post> getMapOfPost() {
         return mapOfPost;
     }
 
+    /**
+     * @return the size of the mapOfPost instance variable
+     */
     public int getNumberOfPosts(){
         return mapOfPost.size();
     }
 
+    /**
+     * Generate the id of the next post
+     * @return a string representation of the id of the next potential post
+     */
     public String getNextId(){
         return "Post #" + mapOfPost.size();
     }
