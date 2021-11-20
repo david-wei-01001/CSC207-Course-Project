@@ -108,8 +108,9 @@ public class UserActionFacade {
      * download a resource for currentUser.
      * @param resourceId the id of the resource currentUser is downloading.
      */
-    public void downloadResource(String resourceId) {
-        resourceManager.downloadResource(currentUser, resourceId);
+    public String downloadResource(String resourceId) {
+        return
+                resourceManager.downloadResource(currentUser, resourceId);
     }
 
     /**

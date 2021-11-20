@@ -7,6 +7,7 @@ import Graph.Vertex;
 import CommunitySystem.CommunityLibrary;
 import Resource.ResourceManager;
 import RewardSystem.RewardManager;
+import User.User;
 import User.UserActionFacade;
 import User.UserInfo;
 import User.UserManager;
@@ -64,6 +65,7 @@ public class helper {
         try {
             facade.getUserManager().addNewUser(username, email, password);
             facade.setCurrentUserTo(username);
+            facade.incrementTotalLogins();
             return "Congratulations! You have created your account!";
         } catch (Exception e) {
             return "The Username has already exists, please try again";
@@ -94,7 +96,7 @@ public class helper {
         return graph.availableVertex().get(number);
     }
 
-    public static void completeVertex(Vertex node, DirectedGraph graph, UserActionFacade facade){
+    public static void completeVertex(Vertex node, DirectedGraph graph, UserActionFacade facade) throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Now please study the node you chose. Once you have completed, type \"Yes\" below:");
         String yes = scanner.nextLine();
@@ -104,18 +106,36 @@ public class helper {
             yes = scanner.nextLine();
         }
         System.out.println("Congratulations! You have completed this task! Next you need to make some post!");
+        facade.getCurrentUser().getUserInfo().setRewardPoints(facade.getCurrentUser().getUserInfo().getRewardPoints()+5);
         System.out.println("Please type in the content you want to post:");
         String content = scanner.nextLine();
-        facade.getCommunityLibrary().getCommunity(node.getCommunityName()).addPublishedContent(content, facade.getCurrentUser());
+        facade.createPost(node.getCommunityName(), content);
         System.out.println("Congratulations! You have made your first post!");
-        System.out.println("You have completed this node. Now you can proceed to the next node.");
+        facade.getCurrentUser().getUserInfo().setRewardPoints(facade.getCurrentUser().getUserInfo().getRewardPoints()+5);
+        System.out.println("You have completed this node. Now you can proceed to the next task.");
         graph.complete(node.getName());
     }
 
-    public static void menu(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please choose what you want to proceed: 1. Check ");
+    public static void resource(UserActionFacade user){
+        System.out.println("Currently you have " + user.getCurrentUser().getUserInfo().getRewardPoints() +
+                " reward points.");
     }
+
+    public static void downloadResource(UserActionFacade user){
+        System.out.println("Now you can download some resources.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please choose the resource you want to download:" +
+                user.getResourceManager().getMapOfResource());
+        String content = scanner.nextLine();
+        System.out.println(user.downloadResource(content));
+    }
+
+    public static void achievementCheck(UserActionFacade user){
+        System.out.println("Next, let us check how many achievements you have currently");
+        System.out.println(user.getCurrentUser().getUserInfo().getMapOfAchievement());
+
+    }
+
 
 
 }
