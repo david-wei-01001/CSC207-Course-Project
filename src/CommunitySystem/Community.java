@@ -14,8 +14,10 @@ public class Community implements HasPublishedContents, Serializable {
     private final HashMap<String, Post> mapOfPost = new HashMap<>();
     private final String nameOfCommunity;
 
-
-
+    /**
+     * The constructor of Community class
+     * @param name the name of this community
+     */
     public Community(String name){
         nameOfCommunity = name;
     }
