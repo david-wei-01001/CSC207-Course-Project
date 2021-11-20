@@ -33,6 +33,8 @@ public class phase1 {
         while (newUser(facade).equals("The Username has already exists, please try again")){
             newUser(facade);
         }
+        facade.getResourceManager().addDefault();
+        resource(facade);
         GraphCommunityFacade facade1 = new GraphCommunityFacade(facade.getGraphManager(),
                 facade.getCommunityLibrary(), true);
         DirectedGraph graph = getGraph(facade1.getGraphManager());
@@ -40,8 +42,12 @@ public class phase1 {
         DirectedGraph userGraph = facade.getUserGraph().get(0);
         Vertex node = gotVertex(userGraph);
         completeVertex(node, userGraph, facade);
+        resource(facade);
         Vertex node2 = gotVertex(userGraph);
         completeVertex(node2, userGraph, facade);
+        resource(facade);
+        downloadResource(facade);
+        achievementCheck(facade);
     }
 
 }

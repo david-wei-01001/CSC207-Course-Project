@@ -4,6 +4,7 @@ import User.User;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import User.UserInfo;
 
 public class ResourceManager implements HasResource, Serializable{
 
@@ -80,6 +81,17 @@ public class ResourceManager implements HasResource, Serializable{
      */
     public int getNumberOfResources(){
         return mapOfResource.size();
+    }
+
+    public void addDefault() {
+        UserInfo userInfo = new UserInfo("Tong", "123@mail.com", "123");
+        User user = new User(userInfo);
+        Resource resourceToAdd1 = new Resource("https://www.teach.cs.toronto.edu/~csc110y/fall/notes/",
+                getNextId(), 5, "Course notes of csc110", user);
+        mapOfResource.put(resourceToAdd1.getId(), resourceToAdd1);
+        Resource resourceToAdd2 = new Resource("https://www.youtube.com/watch?v=eIrMbAQSU34",
+                getNextId(), 25, "Java Tutorial for Beginners", user);
+        mapOfResource.put(resourceToAdd2.getId(), resourceToAdd2);
     }
 
 }
