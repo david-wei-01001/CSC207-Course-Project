@@ -15,7 +15,6 @@ public class Community implements HasPublishedContents, Serializable {
     private final String nameOfCommunity;
 
 
-
     public Community(String name){
         nameOfCommunity = name;
     }
