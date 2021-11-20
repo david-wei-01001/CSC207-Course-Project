@@ -21,9 +21,9 @@ public class UserActionFacade {
      * Each of the following six use cases contain the concrete implementation of
      * the methods that execute current user's action.
      */
-    private UserManager userManager;
-    private RewardManager rewardManager;
-    private AchievementManager achievementManager;
+    private final UserManager userManager;
+    private final RewardManager rewardManager;
+    private final AchievementManager achievementManager;
 
     public RewardManager getRewardManager() {
         return rewardManager;
@@ -33,9 +33,9 @@ public class UserActionFacade {
         return graphManager;
     }
 
-    private GraphManager graphManager;
-    private CommunityLibrary communityLibrary;
-    private ResourceManager resourceManager;
+    private final GraphManager graphManager;
+    private final CommunityLibrary communityLibrary;
+    private final ResourceManager resourceManager;
 
     /**
      * the user currently using our program.
@@ -56,9 +56,8 @@ public class UserActionFacade {
         this.graphManager = graphManager;
         this.communityLibrary = communityLibrary;
         this.resourceManager = resourceManager;
-        /**
-         * initialize currentUser with no UserInfo.
-         */
+
+        // initialize currentUser with no UserInfo.
         this.currentUser = new User(null);
     }
 

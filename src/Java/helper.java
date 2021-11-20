@@ -84,7 +84,7 @@ public class helper {
         return manager.getAllGraphs().get(number);
     }
 
-    public static Vertex gotVertex(DirectedGraph graph){
+    public static Vertex gotVertex(DirectedGraph graph) throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please choose the node you want to start with:" + graph.availableVertex());
         String number = scanner.nextLine();
@@ -109,6 +109,7 @@ public class helper {
         facade.getCurrentUser().getUserInfo().setRewardPoints(facade.getCurrentUser().getUserInfo().getRewardPoints()+5);
         System.out.println("Please type in the content you want to post:");
         String content = scanner.nextLine();
+
         facade.createPost(node.getCommunityName(), content);
         System.out.println("Congratulations! You have made your first post!");
         facade.getCurrentUser().getUserInfo().setRewardPoints(facade.getCurrentUser().getUserInfo().getRewardPoints()+5);

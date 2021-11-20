@@ -4,9 +4,9 @@ import Posts.PublishedContents;
 import User.User;
 
 public class Resource extends PublishedContents {
-    private String content;
-    private int pointsRequired;
-    private String description;
+    private final String content;
+    private final int pointsRequired;
+    private final String description;
     private int downloadTimes;
 
     public Resource(String content, String id, int point, String description, User creator) {

@@ -44,7 +44,7 @@ public class IntroCSGraphBuilder implements GraphBuilder {
 
 
     @Override
-    public DirectedGraph buildGraph() {
+    public DirectedGraph buildGraph() throws Exception {
 
         Map<String, Vertex> vertices = buildVertices();
 

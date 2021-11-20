@@ -19,12 +19,13 @@ public class UserInfo {
     private String email;
     private String password;
     private int rewardPoints;
+    // TODO： How do we update lastlogin?
     private LocalDate lastLogin;
     private int totalLogins;
-    private ArrayList<String> listOfPostId = new ArrayList<>();
-    private ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
-    private ArrayList<Resource> listOfResource = new ArrayList<>();
-    private Map<String, Boolean> mapOfAchievement = new HashMap<>();
+    private final ArrayList<String> listOfPostId = new ArrayList<>();
+    private final ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
+    private final ArrayList<Resource> listOfResource = new ArrayList<>();
+    private final Map<String, Boolean> mapOfAchievement = new HashMap<>();
 
     public UserInfo(String userName, String email, String password) {
         this.userName = userName;
