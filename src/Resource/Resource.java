@@ -9,6 +9,7 @@ public class Resource extends PublishedContents {
     private final String description;
     private int downloadTimes;
 
+
     /**
      * Constructor for the resource class
      * @param content: The content of the resource
