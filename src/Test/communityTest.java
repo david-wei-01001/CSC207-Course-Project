@@ -14,6 +14,10 @@ public class communityTest {
     Community community;
     User user;
 
+    /**
+     * The setup method that setup each test.
+     * It creates a community and a user.
+     */
     @Before
     public void setUp() {
         community = new Community("hi");
@@ -21,7 +25,10 @@ public class communityTest {
         user = new User(userInfo);
     }
 
-    @Test(timeout = 50)
+    /**
+     * Test if the NextId method works if there is no post added.
+     */
+    @Test
     public void testNextIdNoPost() {
 
         assertEquals(community.getNextId(), "Post #0");
@@ -30,7 +37,7 @@ public class communityTest {
     /**
      * TODO: missing test for whether
      */
-    @Test(timeout = 500)
+    @Test
     public void testAdd() {
         Post post1 = new Post("abc", community.getNextId(),user);
         community.addPublishedContent(post1.getContent(),user);
@@ -41,8 +48,10 @@ public class communityTest {
         assertEquals( post1.toString(),community.getMapOfPost().get("Post #0").toString());
         assertEquals(post2.toString(),community.getMapOfPost().get("Post #1").toString());
     }
-
-    @Test(timeout = 50)
+    /**
+     * Test if the NextId method correctly generate the id for next post when a post is added.
+     */
+    @Test
     public void testNextId() {
         Post post1 = new Post("abc", community.getNextId(),user);
         community.addPublishedContent(post1.getContent(),user);
@@ -50,8 +59,10 @@ public class communityTest {
         community.addPublishedContent(post2.getContent(),user);
         assertEquals("Post #2",community.getNextId());
     }
-
-    @Test(timeout = 500)
+    /**
+     * Test if the getNumPost method correctly reflect the number of posts in the community.
+     */
+    @Test
     public void testGetNumPost() {
         Post post1 = new Post("abc", community.getNextId(),user);
         community.addPublishedContent(post1.getContent(),user);
@@ -60,7 +71,12 @@ public class communityTest {
         assertEquals( 2,community.getNumberOfPosts());
     }
 
-    @Test(timeout = 500)
+    /**
+     * test whether the delete method correctly set the post to be deleted as invisible
+     * and whether the getNumberOfPosts method correctly reflect this delete.
+     * @throws HasPublishedContents.PostNotFoundException if the post to be deleted does not exist.
+     */
+    @Test
     public void testDelete() throws HasPublishedContents.PostNotFoundException {
         Post post0 = new Post("abc", community.getNextId(),user);
         community.addPublishedContent(post0.getContent(),user);
@@ -73,7 +89,10 @@ public class communityTest {
         assertEquals(2,community.getNumberOfPosts());
     }
 
-    @Test(timeout = 500)
+    /**
+     * Test whether displayPosts method correctly display posts.
+     */
+    @Test
     public void testDisplayPosts() {
         Post post1 = new Post("abc", community.getNextId(),user);
         community.addPublishedContent(post1.getContent(),user);
@@ -85,10 +104,9 @@ public class communityTest {
     }
 
     /**
-     * TODO: implement this test
-     * check if this community has been instantiated correctly.
+     * check if the toString method correctly generates a string representation of this community.
      */
-    @Test(timeout = 500)
+    @Test
     public void testToString() {
         assertEquals("Community{" +
                 "mapOfPost=" + "{}" +
