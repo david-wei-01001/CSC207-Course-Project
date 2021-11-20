@@ -106,7 +106,7 @@ public class helper {
         System.out.println("Congratulations! You have completed this task! Next you need to make some post!");
         System.out.println("Please type in the content you want to post:");
         String content = scanner.nextLine();
-        facade.getCommunityLibrary().getCommunity(node.getCommunityName()).addPublishedContent(content,
+        facade.getCommunityLibrary().getCommunity(node.getName()).addPublishedContent(content,
                 facade.getCurrentUser());
         System.out.println("Congratulations! You have made your first post!");
         System.out.println("You have completed this node. Now you can proceed to the next node.");

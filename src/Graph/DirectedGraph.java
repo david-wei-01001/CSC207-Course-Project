@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.ArrayList;
 
+/**
+ * A Directed Graph, which is the data structure used to represent a field of knowledge.
+ */
 public class DirectedGraph implements Serializable {
 
     /**
@@ -18,8 +21,13 @@ public class DirectedGraph implements Serializable {
     private final ArrayList<String> CURRENTUNCLOCK = new ArrayList<>();
     private final ArrayList<String> COMPLETED = new ArrayList<>();
 
-    public DirectedGraph(Vertex[] firstVertex, String name) {
-        for(Vertex v: firstVertex){
+    /**
+     * The constructor of the DirectedGraph class.
+     * @param lstVertex A list of vertex to be added to the instance of DirectedGraph
+     * @param name The name of the a DirectedGraph
+     */
+    public DirectedGraph(Vertex[] lstVertex, String name) {
+        for(Vertex v: lstVertex){
             addVertex(v);
             CURRENTUNCLOCK.add(v.getName());}
         this.NAME = name;
@@ -33,6 +41,7 @@ public class DirectedGraph implements Serializable {
      *
      * @param edge An array of length 2 which represents a directed edge
      *             containing the starting vertex at index 0 and ending vertex at index 1.
+     * @throws Exception if the name of the first vertex in edge does not exist in the DirectedGraph
      */
     public void addEdge(Vertex[] edge) throws Exception {
         addVertex(edge[0]);
@@ -63,9 +72,11 @@ public class DirectedGraph implements Serializable {
      *
      * @param edge An array of length 2 which represents a directed edge
      *             containing the starting vertex at index 0 and ending vertex at index 1.
+     * @throws Exception if the name of the first vertex in edge does not exist in the DirectedGraph
+     * or if the directed edge to be deleted does not exist.
      */
     public void deleteEdge(Vertex[] edge) throws Exception {
-        getVertexArray(edge[0]).deleteEdge(edge[1]);
+        getVertexArray(edge[0]).deleteThisEdge(edge[1]);
         edge[1].minusInLevel();
         if(edge[1].getInLevel() == 0){
             CURRENTUNCLOCK.add(edge[1].getName());
@@ -77,6 +88,7 @@ public class DirectedGraph implements Serializable {
      * this vertex as the ending vertex will also be removed.
      *
      * @param name The name of vertex
+     * @throws Exception if the name of vertex does not exist in the DirectedGraph
      */
     public void deleteVertex(String name) throws Exception {
         Vertex delete = getVertexArray(name).getStart();
@@ -97,6 +109,13 @@ public class DirectedGraph implements Serializable {
         COMPLETED.remove(name);
     }
 
+    /**
+     * An overloaded version of getVertexArray.
+     * This implementation takes in the name of a vertex and return the VertexArray corresponding to this name.
+     * @param name the name of a vertex
+     * @return a VertexArray that stores all DirectedEdges starting from this vertex
+     * @throws Exception if the name of the vertex does not exist in the DirectedGraph
+     */
     public VertexArray getVertexArray(String name) throws Exception {
         if (!VERTICES.containsKey(name)) {
             throw new Exception(Exceptions.Vertex_NOT_FOUND);
@@ -106,6 +125,13 @@ public class DirectedGraph implements Serializable {
         }
     }
 
+    /**
+     * An overloaded version of getVertexArray.
+     * This implementation takes in a vertex and return the VertexArray corresponding to this vertex.
+     * @param vertex a vertex
+     * @return a VertexArray that stores all DirectedEdges starting from this vertex
+     * @throws Exception if the name of the vertex does not exist in the DirectedGraph
+     */
     public VertexArray getVertexArray(Vertex vertex) throws Exception {
         String name = vertex.getName();
         if (!VERTICES.containsKey(name)) {
@@ -120,6 +146,7 @@ public class DirectedGraph implements Serializable {
      * Given a name, return vertex
      * @param name The name of Vertex
      * @return Return the vertex with name
+     * @throws Exception if the name of the vertex does not exist in the DirectedGraph
      */
     public Vertex getVertex(String name) throws Exception {
         for (String vertexName : VERTICES.keySet()){
@@ -133,6 +160,8 @@ public class DirectedGraph implements Serializable {
     /**
      * To mark the complete for the vertex.
      * @param name: The name for vertex
+     * @throws Exception if the name of the vertex does not exist in the DirectedGraph
+     * or if the vertex is currently locked or if the vertex is already completed.
      */
     public void complete(String name) throws Exception {
         if (!VERTICES.containsKey(name)){
@@ -165,6 +194,7 @@ public class DirectedGraph implements Serializable {
     /**
      * Return the vertex availiable now.
      * @return Vertices that availiable now.
+     * @throws Exception if the name of the vertex does not exist in the DirectedGraph
      */
     public HashMap<String, Vertex> availableVertex() throws Exception {
         HashMap<String, Vertex> available = new HashMap<>();

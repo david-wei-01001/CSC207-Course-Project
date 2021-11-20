@@ -47,6 +47,11 @@ public class GraphCommunityFacade {
         }
     }
 
+    /**
+     *
+     * @param graphId
+     * @throws Exception
+     */
     public void setCurrentGraph(String graphId) throws Exception {
         graphManager.setCurrentGraph(graphId);
     }
