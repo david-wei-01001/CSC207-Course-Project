@@ -12,7 +12,10 @@ import static org.junit.Assert.*;
 
 public class DirectedGraphTest {
     DirectedGraph graph;
-
+    /**
+     * The setup method that setup each test.
+     * It creates a DirectedGraph.
+     */
     @Before
     public void setUp() {
         Vertex pythonIntro = new Vertex("Introductory Python");
@@ -20,13 +23,21 @@ public class DirectedGraphTest {
         graph = new DirectedGraph(pythonIntroArray, "CS Introduction Series");
     }
 
-    @Test(timeout = 50)
+    /**
+     * Test if getVertex method correctly fetch a vertex from the graph.
+     * @throws Exception if the vertex to be gotten does not exist
+     */
+    @Test
     public void testGetVertex() throws Exception {
         Vertex python = graph.getVertex("Introductory Python");
         assertEquals("Introductory Python", python.getName());
     }
 
-    @Test(timeout = 50)
+    /**
+     * Test if addVertex method correctly fetch a vertex from the graph.
+     * @throws Exception if the vertex to be gotten does not exist
+     */
+    @Test
     public void testAddVertex() throws Exception {
         Vertex javaIntro = new Vertex("Introductory Java");
         Vertex python = graph.getVertex("Introductory Python");
