@@ -13,7 +13,7 @@ public class Exceptions {
 
     //error messages used by UserManager
     public static final String USER_NAME_TAKEN = "This username has already been taken";
-    public static final String CANNOT_RECOGNIZE_USER = "Cannot recognize this user";
+    public static final String INCORRECT_USERNAME = "Incorrect username.";
     public static final String SAME_USERNAME_AS_CURRENT = "Same username as your current one";
 
     //error messages used by GraphManager

@@ -1,5 +1,3 @@
-package Test;
-
 import Resource.HasResource;
 import Resource.Resource;
 import Resource.ResourceManager;

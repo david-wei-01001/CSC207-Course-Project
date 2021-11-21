@@ -60,7 +60,6 @@ public class ResourceManager implements HasResource, Serializable{
      * or a download link if the user have enough points to redeem the resource
      */
     public String downloadResource(String resourceId) {
-
         Resource resource = this.mapOfResource.get(resourceId);
         if (currentUserInfo.getRewardPoints() < resource.getPointsRequired()) {
             return "Sorry, you do not have enough points";
@@ -82,9 +81,22 @@ public class ResourceManager implements HasResource, Serializable{
         return mapOfResource.size();
     }
 
+    /**
+     * Getter for the hashmap of resource
+     * @return: The map of resources
+     */
     public HashMap<String, Resource> getMapOfResource() {
         return mapOfResource;
 
+    public void addDefault() {
+        UserInfo userInfo = new UserInfo("Tong", "123@mail.com", "123");
+        User user = new User(userInfo);
+        Resource resourceToAdd1 = new Resource("https://www.teach.cs.toronto.edu/~csc110y/fall/notes/",
+                getNextId(), 5, "Course notes of csc110", user);
+        mapOfResource.put(resourceToAdd1.getId(), resourceToAdd1);
+        Resource resourceToAdd2 = new Resource("https://www.youtube.com/watch?v=eIrMbAQSU34",
+                getNextId(), 25, "Java Tutorial for Beginners", user);
+        mapOfResource.put(resourceToAdd2.getId(), resourceToAdd2);
     }
 
 }

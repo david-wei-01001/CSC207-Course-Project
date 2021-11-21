@@ -21,11 +21,6 @@ public class DirectedGraph implements Serializable {
     private final ArrayList<String> CURRENTUNCLOCK = new ArrayList<>();
     private final ArrayList<String> COMPLETED = new ArrayList<>();
 
-
-    //TODO: May be in an separate interface
-    private static final VertexNotInGraphException ABSENT =
-            new VertexNotInGraphException("Vertex is absent in the graph.");
-
     /**
      * The constructor of the DirectedGraph class.
      * @param lstVertex A list of vertex to be added to the instance of DirectedGraph

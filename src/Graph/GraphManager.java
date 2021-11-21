@@ -24,7 +24,6 @@ public class GraphManager {
      * add a DirectedGraph to the GraphManager.
      * @param graph a DirectedGraph to be added
      */
-
     public void addGraph(DirectedGraph graph) {
         mapOfGraphs.put(Integer.toString(mapOfGraphs.size()), graph);
     }

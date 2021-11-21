@@ -8,6 +8,7 @@ import User.UserInfo;
 public class Comment extends PublishedContents {
     String content;
 
+
     /**
      * Constructor for the comment class
      * @param content : The content of the comment

@@ -1,11 +1,5 @@
 package AchievementSystem;
-
-
 import User.UserInfo;
-import constants.Achievements;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.Map;
 
 /**
@@ -34,7 +28,6 @@ public class AchievementManager {
         for (int threshold : thresholds) {
             if (property == threshold) {
                 currentUserInfo.getMapOfAchievement().replace(thresholdsToAchievement.get(property), false, true);
-
                 return true;
             }
         }

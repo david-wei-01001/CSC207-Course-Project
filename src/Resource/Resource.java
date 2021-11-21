@@ -10,7 +10,6 @@ public class Resource extends PublishedContents {
     private int downloadTimes;
 
 
-
     /**
      * Constructor for the resource class
      * @param content: The content of the resource
@@ -20,7 +19,6 @@ public class Resource extends PublishedContents {
      * @param creator: The creator of the resource
      */
     public Resource(String content, String id, int point, String description, UserInfo creator) {
-
         super(id, creator);
         this.content = content;
         this.pointsRequired = point;

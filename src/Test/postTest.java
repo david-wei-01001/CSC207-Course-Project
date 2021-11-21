@@ -75,28 +75,6 @@ public class postTest {
         assertFalse(post.getMapOfComments().get("Comment #0").visibility());
     }
 
-//    /**
-//     * TODO: @Alfred choose one from the previous one or this one.
-//     * This test contains a mistake
-//     * @throws HasPublishedContents.PostNotFoundException
-//     */
-//    @Test
-//    public void testDeleteComment() throws HasPublishedContents.PostNotFoundException {
-//        Comment c = new Comment("testing", "Comment #0", userInfo);
-//
-//        post.deletePublishedContent("Comment #0");
-//
-//        HashMap<String, Comment> mapToCompare = new HashMap<>();
-//
-//        mapToCompare.put("Comment #0", c);
-//
-//        assertEquals(mapToCompare.toString(), post.getMapOfComments().toString());
-//
-//        assertEquals(0, post.getNumberOfComments());
-//
-//        assertFalse(post.getMapOfComments().get("Comment #0").visibility());
-//    }
-
     @Test
     public void testGetNextIdNoDelete() {
         post.addPublishedContent("debugging", userInfo);
@@ -115,5 +93,3 @@ public class postTest {
         assertEquals("nothing", post.getContent());
     }
 }
-
-

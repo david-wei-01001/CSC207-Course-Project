@@ -1,5 +1,3 @@
-package Test;
-
     import CommunitySystem.Community;
     import Posts.HasPublishedContents;
     import Posts.Post;

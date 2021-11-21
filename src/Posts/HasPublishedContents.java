@@ -25,6 +25,7 @@ public interface HasPublishedContents {
     String addPublishedContent(String content, UserInfo creator);
 
 
+
     /**
      * Delete the intended content from the map which the content belongs to, throw an
      * exception if the post does not exist in the map

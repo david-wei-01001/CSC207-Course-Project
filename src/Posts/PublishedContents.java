@@ -8,16 +8,14 @@ public class PublishedContents implements Likable, Visible, Serializable {
     private String id;
     private int numLike;
     private boolean visible = true;
-
     private UserInfo creator;
-  
+
     /**
      * Constructor for the published contents class
      * @param id: The id of the comment
      * @param creator: The creator of the comment
      */
     public PublishedContents(String id, UserInfo creator) {
-
         this.id = id;
         this.creator = creator;
     }
@@ -36,7 +34,6 @@ public class PublishedContents implements Likable, Visible, Serializable {
      * @return Then creator of the published contents
      */
     public UserInfo getCreator() {
-
         return creator;
     }
 
