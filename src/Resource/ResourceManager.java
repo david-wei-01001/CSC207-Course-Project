@@ -13,8 +13,6 @@ public class ResourceManager implements HasResource, Serializable{
     private HashMap<String, Resource> mapOfResource = new HashMap<>();
     private UserInfo currentUserInfo;
 
-
-
     public ResourceManager(UserInfo currentUserInfo) {
         this.currentUserInfo = currentUserInfo;
     }
@@ -57,7 +55,6 @@ public class ResourceManager implements HasResource, Serializable{
 
     /**
      * Return the download link for the resources if the user have had enough points to redeem it
-     * @param user: The current user who wants to redeem the resource
      * @param resourceId: The ID of the resource
      * @return: A notification if the user does not have enough points to redeem the resource,
      * or a download link if the user have enough points to redeem the resource
@@ -83,7 +80,6 @@ public class ResourceManager implements HasResource, Serializable{
     public int getNumberOfResources(){
         return mapOfResource.size();
     }
-
 
     /**
      * Getter for the hashmap of resource

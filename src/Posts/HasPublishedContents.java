@@ -22,7 +22,8 @@ public interface HasPublishedContents {
     /**
      * Add the intended content to the map which the content belongs to
      */
-    String addPublishedContent(String content, User creator);
+    String addPublishedContent(String content, UserInfo creator);
+
 
 
     /**

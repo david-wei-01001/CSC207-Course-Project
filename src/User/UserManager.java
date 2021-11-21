@@ -12,7 +12,6 @@ import java.util.Map;
 
 public class UserManager {
 
-
     //The info of the User currently using our application.
     private UserInfo currentUserInfo;
 

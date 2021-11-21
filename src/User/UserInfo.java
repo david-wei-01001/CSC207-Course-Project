@@ -25,6 +25,7 @@ public class UserInfo {
     private ArrayList<Resource> listOfResource = new ArrayList<>();
     private Map<String, Boolean> mapOfAchievement = new HashMap<>();
 
+ 
     public UserInfo(String username, String email, String password) {
         this.username = username;
         this.email = email;

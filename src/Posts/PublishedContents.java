@@ -8,8 +8,8 @@ public class PublishedContents implements Likable, Visible, Serializable {
     private String id;
     private int numLike;
     private boolean visible = true;
-
     private UserInfo creator;
+
     /**
      * Constructor for the published contents class
      * @param id: The id of the comment

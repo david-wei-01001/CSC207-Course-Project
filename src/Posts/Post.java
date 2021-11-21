@@ -25,7 +25,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
      * @param id: The ID of the post
      * @param creator: The creator of the post
      */
-    public Post(String content, String id, User creator) {
+  public Post(String content, String id, UserInfo creator) {
         super(id, creator);
         this.content = content;
     }

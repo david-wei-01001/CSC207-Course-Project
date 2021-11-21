@@ -8,6 +8,7 @@ import java.util.HashMap;
  * THis class store and manage all DirectedGraphs of a user.
  */
 public class GraphManager {
+
     private final HashMap<String, DirectedGraph> mapOfGraphs = new HashMap<>();
     private int numberOfGraphs;
     private DirectedGraph currentGraph;

@@ -19,6 +19,7 @@ public class Community implements HasPublishedContents, Serializable {
      * The constructor of Community class
      * @param name the name of this community
      */
+
     public Community(String name){
         nameOfCommunity = name;
     }
