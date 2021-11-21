@@ -217,7 +217,7 @@ public class DirectedGraph implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return NAME;
     }
 
 }

@@ -1,4 +1,6 @@
-    import CommunitySystem.Community;
+package Test;
+
+import CommunitySystem.Community;
     import Posts.HasPublishedContents;
     import Posts.Post;
     import User.User;
@@ -90,8 +92,6 @@ public class communityTest {
      * and whether the getNumberOfPosts method correctly reflect this delete.
      * @throws HasPublishedContents.PostNotFoundException if the post to be deleted does not exist.
      */
-    @Test
-
     public void testDelete() throws HasPublishedContents.PostNotFoundException {
         Post post0 = new Post("abc", community.getNextId(), userInfo);
         community.addPublishedContent(post0.getContent(), userInfo);
@@ -118,8 +118,6 @@ public class communityTest {
         assertTrue(community.displayPosts().equals(str1) || community.displayPosts().equals(str2));
     }
 
-
-    @Test(timeout = 500)
 
     /**
      * check if the toString method correctly generates a string representation of this community.

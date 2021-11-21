@@ -87,6 +87,7 @@ public class ResourceManager implements HasResource, Serializable{
      */
     public HashMap<String, Resource> getMapOfResource() {
         return mapOfResource;
+    }
 
     public void addDefault() {
         UserInfo userInfo = new UserInfo("Tong", "123@mail.com", "123");
