@@ -17,6 +17,7 @@ public class UserInfo {
     private String email;
     private String password;
     private int rewardPoints;
+    // TODO： How do we update lastlogin?
     private LocalDate lastLogin;
     private int totalLogins;
     private ArrayList<String> listOfPostId = new ArrayList<>();

@@ -1,3 +1,4 @@
+
 //package Test;
 //
 //import Resource.HasResource;
@@ -84,3 +85,4 @@
 //        Assertions.assertEquals(resource1.getContent(),message2);
 //    }
 //}
+

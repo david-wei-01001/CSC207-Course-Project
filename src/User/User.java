@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    private UserInfo userInfo;
+    private final UserInfo userInfo;
 
     public User(UserInfo userInfo) {
         this.userInfo = userInfo;

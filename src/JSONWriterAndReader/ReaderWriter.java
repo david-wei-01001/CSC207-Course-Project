@@ -3,15 +3,18 @@ import User.User;
 
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 public interface ReaderWriter{
     void saveToFile() throws IOException;
 
 
+
     Map<String, ?> readFromFile() throws IOException, ClassNotFoundException;
 //    private Map<String, User> libraryOfUsers;
 //    private String filePath;
+
 
 //    public static String reader(String fileName) throws IOException, ClassNotFoundException {
 //        String jsonStr = "";

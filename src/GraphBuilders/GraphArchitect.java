@@ -3,21 +3,29 @@ package GraphBuilders;
 import Graph.DirectedGraph;
 import constants.Exceptions;
 
+/**
+ * A class to select GraphBuilders and build corresponding graphs.
+ */
 public class GraphArchitect {
 
 //    enum BuiltInTechnicalTree {
 //        INTRODUCTORY_CS_SERIES;
 //    }
 
-    private GraphBuilder graphBuilder;
-
     /*
      * GraphArchitect imitates Class Chef in the lecture material.
      */
 
+    /**
+     * select GraphBuilders according to treeName and build corresponding graphs.
+     * @param treeName the name of a default tree to be build
+     * @return a DirectedGraph with the treeName
+     * @throws Exception if the name does not represent a default tree
+     */
     public DirectedGraph setBuilderAndBuildGraph(String treeName) throws Exception {
 
         // create more if statements when we come up with more built-in Technical Trees.
+        GraphBuilder graphBuilder;
         if (treeName.equals("Introductory CS Series")) {
             graphBuilder = new IntroCSGraphBuilder();
         } else {

@@ -1,10 +1,9 @@
 package AchievementSystem;
 
-import User.UserInfo;
-import constants.Achievements;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import User.UserInfo;
+
+
 import java.util.Map;
 
 /**
@@ -28,6 +27,7 @@ public class AchievementManager {
      *                 For example, the number of post created.
      * @return true if any achievement is awarded.
      */
+
     public boolean requestAchievement(int[] thresholds, Map<Integer, String> thresholdsToAchievement, int property) {
         for (int threshold : thresholds) {
             if (property == threshold) {

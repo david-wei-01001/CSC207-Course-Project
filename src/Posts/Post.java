@@ -5,20 +5,27 @@ import User.UserInfo;
 import java.util.HashMap;
 
 /**
- * A post in which a user can share his/her reflection on a study session.???
+ * A post in which a user can share his/her reflection on a study session.
  */
 public class Post extends PublishedContents implements HasPublishedContents {
     /**
      * the content of this post.
      */
-    private String content;
+    private final String content;
     /**
      * The map of all comments to this post, with comment ids as keys and comments as values.
      */
-    private HashMap<String, Comment> mapOfComments = new HashMap<>();
+    private final HashMap<String, Comment> mapOfComments = new HashMap<>();
     private int numberOfComments;
 
-    public Post(String content, String id, UserInfo creator) {
+
+    /**
+     * Constructor of the post
+     * @param content: The content of the post
+     * @param id: The ID of the post
+     * @param creator: The creator of the post
+     */
+    public Post(String content, String id, User creator) {
         super(id, creator);
         this.content = content;
     }
@@ -53,18 +60,33 @@ public class Post extends PublishedContents implements HasPublishedContents {
         }
     }
 
+    /**
+     * Get the number of comments
+     * @return The number of the comments
+     */
     public int getNumberOfComments(){
         return numberOfComments;
     }
 
+    /**
+     * Get the ID for the comment to be added
+     * @return: The ID for the comment to be added
+     */
     public String getNextId(){
         return "Comment #" + numberOfComments;
     }
 
+    /**
+     * Get function for the hashmap of comments
+     * @return: The map of comments
+     */
     public HashMap<String, Comment> getMapOfComments(){
         return this.mapOfComments;
     }
 
+    /**
+     * @return The string representing the post
+     */
     @Override
     public String toString() {
         return "Post{" +
@@ -75,6 +97,9 @@ public class Post extends PublishedContents implements HasPublishedContents {
                 '}';
     }
 
+    /**
+     * @return The content of the post
+     */
     public String getContent() {
         return content;
     }

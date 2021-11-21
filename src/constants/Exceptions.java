@@ -24,5 +24,12 @@ public class Exceptions {
     //error messages used by CommunityLibrary
     public static String CANNOT_RECOGNIZE_COMMUNITY = "Cannot recognize this community";
     public static String ACTION_NOT_FOUND = "The action is not expected";
+
+    //error messages used by DirectedGraph
+    public static String Vertex_NOT_FOUND ="Vertex is absent in the graph.";
+    public static String Vertex_LOCKED ="This vertex is locked.";
+    public static String Vertex_ALREADY_COMPLETED ="This vertex is already completed.";
+    public static String EDGE_NOT_FOUND ="Vertex is absent in the graph, " +
+            "OR there is no relation between these two vertices";
 }
 

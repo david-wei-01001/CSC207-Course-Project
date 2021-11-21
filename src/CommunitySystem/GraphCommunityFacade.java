@@ -10,8 +10,8 @@ import constants.BuiltInGraphs;
  */
 public class GraphCommunityFacade {
 
-    private GraphManager graphManager;
-    private CommunityLibrary communityLibrary;
+    private final GraphManager graphManager;
+    private final CommunityLibrary communityLibrary;
     private DirectedGraph currentGraph;
     private Community currentCommunity;
 
@@ -47,6 +47,11 @@ public class GraphCommunityFacade {
         }
     }
 
+    /**
+     *
+     * @param graphId
+     * @throws Exception
+     */
     public void setCurrentGraph(String graphId) throws Exception {
         graphManager.setCurrentGraph(graphId);
     }
