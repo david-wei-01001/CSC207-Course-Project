@@ -7,7 +7,6 @@
 //import CommunitySystem.CommunityLibrary;
 //import Resource.ResourceManager;
 //import RewardSystem.RewardManager;
-//import User.UserActionFacade;
 //import User.UserInfo;
 //import User.UserManager;
 //
@@ -16,28 +15,14 @@
 //import java.util.Scanner;
 //
 //public class helper {
+//    private UserManager userManager = new UserManager();
+//    private GraphManager graphManager = new GraphManager();
+//    private RewardManager rewardManager = new RewardManager();
+//    private AchievementManager achievementManager = new AchievementManager();
+//    private CommunityLibrary communityLibrary = new CommunityLibrary();
+//    private ResourceManager resourceManager = new ResourceManager();
 //
-//
-//    public static UserActionFacade newFacade(){
-//        GraphManager graphManager = new GraphManager();
-//        Map<String, UserInfo> mapOfUserInfo = new HashMap<>();
-//        UserManager userManager = new UserManager(mapOfUserInfo);
-//        RewardManager rewardManager = new RewardManager();
-//        AchievementManager achievementManager = new AchievementManager();
-//        CommunityLibrary communityLibrary = new CommunityLibrary();
-//        ResourceManager resourceManager = new ResourceManager();
-//
-//        return new UserActionFacade(userManager,
-//                rewardManager,
-//                achievementManager,
-//                graphManager,
-//                communityLibrary,
-//                resourceManager
-//        );
-//    }
-//
-//
-//    public static String newUser(UserActionFacade facade) {
+//    public static String newUser() {
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.println("Welcome to Tech Tree! We are happy to be with you! Please type your username below:");
 //        String username = scanner.nextLine();
@@ -62,13 +47,18 @@
 //
 //        }
 //        try {
-//            facade.getUserManager().addNewUserInfo(username, email, password);
-//            facade.setCurrentUserTo(username);
+//            userManager.addNewUser(username, email, password);
+//            setCurrentUserTo(username);
+//            userManager.incrementTotalLogins();
 //            return "Congratulations! You have created your account!";
 //        } catch (Exception e) {
 //            return "The Username has already exists, please try again";
 //        }
 //    }
+//
+//    private static void setCurrentUserTo(String username) {
+//    }
+//
 //
 //    public static DirectedGraph getGraph(GraphManager manager){
 //        Scanner scanner = new Scanner(System.in);
@@ -82,7 +72,7 @@
 //        return manager.getAllGraphs().get(number);
 //    }
 //
-//    public static Vertex gotVertex(DirectedGraph graph){
+//    public static Vertex gotVertex(DirectedGraph graph) throws Exception {
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.println("Please choose the node you want to start with:" + graph.availableVertex());
 //        String number = scanner.nextLine();
@@ -94,7 +84,7 @@
 //        return graph.availableVertex().get(number);
 //    }
 //
-//    public static void completeVertex(Vertex node, DirectedGraph graph, UserActionFacade facade){
+//    public static void completeVertex(Vertex node, DirectedGraph graph, UserActionFacade facade) throws Exception {
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.println("Now please study the node you chose. Once you have completed, type \"Yes\" below:");
 //        String yes = scanner.nextLine();
@@ -104,18 +94,37 @@
 //            yes = scanner.nextLine();
 //        }
 //        System.out.println("Congratulations! You have completed this task! Next you need to make some post!");
+//        facade.getCurrentUser().getUserInfo().setRewardPoints(facade.getCurrentUser().getUserInfo().getRewardPoints()+5);
 //        System.out.println("Please type in the content you want to post:");
 //        String content = scanner.nextLine();
-//        facade.getCommunityLibrary().getCommunity(node.getCommunityName()).addPublishedContent(content, facade.getCurrentUser());
+//
+//        facade.createPost(node.getCommunityName(), content);
 //        System.out.println("Congratulations! You have made your first post!");
-//        System.out.println("You have completed this node. Now you can proceed to the next node.");
+//        facade.getCurrentUser().getUserInfo().setRewardPoints(facade.getCurrentUser().getUserInfo().getRewardPoints()+5);
+//        System.out.println("You have completed this node. Now you can proceed to the next task.");
 //        graph.complete(node.getName());
 //    }
 //
-//    public static void menu(){
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Please choose what you want to proceed: 1. Check ");
+//    public static void resource(UserActionFacade user){
+//        System.out.println("Currently you have " + user.getCurrentUser().getUserInfo().getRewardPoints() +
+//                " reward points.");
 //    }
+//
+//    public static void downloadResource(UserActionFacade user){
+//        System.out.println("Now you can download some resources.");
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Please choose the resource you want to download:" +
+//                user.getResourceManager().getMapOfResource());
+//        String content = scanner.nextLine();
+//        System.out.println(user.downloadResource(content));
+//    }
+//
+//    public static void achievementCheck(UserActionFacade user){
+//        System.out.println("Next, let us check how many achievements you have currently");
+//        System.out.println(user.getCurrentUser().getUserInfo().getMapOfAchievement());
+//
+//    }
+//
 //
 //
 //}

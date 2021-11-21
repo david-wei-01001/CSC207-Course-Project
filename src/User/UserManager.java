@@ -62,7 +62,7 @@ public class UserManager {
         if (mapOfUserInfo.containsKey(userName)) {
             return mapOfUserInfo.get(userName);
         } else {
-            throw new Exception(Exceptions.CANNOT_RECOGNIZE_USER);
+            throw new Exception(Exceptions.INCORRECT_USERNAME);
         }
     }
 
@@ -119,8 +119,16 @@ public class UserManager {
         if (mapOfUserInfo.containsKey(username)) {
             this.currentUserInfo = mapOfUserInfo.get(username);
         } else {
-            throw new Exception(Exceptions.CANNOT_RECOGNIZE_USER);
+            throw new Exception(Exceptions.INCORRECT_USERNAME);
         }
+    }
+
+    public boolean containsUsername(String username) {
+        return mapOfUserInfo.containsKey(username);
+    }
+
+    public void incrementTotalLogins() {
+        currentUserInfo.incrementTotalLogins();
     }
 
     // we might not need to remove a userinfo. and correctly implementing removing an userinfo
