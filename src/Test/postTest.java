@@ -48,12 +48,6 @@ public class postTest {
         assertTrue(post.getMapOfComments().get("Comment #0").visibility());
     }
 
-    /**
-     * TODO: How can this be unsuccessful? In the method, a comment can always be added.
-     */
-    @Test
-    public void testAddCommentUnsuccessful() {}
-
     @Test
     public void testDeleteCommentUnsuccessful() throws HasPublishedContents.PostNotFoundException {
         expectedException.expect(HasPublishedContents.PostNotFoundException.class);
@@ -78,7 +72,7 @@ public class postTest {
 
         assertEquals(1, post.getNumberOfComments());
 
-        assertTrue(!post.getMapOfComments().get("Comment #0").visibility());
+        assertFalse(post.getMapOfComments().get("Comment #0").visibility());
     }
 
 //    /**

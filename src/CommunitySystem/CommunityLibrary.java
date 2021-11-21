@@ -17,6 +17,7 @@ public class CommunityLibrary {
         this.currentUserInfo = currentUserInfo;
     }
 
+
     /**
      * Check if this community exists or not
      * @param name: The community name

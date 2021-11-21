@@ -1,5 +1,6 @@
 package AchievementSystem;
 
+
 import User.UserInfo;
 import constants.Achievements;
 
@@ -28,10 +29,12 @@ public class AchievementManager {
      *                 For example, the number of post created.
      * @return true if any achievement is awarded.
      */
+
     public boolean requestAchievement(int[] thresholds, Map<Integer, String> thresholdsToAchievement, int property) {
         for (int threshold : thresholds) {
             if (property == threshold) {
                 currentUserInfo.getMapOfAchievement().replace(thresholdsToAchievement.get(property), false, true);
+
                 return true;
             }
         }

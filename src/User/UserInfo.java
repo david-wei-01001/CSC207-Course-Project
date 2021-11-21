@@ -17,12 +17,15 @@ public class UserInfo {
     private String email;
     private String password;
     private int rewardPoints;
+    // TODO： How do we update lastlogin?
     private LocalDate lastLogin;
     private int totalLogins;
+
     private ArrayList<String> listOfPostId = new ArrayList<>();
     private Map<String, DirectedGraph> mapOfGraph = new HashMap<>();
     private ArrayList<Resource> listOfResource = new ArrayList<>();
     private Map<String, Boolean> mapOfAchievement = new HashMap<>();
+
 
     public UserInfo(String username, String email, String password) {
         this.username = username;
