@@ -2,7 +2,7 @@ package CommunitySystem;
 
 import Posts.HasPublishedContents;
 import Posts.Post;
-import User.User;
+import User.UserInfo;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -13,6 +13,7 @@ import java.util.HashMap;
 public class Community implements HasPublishedContents, Serializable {
     private final HashMap<String, Post> mapOfPost = new HashMap<>();
     private final String nameOfCommunity;
+
 
     /**
      * The constructor of Community class
@@ -40,7 +41,7 @@ public class Community implements HasPublishedContents, Serializable {
      * @return the id of the post being added.
      */
     @Override
-    public String addPublishedContent(String content, User creator) {
+    public String addPublishedContent(String content, UserInfo creator) {
         String postId = getNextId();
         mapOfPost.put(postId, new Post(content, postId, creator));
         return postId;

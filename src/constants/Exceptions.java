@@ -12,11 +12,14 @@ public class Exceptions {
     public static final String CANNOT_RECOGNIZE_BUILT_IN_TREE = "This is not a built-in tree";
 
     //error messages used by UserManager
-    public static final String USER_NAME_TAKEN = "This user name has already been taken";
-    public static final String CANNOT_RECOGNIZE_USER = "Cannot recognize this user";
+    public static final String USER_NAME_TAKEN = "This username has already been taken";
+    public static final String INCORRECT_USERNAME = "Incorrect username.";
+    public static final String SAME_USERNAME_AS_CURRENT = "Same username as your current one";
 
     //error messages used by GraphManager
     public static final String CANNOT_RECOGNIZE_TREE = "Cannot recognize this tree";
+    public static final String GRAPH_ALREADY_EXISTS = "This graph already exists in this userinfo";
+
 
     //error messages used by CommunityLibrary
     public static String CANNOT_RECOGNIZE_COMMUNITY = "Cannot recognize this community";

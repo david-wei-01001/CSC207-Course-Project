@@ -1,6 +1,6 @@
 package Posts;
 
-import User.User;
+import User.UserInfo;
 
 public interface HasPublishedContents {
 
@@ -18,10 +18,12 @@ public interface HasPublishedContents {
      */
    PostNotFoundException ABSENT = new PostNotFoundException ();
 
+
     /**
      * Add the intended content to the map which the content belongs to
      */
     String addPublishedContent(String content, User creator);
+
 
     /**
      * Delete the intended content from the map which the content belongs to, throw an

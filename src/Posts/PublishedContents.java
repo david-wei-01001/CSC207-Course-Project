@@ -1,6 +1,6 @@
 package Posts;
 
-import User.User;
+import User.UserInfo;
 
 import java.io.Serializable;
 
@@ -8,14 +8,14 @@ public class PublishedContents implements Likable, Visible, Serializable {
     private String id;
     private int numLike;
     private boolean visible = true;
-    private final User creator;
 
+    private UserInfo creator;
     /**
      * Constructor for the published contents class
      * @param id: The id of the comment
      * @param creator: The creator of the comment
      */
-    public PublishedContents(String id, User creator) {
+    public PublishedContents(String id, UserInfo creator) {
         this.id = id;
         this.creator = creator;
     }
@@ -28,11 +28,12 @@ public class PublishedContents implements Likable, Visible, Serializable {
         return id;
     }
 
+
     /**
      * Get the creator of the published contents
      * @return Then creator of the published contents
      */
-    public User getCreator() {
+    public UserInfo getCreator() {
         return creator;
     }
 

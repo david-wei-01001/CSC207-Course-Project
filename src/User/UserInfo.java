@@ -1,11 +1,9 @@
 package User;
 
 import Graph.DirectedGraph;
-import Posts.Post;
 import Resource.Resource;
 import constants.Achievements;
 
-import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,20 +13,20 @@ import java.util.Map;
  * The class that stores all information of a user.
  */
 public class UserInfo {
-    private String userName;
+    private String username;
     private String email;
     private String password;
     private int rewardPoints;
     // TODO： How do we update lastlogin?
     private LocalDate lastLogin;
     private int totalLogins;
-    private final ArrayList<String> listOfPostId = new ArrayList<>();
-    private final ArrayList<DirectedGraph> listOfGraph = new ArrayList<>();
-    private final ArrayList<Resource> listOfResource = new ArrayList<>();
-    private final Map<String, Boolean> mapOfAchievement = new HashMap<>();
+    private ArrayList<String> listOfPostId = new ArrayList<>();
+    private Map<String, DirectedGraph> mapOfGraph = new HashMap<>();
+    private ArrayList<Resource> listOfResource = new ArrayList<>();
+    private Map<String, Boolean> mapOfAchievement = new HashMap<>();
 
-    public UserInfo(String userName, String email, String password) {
-        this.userName = userName;
+    public UserInfo(String username, String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.rewardPoints = 0;
@@ -62,12 +60,12 @@ public class UserInfo {
         }
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String newName) {
-        this.userName = newName;
+    public void setUsername(String newName) {
+        this.username = newName;
     }
 
     public void setEmail(String newEmail) {
@@ -86,12 +84,16 @@ public class UserInfo {
         this.rewardPoints = rewardPoints;
     }
 
-    public void addGraph(DirectedGraph graph){
-        listOfGraph.add(graph);
+    public void addRewardPoints(int rewardPoints) {
+        this.rewardPoints += rewardPoints;
     }
 
-    public ArrayList<DirectedGraph> getListOfGraph(){
-        return this.listOfGraph;
+    public void addGraph(DirectedGraph graph){
+        mapOfGraph.put(graph.getName(), graph);
+    }
+
+    public Map<String, DirectedGraph> getMapOfGraph(){
+        return this.mapOfGraph;
     }
 
     public void addResource(Resource resource){
@@ -105,14 +107,14 @@ public class UserInfo {
     @Override
     public String toString() {
         return "UserInfo{" +
-                "userName='" + userName + '\'' +
+                "userName='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", rewardPoints=" + rewardPoints +
                 ", lastLogin=" + lastLogin +
                 ", totalLogins=" + totalLogins +
                 ", listOfPostId=" + listOfPostId +
-                ", listOfGraph=" + listOfGraph +
+                ", listOfGraph=" + mapOfGraph +
                 ", listOfResource=" + listOfResource +
                 ", mapOfAchievement=" + mapOfAchievement +
                 '}';
@@ -142,20 +144,7 @@ public class UserInfo {
         return mapOfAchievement;
     }
 
-//    public ArrayList<Post> getListOfPost() {
-//        return listOfPost;
-//    }
-
-
-
-//    Deprecated:
-
-//    private void checkAndRequestAchievement(int[] thresholds, int property, String achievementName) {
-//        for (int threshold : thresholds) {
-//            if (property == threshold) {
-//                observable.firePropertyChange(achievementName, property - 1, property);
-//            }
-//        }
-//    }
-
+    public boolean hasGraph(String graphName) {
+        return mapOfGraph.containsKey(graphName);
+    }
 }

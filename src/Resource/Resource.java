@@ -1,14 +1,13 @@
 package Resource;
 
 import Posts.PublishedContents;
-import User.User;
+import User.UserInfo;
 
 public class Resource extends PublishedContents {
     private final String content;
     private final int pointsRequired;
     private final String description;
     private int downloadTimes;
-
 
     /**
      * Constructor for the resource class
@@ -18,7 +17,7 @@ public class Resource extends PublishedContents {
      * @param description: The description of the resource
      * @param creator: The creator of the resource
      */
-    public Resource(String content, String id, int point, String description, User creator) {
+    public Resource(String content, String id, int point, String description, UserInfo creator) {
         super(id, creator);
         this.content = content;
         this.pointsRequired = point;

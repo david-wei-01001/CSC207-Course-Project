@@ -24,15 +24,11 @@ public class GraphManager {
      * @param graph a DirectedGraph to be added
      */
     public void addGraph(DirectedGraph graph) {
-        numberOfGraphs += 1;
-        mapOfGraphs.put(Integer.toString(numberOfGraphs), graph);
-
+        mapOfGraphs.put(Integer.toString(mapOfGraphs.size()), graph);
     }
 
-
-
     /**
-     * change String graphName to enum in the future
+     *
      * @param graphId
      * @throws Exception
      */
@@ -77,6 +73,9 @@ public class GraphManager {
      */
     public DirectedGraph getCurrentGraph() {
         return currentGraph;
+    }
+    public HashMap<String, DirectedGraph> getMapOfGraphs(){
+        return mapOfGraphs;
     }
 
 

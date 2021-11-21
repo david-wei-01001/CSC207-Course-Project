@@ -1,12 +1,13 @@
 package Posts;
 
-import User.User;
+import User.UserInfo;
 
 /**
  * A Comment class, which is used for leaving comments on posts and community
  */
 public class Comment extends PublishedContents {
     String content;
+
 
     /**
      * Constructor for the comment class

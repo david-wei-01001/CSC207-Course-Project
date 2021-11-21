@@ -1,5 +1,6 @@
 package Resource;
 
+import User.UserInfo;
 import User.User;
 
 import java.io.Serializable;
@@ -8,16 +9,15 @@ import User.UserInfo;
 
 public class ResourceManager implements HasResource, Serializable{
 
-    private final HashMap<String, Resource> mapOfResource = new HashMap<>();
 
-    /**
-     * Get function for the hashmap of resource
-     * @return: The map of resources
-     */
-    public HashMap<String, Resource> getMapOfResource() {
-        return mapOfResource;
+    private HashMap<String, Resource> mapOfResource = new HashMap<>();
+    private UserInfo currentUserInfo;
+
+
+
+    public ResourceManager(UserInfo currentUserInfo) {
+        this.currentUserInfo = currentUserInfo;
     }
-
 
     /**
      * Add the target resource to the map of resource
@@ -27,8 +27,8 @@ public class ResourceManager implements HasResource, Serializable{
      * @param creator: The creator of the resource
      */
     @Override
-    public void add(String content,int point, String description, User creator) {
-        Resource resourceToAdd = new Resource(content, getNextId(), point, description, creator);
+    public void addResource(String content, int point, String description) {
+        Resource resourceToAdd = new Resource(content, getNextId(), point, description, currentUserInfo);
         mapOfResource.put(resourceToAdd.getId(), resourceToAdd);
     }
 
@@ -37,7 +37,7 @@ public class ResourceManager implements HasResource, Serializable{
      * @throws PostNotFoundException
      */
     @Override
-    public void delete(String id) throws PostNotFoundException {
+    public void deleteResource(String id) throws PostNotFoundException {
         if (mapOfResource.containsKey(id)) {
             mapOfResource.get(id).setInvisible();
         } else {
@@ -54,6 +54,7 @@ public class ResourceManager implements HasResource, Serializable{
         return "Resource #" + mapOfResource.size();
     }
 
+
     /**
      * Return the download link for the resources if the user have had enough points to redeem it
      * @param user: The current user who wants to redeem the resource
@@ -61,15 +62,15 @@ public class ResourceManager implements HasResource, Serializable{
      * @return: A notification if the user does not have enough points to redeem the resource,
      * or a download link if the user have enough points to redeem the resource
      */
-    public String downloadResource(User user, String resourceId) {
+    public String downloadResource(String resourceId) {
         Resource resource = this.mapOfResource.get(resourceId);
-        if (user.getUserInfo().getRewardPoints() < resource.getPointsRequired()) {
+        if (currentUserInfo.getRewardPoints() < resource.getPointsRequired()) {
             return "Sorry, you do not have enough points";
         }
         else{
-            int newPoints = user.getUserInfo().getRewardPoints() - resource.getPointsRequired();
-            user.getUserInfo().setRewardPoints(newPoints);
-            user.getUserInfo().addResource(resource);
+            int newPoints = currentUserInfo.getRewardPoints() - resource.getPointsRequired();
+            currentUserInfo.setRewardPoints(newPoints);
+            currentUserInfo.addResource(resource);
             resource.addDownloadTimes();
         }
         return resource.getContent();
@@ -82,6 +83,14 @@ public class ResourceManager implements HasResource, Serializable{
     public int getNumberOfResources(){
         return mapOfResource.size();
     }
+
+
+    /**
+     * Getter for the hashmap of resource
+     * @return: The map of resources
+     */
+    public HashMap<String, Resource> getMapOfResource() {
+        return mapOfResource;
 
     public void addDefault() {
         UserInfo userInfo = new UserInfo("Tong", "123@mail.com", "123");

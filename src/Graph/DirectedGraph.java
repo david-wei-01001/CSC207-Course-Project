@@ -21,6 +21,7 @@ public class DirectedGraph implements Serializable {
     private final ArrayList<String> CURRENTUNCLOCK = new ArrayList<>();
     private final ArrayList<String> COMPLETED = new ArrayList<>();
 
+
     /**
      * The constructor of the DirectedGraph class.
      * @param lstVertex A list of vertex to be added to the instance of DirectedGraph
@@ -179,7 +180,6 @@ public class DirectedGraph implements Serializable {
                     CURRENTUNCLOCK.add(next.getName());}
             }
         }
-
     }
 
     /**
@@ -214,6 +214,10 @@ public class DirectedGraph implements Serializable {
      */
     public HashMap<String, VertexArray> getVertices(){
         return VERTICES;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }
