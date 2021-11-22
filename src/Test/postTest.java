@@ -5,11 +5,9 @@ import Posts.HasPublishedContents;
 import Posts.Post;
 import User.User;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.After;
 import User.UserInfo;
-import org.junit.rules.ExpectedException;
 
 import java.util.HashMap;
 
@@ -32,9 +30,6 @@ public class postTest {
 
     }
 
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
-
     @Test
     public void testAddCommentSuccessfulAndGetMapOfContents() {
         Comment c1 = new Comment("testing", "Comment #0", user);
@@ -51,9 +46,11 @@ public class postTest {
     }
 
     @Test
-    public void testDeleteCommentUnsuccessful() throws HasPublishedContents.PostNotFoundException {
-        expectedException.expect(HasPublishedContents.PostNotFoundException.class);
-        post.deletePublishedContent("Comment #100");
+    public void testDeleteCommentUnsuccessful() {
+        try{
+            post.deletePublishedContent("Comment #100");
+            fail();
+        } catch (HasPublishedContents.PostNotFoundException ignored){}
     }
 
     /**
