@@ -3,6 +3,7 @@ package Posts;
 import User.UserInfo;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A post in which a user can share his/her reflection on a study session.
@@ -89,12 +90,20 @@ public class Post extends PublishedContents implements HasPublishedContents {
      */
     @Override
     public String toString() {
-        return "Post{" +
-                "id=" + super.getId() +
-                ", creator=" + this.getCreator().getUsername() + '\'' +
-                ", content='" + content + '\'' +
-                ", listOfComments=" + mapOfComments +
-                '}';
+        StringBuilder comments = new StringBuilder();
+        for(Map.Entry<String, Comment> comment: mapOfComments.entrySet()){
+            comments.append(comment.toString()).append('\n').append("------------------------------------------------------------------------------------------------------").append('\n');
+        }
+        return "Post" + '\n' +
+                "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +'\n'+
+                "id=" + super.getId() + ", creator=" + this.getCreator().getUsername() + '\n' +
+                "------------------------------------------------------------------------------------------------------" +'\n'+
+                content + '\n' +
+                "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +'\n'+
+                "Comments" + '\n' +
+                "------------------------------------------------------------------------------------------------------" +'\n'+
+                comments +
+                "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::";
     }
 
     /**
