@@ -15,7 +15,7 @@ public class Comment extends PublishedContents {
      * @param id: The id of the comment
      * @param creator: The creator of the comment
      */
-    public Comment(String content, String id, ) {
+    public Comment(String content, String id, UserInfo creator) {
         super(id, creator);
         this.content = content;
     }
