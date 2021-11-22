@@ -41,7 +41,7 @@ class UserManagerTest {
 
         mapOfUserInfo = new HashMap<>();
         mapOfUserInfo.put(USERNAME, userinfo);
-        userManager = new UserManager(mapOfUserInfo);
+        userManager = new UserManager();
         userManager.setCurrentUserInfoTo(USERNAME);
 
         GraphArchitect graphArchitect = new GraphArchitect();

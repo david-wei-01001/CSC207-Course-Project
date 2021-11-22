@@ -1,4 +1,4 @@
-
+//
 //package Java;
 //
 //import AchievementSystem.AchievementManager;
@@ -94,7 +94,7 @@
 //                    "Once you have completed, type yes below:");
 //            yes = scanner.nextLine();
 //        }
-
+//
 //        System.out.println("Congratulations! You have completed this task! Next you need to make some post!");
 //        facade.getCurrentUser().getUserInfo().setRewardPoints(facade.getCurrentUser().getUserInfo().getRewardPoints()+5);
 //        System.out.println("Please type in the content you want to post:");

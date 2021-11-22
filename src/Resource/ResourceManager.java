@@ -22,7 +22,6 @@ public class ResourceManager implements HasResource, Serializable{
      * @param content: The content that the resource contains, normally a link
      * @param point: The point which the resource contains
      * @param description: The brief description for the resource
-     * @param creator: The creator of the resource
      */
     @Override
     public void addResource(String content, int point, String description) {
@@ -91,12 +90,11 @@ public class ResourceManager implements HasResource, Serializable{
 
     public void addDefault() {
         UserInfo userInfo = new UserInfo("Tong", "123@mail.com", "123");
-        User user = new User(userInfo);
         Resource resourceToAdd1 = new Resource("https://www.teach.cs.toronto.edu/~csc110y/fall/notes/",
-                getNextId(), 5, "Course notes of csc110", user);
+                getNextId(), 5, "Course notes of csc110", userInfo);
         mapOfResource.put(resourceToAdd1.getId(), resourceToAdd1);
         Resource resourceToAdd2 = new Resource("https://www.youtube.com/watch?v=eIrMbAQSU34",
-                getNextId(), 25, "Java Tutorial for Beginners", user);
+                getNextId(), 25, "Java Tutorial for Beginners", userInfo);
         mapOfResource.put(resourceToAdd2.getId(), resourceToAdd2);
     }
 

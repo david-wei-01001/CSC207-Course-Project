@@ -1,13 +1,13 @@
 // package Java;
-
+//
 // import CommunitySystem.GraphCommunityFacade;
 // import Graph.DirectedGraph;
 // import Graph.Vertex;
 // import java.util.Scanner;
 // import User.UserActionFacade;
-
+//
 // import static Java.helper.*;
-
+//
 // public class phase1 {
 //     /**
 //      * Action by user is required
@@ -23,10 +23,10 @@
 //         if(action.equals("Quit")){
 //             System.exit(0);
 //         }
-
+//
 //     }
-
-
+//
+//
 //     public static void main(String[] args) throws Exception {
 //         init();
 //         UserActionFacade facade = newFacade();
@@ -49,5 +49,5 @@
 //         downloadResource(facade);
 //         achievementCheck(facade);
 //     }
-
+//
 // }

@@ -3,7 +3,7 @@ package User;
 
 import GraphBuilders.GraphArchitect;
 import constants.Exceptions;
-
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -11,26 +11,26 @@ import java.util.Map;
  */
 
 public class UserManager {
-
-    //The info of the User currently using our application.
+    /**
+     * The info of the User currently using our application.
+     */
     private UserInfo currentUserInfo;
-
 
     /**
      * Stores UserInfo of all Users in this program. Each key is a userName and the value is the UserInfo
      * of the User with that userName.
      */
-    private final Map<String, UserInfo> mapOfUserInfo;
+    private Map<String, UserInfo> mapOfUserInfo = new HashMap<String, UserInfo>();
 
 
-    /**
-     * The constructor of UserManager.
-     *
-     * @param mapOfUserInfo the map of UserInfo that is deserialized from a JSON file.
-     */
-    public UserManager(Map<String, UserInfo> mapOfUserInfo) {
-        this.mapOfUserInfo = mapOfUserInfo;
-    }
+//    /**
+//     * The constructor of UserManager.
+//     *
+//     * @param mapOfUserInfo the map of UserInfo that is deserialized from a JSON file.
+//     */
+//    public UserManager(Map<String, UserInfo> mapOfUserInfo) {
+//        this.mapOfUserInfo = mapOfUserInfo;
+//    }
 
 
     /**
@@ -130,6 +130,10 @@ public class UserManager {
         currentUserInfo.incrementTotalLogins();
     }
 
+    public void setMapOfUserInfo(Map<String, UserInfo> mapOfUserInfo) {
+        this.mapOfUserInfo = mapOfUserInfo;
+    }
+
     // we might not need to remove a userinfo. and correctly implementing removing an userinfo
     // is difficult: what if the userinfo i am removing is the currentUserInfo
 //    /**
@@ -145,4 +149,8 @@ public class UserManager {
 //            throw new Exception(Exceptions.CANNOT_RECOGNIZE_USER);
 //        }
 //    }
+
+    public String displayAchievement() {
+        return currentUserInfo.displayAchievement();
+    }
 }
