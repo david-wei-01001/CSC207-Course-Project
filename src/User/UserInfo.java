@@ -148,4 +148,8 @@ public class UserInfo {
     public boolean hasGraph(String graphName) {
         return mapOfGraph.containsKey(graphName);
     }
+
+    public String displayAchievement() {
+        return "0";
+    }
 }
