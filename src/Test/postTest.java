@@ -23,6 +23,7 @@ public class postTest {
         userInfo = new UserInfo("Tong", "123@mail.com", "123");
         post = new Post("nothing", "0", userInfo);
         post.addPublishedContent("testing", userInfo);
+        post.addPublishedContent("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", userInfo);
     }
 
     @After
@@ -119,6 +120,12 @@ public class postTest {
     @Test
     public void testGetContent() {
         assertEquals("nothing", post.getContent());
+    }
+
+    ///only for seeing what toString actually returns
+    @Test
+    public void testToString() {
+        assertEquals("", post.toString());
     }
 }
 

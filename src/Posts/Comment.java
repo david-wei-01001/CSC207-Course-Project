@@ -22,8 +22,6 @@ public class Comment extends PublishedContents {
 
     @Override
     public String toString() {
-        return "Comment{" +
-                "content='" + content + '\'' +
-                '}';
+        return '\n' + this.getCreator().getUsername() + '\n' + content;
     }
 }
