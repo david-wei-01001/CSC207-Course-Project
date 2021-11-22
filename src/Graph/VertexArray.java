@@ -92,6 +92,7 @@ public class VertexArray implements Iterable<Vertex>{
             } catch (IndexOutOfBoundsException e){
                 throw new NoSuchElementException();
             }
+            curr += 1;
             return toReturn;
         }
     }
