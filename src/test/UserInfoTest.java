@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -74,5 +75,11 @@ public class UserInfoTest {
         userInfo.incrementTotalLogins();
         userInfo.incrementTotalLogins();
         assertEquals(3, userInfo.getTotalLogins());
+    }
+
+    ///only for seeing what displayAchievements actually returns
+    @Test
+    void testDisplayAchievements(){
+        assertEquals("", userInfo.displayAchievement());
     }
 }
