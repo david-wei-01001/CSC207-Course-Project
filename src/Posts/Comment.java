@@ -3,23 +3,34 @@ package Posts;
 import User.UserInfo;
 
 /**
- * A comment.
+ * A Comment class, which is used for leaving comments on posts and community
  */
 public class Comment extends PublishedContents {
-    /**
-     * the content of a comment
-     */
     String content;
 
-    public Comment(String content, String id, UserInfo creator) {
+
+    /**
+     * Constructor for the comment class
+     * @param content : The content of the comment
+     * @param id: The id of the comment
+     * @param creator: The creator of the comment
+     */
+    public Comment(String content, String id, ) {
         super(id, creator);
         this.content = content;
     }
 
+    /**
+     * Get the content of the comment
+     * @return Then content of the comment
+     */
     public String getContent() {
         return content;
     }
 
+    /**
+     * @return The string representing the comment
+     */
     @Override
     public String toString() {
         return '\n' + this.getCreator().getUsername() + '\n' + content;
