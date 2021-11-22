@@ -21,7 +21,7 @@ public class postTest {
         userInfo = new UserInfo("Tong", "123@mail.com", "123");
         post = new Post("nothing", "0", userInfo);
         post.addPublishedContent("testing", userInfo);
-        post.addPublishedContent("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", userInfo);
+        post.addPublishedContent("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", userInfo);
     }
 
     @After
@@ -31,7 +31,7 @@ public class postTest {
 
     @Test
     public void testAddCommentSuccessfulAndGetMapOfContents() {
-        Comment c1 = new Comment("testing", "Comment #0");
+        Comment c1 = new Comment("testing", "Comment #0", userInfo);
 
         HashMap<String, Comment> mapToCompare = new HashMap<>();
 
@@ -66,7 +66,7 @@ public class postTest {
     public void testDeleteAndNumberOfComments() throws HasPublishedContents.PostNotFoundException {
         post.deletePublishedContent("Comment #0");
 
-        Comment c1 = new Comment("testing", "Comment #0");
+        Comment c1 = new Comment("testing", "Comment #0", userInfo);
 
         HashMap<String, Comment> mapToCompare = new HashMap<>();
 

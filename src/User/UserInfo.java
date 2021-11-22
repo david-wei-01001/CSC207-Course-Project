@@ -1,6 +1,7 @@
 package User;
 
 import Graph.DirectedGraph;
+import Posts.Comment;
 import Resource.Resource;
 import constants.Achievements;
 
@@ -150,6 +151,15 @@ public class UserInfo {
     }
 
     public String displayAchievement() {
-        return "0";
+        StringBuilder achievements = new StringBuilder();
+        for(Map.Entry<String, Boolean> achievement: mapOfAchievement.entrySet()){
+            String name = achievement.getKey();
+            Boolean status = achievement.getValue();
+            if(status) {
+                achievements.append(name).append(": acquired").append("\n");
+            }
+            achievements.append(name).append(": not acquired").append("\n");
+        }
+        return achievements.toString();
     }
 }
