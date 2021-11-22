@@ -3,6 +3,7 @@ package Graph;
 import constants.Exceptions;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * A special Array which stores a vertex and all DirectedEdges started from a vertex.
@@ -71,6 +72,27 @@ public class VertexArray implements Iterable<Vertex>{
      */
     @Override
     public Iterator<Vertex> iterator() {
-        return END.iterator();
+        return new VertexItr();
+    }
+
+    private class VertexItr implements Iterator<Vertex> {
+
+        private int curr;
+
+        @Override
+        public boolean hasNext() {
+            return curr < END.size();
+        }
+
+        @Override
+        public Vertex next() {
+            Vertex toReturn;
+            try{
+                toReturn = END.get(curr);
+            } catch (IndexOutOfBoundsException e){
+                throw new NoSuchElementException();
+            }
+            return toReturn;
+        }
     }
 }
