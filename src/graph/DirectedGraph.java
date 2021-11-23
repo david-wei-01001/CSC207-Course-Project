@@ -5,6 +5,8 @@ import constants.Exceptions;
 import java.io.Serializable;
 import java.util.*;
 
+import static constants.Algorithm.*;
+
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.
  */
@@ -17,8 +19,8 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray> {
      */
     private final Map<String, VertexArray> VERTICES = new HashMap<>();
     private final String NAME;
-    private final ArrayList<String> CURRENTUNCLOCK = new ArrayList<>();
-    private final ArrayList<String> COMPLETED = new ArrayList<>();
+    private final List<String> CURRENTUNCLOCK = new ArrayList<>();
+    private final List<String> COMPLETED = new ArrayList<>();
 
     /**
      * The constructor of the DirectedGraph class.
@@ -122,7 +124,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray> {
             }
         }
         for (String vertexName : VERTICES.keySet()) {
-            if (getVertexArray(vertexName).getEnds().contains(delete)) {
+            if (getVertexArray(vertexName).isEnd(delete)) {
                 Vertex[] edge = {getVertexArray(vertexName).getStart(), delete};
                 deleteEdge(edge);
             }
@@ -250,22 +252,47 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray> {
 
     @Override
     public Iterator<VertexArray> iterator() {
-        return GraphItr;
+        return new GraphItr();
+    }
+
+    private List<VertexArray> arrangeArray() {
+        List<VertexArray> vertexArray = new ArrayList<>();
+        for (String vertexName : VERTICES.keySet()) {
+            try{
+                vertexArray.add(getVertexArray(vertexName));
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+        if (vertexArray.isEmpty()) {
+            return vertexArray;
+        }
+        int b = 0;
+        int e = vertexArray.size() - 1;
+        mergeSort(vertexArray, b, e);
+        return vertexArray;
     }
 
     private class GraphItr implements Iterator<VertexArray> {
 
-        private Set<String> remain = VERTICES.keySet();
+        private List<VertexArray> arranged;
+        private int index;
+
+        public GraphItr() {
+            arranged = arrangeArray();
+        }
 
         @Override
         public boolean hasNext() {
-            return remain.size() != 0;
+            return index < arranged.size();
         }
-
-        private
 
         @Override
         public VertexArray next() {
-            String
+            VertexArray toReturn = arranged.get(index);
+            index ++;
+            return toReturn;
+        }
     }
 }
