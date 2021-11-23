@@ -78,7 +78,9 @@ public class UserInfoTest {
         assertEquals(3, userInfo.getTotalLogins());
     }
 
-    ///only for seeing what displayAchievements actually returns
+    /**
+     * test if the achievements are displayed properly with no requirement to the order of display
+     */
     @Test
     void testDisplayAchievements(){
         userInfo.initializeMapOfAchievement();
