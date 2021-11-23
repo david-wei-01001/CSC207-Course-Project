@@ -1,8 +1,8 @@
-Class name: Resource
+Class name: resource
 Parent class: PublishedContent
 Implement interface: Likeable
                      Commentable
-                     Comparable<Resource>
+                     Comparable<resource>
 
 Responsibilities:
 getDescription()
