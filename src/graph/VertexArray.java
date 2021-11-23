@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import static constants.Algorithm.recBinaryInsertIndex;
+
 /**
  * A special Array which stores a vertex and all DirectedEdges started from a vertex.
  */
-public class VertexArray implements Iterable<Vertex>{
+public class VertexArray implements Iterable<Vertex>, Comparable<VertexArray>{
 
     private final Vertex start;
     private final ArrayList<Vertex> END = new ArrayList<>();
@@ -26,11 +28,22 @@ public class VertexArray implements Iterable<Vertex>{
      * @param end the ending vertex of this VertexArray
      */
     public void addEdge(Vertex end) {
-        END.add(end);
+        int i = indexToInsert(end);
+        if (i == END.size()) {
+            END.add(end);
+        } else {
+            END.add(i, end);
+        }
     }
 
-    public int recBinaryInsertIndex {
 
+    public int indexToInsert(Vertex vertex) {
+        if (END.isEmpty()) {
+            return 0;
+        }
+        int b = 0;
+        int e = END.size();
+        return recBinaryInsertIndex(END, vertex, b, e);
     }
 
     /**
@@ -77,6 +90,11 @@ public class VertexArray implements Iterable<Vertex>{
     @Override
     public Iterator<Vertex> iterator() {
         return new VertexItr();
+    }
+
+    @Override
+    public int compareTo(VertexArray o) {
+        return 0;
     }
 
     private class VertexItr implements Iterator<Vertex> {
