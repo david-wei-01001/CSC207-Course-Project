@@ -123,6 +123,8 @@ public class postTest {
     ///only for seeing what toString actually returns
     @Test
     public void testToString() {
+        Comment comment0 = post.getMapOfComments().get("Comment #0");
+        Comment comment1 = post.getMapOfComments().get("Comment #1");
         assertEquals("Post" + '\n' +
                 "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
                         +'\n'
@@ -142,21 +144,23 @@ public class postTest {
                         + "----------------------------------------------------------------------------------------" +
                         "--------------"
                         +'\n'
-                        + "Comment #0="
+                        + comment0.getId()
+                        +'='
                         +'\n'
-                        +"Tong"
+                        + comment0.getCreator().getName()
                         +'\n'
-                        +"testing"
+                        + comment0.getContent()
                         + '\n'
                         + "----------------------------------------------------------------------------------------" +
                         "--------------"
                         +'\n'
-                        + "Comment #1="
+                        + comment1.getId()
+                        +'='
                         +'\n'
-                        +"Tong"
+                        + comment1.getCreator().getName()
                         +'\n'
-                        +"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                        +'\n'
+                        + comment1.getContent()
+                        + '\n'
                         + "----------------------------------------------------------------------------------------" +
                         "--------------"
                         + '\n'
