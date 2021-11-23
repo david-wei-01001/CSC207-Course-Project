@@ -5,7 +5,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Iterator;
 
+/**
+ * Strategy Design Pattern applied throughout the class.
+ */
 public class Algorithm {
+
     public static <T> int recBinaryInsertIndex(List<T> lst, T toInsert, Comparator<T> comparator, int b, int e) {
         if (b == e) {
             if (comparator.compare(toInsert, lst.get(b)) < 0) {
@@ -23,18 +27,20 @@ public class Algorithm {
         }
     }
 
-    public static <T> int pairwiseCompare(Iterator<T> itr1, Iterator<T> itr2, Comparator<T> comparator) {
-        while (itr1.hasNext() && itr2.hasNext()) {
-            T next1 = itr1.next();
-            T next2 = itr2.next();
+    public static <T> int pairwiseCompare(Iterable<T> itr1, Iterable<T> itr2, Comparator<T> comparator) {
+        Iterator<T> iterator1 = itr1.iterator();
+        Iterator<T> iterator2 = itr2.iterator();
+        while (iterator1.hasNext() && iterator2.hasNext()) {
+            T next1 = iterator1.next();
+            T next2 = iterator2.next();
             if (comparator.compare(next1, next2) != 0) {
                 return comparator.compare(next1, next2);
             }
         }
 
-        if (!(itr1.hasNext() || itr2.hasNext())) {
+        if (!(iterator1.hasNext() || iterator2.hasNext())) {
             return 0;
-        } else if (itr2.hasNext()) {
+        } else if (iterator2.hasNext()) {
             return -1;
         } else {
             return 1;

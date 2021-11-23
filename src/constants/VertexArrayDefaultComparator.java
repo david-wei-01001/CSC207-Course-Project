@@ -14,7 +14,7 @@ public class VertexArrayDefaultComparator implements Comparator<VertexArray> {
         if (startCompare != 0) {
             return startCompare;
         } else {
-            return pairwiseCompare(o1.iterator(), o2.iterator(), inLevelComparator);
+            return pairwiseCompare(o1, o2, inLevelComparator);
         }
     }
 }

@@ -55,7 +55,7 @@ public class VertexArray implements Iterable<Vertex> {
 
     public boolean endEqual(ArrayList<Vertex> other) {
         InLevelComparator inLevelComparator = new InLevelComparator();
-        return pairwiseCompare(new VertexItr(), other.iterator(), inLevelComparator) == 0;
+        return pairwiseCompare(END, other, inLevelComparator) == 0;
     }
 
     /**
