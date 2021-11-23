@@ -22,7 +22,7 @@ public class postTest {
         userInfo = new UserInfo("Tong", "123@mail.com", "123");
         post = new Post("nothing", "0", userInfo);
         post.addPublishedContent("testing", userInfo);
-        post.addPublishedContent("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", userInfo);
+        post.addPublishedContent("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", userInfo);
     }
 
     @After
