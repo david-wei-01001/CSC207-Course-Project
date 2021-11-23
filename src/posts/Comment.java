@@ -33,6 +33,6 @@ public class Comment extends PublishedContents {
      */
     @Override
     public String toString() {
-        return '\n' + this.getCreator().getUsername() + '\n' + content;
+        return '\n' + this.getCreator().getName() + '\n' + content;
     }
 }

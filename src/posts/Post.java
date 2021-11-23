@@ -96,7 +96,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
         }
         return "Post" + '\n' +
                 "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +'\n'+
-                "id=" + super.getId() + ", creator=" + this.getCreator().getUsername() + '\n' +
+                "id=" + super.getId() + ", creator=" + this.getCreator().getName() + '\n' +
                 "------------------------------------------------------------------------------------------------------" +'\n'+
                 content + '\n' +
                 "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +'\n'+
