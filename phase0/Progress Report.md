@@ -1,4 +1,4 @@
-Note: “Tech Tree” mentioned in this project is implemented using graphs, so in the context of this project, the keywords, “Tech Tree” and “Graph”, are interchangeable, so are “node/nodes” and “vertex/vertices”.
+Note: “Tech Tree” mentioned in this project is implemented using graphs, so in the context of this project, the keywords, “Tech Tree” and “graph”, are interchangeable, so are “node/nodes” and “vertex/vertices”.
 
 Specification Summary:
 
@@ -10,7 +10,7 @@ We are only listing the classes that are used to make the skeleton program possi
 
 Entities:
 
-	User, PublishedContent, Post, 
+	user, PublishedContent, Post, 
 DirectedGraph, Vertex, Community
 
 Use Cases:
@@ -23,11 +23,11 @@ Interface adapters:
 
 Frame works & drivers:
 
-	UI: Command Line UI
+	ui: Command Line ui
 
 Scenario Walkthrough Summary:
 
-After creating an account, users begin by selecting the Tech Tree, “CS Introductory Series”, and the node “Introductory Python”. After studying for Python, users return to “Tech Tree” to indicate that they have finished studying. Then, users can post their study notes in order to unlock the next nodes: “Introductory TechnicalTree”, “Introductory C++” and “CSC165”.
+After creating an account, users begin by selecting the Tech Tree, “CS Introductory Series”, and the node “Introductory Python”. After studying for Python, users return to “Tech Tree” to indicate that they have finished studying. Then, users can post their study notes in order to unlock the next nodes: “Introductory technicaltree”, “Introductory C++” and “CSC165”.
 
 Skeleton Program:
 
@@ -48,9 +48,9 @@ Each Member’s Responsibility During P0:
 		combine them into one version
 
 	construction of skeleton Program:
-		Alfred(Package Posts, Command Line UI)
-		David(Package Graph, Posts, Tests, TechnicalTree)
-		SuTong(Package TechnicalTree, Command Line UI)
+		Alfred(Package posts, Command Line ui)
+		David(Package graph, posts, Tests, technicaltree)
+		SuTong(Package technicaltree, Command Line ui)
 		Arthur(Package Tests)
 	specification, progress report & scenario walk-through
 		Coco
@@ -63,7 +63,7 @@ Discuss the implementation of all features of our application. These features in
 
 Open Question:
 
-How to implement TechnicalTree GUI as our User Interface?
+How to implement technicaltree GUI as our user Interface?
 
 What has worked well so far:
 
