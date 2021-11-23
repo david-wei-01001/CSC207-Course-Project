@@ -26,8 +26,8 @@ class SystemInOutTest {
         SystemInOut inOut = new SystemInOut();
 
 //        inOut.getNonEmptyCredential("username");
-//        inOut.run();
-        inOut.mainMenu();
+        inOut.run();
+//        inOut.mainMenu();
 
     }
 
