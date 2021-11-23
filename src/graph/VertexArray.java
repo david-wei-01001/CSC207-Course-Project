@@ -29,6 +29,10 @@ public class VertexArray implements Iterable<Vertex>{
         END.add(end);
     }
 
+    public int recBinaryInsertIndex {
+
+    }
+
     /**
      * @return all vertices rechable from start
      */
@@ -95,5 +99,22 @@ public class VertexArray implements Iterable<Vertex>{
             curr += 1;
             return toReturn;
         }
+    }
+
+    public String arrowEnd() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Vertex vertex : END) {
+            stringBuilder.append("->    ");
+            stringBuilder.append(vertex.getName());
+            stringBuilder.append("\n");
+        }
+        String toReturn = stringBuilder.toString();
+        return toReturn;
+    }
+
+
+    @Override
+    public String toString() {
+        return  start.toString() + "    " + arrowEnd();
     }
 }
