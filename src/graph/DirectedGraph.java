@@ -3,14 +3,12 @@ package graph;
 import constants.Exceptions;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.
  */
-public class DirectedGraph implements Serializable {
+public class DirectedGraph implements Serializable, Iterable<VertexArray> {
 
     /**
      * The key of VERTICES is a String which is the name of a Vertex, the value of the VERTICES is an Array of length
@@ -31,7 +29,8 @@ public class DirectedGraph implements Serializable {
         for(Vertex v: lstVertex){
 
             addVertex(v);
-            CURRENTUNCLOCK.add(v.getName());}
+            CURRENTUNCLOCK.add(v.getName());
+        }
         this.NAME = name;
     }
 
@@ -46,10 +45,32 @@ public class DirectedGraph implements Serializable {
      * @throws Exception if the name of the first vertex in edge does not exist in the DirectedGraph
      */
     public void addEdge(Vertex[] edge) throws Exception {
-        addVertex(edge[0]);
-        getVertexArray(edge[0]).addEdge(edge[1]);
-        addVertex(edge[1]);
-        edge[1].addInLevel();
+        if (checkEdgeExistence(edge)) {
+            addVertex(edge[0]);
+            getVertexArray(edge[0]).addEdge(edge[1]);
+            addVertex(edge[1]);
+            edge[1].addInLevel();
+        } else {
+            throw new Exception(Exceptions.EDGE_ALREADY_EXIST);
+        }
+    }
+
+    public boolean checkEdgeExistence(Vertex[] edge) throws Exception {
+        if (checkVertexExistence(edge[0])) {
+            if (getVertexArray(edge[0]).isEnd(edge[1])){
+                return true;
+            }
+        } else if (checkVertexExistence(edge[1])) {
+            if (getVertexArray(edge[1]).isEnd(edge[0])){
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public boolean checkVertexExistence(Vertex vertex) {
+        return VERTICES.containsKey(vertex.getName());
     }
 
     /**
@@ -185,11 +206,17 @@ public class DirectedGraph implements Serializable {
 
     /**
      * Override ToString method
-     * @return the name of the TechTree(graph)
+     * @return the string representation of the TechTree(graph)
      */
     @Override
     public String toString() {
-        return NAME;
+       StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Name of TechTree: ");
+        stringBuilder.append(NAME);
+        stringBuilder.append("\n");
+        for (String vertex : VERTICES) {
+
+        }
     }
 
     /**
@@ -221,4 +248,24 @@ public class DirectedGraph implements Serializable {
         return NAME;
     }
 
+    @Override
+    public Iterator<VertexArray> iterator() {
+        return GraphItr;
+    }
+
+    private class GraphItr implements Iterator<VertexArray> {
+
+        private Set<String> remain = VERTICES.keySet();
+
+        @Override
+        public boolean hasNext() {
+            return remain.size() != 0;
+        }
+
+        private
+
+        @Override
+        public VertexArray next() {
+            String
+    }
 }
