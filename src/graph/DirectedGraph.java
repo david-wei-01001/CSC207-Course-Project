@@ -276,7 +276,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray> {
 
     private class GraphItr implements Iterator<VertexArray> {
 
-        private List<VertexArray> arranged;
+        private final List<VertexArray> arranged;
         private int index;
 
         public GraphItr() {

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
-public class Algorithm<T> {
+public class Algorithm {
     public static <T> int recBinaryInsertIndex(List<T> lst, Comparable<T> comparable, int b, int e) {
         if (b == e) {
             if (comparable.compareTo(lst.get(b)) < 0) {
