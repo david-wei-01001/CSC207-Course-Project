@@ -12,6 +12,7 @@ import java.util.Map;
 import static constants.Exceptions.*;
 import static org.junit.Assert.*;
 
+
 public class DirectedGraphTest {
     DirectedGraph graph;
 
@@ -52,8 +53,8 @@ public class DirectedGraphTest {
         assertTrue(graph.getVertices().containsKey("Introductory Python"));
         assertEquals(graph.getVertexArray("Introductory Python").getStart(), python);
         assertEquals(graph.getVertexArray("Introductory Java").getStart(), javaIntro);
-        assertEquals(graph.getVertexArray("Introductory Python").getEnds(), end);
-        assertEquals(graph.getVertexArray("Introductory Java").getEnds(), end);
+        assertTrue(graph.getVertexArray("Introductory Python").endEqual(end));
+        assertTrue(graph.getVertexArray("Introductory Java").endEqual(end));
     }
 
     @Test
@@ -65,8 +66,7 @@ public class DirectedGraphTest {
         graph.addEdge(edge);
         ArrayList<Vertex> test = new ArrayList<>();
         test.add(javaIntro);
-        ArrayList<Vertex> result = graph.getVertexArray("Introductory Python").getEnds();
-        assertEquals(test, result);
+        assertTrue(graph.getVertexArray("Introductory Python").endEqual(test));
     }
 
     @Test
@@ -78,8 +78,7 @@ public class DirectedGraphTest {
         graph.addEdge(edge);
         graph.deleteEdge(edge);
         ArrayList<Vertex> test = new ArrayList<>();
-        ArrayList<Vertex> result = graph.getVertexArray("Introductory Python").getEnds();
-        assertEquals(test, result);
+        assertTrue(graph.getVertexArray("Introductory Python").endEqual(test));
     }
 
     @Test
@@ -93,7 +92,7 @@ public class DirectedGraphTest {
         ArrayList<Vertex> end = new ArrayList<>();
         assertTrue(graph.getVertices().containsKey("Introductory Python"));
         assertEquals(graph.getVertexArray("Introductory Python").getStart(), python);
-        assertEquals(graph.getVertexArray("Introductory Python").getEnds(), end);
+        assertTrue(graph.getVertexArray("Introductory Python").endEqual(end));
     }
 
     @Test

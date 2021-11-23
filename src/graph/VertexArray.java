@@ -3,9 +3,10 @@ package graph;
 import constants.Exceptions;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
-import static constants.Algorithm.recBinaryInsertIndex;
+import static constants.Algorithm.*;
 
 /**
  * A special Array which stores a vertex and all DirectedEdges started from a vertex.
@@ -13,7 +14,10 @@ import static constants.Algorithm.recBinaryInsertIndex;
 public class VertexArray implements Iterable<Vertex>, Comparable<VertexArray>{
 
     private final Vertex start;
-    private final ArrayList<Vertex> END = new ArrayList<>();
+    /**
+     * sorted.
+     */
+    private final List<Vertex> END = new ArrayList<>();
 
     /**
      * the constructor of a VertexArray.
@@ -46,11 +50,8 @@ public class VertexArray implements Iterable<Vertex>, Comparable<VertexArray>{
         return recBinaryInsertIndex(END, vertex, b, e);
     }
 
-    /**
-     * @return all vertices rechable from start
-     */
-    public ArrayList<Vertex> getEnds() {
-        return END;
+    public boolean endEqual(ArrayList<Vertex> other) {
+        return pairwiseCompare(new VertexItr(), other.iterator()) == 0;
     }
 
     /**
@@ -74,6 +75,10 @@ public class VertexArray implements Iterable<Vertex>, Comparable<VertexArray>{
 
     }
 
+    public int size(){
+        return END.size();
+    }
+
     /**
      * Check whether a vertex is reachable from start.
      * @param end a vertex to be checked
@@ -94,7 +99,12 @@ public class VertexArray implements Iterable<Vertex>, Comparable<VertexArray>{
 
     @Override
     public int compareTo(VertexArray o) {
-        return 0;
+        int startCompare = start.compareTo(o.getStart());
+        if (startCompare != 0) {
+            return startCompare;
+        } else {
+            return pairwiseCompare(new VertexItr(), o.iterator());
+        }
     }
 
     private class VertexItr implements Iterator<Vertex> {
