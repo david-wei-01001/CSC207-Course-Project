@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,6 +81,25 @@ public class UserInfoTest {
     ///only for seeing what displayAchievements actually returns
     @Test
     void testDisplayAchievements(){
-        assertEquals("", userInfo.displayAchievement());
+        userInfo.initializeMapOfAchievement();
+        Object[] achievementNames = userInfo.getMapOfAchievement().keySet().toArray();
+        assertEquals( achievementNames[0]
+                        + ": "
+                        + "not acquired"
+                        + '\n'
+                        + achievementNames[1]
+                        + ": "
+                        + "not acquired"
+                        + '\n'
+                        + achievementNames[2]
+                        + ": "
+                        + "not acquired"
+                        + '\n'
+                        + achievementNames[3]
+                        + ": "
+                        + "not acquired"
+                        + '\n'
+
+                ,userInfo.displayAchievement());
     }
 }
