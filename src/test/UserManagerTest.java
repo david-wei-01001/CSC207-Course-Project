@@ -120,7 +120,7 @@ class UserManagerTest {
     @Test
     void setUserNameOfCurrent() throws Exception {
         userManager.setUserNameOfCurrent("newUserName");
-        assertEquals("newUserName", userManager.getCurrentUserInfo().getUsername());
+        assertEquals("newUserName", userManager.getCurrentUserInfo().getName());
     }
 
     @Test
@@ -146,7 +146,7 @@ class UserManagerTest {
         userManager.addNewUserInfo(ANOTHER_USERNAME, ANOTHER_EMAIL, ANOTHER_PASSWORD);
         assertEquals(userinfo, userManager.getCurrentUserInfo());
         userManager.setCurrentUserInfoTo(ANOTHER_USERNAME);
-        assertEquals(ANOTHER_USERNAME, userManager.getCurrentUserInfo().getUsername());
+        assertEquals(ANOTHER_USERNAME, userManager.getCurrentUserInfo().getName());
     }
 
     @Test
