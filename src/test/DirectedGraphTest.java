@@ -1,7 +1,7 @@
 package test;
 
-import graph.DirectedGraph;
-import graph.Vertex;
+import main.graph.DirectedGraph;
+import main.graph.Vertex;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static constants.Exceptions.*;
+import static main.constants.Exceptions.*;
 import static org.junit.Assert.*;
 
 
@@ -28,7 +28,7 @@ public class DirectedGraphTest {
     }
 
     /**
-     * Test if getVertex method correctly fetch a vertex from the graph.
+     * Test if getVertex method correctly fetch a vertex from the main.graph.
      *
      * @throws Exception if the vertex to be gotten does not exist
      */
@@ -39,7 +39,7 @@ public class DirectedGraphTest {
     }
 
     /**
-     * Test if addVertex method correctly fetch a vertex from the graph.
+     * Test if addVertex method correctly fetch a vertex from the main.graph.
      *
      * @throws Exception if the vertex to be gotten does not exist
      */
@@ -200,7 +200,7 @@ public class DirectedGraphTest {
         graph.addEdge(v6);
         graph.addEdge(vx);
         graph.deleteEdge(vx);
-//        assertEquals(graph.availableVertex(), 0);
+//        assertEquals(main.graph.availableVertex(), 0);
         assertEquals(JavaIntro.getInLevel(), 1);
     }
 

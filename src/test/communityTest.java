@@ -1,12 +1,12 @@
 package test;
 
-import communitysystem.Community;
-    import posts.HasPublishedContents;
-    import posts.Post;
+import main.communitysystem.Community;
+    import main.posts.HasPublishedContents;
+    import main.posts.Post;
 import org.junit.Before;
     import org.junit.Rule;
     import org.junit.Test;
-    import user.UserInfo;
+    import main.user.UserInfo;
     import org.junit.rules.ExpectedException;
 
     import static org.junit.Assert.*;
@@ -20,7 +20,7 @@ public class communityTest {
 
     /**
      * The setup method that setup each test.
-     * It creates a community and a user.
+     * It creates a community and a main.user.
      */
     @Before
     public void setUp() {
@@ -62,7 +62,7 @@ public class communityTest {
         assertEquals("Post #2",community.getNextId());
     }
     /**
-     * Test if the getNumPost method correctly reflect the number of posts in the community.
+     * Test if the getNumPost method correctly reflect the number of main.posts in the community.
      */
     @Test
     public void testGetNumPost() {
@@ -104,7 +104,7 @@ public class communityTest {
     }
 
     /**
-     * Test whether displayPosts method correctly display posts.
+     * Test whether displayPosts method correctly display main.posts.
      */
     @Test
     public void testDisplayPosts() {

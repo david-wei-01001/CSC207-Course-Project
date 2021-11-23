@@ -1,12 +1,12 @@
 package test;
 
-import posts.Comment;
-import posts.HasPublishedContents;
-import posts.Post;
+import main.posts.Comment;
+import main.posts.HasPublishedContents;
+import main.posts.Post;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.After;
-import user.UserInfo;
+import main.user.UserInfo;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,13 +1,12 @@
 package test;
 
-import graph.DirectedGraph;
-import user.UserInfo;
-import constants.Achievements;
+import main.graph.DirectedGraph;
+import main.user.UserInfo;
+import main.constants.Achievements;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -3,7 +3,7 @@ Parent class: PublishedContent
 Implement interface: Searchable
                      Postable
                      Likeable
-                     Comparable<T extends graph>
+                     Comparable<T extends main.graph>
 
 
 Responsibilities:
@@ -13,4 +13,4 @@ addGraph()
 
 
 Collaborators:
-graph
+main.graph
