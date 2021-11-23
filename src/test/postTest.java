@@ -22,7 +22,7 @@ public class postTest {
         userInfo = new UserInfo("Tong", "123@mail.com", "123");
         post = new Post("nothing", "0", userInfo);
         post.addPublishedContent("testing", userInfo);
-        post.addPublishedContent("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", userInfo);
+        post.addPublishedContent("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", userInfo);
     }
 
     @After
@@ -123,7 +123,48 @@ public class postTest {
     ///only for seeing what toString actually returns
     @Test
     public void testToString() {
-        assertEquals("", post.toString());
+        assertEquals("Post" + '\n' +
+                "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+                        +'\n'
+                        + "id=" + post.getId()
+                        + ", creator=" + post.getCreator().getName()
+                        +'\n'
+                        +"------------------------------------------------------------------------------------------" +
+                        "------------"
+                        +'\n'
+                        + post.getContent()
+                        + '\n'
+                        + "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
+                        "::::::::::::"
+                        +'\n'
+                        + "Comments"
+                        + '\n'
+                        + "----------------------------------------------------------------------------------------" +
+                        "--------------"
+                        +'\n'
+                        + "Comment #0="
+                        +'\n'
+                        +"Tong"
+                        +'\n'
+                        +"testing"
+                        + '\n'
+                        + "----------------------------------------------------------------------------------------" +
+                        "--------------"
+                        +'\n'
+                        + "Comment #1="
+                        +'\n'
+                        +"Tong"
+                        +'\n'
+                        +"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                        +'\n'
+                        + "----------------------------------------------------------------------------------------" +
+                        "--------------"
+                        + '\n'
+                        + "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
+                        "::::::::::::"
+
+
+                , post.toString());
     }
 }
 
