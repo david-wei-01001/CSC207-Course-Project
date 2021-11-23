@@ -120,7 +120,9 @@ public class postTest {
         assertEquals("nothing", post.getContent());
     }
 
-    ///only for seeing what toString actually returns
+    /**
+     * test if the post is properly converted to string format
+     */
     @Test
     public void testToString() {
         Comment comment0 = post.getMapOfComments().get("Comment #0");
