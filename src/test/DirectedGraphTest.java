@@ -52,7 +52,7 @@ public class DirectedGraphTest {
         assertEquals(graph.getVertexArray("Introductory Java").getEnds(), end);
     }
 
-    @Test(timeout = 50)
+    @Test
     public void testAddEdge() throws Exception {
         Vertex javaIntro = new Vertex("Introductory Java");
         Vertex python = graph.getVertex("Introductory Python");
@@ -65,7 +65,7 @@ public class DirectedGraphTest {
         assertEquals(test, result);
     }
 
-    @Test(timeout = 50)
+    @Test
     public void testDeleteEdge() throws Exception {
         Vertex javaIntro = new Vertex("Introductory Java");
         Vertex python = graph.getVertex("Introductory Python");
@@ -78,7 +78,7 @@ public class DirectedGraphTest {
         assertEquals(test, result);
     }
 
-    @Test(timeout = 50)
+    @Test
     public void testDeleteVertex() throws Exception {
         Vertex javaIntro = new Vertex("Introductory Java");
         Vertex python = graph.getVertex("Introductory Python");
@@ -92,7 +92,7 @@ public class DirectedGraphTest {
         assertEquals(graph.getVertexArray("Introductory Python").getEnds(), end);
     }
 
-    @Test(timeout = 50)
+    @Test
     public void testAvailableVertex() throws Exception {
         Vertex javaIntro = new Vertex("Introductory Java");
         Vertex Intro165 = new Vertex("CSC165");
@@ -110,7 +110,7 @@ public class DirectedGraphTest {
         assertEquals(graph.availableVertex(), testMap);
     }
 
-    @Test(timeout = 50)
+    @Test
     public void testCaseWithTwoPreqForAdd() throws Exception {
         Vertex pythonIntro = new Vertex("Introductory Python");
         Vertex compIntro = new Vertex("Introductory Combbb");
@@ -139,7 +139,7 @@ public class DirectedGraphTest {
         assertEquals(JavaIntro.getInLevel(), 2);
     }
 
-    @Test(timeout = 50)
+    @Test
     public void testCaseWithTwoPreqForComplete() throws Exception {
         Vertex pythonIntro = new Vertex("Introductory Python");
         Vertex compIntro = new Vertex("Introductory Combbb");
@@ -169,7 +169,7 @@ public class DirectedGraphTest {
         assertEquals(graph.availableVertex().toString(), "{0=Introductory C++, 1=CSC165}");
         assertEquals(JavaIntro.getInLevel(), 1);
     }
-    @Test(timeout = 50)
+    @Test
     public void testCaseWithTwoPreqForDelete() throws Exception {
         Vertex pythonIntro = new Vertex("Introductory Python");
         Vertex compIntro = new Vertex("Introductory Combbb");
