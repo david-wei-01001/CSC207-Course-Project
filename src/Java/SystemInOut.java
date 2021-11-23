@@ -63,7 +63,7 @@ public class SystemInOut {
     private void achievementPage() {
         System.out.println(userManager.displayAchievement());
         System.out.println("Enter anything to return to Main Menu.");
-        String input = scanner.nextLine();
+        scanner.nextLine();
     }
 
     private void resourcePage() {
