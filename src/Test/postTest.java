@@ -31,7 +31,7 @@ public class postTest {
 
     @Test
     public void testAddCommentSuccessfulAndGetMapOfContents() {
-        Comment c1 = new Comment("testing", "Comment #0");
+        Comment c1 = new Comment("testing", "Comment #0",userInfo);
 
         HashMap<String, Comment> mapToCompare = new HashMap<>();
 
@@ -66,7 +66,7 @@ public class postTest {
     public void testDeleteAndNumberOfComments() throws HasPublishedContents.PostNotFoundException {
         post.deletePublishedContent("Comment #0");
 
-        Comment c1 = new Comment("testing", "Comment #0");
+        Comment c1 = new Comment("testing", "Comment #0",userInfo);
 
         HashMap<String, Comment> mapToCompare = new HashMap<>();
 
@@ -76,7 +76,7 @@ public class postTest {
 
         assertEquals(1, post.getNumberOfComments());
 
-        assertTrue(!post.getMapOfComments().get("Comment #0").visibility());
+        assertFalse(post.getMapOfComments().get("Comment #0").visibility());
     }
 
 //    /**
