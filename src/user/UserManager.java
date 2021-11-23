@@ -20,7 +20,7 @@ public class UserManager {
      * Stores UserInfo of all Users in this program. Each key is a userName and the value is the UserInfo
      * of the User with that userName.
      */
-    private Map<String, UserInfo> mapOfUserInfo = new HashMap<String, UserInfo>();
+    private Map<String, UserInfo> mapOfUserInfo = new HashMap<>();
 
 
 //    /**
@@ -86,7 +86,7 @@ public class UserManager {
     public void setUserNameOfCurrent(String newUsername) throws Exception {
         if (!mapOfUserInfo.containsKey(newUsername)) {
             currentUserInfo.setUsername(newUsername);
-        } else if (newUsername.equals(currentUserInfo.getUsername())) {
+        } else if (newUsername.equals(currentUserInfo.getName())) {
             throw new Exception(Exceptions.SAME_USERNAME_AS_CURRENT);
         } else {
             throw new Exception(Exceptions.USER_NAME_TAKEN);

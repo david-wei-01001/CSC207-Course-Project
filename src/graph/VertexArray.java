@@ -1,6 +1,8 @@
 package graph;
 
 import constants.Exceptions;
+import constants.InLevelComparator;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,7 +13,7 @@ import static constants.Algorithm.*;
 /**
  * A special Array which stores a vertex and all DirectedEdges started from a vertex.
  */
-public class VertexArray implements Iterable<Vertex>, Comparable<VertexArray>{
+public class VertexArray implements Iterable<Vertex> {
 
     private final Vertex start;
     /**
@@ -47,11 +49,13 @@ public class VertexArray implements Iterable<Vertex>, Comparable<VertexArray>{
         }
         int b = 0;
         int e = END.size();
-        return recBinaryInsertIndex(END, vertex, b, e);
+        InLevelComparator inLevelComparator = new InLevelComparator();
+        return recBinaryInsertIndex(END, vertex, inLevelComparator, b, e);
     }
 
     public boolean endEqual(ArrayList<Vertex> other) {
-        return pairwiseCompare(new VertexItr(), other.iterator()) == 0;
+        InLevelComparator inLevelComparator = new InLevelComparator();
+        return pairwiseCompare(new VertexItr(), other.iterator(), inLevelComparator) == 0;
     }
 
     /**
@@ -97,15 +101,15 @@ public class VertexArray implements Iterable<Vertex>, Comparable<VertexArray>{
         return new VertexItr();
     }
 
-    @Override
-    public int compareTo(VertexArray o) {
-        int startCompare = start.compareTo(o.getStart());
-        if (startCompare != 0) {
-            return startCompare;
-        } else {
-            return pairwiseCompare(new VertexItr(), o.iterator());
-        }
-    }
+//    @Override
+//    public int compareTo(VertexArray o) {
+//        int startCompare = start.compareTo(o.getStart());
+//        if (startCompare != 0) {
+//            return startCompare;
+//        } else {
+//            return pairwiseCompare(new VertexItr(), o.iterator());
+//        }
+//    }
 
     private class VertexItr implements Iterator<Vertex> {
 
@@ -136,8 +140,7 @@ public class VertexArray implements Iterable<Vertex>, Comparable<VertexArray>{
             stringBuilder.append(vertex.getName());
             stringBuilder.append("\n");
         }
-        String toReturn = stringBuilder.toString();
-        return toReturn;
+        return stringBuilder.toString();
     }
 
 

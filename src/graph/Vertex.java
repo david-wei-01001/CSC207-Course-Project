@@ -1,12 +1,14 @@
 package graph;
 
+import constants.Namable;
+
 import java.io.Serializable;
 
 /**
  * A vertex of a DirectedGraph.
  * This usually represents a topic in a field of knowledge.
  */
-public class Vertex implements Serializable, Comparable<Vertex> {
+public class Vertex implements Serializable, Namable {
     private String name;
     // inLevel is a int representing the depth of this vertex in a DirectedGraph.
     private int inLevel;
@@ -53,18 +55,19 @@ public class Vertex implements Serializable, Comparable<Vertex> {
     /**
      * @return the name of this vertex
      */
+    @Override
     public String getName(){
         return name;
     }
 
-    @Override
-    public int compareTo(Vertex o) {
-        if (inLevel < o.getInLevel()) {
-            return -1;
-        } else if (inLevel > o.getInLevel()) {
-            return 1;
-        } else {
-            return name.compareTo(o.getName());
-        }
-    }
+//    @Override
+//    public int compareTo(Vertex o) {
+//        if (inLevel < o.getInLevel()) {
+//            return -1;
+//        } else if (inLevel > o.getInLevel()) {
+//            return 1;
+//        } else {
+//            return name.compareTo(o.getName());
+//        }
+//    }
 }
