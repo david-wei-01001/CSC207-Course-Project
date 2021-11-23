@@ -1,5 +1,6 @@
 package user;
 
+import constants.Namable;
 import graph.DirectedGraph;
 import resource.Resource;
 import constants.Achievements;
@@ -12,7 +13,7 @@ import java.util.Map;
 /**
  * The class that stores all information of a user.
  */
-public class UserInfo {
+public class UserInfo implements Namable {
     private String username;
     private String email;
     private String password;
@@ -61,7 +62,8 @@ public class UserInfo {
         }
     }
 
-    public String getUsername() {
+    @Override
+    public String getName() {
         return username;
     }
 

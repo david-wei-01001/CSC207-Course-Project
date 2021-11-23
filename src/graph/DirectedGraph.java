@@ -1,6 +1,8 @@
 package graph;
 
 import constants.Exceptions;
+import constants.Namable;
+import constants.VertexArrayDefaultComparator;
 
 import java.io.Serializable;
 import java.util.*;
@@ -10,7 +12,7 @@ import static constants.Algorithm.*;
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.
  */
-public class DirectedGraph implements Serializable, Iterable<VertexArray> {
+public class DirectedGraph implements Serializable, Iterable<VertexArray>, Namable {
 
     /**
      * The key of VERTICES is a String which is the name of a Vertex, the value of the VERTICES is an Array of length
@@ -246,6 +248,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray> {
         return VERTICES;
     }
 
+    @Override
     public String getName() {
         return NAME;
     }
@@ -270,7 +273,8 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray> {
         }
         int b = 0;
         int e = vertexArray.size() - 1;
-        mergeSort(vertexArray, b, e);
+        VertexArrayDefaultComparator vertexArrayDefaultComparator = new VertexArrayDefaultComparator();
+        mergeSort(vertexArray, b, e, vertexArrayDefaultComparator);
         return vertexArray;
     }
 
