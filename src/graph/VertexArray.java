@@ -132,7 +132,7 @@ public class VertexArray implements Iterable<Vertex>, Comparable<VertexArray>{
     public String arrowEnd() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Vertex vertex : END) {
-            stringBuilder.append("->    ");
+            stringBuilder.append("        ->    ");
             stringBuilder.append(vertex.getName());
             stringBuilder.append("\n");
         }
@@ -143,6 +143,6 @@ public class VertexArray implements Iterable<Vertex>, Comparable<VertexArray>{
 
     @Override
     public String toString() {
-        return  start.toString() + "    " + arrowEnd();
+        return  start.toString() + "\n" + arrowEnd();
     }
 }

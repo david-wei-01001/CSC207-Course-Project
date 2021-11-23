@@ -62,13 +62,11 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray> {
             if (getVertexArray(edge[0]).isEnd(edge[1])){
                 return true;
             }
-        } else if (checkVertexExistence(edge[1])) {
-            if (getVertexArray(edge[1]).isEnd(edge[0])){
-                return true;
-            }
-        } else {
-            return false;
         }
+        if (checkVertexExistence(edge[1])) {
+            return getVertexArray(edge[1]).isEnd(edge[0]);
+        }
+        return false;
     }
 
     public boolean checkVertexExistence(Vertex vertex) {
@@ -216,9 +214,11 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray> {
         stringBuilder.append("Name of TechTree: ");
         stringBuilder.append(NAME);
         stringBuilder.append("\n");
-        for (String vertex : VERTICES) {
-
+        for (VertexArray edges : arrangeArray()) {
+            stringBuilder.append("    ");
+            stringBuilder.append(edges.toString());
         }
+        return stringBuilder.toString();
     }
 
     /**
