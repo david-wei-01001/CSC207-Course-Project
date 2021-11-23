@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static constants.Exceptions.*;
 import static org.junit.Assert.*;
 
 public class DirectedGraphTest {
     DirectedGraph graph;
+
     /**
      * The setup method that setup each test.
      * It creates a DirectedGraph.
@@ -26,6 +28,7 @@ public class DirectedGraphTest {
 
     /**
      * Test if getVertex method correctly fetch a vertex from the graph.
+     *
      * @throws Exception if the vertex to be gotten does not exist
      */
     @Test
@@ -36,6 +39,7 @@ public class DirectedGraphTest {
 
     /**
      * Test if addVertex method correctly fetch a vertex from the graph.
+     *
      * @throws Exception if the vertex to be gotten does not exist
      */
     @Test
@@ -169,6 +173,7 @@ public class DirectedGraphTest {
         assertEquals(graph.availableVertex().toString(), "{0=Introductory C++, 1=CSC165}");
         assertEquals(JavaIntro.getInLevel(), 1);
     }
+
     @Test
     public void testCaseWithTwoPreqForDelete() throws Exception {
         Vertex pythonIntro = new Vertex("Introductory Python");
@@ -198,5 +203,79 @@ public class DirectedGraphTest {
         graph.deleteEdge(vx);
 //        assertEquals(graph.availableVertex(), 0);
         assertEquals(JavaIntro.getInLevel(), 1);
+    }
+
+    @Test
+    public void testDeleteEdgeThrowExceptionFirstNotExist() throws Exception {
+        Vertex pythonIntro = new Vertex("Introductory Python");
+        Vertex compIntro = new Vertex("Introductory Combbb");
+        Vertex Intro165 = new Vertex("CSC165");
+        Vertex JavaIntro = new Vertex("Introductory Java");
+        Vertex CIntro = new Vertex("Introductory C++");
+        Vertex Intro236 = new Vertex("CSC236");
+        Vertex Intro209 = new Vertex("CSC209");
+        Vertex Intro263 = new Vertex("CSC263");
+        Vertex[] Starter = {pythonIntro};
+        DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+        Vertex[] v1 = {pythonIntro, JavaIntro};
+        Vertex[] vx = {compIntro, JavaIntro};
+        Vertex[] v2 = {pythonIntro, CIntro};
+        Vertex[] v3 = {Intro165, Intro236};
+        Vertex[] v4 = {Intro236, Intro263};
+        Vertex[] v5 = {JavaIntro, Intro209};
+        Vertex[] v6 = {pythonIntro, Intro165};
+        graph.addEdge(v1);
+        graph.addEdge(v2);
+        graph.addEdge(v3);
+        graph.addEdge(v4);
+        graph.addEdge(v5);
+        graph.addEdge(v6);
+        graph.addEdge(vx);
+        Vertex PhilIntro = new Vertex("Introductory Philosophy");
+        Vertex[] v7 = {PhilIntro, Intro165};
+       try{
+           graph.addEdge(v7);
+           fail();
+       } catch (Exception e) {
+           assertEquals(e.getMessage(), Vertex_NOT_FOUND);
+       }
+
+    }
+
+    @Test
+    public void testDeleteEdgeThrowExceptionSecondNotExist() throws Exception {
+        Vertex pythonIntro = new Vertex("Introductory Python");
+        Vertex compIntro = new Vertex("Introductory Combbb");
+        Vertex Intro165 = new Vertex("CSC165");
+        Vertex JavaIntro = new Vertex("Introductory Java");
+        Vertex CIntro = new Vertex("Introductory C++");
+        Vertex Intro236 = new Vertex("CSC236");
+        Vertex Intro209 = new Vertex("CSC209");
+        Vertex Intro263 = new Vertex("CSC263");
+        Vertex[] Starter = {pythonIntro};
+        DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+        Vertex[] v1 = {pythonIntro, JavaIntro};
+        Vertex[] vx = {compIntro, JavaIntro};
+        Vertex[] v2 = {pythonIntro, CIntro};
+        Vertex[] v3 = {Intro165, Intro236};
+        Vertex[] v4 = {Intro236, Intro263};
+        Vertex[] v5 = {JavaIntro, Intro209};
+        Vertex[] v6 = {pythonIntro, Intro165};
+        graph.addEdge(v1);
+        graph.addEdge(v2);
+        graph.addEdge(v3);
+        graph.addEdge(v4);
+        graph.addEdge(v5);
+        graph.addEdge(v6);
+        graph.addEdge(vx);
+        Vertex PhilIntro = new Vertex("Introductory Philosophy");
+        Vertex[] v7 = {Intro165, PhilIntro};
+        try{
+            graph.addEdge(v7);
+            fail();
+        } catch (Exception e) {
+            assertEquals(e.getMessage(), Vertex_NOT_FOUND);
+        }
+
     }
 }
