@@ -1,8 +1,8 @@
 package test;
 
-import graph.DirectedGraph;
-import user.UserInfo;
-import constants.Achievements;
+import main.graph.DirectedGraph;
+import main.user.UserInfo;
+import main.constants.Achievements;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -77,9 +77,30 @@ public class UserInfoTest {
         assertEquals(3, userInfo.getTotalLogins());
     }
 
-    ///only for seeing what displayAchievements actually returns
+    /**
+     * test if the achievements are displayed properly with no requirement to the order of display
+     */
     @Test
     void testDisplayAchievements(){
-        assertEquals("", userInfo.displayAchievement());
+        userInfo.initializeMapOfAchievement();
+        Object[] achievementNames = userInfo.getMapOfAchievement().keySet().toArray();
+        assertEquals( achievementNames[0]
+                        + ": "
+                        + "not acquired"
+                        + '\n'
+                        + achievementNames[1]
+                        + ": "
+                        + "not acquired"
+                        + '\n'
+                        + achievementNames[2]
+                        + ": "
+                        + "not acquired"
+                        + '\n'
+                        + achievementNames[3]
+                        + ": "
+                        + "not acquired"
+                        + '\n'
+
+                ,userInfo.displayAchievement());
     }
 }

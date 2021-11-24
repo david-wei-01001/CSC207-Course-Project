@@ -5,7 +5,7 @@ Intro
 
 There are generally a series of steps to learning anything. For example, student A who wants to learn to build an android app would first need to learn java, design concepts, version control, etc. This app represents these steps using a technical tree, where each node represents a step and each directed edge represents the order in which users are suggested to complete the steps. A technical tree for student A may look like something similar to below:
 
-          technicaltree Basics → Design Concepts ↘ 
+          main.technicaltree Basics → Design Concepts ↘ 
 
                                           app development
                         Version Control ↗
@@ -13,13 +13,13 @@ There are generally a series of steps to learning anything. For example, student
 There may also be other technical trees, such as a Math technical tree, for learning various concepts in different areas.
 
 
-Community & posts
+Community & main.posts
 
-Each node has an associated community, where users can post study notes, guides, codes and resources. Users can also like or comment on others' posts, or subscribe to other users to get notification of their future posts. In addition, users can download the resources uploaded by other users to use as learning material.
+Each node has an associated community, where users can post study notes, guides, codes and resources. Users can also like or comment on others' main.posts, or subscribe to other users to get notification of their future main.posts. In addition, users can download the resources uploaded by other users to use as learning material.
 
 Unlocking New Nodes
 
-New users only have access to low level nodes, such as technicaltree Basics, or Python Basics. To unlock higher level nodes, users must complete the tasks within previous nodes. For example, in order to advance to the “Design Concepts” node, users must create a post and review three posts created by other users in the community of “technicaltree Basics” node.
+New users only have access to low level nodes, such as main.technicaltree Basics, or Python Basics. To unlock higher level nodes, users must complete the tasks within previous nodes. For example, in order to advance to the “Design Concepts” node, users must create a post and review three main.posts created by other users in the community of “main.technicaltree Basics” node.
 
 New Technical Trees
 
@@ -27,9 +27,9 @@ Users are free to create their own technical trees for any subjects, and these c
 
 Reward System
 
-Users can gain reward points from the number of likes their posts received, the ratings of their technical trees, daily signups, or completing achievements. Users can use reward points to unlock new trees. Other digital contents that users can unlock may include new skins for their technical trees and ui.
+Users can gain reward points from the number of likes their main.posts received, the ratings of their technical trees, daily signups, or completing achievements. Users can use reward points to unlock new trees. Other digital contents that users can unlock may include new skins for their technical trees and main.ui.
 
 
 Achievement System
 
-There is a list of achievements for users to complete. New users will have none of the achievements completed and they can complete them by engaging in various actions. For example, the user may complete an achievement called “Make the First Post!” by making their first post in a community. New achievements may also be added by us in the future to encourage user engagement. 
+There is a list of achievements for users to complete. New users will have none of the achievements completed and they can complete them by engaging in various actions. For example, the main.user may complete an achievement called “Make the First Post!” by making their first post in a community. New achievements may also be added by us in the future to encourage main.user engagement. 

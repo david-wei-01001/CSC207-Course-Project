@@ -1,7 +1,7 @@
 package test;
 
-import graph.DirectedGraph;
-import graphbuilders.GraphArchitect;
+import main.graph.DirectedGraph;
+import main.graphbuilders.GraphArchitect;
 
 
 import java.io.FileInputStream;
@@ -20,7 +20,7 @@ public class SerializationTest {
 
          // creating the file to save the particular instance of DirectedGraph to, and creating the
          // ObjectOutputStream object that saves it.
-        String fileName = "src/JSON/Serialization.json";
+        String fileName = "src/JSON/Serialization.main.json";
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
         os.writeObject(csIntroductorySeriesTreeToSave);
 //        os.writeObject("ok");

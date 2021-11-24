@@ -1,7 +1,7 @@
-Class name: user
+Class name: main.user
 
 Responsibilities:
-user()
+main.user()
 getName()
 setName()
 addListOfGraph()
@@ -11,4 +11,4 @@ Collaborators:
 TechniqueGraph
 Report
 RewardPoints
-resource
+main.resource

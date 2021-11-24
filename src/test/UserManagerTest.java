@@ -1,10 +1,10 @@
 package test;
 
-import graph.DirectedGraph;
-import graphbuilders.GraphArchitect;
-import user.UserInfo;
-import user.UserManager;
-import constants.BuiltInGraphs;
+import main.graph.DirectedGraph;
+import main.graphbuilders.GraphArchitect;
+import main.user.UserInfo;
+import main.user.UserManager;
+import main.constants.BuiltInGraphs;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -93,7 +93,7 @@ class UserManagerTest {
 
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.getAUserInfo("anotherUserName"));
-        Assertions.assertEquals("Cannot recognize this user", thrown.getMessage());
+        Assertions.assertEquals("Cannot recognize this main.user", thrown.getMessage());
     }
 
     @Test
@@ -114,7 +114,7 @@ class UserManagerTest {
 
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.addGraphToCurrent(GRAPH));
-        Assertions.assertEquals("This graph already exists in this userinfo", thrown.getMessage());
+        Assertions.assertEquals("This main.graph already exists in this userinfo", thrown.getMessage());
     }
 
     @Test
@@ -153,6 +153,6 @@ class UserManagerTest {
     void setCurrentUserInfoToUnsuccessful() throws Exception {
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.setCurrentUserInfoTo(ANOTHER_USERNAME));
-        Assertions.assertEquals("Cannot recognize this user", thrown.getMessage());
+        Assertions.assertEquals("Cannot recognize this main.user", thrown.getMessage());
     }
 }

@@ -1,12 +1,12 @@
 package test;
 
-import posts.Comment;
-import posts.HasPublishedContents;
-import posts.Post;
+import main.posts.Comment;
+import main.posts.HasPublishedContents;
+import main.posts.Post;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.After;
-import user.UserInfo;
+import main.user.UserInfo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +22,7 @@ public class postTest {
         userInfo = new UserInfo("Tong", "123@mail.com", "123");
         post = new Post("nothing", "0", userInfo);
         post.addPublishedContent("testing", userInfo);
-        post.addPublishedContent("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", userInfo);
+        post.addPublishedContent("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", userInfo);
     }
 
     @After
@@ -120,10 +120,57 @@ public class postTest {
         assertEquals("nothing", post.getContent());
     }
 
-    ///only for seeing what toString actually returns
+    /**
+     * test if the post is properly converted to string format
+     */
     @Test
     public void testToString() {
-        assertEquals("", post.toString());
+        Comment comment0 = post.getMapOfComments().get("Comment #0");
+        Comment comment1 = post.getMapOfComments().get("Comment #1");
+        assertEquals("Post" + '\n' +
+                "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+                        +'\n'
+                        + "id=" + post.getId()
+                        + ", creator=" + post.getCreator().getName()
+                        +'\n'
+                        +"------------------------------------------------------------------------------------------" +
+                        "------------"
+                        +'\n'
+                        + post.getContent()
+                        + '\n'
+                        + "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
+                        "::::::::::::"
+                        +'\n'
+                        + "Comments"
+                        + '\n'
+                        + "----------------------------------------------------------------------------------------" +
+                        "--------------"
+                        +'\n'
+                        + comment0.getId()
+                        +'='
+                        +'\n'
+                        + comment0.getCreator().getName()
+                        +'\n'
+                        + comment0.getContent()
+                        + '\n'
+                        + "----------------------------------------------------------------------------------------" +
+                        "--------------"
+                        +'\n'
+                        + comment1.getId()
+                        +'='
+                        +'\n'
+                        + comment1.getCreator().getName()
+                        +'\n'
+                        + comment1.getContent()
+                        + '\n'
+                        + "----------------------------------------------------------------------------------------" +
+                        "--------------"
+                        + '\n'
+                        + "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
+                        "::::::::::::"
+
+
+                , post.toString());
     }
 }
 

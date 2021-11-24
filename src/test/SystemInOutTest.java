@@ -1,6 +1,6 @@
 package test;
 
-import java.SystemInOut;
+import main.SystemInOut;
 import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
