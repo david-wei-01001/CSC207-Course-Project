@@ -64,7 +64,7 @@ public class UserInfoTest {
                 ", totalLogins=" + 0 +
                 ", listOfPostId=" + emptyArray +
                 ", listOfGraph=" + emptyMap +
-                ", listOfResource=" + emptyArray +
+                ", mapOfResource=" + emptyArray +
                 ", mapOfAchievement=" + userInfo.getMapOfAchievement() +
                 '}', userInfo.toString());
     }
