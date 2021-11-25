@@ -1,14 +1,14 @@
-package main.graph;
+package graph;
 
-import main.constants.Exceptions;
-import main.constants.InLevelComparator;
+import constants.Exceptions;
+import constants.InLevelComparator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static main.constants.Algorithm.*;
+import static constants.Algorithm.*;
 
 /**
  * A special Array which stores a vertex and all DirectedEdges started from a vertex.

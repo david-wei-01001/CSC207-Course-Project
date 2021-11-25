@@ -1,7 +1,5 @@
-package test;
-
-import main.graph.DirectedGraph;
-import main.graph.Vertex;
+import graph.DirectedGraph;
+import graph.Vertex;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static main.constants.Exceptions.*;
+import static constants.Exceptions.*;
 import static org.junit.Assert.*;
 
 

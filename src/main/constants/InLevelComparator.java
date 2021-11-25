@@ -1,6 +1,6 @@
-package main.constants;
+package constants;
 
-import main.graph.Vertex;
+import graph.Vertex;
 
 import java.util.Comparator;
 

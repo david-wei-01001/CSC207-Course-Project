@@ -1,4 +1,4 @@
-package main.resource;
+package resource;
 
 
 public interface HasResource {

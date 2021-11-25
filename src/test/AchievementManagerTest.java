@@ -1,8 +1,6 @@
-package test;
-
-import main.achievementsystem.AchievementManager;
-import main.user.UserInfo;
-import main.constants.Achievements;
+import achievementsystem.AchievementManager;
+import user.UserInfo;
+import constants.Achievements;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

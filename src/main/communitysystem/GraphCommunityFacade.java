@@ -1,9 +1,9 @@
-package main.communitysystem;
+package communitysystem;
 
-import main.graph.DirectedGraph;
-import main.graph.GraphManager;
-import main.graphbuilders.GraphArchitect;
-import main.constants.BuiltInGraphs;
+import graph.DirectedGraph;
+import graph.GraphManager;
+import graphbuilders.GraphArchitect;
+import constants.BuiltInGraphs;
 
 /**
  * This Facade class unifies communityLibrary and graphManager.

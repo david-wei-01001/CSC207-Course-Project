@@ -1,10 +1,10 @@
-package main.constants;
+package constants;
 
-import main.graph.VertexArray;
+import graph.VertexArray;
 
 import java.util.Comparator;
 
-import static main.constants.Algorithm.pairwiseCompare;
+import static constants.Algorithm.pairwiseCompare;
 
 public class VertexArrayDefaultComparator implements Comparator<VertexArray> {
     @Override

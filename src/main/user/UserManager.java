@@ -1,8 +1,8 @@
-package main.user;
+package user;
 
 
-import main.graphbuilders.GraphArchitect;
-import main.constants.Exceptions;
+import graphbuilders.GraphArchitect;
+import constants.Exceptions;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,6 +1,6 @@
-package main.graph;
+package graph;
 
-import main.constants.Exceptions;
+import constants.Exceptions;
 
 import java.util.HashMap;
 import java.util.Map;
