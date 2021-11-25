@@ -1,4 +1,4 @@
-package main.constants;
+package constants;
 
 /**
  * This class stores the name of all built-in graphs of this program.

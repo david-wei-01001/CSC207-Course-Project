@@ -1,6 +1,6 @@
-package main.posts;
+package posts;
 
-import main.user.UserInfo;
+import user.UserInfo;
 
 /**
  * A Comment class, which is used for leaving comments on main.posts and community

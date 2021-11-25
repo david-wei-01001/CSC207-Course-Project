@@ -1,7 +1,5 @@
-package test;
-
-import main.graph.DirectedGraph;
-import main.graphbuilders.GraphArchitect;
+import graph.DirectedGraph;
+import graphbuilders.GraphArchitect;
 
 
 import java.io.FileInputStream;

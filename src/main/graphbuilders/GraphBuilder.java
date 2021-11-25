@@ -1,7 +1,7 @@
-package main.graphbuilders;
+package graphbuilders;
 
-import main.graph.DirectedGraph;
-import main.graph.Vertex;
+import graph.DirectedGraph;
+import graph.Vertex;
 
 import java.util.Map;
 

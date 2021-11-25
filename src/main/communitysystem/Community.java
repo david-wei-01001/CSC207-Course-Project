@@ -1,8 +1,8 @@
-package main.communitysystem;
+package communitysystem;
 
-import main.posts.HasPublishedContents;
-import main.posts.Post;
-import main.user.UserInfo;
+import posts.HasPublishedContents;
+import posts.Post;
+import user.UserInfo;
 
 import java.io.Serializable;
 import java.util.HashMap;

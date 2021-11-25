@@ -1,7 +1,7 @@
-package main.graphbuilders;
+package graphbuilders;
 
-import main.graph.DirectedGraph;
-import main.constants.Exceptions;
+import graph.DirectedGraph;
+import constants.Exceptions;
 
 /**
  * A class to select GraphBuilders and build corresponding graphs.

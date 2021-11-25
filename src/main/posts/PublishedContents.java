@@ -1,6 +1,6 @@
-package main.posts;
+package posts;
 
-import main.user.UserInfo;
+import user.UserInfo;
 
 import java.io.Serializable;
 

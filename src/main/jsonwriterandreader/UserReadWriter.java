@@ -1,6 +1,6 @@
-package main.jsonwriterandreader;
-import main.user.UserInfo;
-import main.user.UserManager;
+package jsonwriterandreader;
+import user.UserInfo;
+import user.UserManager;
 
 
 import java.io.*;

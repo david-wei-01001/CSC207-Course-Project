@@ -1,4 +1,4 @@
-package main.constants;
+package constants;
 
 import java.util.Map;
 
