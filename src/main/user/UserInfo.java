@@ -23,7 +23,7 @@ public class UserInfo implements HasName {
     private int totalLogins;
     private ArrayList<String> listOfPostId = new ArrayList<>();
     private Map<String, DirectedGraph> mapOfGraph = new HashMap<>();
-    private ArrayList<Resource> listOfResource = new ArrayList<>();
+    private Map<String, Resource> listOfResource = new HashMap<>();
     private Map<String, Boolean> mapOfAchievement = new HashMap<>();
 
  
@@ -100,12 +100,14 @@ public class UserInfo implements HasName {
     }
 
     public void addResource(Resource resource){
-        listOfResource.add(resource);
+        listOfResource.put(resource.getId(), resource);
     }
 
-    public ArrayList<Resource> getListOfResource(){
+    public Map<String, Resource> getListOfResource(){
         return this.listOfResource;
     }
+
+
 
     @Override
     public String toString() {

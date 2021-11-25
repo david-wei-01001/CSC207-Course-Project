@@ -22,6 +22,8 @@ public class SystemInOut {
     public SystemInOut() throws Exception {
         userManager = new UserManager();
         userManager.addNewUserInfo("alfred", "@", "123");
+        resourceManager = new ResourceManager(userManager.getCurrentUserInfo());
+        resourceManager.addDefault();
     }
 
     public void run() {
@@ -64,10 +66,78 @@ public class SystemInOut {
         System.out.println(userManager.displayAchievement());
         System.out.println("Enter anything to return to Main Menu.");
         String input = scanner.nextLine();
+        mainMenu();
     }
 
     private void resourcePage() {
+        System.out.println("Your reward point: " + userManager.getCurrentUserInfo().getRewardPoints());
+        System.out.println("Resource: 1.My Resource, 2.Download Resource, 3.Create Resource, " +
+                "0. Main Menu");
+        String input = scanner.nextLine();
+        while (!(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("0"))) {
+            System.out.println("Incorrect input, please try again.");
+            input = scanner.nextLine();
+        }
+
+        switch (input) {
+            case "1":
+                myResource();
+                break;
+            case "2":
+                downloadResources();
+                break;
+            case "3":
+                createResource();
+                break;
+            case "0":
+                mainMenu();
+        }
     }
+
+
+
+    private void myResource() {
+        System.out.println("Your resource: " + userManager.getCurrentUserInfo().getListOfResource());
+        System.out.println("Enter anything to return to Main Menu.");
+        String input = scanner.nextLine();
+        mainMenu();
+        }
+
+    private void downloadResources() {
+        System.out.println("Please choose the resource you want to download:" +
+                this.resourceManager.getMapOfResource());
+        String content = scanner.nextLine();
+        while(resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
+            System.out.println("Sorry, you do not have enough points");
+            System.out.println("Please choose the resource you want to download:" +
+                    this.resourceManager.getMapOfResource());
+            content = scanner.nextLine();
+        };
+        while(!resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
+            System.out.println("You have successfully download this resource");
+            resourceManager.downloadResource(content);
+            System.out.println("Enter anything to return to Main Menu.");
+            String input = scanner.nextLine();
+            mainMenu();
+        };
+
+    }
+
+    private void createResource() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please write the description of the resource you want to create");
+        String description = scanner.nextLine();
+        System.out.println("Please write the required points of the resource you want to create");
+        String point = scanner.nextLine();
+        System.out.println("Please write the content of the resource you want to create");
+        String content = scanner.nextLine();
+        resourceManager.addResource(content, Integer.parseInt(point), description);
+        System.out.println("You have successfully created this resource");
+        System.out.println("Enter anything to return to Main Menu.");
+        String input = scanner.nextLine();
+        mainMenu();
+    }
+
 
     private void technicalTreePage() {
 

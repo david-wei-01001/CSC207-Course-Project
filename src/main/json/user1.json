@@ -6,7 +6,7 @@
     "lastlogin":"20220101",
     "totallogin":"3",
     "listOfPost":[],
-    "listOfResource":[],
+    "mapOfResource":[],
     "mapOfAchievement": {
         "FirstLogin": "1",
         "FifthPost": "0"
