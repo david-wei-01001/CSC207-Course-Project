@@ -98,7 +98,7 @@ public class SystemInOut {
 
 
     private void myResource() {
-        System.out.println("Your resource: " + userManager.getCurrentUserInfo().getListOfResource());
+        System.out.println("Your resource: " + userManager.getCurrentUserInfo().getMapOfResource());
         System.out.println("Enter anything to return to Main Menu.");
         String input = scanner.nextLine();
         mainMenu();
