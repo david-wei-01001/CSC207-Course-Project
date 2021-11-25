@@ -1,4 +1,4 @@
-package main.constants;
+package constants;
 
 /**
  * This class stores all exception messages of this program.

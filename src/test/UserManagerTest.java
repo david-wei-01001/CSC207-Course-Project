@@ -1,10 +1,8 @@
-package test;
-
-import main.graph.DirectedGraph;
-import main.graphbuilders.GraphArchitect;
-import main.user.UserInfo;
-import main.user.UserManager;
-import main.constants.BuiltInGraphs;
+import graph.DirectedGraph;
+import graphbuilders.GraphArchitect;
+import user.UserInfo;
+import user.UserManager;
+import constants.BuiltInGraphs;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

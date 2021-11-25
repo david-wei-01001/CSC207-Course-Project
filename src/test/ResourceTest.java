@@ -1,11 +1,9 @@
-package test;
-
-import main.user.UserInfo;
-import main.resource.ResourceManager;
+import user.UserInfo;
+import resource.ResourceManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import main.resource.Resource;
+import resource.Resource;
 
 import static org.junit.jupiter.api.Assertions.*;
 

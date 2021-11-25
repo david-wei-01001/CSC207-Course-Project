@@ -1,6 +1,4 @@
-package test;
-
-import main.graph.VertexArray;
+import graph.VertexArray;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

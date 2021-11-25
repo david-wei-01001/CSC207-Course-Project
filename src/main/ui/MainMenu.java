@@ -1,4 +1,4 @@
-package main.ui;
+package ui;
 
 public class MainMenu {
 }

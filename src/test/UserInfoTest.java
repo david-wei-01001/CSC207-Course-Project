@@ -1,8 +1,6 @@
-package test;
-
-import main.graph.DirectedGraph;
-import main.user.UserInfo;
-import main.constants.Achievements;
+import graph.DirectedGraph;
+import user.UserInfo;
+import constants.Achievements;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

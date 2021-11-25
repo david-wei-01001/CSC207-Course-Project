@@ -1,7 +1,7 @@
-package main.communitysystem;
+package communitysystem;
 
-import main.user.UserInfo;
-import main.constants.Exceptions;
+import user.UserInfo;
+import constants.Exceptions;
 
 import java.util.HashMap;
 import java.util.Map;

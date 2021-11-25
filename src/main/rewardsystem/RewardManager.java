@@ -1,6 +1,6 @@
-package main.rewardsystem;
+package rewardsystem;
 
-import main.user.UserInfo;
+import user.UserInfo;
 
 /**
  * The use case that controls a main.user's interaction with the reward system.

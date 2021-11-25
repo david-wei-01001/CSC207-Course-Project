@@ -1,4 +1,4 @@
-package main.jsonwriterandreader;
+package jsonwriterandreader;
 
 
 import java.io.*;

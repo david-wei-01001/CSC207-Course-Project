@@ -1,8 +1,8 @@
-package main.graphbuilders;
+package graphbuilders;
 
-import main.graph.DirectedGraph;
-import main.graph.Vertex;
-import main.constants.BuiltInGraphs;
+import graph.DirectedGraph;
+import graph.Vertex;
+import constants.BuiltInGraphs;
 
 import java.util.HashMap;
 import java.util.Map;

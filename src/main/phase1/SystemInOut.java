@@ -1,12 +1,12 @@
-package main;
+package phase1;
 
-import main.achievementsystem.AchievementManager;
-import main.graph.GraphManager;
-import main.communitysystem.CommunityLibrary;
-import main.resource.ResourceManager;
-import main.rewardsystem.RewardManager;
-import main.user.UserManager;
-import main.constants.Exceptions;
+import achievementsystem.AchievementManager;
+import graph.GraphManager;
+import communitysystem.CommunityLibrary;
+import resource.ResourceManager;
+import rewardsystem.RewardManager;
+import user.UserManager;
+import constants.Exceptions;
 
 import java.util.Scanner;
 

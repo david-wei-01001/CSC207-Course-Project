@@ -1,9 +1,9 @@
-package main.user;
+package user;
 
-import main.constants.Namable;
-import main.graph.DirectedGraph;
-import main.resource.Resource;
-import main.constants.Achievements;
+import constants.HasName;
+import graph.DirectedGraph;
+import resource.Resource;
+import constants.Achievements;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * The class that stores all information of a main.user.
  */
-public class UserInfo implements Namable {
+public class UserInfo implements HasName {
     private String username;
     private String email;
     private String password;

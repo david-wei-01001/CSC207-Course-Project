@@ -1,4 +1,4 @@
-package main.constants;
+package constants;
 
 import java.util.ArrayList;
 import java.util.Comparator;

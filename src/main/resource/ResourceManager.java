@@ -1,6 +1,6 @@
-package main.resource;
+package resource;
 
-import main.user.UserInfo;
+import user.UserInfo;
 
 import java.io.Serializable;
 import java.util.HashMap;
