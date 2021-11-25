@@ -1,10 +1,14 @@
-import phase1.SystemInOut;
+package Test;
+
+import Java.SystemInOut;
 import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.rules.DisableOnDebug;
 import org.junit.rules.TestRule;
 import org.junit.rules.Timeout;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class SystemInOutTest {
     SystemInOut inOut;
@@ -23,7 +27,7 @@ class SystemInOutTest {
 
 //        inOut.getNonEmptyCredential("username");
         inOut.run();
-        inOut.mainMenu();
+//        inOut.mainMenu();
 
     }
 
