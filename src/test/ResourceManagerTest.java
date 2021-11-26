@@ -17,7 +17,8 @@ public class ResourceManagerTest {
     @BeforeEach
     public void setUp() {
         userInfo = new UserInfo("Tong", "123@mail.com", "123");
-        manager = new ResourceManager(userInfo);
+        manager = new ResourceManager();
+        manager.setCurrentUserInfo(userInfo);
     }
 
     @AfterEach

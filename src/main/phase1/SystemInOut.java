@@ -22,7 +22,7 @@ public class SystemInOut {
     public SystemInOut() throws Exception {
         userManager = new UserManager();
         userManager.addNewUserInfo("alfred", "@", "123");
-        resourceManager = new ResourceManager(userManager.getCurrentUserInfo());
+        resourceManager = new ResourceManager();
         resourceManager.addDefault();
     }
 
@@ -192,6 +192,7 @@ public class SystemInOut {
     public void setCurrentUser(String username) {
         try {
             userManager.setCurrentUserInfoTo(username);
+            resourceManager.setCurrentUserInfo(userManager.getCurrentUserInfo());
         } catch (Exception e) {
             e.printStackTrace();
         }

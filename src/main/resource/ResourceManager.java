@@ -10,11 +10,12 @@ public class ResourceManager implements HasResource, Serializable{
 
 
     private Map<String, Resource> mapOfResource = new HashMap<>();
-    private UserInfo currentUserInfo;
 
-    public ResourceManager(UserInfo currentUserInfo) {
+    public void setCurrentUserInfo(UserInfo currentUserInfo) {
         this.currentUserInfo = currentUserInfo;
     }
+
+    private UserInfo currentUserInfo;
 
     /**
      * Add the target main.resource to the map of main.resource
@@ -24,8 +25,10 @@ public class ResourceManager implements HasResource, Serializable{
      */
     @Override
     public void addResource(String content, int point, String description) {
-        Resource resourceToAdd = new Resource(content, getNextId(), point, description, currentUserInfo);
+        String id = getNextId();
+        Resource resourceToAdd = new Resource(content,id , point, description, currentUserInfo);
         mapOfResource.put(resourceToAdd.getId(), resourceToAdd);
+        currentUserInfo.addResource(resourceToAdd);
     }
 
     /**
@@ -90,7 +93,7 @@ public class ResourceManager implements HasResource, Serializable{
     public void addDefault() {
         UserInfo userInfo = new UserInfo("Tong", "123@mail.com", "123");
         Resource resourceToAdd1 = new Resource("https://www.teach.cs.toronto.edu/~csc110y/fall/notes/",
-                getNextId(), 5, "Course notes of csc110", userInfo);
+                getNextId(), 0, "Course notes of csc110", userInfo);
         mapOfResource.put(resourceToAdd1.getId(), resourceToAdd1);
         Resource resourceToAdd2 = new Resource("https://www.youtube.com/watch?v=eIrMbAQSU34",
                 getNextId(), 25, "Java Tutorial for Beginners", userInfo);
