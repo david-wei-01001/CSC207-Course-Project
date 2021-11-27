@@ -42,13 +42,18 @@ public class VertexArray implements Iterable<Vertex> {
         }
     }
 
+    public void updateVertex(Vertex vertex) throws Exception {
+        deleteThisEdge(vertex);
+        addEdge(vertex);
+    }
+
 
     public int indexToInsert(Vertex vertex) {
         if (END.isEmpty()) {
             return 0;
         }
         int b = 0;
-        int e = END.size();
+        int e = END.size() - 1;
         InLevelComparator inLevelComparator = new InLevelComparator();
         return recBinaryInsertIndex(END, vertex, inLevelComparator, b, e);
     }
@@ -79,10 +84,6 @@ public class VertexArray implements Iterable<Vertex> {
 
     }
 
-    public int size(){
-        return END.size();
-    }
-
     /**
      * Check whether a vertex is reachable from start.
      * @param end a vertex to be checked
@@ -100,16 +101,6 @@ public class VertexArray implements Iterable<Vertex> {
     public Iterator<Vertex> iterator() {
         return new VertexItr();
     }
-
-//    @Override
-//    public int compareTo(VertexArray o) {
-//        int startCompare = start.compareTo(o.getStart());
-//        if (startCompare != 0) {
-//            return startCompare;
-//        } else {
-//            return pairwiseCompare(new VertexItr(), o.iterator());
-//        }
-//    }
 
     private class VertexItr implements Iterator<Vertex> {
 
@@ -133,6 +124,13 @@ public class VertexArray implements Iterable<Vertex> {
         }
     }
 
+    /**
+     * Helper method of toString.
+     * For each ending vertices that start can reach,
+     * return its name preceded by an arrow and followed by a newline character.
+     * @return the name of each ending vertices preceded
+     *         by an arrow and followed by a newline character
+     */
     public String arrowEnd() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Vertex vertex : END) {
@@ -146,6 +144,6 @@ public class VertexArray implements Iterable<Vertex> {
 
     @Override
     public String toString() {
-        return  start.toString() + "\n" + arrowEnd();
+        return start.toString() + "\n" + arrowEnd();
     }
 }

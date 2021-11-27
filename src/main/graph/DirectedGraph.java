@@ -12,7 +12,7 @@ import static constants.Algorithm.*;
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.
  */
-public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasName {
+public class DirectedGraph extends Observable implements Serializable, Iterable<VertexArray>, Namable {
 
     /**
      * The key of VERTICES is a String which is the name of a Vertex, the value of the VERTICES is an Array of length
@@ -49,11 +49,12 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
      * @throws Exception if the name of the first vertex in edge does not exist in the DirectedGraph
      */
     public void addEdge(Vertex[] edge) throws Exception {
-        if (checkEdgeExistence(edge)) {
+        if (!checkEdgeExistence(edge)) {
             addVertex(edge[0]);
-            getVertexArray(edge[0]).addEdge(edge[1]);
             addVertex(edge[1]);
             edge[1].addInLevel();
+            updateAll(edge[1]);
+            getVertexArray(edge[0]).addEdge(edge[1]);
         } else {
             throw new Exception(Exceptions.EDGE_ALREADY_EXIST);
         }
@@ -103,8 +104,17 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     public void deleteEdge(Vertex[] edge) throws Exception {
         getVertexArray(edge[0]).deleteThisEdge(edge[1]);
         edge[1].minusInLevel();
+        updateAll(edge[1]);
         if(edge[1].getInLevel() == 0){
             CURRENTUNCLOCK.add(edge[1].getName());
+        }
+    }
+
+    public void updateAll(Vertex vertex) throws Exception {
+        for (String name: VERTICES.keySet()) {
+            if (getVertexArray(name).isEnd(vertex)) {
+                getVertexArray(name).updateVertex(vertex);
+            }
         }
     }
 
@@ -119,6 +129,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         Vertex delete = getVertexArray(name).getStart();
         for (Vertex v: getVertexArray(name)){
             v.minusInLevel();
+            updateAll(v);
             if (v.getInLevel() == 0){
                 CURRENTUNCLOCK.add(v.getName());
             }
@@ -200,6 +211,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
             CURRENTUNCLOCK.remove(name);
             for (Vertex next : getVertexArray(name)) {
                 next.minusInLevel();
+                updateAll(next);
                 if(next.getInLevel() == 0){
                     CURRENTUNCLOCK.add(next.getName());}
             }

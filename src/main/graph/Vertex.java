@@ -70,4 +70,9 @@ public class Vertex implements Serializable, HasName {
 //            return name.compareTo(o.getName());
 //        }
 //    }
+
+    @Override
+    public String toString(){
+        return getName();
+    }
 }
