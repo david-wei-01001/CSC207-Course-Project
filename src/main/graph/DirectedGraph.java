@@ -1,13 +1,13 @@
-package main.graph;
+package graph;
 
-import main.constants.Exceptions;
-import main.constants.Namable;
-import main.constants.VertexArrayDefaultComparator;
+import constants.Exceptions;
+import constants.HasName;
+import constants.VertexArrayDefaultComparator;
 
 import java.io.Serializable;
 import java.util.*;
 
-import static main.constants.Algorithm.*;
+import static constants.Algorithm.*;
 
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.

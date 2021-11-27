@@ -1,6 +1,6 @@
-package main.jsonwriterandreader;
-import main.communitysystem.Community;
-import main.communitysystem.CommunityLibrary;
+package jsonwriterandreader;
+import communitysystem.Community;
+import communitysystem.CommunityLibrary;
 
 
 import java.io.*;

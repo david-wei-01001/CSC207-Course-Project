@@ -1,11 +1,9 @@
-package test;
-
-import main.user.UserInfo;
-import main.resource.ResourceManager;
+import user.UserInfo;
+import resource.ResourceManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import main.resource.Resource;
+import resource.Resource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +16,8 @@ class ResourceTest {
     @BeforeEach
     void setUp() {
         userInfo = new UserInfo("Tong", "123@mail.com", "123");
-        manager = new ResourceManager(userInfo);
+        manager = new ResourceManager();
+        manager.setCurrentUserInfo(userInfo);
         resource = new Resource("nothing", manager.getNextId(),
                 0, "Please do not download it.", userInfo);
     }

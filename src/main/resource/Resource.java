@@ -1,7 +1,7 @@
-package main.resource;
+package resource;
 
-import main.posts.PublishedContents;
-import main.user.UserInfo;
+import posts.PublishedContents;
+import user.UserInfo;
 
 public class Resource extends PublishedContents {
     private final String content;

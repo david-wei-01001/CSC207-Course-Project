@@ -1,15 +1,12 @@
-package test;
-
-import main.communitysystem.Community;
-    import main.posts.HasPublishedContents;
-    import main.posts.Post;
+import communitysystem.Community;
+import posts.HasPublishedContents;
+import posts.Post;
 import org.junit.Before;
-    import org.junit.Rule;
-    import org.junit.Test;
-    import main.user.UserInfo;
-    import org.junit.rules.ExpectedException;
-
-    import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.Test;
+import user.UserInfo;
+import org.junit.rules.ExpectedException;
+import static org.junit.Assert.*;
 
 public class communityTest {
     Community community;

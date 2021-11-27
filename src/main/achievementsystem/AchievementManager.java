@@ -1,5 +1,5 @@
-package main.achievementsystem;
-import main.user.UserInfo;
+package achievementsystem;
+import user.UserInfo;
 import java.util.Map;
 
 /**

@@ -1,9 +1,9 @@
-package main.user;
+package user;
 
-import main.constants.Namable;
-import main.graph.DirectedGraph;
-import main.resource.Resource;
-import main.constants.Achievements;
+import constants.HasName;
+import graph.DirectedGraph;
+import resource.Resource;
+import constants.Achievements;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * The class that stores all information of a main.user.
  */
-public class UserInfo implements Namable {
+public class UserInfo implements HasName {
     private String username;
     private String email;
     private String password;
@@ -23,7 +23,7 @@ public class UserInfo implements Namable {
     private int totalLogins;
     private ArrayList<String> listOfPostId = new ArrayList<>();
     private Map<String, DirectedGraph> mapOfGraph = new HashMap<>();
-    private ArrayList<Resource> listOfResource = new ArrayList<>();
+    private Map<String, Resource> mapOfResource = new HashMap<>();
     private Map<String, Boolean> mapOfAchievement = new HashMap<>();
 
  
@@ -100,12 +100,14 @@ public class UserInfo implements Namable {
     }
 
     public void addResource(Resource resource){
-        listOfResource.add(resource);
+        mapOfResource.put(resource.getId(), resource);
     }
 
-    public ArrayList<Resource> getListOfResource(){
-        return this.listOfResource;
+    public Map<String, Resource> getMapOfResource(){
+        return this.mapOfResource;
     }
+
+
 
     @Override
     public String toString() {
@@ -118,7 +120,7 @@ public class UserInfo implements Namable {
                 ", totalLogins=" + totalLogins +
                 ", listOfPostId=" + listOfPostId +
                 ", listOfGraph=" + mapOfGraph +
-                ", listOfResource=" + listOfResource +
+                ", mapOfResource=" + mapOfResource +
                 ", mapOfAchievement=" + mapOfAchievement +
                 '}';
     }

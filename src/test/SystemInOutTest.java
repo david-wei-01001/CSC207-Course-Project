@@ -1,6 +1,4 @@
-package test;
-
-import main.SystemInOut;
+import phase1.SystemInOut;
 import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
-package main.graph;
+package graph;
 
-import main.constants.Namable;
+import constants.HasName;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ import java.io.Serializable;
  * A vertex of a DirectedGraph.
  * This usually represents a topic in a field of knowledge.
  */
-public class Vertex implements Serializable, Namable {
+public class Vertex implements Serializable, HasName {
     private String name;
     // inLevel is a int representing the depth of this vertex in a DirectedGraph.
     private int inLevel;
