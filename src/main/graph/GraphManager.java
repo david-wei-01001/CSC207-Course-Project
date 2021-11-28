@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * THis class store and manage all DirectedGraphs of a main.user.
+ * This class store and manage all DirectedGraphs of a main.user.
  */
 public class GraphManager {
 
@@ -80,5 +80,10 @@ public class GraphManager {
         return mapOfGraphs;
     }
 
-
+    /**
+     * Display the current graph
+     */
+    public String displayCurrentGraph(){
+        currentGraph.toString();
+    }
 }

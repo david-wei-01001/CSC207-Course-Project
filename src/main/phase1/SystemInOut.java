@@ -8,6 +8,7 @@ import rewardsystem.RewardManager;
 import user.UserManager;
 import constants.Exceptions;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class SystemInOut {
@@ -20,6 +21,7 @@ public class SystemInOut {
     private Scanner scanner = new Scanner(System.in);
 
     public SystemInOut() throws Exception {
+        graphManager = new GraphManager();
         userManager = new UserManager();
         userManager.addNewUserInfo("alfred", "@", "123");
         resourceManager = new ResourceManager();
@@ -47,7 +49,7 @@ public class SystemInOut {
 
             switch (input) {
                 case "1":
-                    technicalTreePage();
+                    technicalTreeMainPage();
                     break;
                 case "2":
                     resourcePage();
@@ -139,7 +141,33 @@ public class SystemInOut {
     }
 
 
-    private void technicalTreePage() {
+    private void technicalTreeMainPage() throws Exception {
+        System.out.println("Hi! Now you've entered the technical tree page");
+        System.out.println("Select the tree you want to study!");
+        System.out.println("Tech Trees: " + graphManager.getAllGraphs());
+        System.out.println("Enter \"main\" to return to main page.");
+        String input = scanner.nextLine();
+
+        while (!graphManager.getAllGraphs().containsKey(input) && input != "main") {
+            System.out.println("You have input an invalid number, try again :(");
+            input = scanner.nextLine();
+        }
+
+        if (input == "main"){
+            mainMenu();
+        }
+
+        else {
+            technicalTreePage(input);
+        }
+
+    }
+
+    private void technicalTreePage(String treeId) throws Exception {
+        graphManager.setCurrentGraph(treeId);
+        System.out.println(graphManager.displayCurrentGraph());
+
+
 
     }
 
