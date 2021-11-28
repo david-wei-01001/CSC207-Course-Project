@@ -3,6 +3,7 @@ package phase1;
 import achievementsystem.AchievementManager;
 import graph.GraphManager;
 import communitysystem.CommunityLibrary;
+import graph.Vertex;
 import resource.ResourceManager;
 import rewardsystem.RewardManager;
 import user.UserManager;
@@ -49,7 +50,11 @@ public class SystemInOut {
 
             switch (input) {
                 case "1":
-                    technicalTreeMainPage();
+                    try {
+                        technicalTreeMainPage();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case "2":
                     resourcePage();
@@ -148,12 +153,12 @@ public class SystemInOut {
         System.out.println("Enter \"main\" to return to main page.");
         String input = scanner.nextLine();
 
-        while (!graphManager.getAllGraphs().containsKey(input) && input != "main") {
+        while (!graphManager.getAllGraphs().containsKey(input) && !input.equals("main")) {
             System.out.println("You have input an invalid number, try again :(");
             input = scanner.nextLine();
         }
 
-        if (input == "main"){
+        if (input.equals("main")){
             mainMenu();
         }
 
@@ -167,9 +172,44 @@ public class SystemInOut {
         graphManager.setCurrentGraph(treeId);
         System.out.println(graphManager.displayCurrentGraph());
 
+        System.out.println("Please choose the node you want to start with" + graphManager.getCurrentGraph().availableVertex());
+        String input = scanner.nextLine();
+        while (!graphManager.getCurrentGraph().availableVertex().containsKey(input)){
+            System.out.println("You have input an invalid number. Please try again :(");
+            input = scanner.nextLine();
+        }
+        String vertexName = graphManager.getCurrentGraph().availableVertex().get(input).toString();
+
+        studyVertex(vertexName);
+
+    }
+
+    private void studyVertex(String vertexName) throws Exception {
+
+        System.out.println("Now study the node you have chosen, once you're finished, type \"Yes\" below");
+        String input = scanner.nextLine();
+        while (!input.equals("Yes")){
+            System.out.println("It seems like you have not finished your study yet, keep working on it!" +
+                    "Once you finished, type \"Yes\" below");
+            input = scanner.nextLine();
+        }
+
+        System.out.println("Congratulations! You've made one giant step toward success! Now let's make some posts" +
+                "on what you've just learned.");
+        userManager.getCurrentUserInfo().addRewardPoints(5); // TODO: Add this to studyVertex
+        System.out.println("Please enter the content you want to publish below: ");
+        String publishedContent = scanner.nextLine();
+
+        communityLibrary.setCurrentCommunity(vertexName);
+        communityLibrary.createPost(publishedContent, achievementManager, rewardManager);
+        System.out.println("Congratulations! You've successfully published a post :)");
+        userManager.getCurrentUserInfo().addRewardPoints(5); // TODO: Add this line to createPost
+        System.out.println("You have completed this node, you can now proceed to the next " +
+                "node or return to the main menu.");
 
 
     }
+
 
     public void logIn() {
         System.out.println("Options: 1.Sign-in, 2.Register, or enter \"exit\" to exit program");
