@@ -20,7 +20,7 @@ public class UserManager {
      * Stores UserInfo of all Users in this program. Each key is a userName and the value is the UserInfo
      * of the User with that userName.
      */
-    private Map<String, UserInfo> mapOfUserInfo = new HashMap<>();
+    private UserList mapOfUserInfo = new UserList();
 
 
 //    /**
@@ -43,11 +43,10 @@ public class UserManager {
      */
     public void addNewUserInfo(String userName, String email, String password) throws Exception {
         if (!mapOfUserInfo.containsKey(userName)) {
-            mapOfUserInfo.put(userName, new UserInfo(userName, email, password));
+            mapOfUserInfo.add(new UserInfo(userName,email, password));
         } else {
             throw new Exception(Exceptions.USER_NAME_TAKEN);
         }
-
     }
 
     /**
@@ -106,7 +105,7 @@ public class UserManager {
         currentUserInfo.setPassword(newPassword);
     }
 
-    public Map<String, UserInfo> getMapOfUserInfo() {
+    public UserList getMapOfUserInfo() {
         return mapOfUserInfo;
     }
 
@@ -130,7 +129,7 @@ public class UserManager {
         currentUserInfo.incrementTotalLogins();
     }
 
-    public void setMapOfUserInfo(Map<String, UserInfo> mapOfUserInfo) {
+    public void setMapOfUserInfo(UserList mapOfUserInfo) {
         this.mapOfUserInfo = mapOfUserInfo;
     }
 

@@ -3,9 +3,6 @@ import graph.Vertex;
 import graph.VertexArray;
 import org.junit.Before;
 import org.junit.Test;
-import graph.VertexArray;
-import org.junit.jupiter.api.Assertions;
-
 import java.util.ArrayList;
 
 import static constants.Exceptions.*;

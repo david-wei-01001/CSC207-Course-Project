@@ -10,7 +10,7 @@ import java.util.Map;
  * The use case that controls a main.user's interaction with the achievement system.
  */
 public class CommunityLibrary {
-    private static Map<String, Community> mapOfCommunity = new HashMap<>();
+    private static CommunityList mapOfCommunity = new CommunityList();
     private Community currentCommunity;
     private UserInfo currentUserInfo;
 
@@ -35,7 +35,7 @@ public class CommunityLibrary {
     public static void addCommunity(String name){
         if(!checkCommunityExist(name)){
             Community com = new Community(name);
-            mapOfCommunity.put(name, com);
+            mapOfCommunity.add(com);
         }
     }
 
@@ -83,7 +83,7 @@ public class CommunityLibrary {
 
     }
 
-    public Map<String, Community> getMapOfCommunity() {
+    public CommunityList getMapOfCommunity() {
         return mapOfCommunity;
     }
 }
