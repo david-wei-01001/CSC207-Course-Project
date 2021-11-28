@@ -11,6 +11,10 @@ import java.util.Map;
 public class CommunityList implements Serializable {
     private final Map<String, Community> communityList = new HashMap<>();
 
+    public Map<String, Community> getCommunityList() {
+        return communityList;
+    }
+
     /**
      * Add community to this community list.
      * @param community is the community need to add

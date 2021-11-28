@@ -9,7 +9,16 @@ import java.util.Map;
  */
 
 public class UserList implements Serializable {
+
     private final Map<String, UserInfo> usersList = new HashMap<>();
+
+    /**
+     * Return the userlists.
+     * @return the userlist in this UserList class
+     */
+    public Map<String, UserInfo> getUsersList() {
+        return usersList;
+    }
 
     /**
      * Add user to this user list.
@@ -27,6 +36,11 @@ public class UserList implements Serializable {
         return usersList.get(username);
     }
 
+    /**
+     *
+     * @param username
+     * @return if the user with given username in current userlist.
+     */
     public boolean containsKey(String username){ return usersList.containsKey(username); }
 
 }

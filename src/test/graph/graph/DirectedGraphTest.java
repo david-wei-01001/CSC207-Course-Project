@@ -1,3 +1,5 @@
+package graph;
+
 import graph.DirectedGraph;
 import graph.Vertex;
 import org.junit.Before;

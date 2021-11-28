@@ -1,3 +1,5 @@
+package posts;
+
 import posts.Comment;
 import posts.HasPublishedContents;
 import posts.Post;
