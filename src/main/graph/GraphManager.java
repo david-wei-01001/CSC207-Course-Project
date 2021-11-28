@@ -84,6 +84,6 @@ public class GraphManager {
      * Display the current graph
      */
     public String displayCurrentGraph(){
-        currentGraph.toString();
+        return currentGraph.toString();
     }
 }
