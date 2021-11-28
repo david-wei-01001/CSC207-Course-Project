@@ -1,3 +1,5 @@
+package user;
+
 import graph.DirectedGraph;
 import user.UserInfo;
 import constants.Achievements;
