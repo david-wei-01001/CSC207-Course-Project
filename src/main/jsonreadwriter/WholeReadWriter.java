@@ -24,5 +24,6 @@ public class WholeReadWriter{
         UserList userlist = urw.readFromFile(pathForUser);
         CommunityList communitylist = crw.readFromFile(pathForCommunity);
         List data = Arrays.asList(userlist, communitylist);
+        return data;
     }
 }
