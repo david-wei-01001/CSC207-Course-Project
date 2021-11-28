@@ -1,16 +1,12 @@
-package test;
 
-import main.graph.Vertex;
-import main.graph.VertexArray;
+import graph.VertexArray;
+import graph.Vertex;
 import org.junit.Before;
 import org.junit.Test;
-import graph.VertexArray;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static main.constants.Exceptions.*;
+import static constants.Exceptions.*;
 import static org.junit.Assert.*;
 
 
