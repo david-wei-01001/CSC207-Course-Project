@@ -7,9 +7,7 @@ import java.util.Map;
 /**
  * A map of username —> User object.
  */
-// What do we gain by defining this class and storing an instance of it
-// in the LogInUseCase class, as opposed to just
-// storing a Map<String, User> in the LogInUseCase class?
+
 public class UserList implements Serializable {
     private final Map<String, UserInfo> usersList = new HashMap<>();
 

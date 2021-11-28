@@ -1,4 +1,4 @@
-package jsonwriterandreader;
+package jsonreadwriter;
 import user.UserList;
 
 import java.io.*;

@@ -1,10 +1,9 @@
-package jsonwriterandreader;
+package jsonreadwriter;
 
 
 import user.UserList;
 
 import java.io.*;
-import java.util.Map;
 
 public interface ReadWriter {
 
@@ -17,7 +16,7 @@ public interface ReadWriter {
     /**
      * @param filepath location of ser file
      */
-    UserList readFromFile(String filepath) throws IOException, ClassNotFoundException;
+    Object readFromFile(String filepath) throws IOException, ClassNotFoundException;
 
 //    Map<String, ?> readFromFile() throws IOException, ClassNotFoundException;
 //    private Map<String, User> libraryOfUsers;

@@ -13,6 +13,11 @@ import java.util.Map;
  */
 public class Community implements HasPublishedContents, Serializable {
     private final Map<String, Post> mapOfPost = new HashMap<>();
+
+    public String getNameOfCommunity() {
+        return nameOfCommunity;
+    }
+
     private final String nameOfCommunity;
 
 
