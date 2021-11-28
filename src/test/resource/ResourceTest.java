@@ -1,3 +1,5 @@
+package resource;
+
 import user.UserInfo;
 import resource.ResourceManager;
 import org.junit.jupiter.api.AfterEach;

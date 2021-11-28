@@ -1,3 +1,5 @@
+package communitysystem;
+
 import communitysystem.Community;
 import posts.HasPublishedContents;
 import posts.Post;

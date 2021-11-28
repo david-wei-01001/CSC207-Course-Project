@@ -1,3 +1,5 @@
+package achievementsystem;
+
 import achievementsystem.AchievementManager;
 import user.UserInfo;
 import constants.Achievements;

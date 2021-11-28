@@ -1,3 +1,5 @@
+package resource;
+
 import resource.HasResource;
 import resource.Resource;
 import resource.ResourceManager;

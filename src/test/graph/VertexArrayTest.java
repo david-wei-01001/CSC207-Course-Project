@@ -1,3 +1,4 @@
+package graph;
 
 import graph.VertexArray;
 import graph.Vertex;
