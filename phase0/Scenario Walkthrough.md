@@ -30,7 +30,7 @@ A main.user registers his/her account and completes the first vertex.
 
      - [checked by main’s completeVertex()]
 
-  5. Program prompts the main.user to create a post to share his/her study evidence in the node’s community:
+  5. Program prompts the main.user to create achievementsystem post to share his/her study evidence in the node’s community:
   
     - main.user enters the content of the post
       - [Program create an instance of Post with the corresponding content]

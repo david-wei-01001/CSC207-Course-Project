@@ -1,0 +1,38 @@
+{
+    "Python": {
+        "numberOfPost": "1",
+        "nameOfCommunity": "Python",
+        "mapOfPost": {
+            "Post #0": {
+                "content": "This is the content for the first Python Post",
+                "visualable": "1",
+                "numlike": "3",
+                "creator": "admin",
+                "numOfComments": 1,
+                "Comments": {
+                    "Comment #0": {
+                        "content": "This is the comment for the first Python Post",
+                        "visualable": "1",
+                        "numlike": "2",
+                        "creator": "unknown"
+                    }
+                }
+            }
+        }
+    },
+    "Data structure": {
+        "numberOfPost": "0",
+        "nameOfCommunity": "Data structure",
+        "mapOfPost": {}
+    },
+    "C++": {
+        "numberOfPost": "0",
+        "nameOfCommunity": "C++",
+        "mapOfPost": {}
+    },
+    "Operating system": {
+        "numberOfPost": "0",
+        "nameOfCommunity": "Operating system",
+        "mapOfPost": {}
+    }
+}

@@ -1,5 +1,5 @@
-create a post
-delete a post
-comment a post
+create achievementsystem post
+delete achievementsystem post
+comment achievementsystem post
 delete comment
 change main.user name
