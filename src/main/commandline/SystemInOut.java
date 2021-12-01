@@ -1,15 +1,13 @@
-package phase1;
+package commandline;
 
 import achievementsystem.AchievementManager;
 import graph.GraphManager;
 import communitysystem.CommunityLibrary;
-import graph.Vertex;
 import resource.ResourceManager;
 import rewardsystem.RewardManager;
 import user.UserManager;
 import constants.Exceptions;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class SystemInOut {
