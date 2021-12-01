@@ -4,6 +4,7 @@ import achievementsystem.AchievementManager;
 import graph.GraphManager;
 import communitysystem.CommunityLibrary;
 import graph.Vertex;
+import jdk.jshell.ExpressionSnippet;
 import resource.ResourceManager;
 import rewardsystem.RewardManager;
 import user.UserManager;
@@ -20,6 +21,7 @@ public class SystemInOut {
     private CommunityLibrary communityLibrary;
     private ResourceManager resourceManager;
     private Scanner scanner = new Scanner(System.in);
+    private Presenter presenter = new Presenter();
 
     public SystemInOut() throws Exception {
         graphManager = new GraphManager();
@@ -27,6 +29,7 @@ public class SystemInOut {
         userManager.addNewUserInfo("alfred", "@", "123");
         resourceManager = new ResourceManager();
         resourceManager.addDefault();
+
     }
 
     public void run() {
@@ -211,34 +214,33 @@ public class SystemInOut {
 
 
     public void logIn() {
-        System.out.println("Options: 1.Sign-in, 2.Register, or enter \"exit\" to exit program");
+        presenter.LoginOptions();
         String input = scanner.nextLine();
 
-        while (!(input.equals("1") || input.equals("2") || input.equals("exit"))) {
-            System.out.println("Incorrect input, please try again.");
-            input = scanner.nextLine();
-        }
+        input = presenter.getCorrectLoginInput(input);
 
         switch (input) {
-            case "1":
+            case Presenter.ONE:
                 if (!signIn()) {
                     logIn();
                 } else {
                     userManager.incrementTotalLogins();
                 }
                 break;
-            case "2":
+            case Presenter.TWO:
                 if (!register()) {
                     logIn();
                 } else {
                     userManager.incrementTotalLogins();
                 }
                 break;
-            case "exit":
+            case Presenter.EXIT:
                 exitProgram();
                 break;
         }
     }
+
+
 
     public boolean signIn() {
         String username = getUsernameSignIn();
