@@ -18,6 +18,7 @@ public class SystemInOut {
     private CommunityLibrary communityLibrary;
     private ResourceManager resourceManager;
     private Scanner scanner = new Scanner(System.in);
+    private Presenter presenter = new Presenter(userManager, resourceManager);
 
     public SystemInOut() throws Exception {
         graphManager = new GraphManager();
@@ -25,6 +26,7 @@ public class SystemInOut {
         userManager.addNewUserInfo("alfred", "@", "123");
         resourceManager = new ResourceManager();
         resourceManager.addDefault();
+        presenter = new Presenter(userManager, resourceManager);
     }
 
     public void run() {
@@ -69,18 +71,17 @@ public class SystemInOut {
 
     private void achievementPage() {
         System.out.println(userManager.displayAchievement());
-        System.out.println("Enter anything to return to Main Menu.");
+        System.out.println(presenter.mainMenuReturn());
         String input = scanner.nextLine();
         mainMenu();
     }
 
     private void resourcePage() {
-        System.out.println("Your reward point: " + userManager.getCurrentUserInfo().getRewardPoints());
-        System.out.println("Resource: 1.My Resource, 2.Download Resource, 3.Create Resource, " +
-                "0. Main Menu");
+        System.out.println(presenter.rewardPoints());
+        System.out.println(presenter.resourcePage());
         String input = scanner.nextLine();
         while (!(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("0"))) {
-            System.out.println("Incorrect input, please try again.");
+            System.out.println(presenter.incorrectInput());
             input = scanner.nextLine();
         }
 
@@ -102,26 +103,24 @@ public class SystemInOut {
 
 
     private void myResource() {
-        System.out.println("Your resource: " + userManager.getCurrentUserInfo().getMapOfResource());
-        System.out.println("Enter anything to return to Main Menu.");
+        System.out.println(presenter.currentResource());
+        System.out.println(presenter.mainMenuReturn());
         String input = scanner.nextLine();
         mainMenu();
         }
 
     private void downloadResources() {
-        System.out.println("Please choose the resource you want to download:" +
-                this.resourceManager.getMapOfResource());
+        System.out.println(presenter.resourceChoose());
         String content = scanner.nextLine();
-        while(resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
-            System.out.println("Sorry, you do not have enough points");
-            System.out.println("Please choose the resource you want to download:" +
-                    this.resourceManager.getMapOfResource());
+        while(resourceManager.downloadResource(content).equals(presenter.insufficientPoints())){
+            System.out.println(presenter.insufficientPoints());
+            System.out.println(presenter.resourceChoose());
             content = scanner.nextLine();
         }
-        while(!resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
-            System.out.println("You have successfully download this resource");
+        while(!resourceManager.downloadResource(content).equals(presenter.insufficientPoints())){
+            System.out.println(presenter.downloadSuccessfully());
             resourceManager.downloadResource(content);
-            System.out.println("Enter anything to return to Main Menu.");
+            System.out.println(presenter.mainMenuReturn());
             String input = scanner.nextLine();
             mainMenu();
         }
@@ -129,15 +128,15 @@ public class SystemInOut {
 
     private void createResource() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please write the description of the resource you want to create");
+        System.out.println(presenter.resourceDescription());
         String description = scanner.nextLine();
-        System.out.println("Please write the required points of the resource you want to create");
+        System.out.println(presenter.resourcePoints());
         String point = scanner.nextLine();
-        System.out.println("Please write the content of the resource you want to create");
+        System.out.println(presenter.resourceContents());
         String content = scanner.nextLine();
         resourceManager.addResource(content, Integer.parseInt(point), description);
-        System.out.println("You have successfully created this resource");
-        System.out.println("Enter anything to return to Main Menu.");
+        System.out.println(presenter.resourceCreateSuccessfully());
+        System.out.println(presenter.mainMenuReturn());
         String input = scanner.nextLine();
         mainMenu();
     }
