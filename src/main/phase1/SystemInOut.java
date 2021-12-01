@@ -112,15 +112,14 @@ public class SystemInOut {
             System.out.println("Please choose the resource you want to download:" +
                     this.resourceManager.getMapOfResource());
             content = scanner.nextLine();
-        };
+        }
         while(!resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
             System.out.println("You have successfully download this resource");
             resourceManager.downloadResource(content);
             System.out.println("Enter anything to return to Main Menu.");
             String input = scanner.nextLine();
             mainMenu();
-        };
-
+        }
     }
 
     private void createResource() {
