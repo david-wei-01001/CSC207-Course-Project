@@ -1,10 +1,9 @@
 package graph;
 
-import graph.VertexArray;
 import graph.Vertex;
+import graph.VertexArray;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.ArrayList;
 
 import static constants.Exceptions.*;

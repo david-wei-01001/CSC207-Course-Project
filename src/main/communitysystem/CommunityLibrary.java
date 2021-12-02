@@ -1,5 +1,8 @@
 package communitysystem;
 
+import achievementsystem.AchievementManager;
+import constants.Achievements;
+import rewardsystem.RewardManager;
 import user.UserInfo;
 import constants.Exceptions;
 
@@ -47,8 +50,21 @@ public class CommunityLibrary {
      //     * @return the id of the post being added.
      //     * @throws Exception throws an exception if the community with the communityName is not found.
      //     */
-    public String addPost(String content) {
-        return currentCommunity.addPublishedContent(content, currentUserInfo);
+
+
+    public void createPost(String content, AchievementManager achievementManager,
+                           RewardManager rewardManager) throws Exception {
+        String postId = currentCommunity.addPublishedContent(content, currentUserInfo);
+        currentUserInfo.addToListOfPostId(postId);
+        boolean achievementAwarded = achievementManager.requestAchievement(
+                Achievements.ARRAY_OF_POST_THRESHOLDS,
+                Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
+                currentUserInfo.getListOfPostId().size());
+        if (achievementAwarded) {
+            rewardManager.addRewardPoint(
+                    Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(currentUserInfo.getListOfPostId().size()));
+        }
+
     }
 
     /**

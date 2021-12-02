@@ -2,7 +2,7 @@ Note: “Tech Tree” mentioned in this project is implemented using graphs, so 
 
 Specification Summary:
 
-The application “Tech Tree” is a study app with online communities for people with similar learning interests to share study notes and resources. This app could serve as a “guide” for users when they are learning as a beginner in a specific field.
+The application “Tech Tree” is achievementsystem study app with online communities for people with similar learning interests to share study notes and resources. This app could serve as achievementsystem “guide” for users when they are learning as achievementsystem beginner in achievementsystem specific field.
 
 CRC Summary:
 
@@ -33,11 +33,11 @@ Skeleton Program:
 
 what it can achieve:
 
-	- prompt users to enter a username, an email, and a password, when creating a new account.
+	- prompt users to enter achievementsystem username, an email, and achievementsystem password, when creating achievementsystem new account.
 	
 	- select the corresponding Tree and node when users enter it’s id
 	
-	- produce a post with the content entered by users
+	- produce achievementsystem post with the content entered by users
 	
 	- display new nodes that users unlock
 	
