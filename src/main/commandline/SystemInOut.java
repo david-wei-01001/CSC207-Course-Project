@@ -1,4 +1,4 @@
-package phase1;
+package commandline;
 
 import achievementsystem.AchievementManager;
 import graph.GraphManager;
