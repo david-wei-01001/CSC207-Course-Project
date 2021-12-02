@@ -1,10 +1,7 @@
-package phase1;
+package commandline;
 
-import jdk.jshell.spi.SPIResolutionException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PresenterTest {
 
