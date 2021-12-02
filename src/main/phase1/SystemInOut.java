@@ -1,6 +1,7 @@
 package phase1;
 
 import achievementsystem.AchievementManager;
+import constants.Achievements;
 import graph.GraphManager;
 import communitysystem.CommunityLibrary;
 import graph.Vertex;
@@ -27,9 +28,14 @@ public class SystemInOut {
         userManager.addNewUserInfo("alfred", "@", "123");
         resourceManager = new ResourceManager();
         resourceManager.addDefault();
+        rewardManager = new RewardManager();
+        achievementManager = new AchievementManager();
+        communityLibrary = new CommunityLibrary();
+        graphManager.addBuiltInGrpah(communityLibrary);
     }
 
     public void run() {
+        load();
         logIn();
         mainMenu();
 
@@ -172,19 +178,27 @@ public class SystemInOut {
         graphManager.setCurrentGraph(treeId);
         System.out.println(graphManager.displayCurrentGraph());
 
-        System.out.println("Please choose the node you want to start with" + graphManager.getCurrentGraph().availableVertex());
+        System.out.println("Please choose the node you want to start with" +
+                graphManager.getCurrentGraph().availableVertex() + "or enter \"main\" to return to home page");
         String input = scanner.nextLine();
-        while (!graphManager.getCurrentGraph().availableVertex().containsKey(input)){
+        while (!graphManager.getCurrentGraph().availableVertex().containsKey(input) && !input.equals("main")){
             System.out.println("You have input an invalid number. Please try again :(");
             input = scanner.nextLine();
         }
-        String vertexName = graphManager.getCurrentGraph().availableVertex().get(input).toString();
 
-        studyVertex(vertexName);
+        if (input.equals("main")){
+            mainMenu();
+        }
+        else {
+
+            String vertexName = graphManager.getCurrentGraph().availableVertex().get(input).toString();
+
+            studyVertex(vertexName, treeId);
+        }
 
     }
 
-    private void studyVertex(String vertexName) throws Exception {
+    private void studyVertex(String vertexName, String treeId) throws Exception {
 
         System.out.println("Now study the node you have chosen, once you're finished, type \"Yes\" below");
         String input = scanner.nextLine();
@@ -194,19 +208,33 @@ public class SystemInOut {
             input = scanner.nextLine();
         }
 
-        System.out.println("Congratulations! You've made one giant step toward success! Now let's make some posts" +
+        graphManager.setCurrentGraph(treeId);
+
+        graphManager.complete(vertexName); // Marking the given vertex as completed
+
+
+        System.out.println("Congratulations! You've made one giant step toward success! Now let's make some posts " +
                 "on what you've just learned.");
-        userManager.getCurrentUserInfo().addRewardPoints(5); // TODO: Add this to studyVertex
+        userManager.getCurrentUserInfo().addRewardPoints(5);
         System.out.println("Please enter the content you want to publish below: ");
         String publishedContent = scanner.nextLine();
 
         communityLibrary.setCurrentCommunity(vertexName);
         communityLibrary.createPost(publishedContent, achievementManager, rewardManager);
+        boolean achievementAwarded = achievementManager.requestAchievement(
+                Achievements.ARRAY_OF_POST_THRESHOLDS,
+                Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
+                userManager.getListOfPostId().size());
+        if (achievementAwarded) {
+            rewardManager.addRewardPoint(
+                    Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(userManager.getListOfPostId().size()));
+        }
         System.out.println("Congratulations! You've successfully published a post :)");
-        userManager.getCurrentUserInfo().addRewardPoints(5); // TODO: Add this line to createPost
         System.out.println("You have completed this node, you can now proceed to the next " +
-                "node or return to the main menu.");
+                "node you want to study. Press any key to continue");
+        scanner.nextLine(); // Let the user enter anything they want here to proceed
 
+        technicalTreePage(treeId);
 
     }
 
@@ -260,6 +288,9 @@ public class SystemInOut {
     public void setCurrentUser(String username) {
         try {
             userManager.setCurrentUserInfoTo(username);
+            achievementManager.setCurrentUserInfo(userManager.getCurrentUserInfo());
+            rewardManager.setCurrentUserInfo(userManager.getCurrentUserInfo());
+            communityLibrary.setCurrentUserInfo(userManager.getCurrentUserInfo());
             resourceManager.setCurrentUserInfo(userManager.getCurrentUserInfo());
         } catch (Exception e) {
             e.printStackTrace();

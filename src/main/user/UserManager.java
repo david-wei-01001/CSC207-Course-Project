@@ -3,6 +3,9 @@ package user;
 
 import graphbuilders.GraphArchitect;
 import constants.Exceptions;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -151,5 +154,9 @@ public class UserManager {
 
     public String displayAchievement() {
         return currentUserInfo.displayAchievement();
+    }
+
+    public ArrayList<String> getListOfPostId() {
+        return currentUserInfo.getListOfPostId();
     }
 }

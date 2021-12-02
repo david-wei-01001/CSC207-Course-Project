@@ -9,7 +9,7 @@ public class AchievementManager {
 
     private UserInfo currentUserInfo;
 
-    public AchievementManager(UserInfo currentUserInfo) {
+    public void setCurrentUserInfo(UserInfo currentUserInfo) {
         this.currentUserInfo = currentUserInfo;
     }
 

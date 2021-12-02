@@ -17,7 +17,7 @@ public class RewardManager {
     private int pointsRewardedPerLike = 1;
     private int pointRewardedDailyLogin = 5;
 
-    public RewardManager(UserInfo currentUserInfo) {
+    public void setCurrentUserInfo(UserInfo currentUserInfo) {
         this.currentUserInfo = currentUserInfo;
     }
 

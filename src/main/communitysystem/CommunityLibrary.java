@@ -17,7 +17,7 @@ public class CommunityLibrary {
     private Community currentCommunity;
     private UserInfo currentUserInfo;
 
-    public CommunityLibrary(UserInfo currentUserInfo) {
+    public void setCurrentUserInfo(UserInfo currentUserInfo) {
         this.currentUserInfo = currentUserInfo;
     }
 
@@ -56,15 +56,7 @@ public class CommunityLibrary {
                            RewardManager rewardManager) throws Exception {
         String postId = currentCommunity.addPublishedContent(content, currentUserInfo);
         currentUserInfo.addToListOfPostId(postId);
-        boolean achievementAwarded = achievementManager.requestAchievement(
-                Achievements.ARRAY_OF_POST_THRESHOLDS,
-                Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
-                currentUserInfo.getListOfPostId().size());
-        if (achievementAwarded) {
-            rewardManager.addRewardPoint(
-                    Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(currentUserInfo.getListOfPostId().size()));
-        }
-
+        rewardManager.addRewardPoint(5);
     }
 
     /**
