@@ -1,5 +1,6 @@
 package commandline;
 
+import constants.Exceptions;
 import resource.ResourceManager;
 import user.UserManager;
 import java.util.Scanner;
