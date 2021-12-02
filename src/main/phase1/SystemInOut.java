@@ -3,14 +3,11 @@ package phase1;
 import achievementsystem.AchievementManager;
 import graph.GraphManager;
 import communitysystem.CommunityLibrary;
-import graph.Vertex;
-import jdk.jshell.ExpressionSnippet;
 import resource.ResourceManager;
 import rewardsystem.RewardManager;
 import user.UserManager;
 import constants.Exceptions;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class SystemInOut {
@@ -35,14 +32,11 @@ public class SystemInOut {
     public void run() {
         logIn();
         mainMenu();
-
         scanner.close();
+
     }
 
     public void mainMenu() {
-        boolean keepRunning = true;
-
-        while (keepRunning) {
             System.out.println("Main Menu: 1.Technical Tree, 2.Resource, 3.Achievement, or enter \"exit\" to exit program");
             String input = scanner.nextLine();
 
@@ -66,10 +60,9 @@ public class SystemInOut {
                     achievementPage();
                     break;
                 case "exit":
-                    keepRunning = false;
+                    exitProgram();
                     break;
             }
-        }
     }
 
     private void achievementPage() {
@@ -214,10 +207,9 @@ public class SystemInOut {
 
 
     public void logIn() {
-        presenter.LoginOptions();
-        String input = scanner.nextLine();
+        String input = presenter.LoginOptions();
 
-        input = presenter.getCorrectLoginInput(input);
+        input = presenter.getCorrectLoginOption(input);
 
         switch (input) {
             case Presenter.ONE:
@@ -244,7 +236,7 @@ public class SystemInOut {
 
     public boolean signIn() {
         String username = getUsernameSignIn();
-        if (username.equals("return")) {
+        if (username.equals(Presenter.RETURN)) {
             return false;
         }
         if (!enterPassword(username)) {
@@ -268,11 +260,11 @@ public class SystemInOut {
     }
 
     public boolean enterPassword(String username) {
-        String password = getNonEmptyCredential("password");
+        String password = presenter.getNonEmptyPassword();
         while (!getCorrectPassword(username).equals(password)) {
-            System.out.println("Incorrect password, please try again, or enter \"return\" to return to Options.\"");
-            password = getNonEmptyCredential("password");
-            if (password.equals("return")) {
+            presenter.incorrectPassword();
+            password = presenter.getNonEmptyPassword();
+            if (password.equals(Presenter.RETURN)) {
                 return false;
             }
         }
@@ -289,22 +281,12 @@ public class SystemInOut {
         return password;
     }
 
-    public String getNonEmptyCredential(String credential) {
-        System.out.println(credential + ": ");
-        String nonEmptyCredential = scanner.nextLine();
-        while (nonEmptyCredential.length() == 0) {
-            System.out.println("You did not enter a " + credential + ", please try again:");
-            nonEmptyCredential = scanner.nextLine();
-        }
-        return nonEmptyCredential;
-    }
-
     private String getUsernameSignIn() {
-        String username = getNonEmptyCredential("username");
+        String username = presenter.getNonEmptyUsername();
         while (!userManager.containsUsername(username)) {
-            System.out.println(Exceptions.INCORRECT_USERNAME + ", please try again, or enter \"return\" to return to Options.");
-            username = getNonEmptyCredential("username");
-            if (username.equals("return")) {
+            presenter.incorrectUsername();
+            username = presenter.getNonEmptyUsername();
+            if (username.equals(Presenter.RETURN)) {
                 return username;
             }
         }
@@ -312,11 +294,11 @@ public class SystemInOut {
     }
 
     public String getUsernameRegister() {
-        String username = getNonEmptyCredential("username");
+        String username = presenter.getNonEmptyUsername();
         while (userManager.containsUsername(username)) {
-            System.out.println(Exceptions.USER_NAME_TAKEN + ", please try again, or enter \"return\" to return to Options.");
-            username = getNonEmptyCredential("username");
-            if (username.equals("return")) {
+            presenter.usernameTaken();
+            username = presenter.getNonEmptyUsername();
+            if (username.equals(Presenter.RETURN)) {
                 return username;
             }
         }
@@ -324,12 +306,12 @@ public class SystemInOut {
     }
 
     public String getEmailRegister() {
-        System.out.println("email: ");
+        presenter.getEmail();
         String email = scanner.nextLine();
-        while (!email.contains("@")) {
-            System.out.println("Invalid email, or enter \"return\" to return to Options.");
+        while (!email.contains(Presenter.AT)) {
+            presenter.incorrectEmail();
             email = scanner.nextLine();
-            if (email.equals("return")) {
+            if (email.equals(Presenter.RETURN)) {
                 return email;
             }
         }
@@ -337,17 +319,17 @@ public class SystemInOut {
     }
 
     public String getPasswordRegister() {
-        return getNonEmptyCredential("password");
+        return presenter.getNonEmptyPassword();
     }
 
 
     private boolean register() {
         String username = getUsernameRegister();
-        if (username.equals("return")) {
+        if (username.equals(Presenter.RETURN)) {
             return false;
         }
         String email = getEmailRegister();
-        if (email.equals("return")) {
+        if (email.equals(Presenter.RETURN)) {
             return false;
         }
         String password = getPasswordRegister();

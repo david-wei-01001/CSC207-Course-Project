@@ -25,7 +25,7 @@ class SystemInOutTest {
 
 //        inOut.getNonEmptyCredential("username");
         inOut.run();
-        inOut.mainMenu();
+//        inOut.mainMenu();
 
     }
 
@@ -42,8 +42,8 @@ class SystemInOutTest {
     void getPasswordRegister() {
     }
 
-    @Test
-    void getNonEmptyCredential() {
-        inOut.getNonEmptyCredential("username");
-    }
+//    @Test
+//    void getNonEmptyCredential() {
+//        inOut.getNonEmptyCredential("username");
+//    }
 }
