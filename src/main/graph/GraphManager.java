@@ -14,6 +14,7 @@ public class GraphManager {
     private int numberOfGraphs;
     private DirectedGraph currentGraph;
 
+
     /**
      * @return the instance variable mapOfGraphs
      */
