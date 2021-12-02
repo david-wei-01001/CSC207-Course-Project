@@ -66,17 +66,17 @@ public class SystemInOut {
 
     private void achievementPage() {
         System.out.println(userManager.displayAchievement());
-        System.out.println(presenter.mainMenuReturn());
+        presenter.mainMenuReturn();
         String input = scanner.nextLine();
         mainMenu();
     }
 
     private void resourcePage() {
-        System.out.println(presenter.rewardPoints());
-        System.out.println(presenter.resourcePage());
+        presenter.rewardPoints();
+        presenter.resourcePage();
         String input = scanner.nextLine();
         while (!(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("0"))) {
-            System.out.println(presenter.incorrectInput());
+            presenter.incorrectInput();
             input = scanner.nextLine();
         }
 
@@ -98,24 +98,24 @@ public class SystemInOut {
 
 
     private void myResource() {
-        System.out.println(presenter.currentResource());
-        System.out.println(presenter.mainMenuReturn());
+        presenter.currentResource();
+        presenter.mainMenuReturn();
         String input = scanner.nextLine();
         mainMenu();
         }
 
     private void downloadResources() {
-        System.out.println(presenter.resourceChoose());
+        presenter.resourceChoose();
         String content = scanner.nextLine();
-        while(resourceManager.downloadResource(content).equals(presenter.insufficientPoints())){
-            System.out.println(presenter.insufficientPoints());
-            System.out.println(presenter.resourceChoose());
+        while(resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
+            presenter.insufficientPoints();
+            presenter.resourceChoose();
             content = scanner.nextLine();
         }
-        while(!resourceManager.downloadResource(content).equals(presenter.insufficientPoints())){
-            System.out.println(presenter.downloadSuccessfully());
+        while(!resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
+            presenter.downloadSuccessfully();
             resourceManager.downloadResource(content);
-            System.out.println(presenter.mainMenuReturn());
+            presenter.mainMenuReturn();
             String input = scanner.nextLine();
             mainMenu();
         }
@@ -123,15 +123,15 @@ public class SystemInOut {
 
     private void createResource() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(presenter.resourceDescription());
+        presenter.resourceDescription();
         String description = scanner.nextLine();
-        System.out.println(presenter.resourcePoints());
+        presenter.resourcePoints();
         String point = scanner.nextLine();
-        System.out.println(presenter.resourceContents());
+        presenter.resourceContents();
         String content = scanner.nextLine();
         resourceManager.addResource(content, Integer.parseInt(point), description);
-        System.out.println(presenter.resourceCreateSuccessfully());
-        System.out.println(presenter.mainMenuReturn());
+        presenter.resourceCreateSuccessfully();
+        presenter.mainMenuReturn();
         String input = scanner.nextLine();
         mainMenu();
     }
