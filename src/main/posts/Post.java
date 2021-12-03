@@ -1,8 +1,8 @@
 package posts;
 
+import constants.IterableMap;
 import user.UserInfo;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -16,7 +16,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
     /**
      * The map of all comments to this post, with comment ids as keys and comments as values.
      */
-    private final Map<String, Comment> mapOfComments = new HashMap<>();
+    private final IterableMap<String, Comment> mapOfComments = new IterableMap<>();
     private int numberOfComments;
 
 
@@ -91,7 +91,8 @@ public class Post extends PublishedContents implements HasPublishedContents {
     @Override
     public String toString() {
         StringBuilder comments = new StringBuilder();
-        for(Map.Entry<String, Comment> comment: mapOfComments.entrySet()){
+        for(String commentName: mapOfComments){
+            Comment comment = mapOfComments.get(commentName);
             comments.append(comment.toString()).append('\n').append("-----------------------------------------------" +
                     "-------------------------------------------------------").append('\n');
         }

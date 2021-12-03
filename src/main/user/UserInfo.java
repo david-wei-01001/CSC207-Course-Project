@@ -1,6 +1,7 @@
 package user;
 
 import constants.HasName;
+import constants.IterableMap;
 import graph.DirectedGraph;
 import resource.Resource;
 import constants.Achievements;
@@ -21,10 +22,10 @@ public class UserInfo implements HasName {
     // TODO： How do we update lastlogin?
     private LocalDate lastLogin;
     private int totalLogins;
-    private ArrayList<String> listOfPostId = new ArrayList<>();
-    private Map<String, DirectedGraph> mapOfGraph = new HashMap<>();
-    private Map<String, Resource> mapOfResource = new HashMap<>();
-    private Map<String, Boolean> mapOfAchievement = new HashMap<>();
+    private final ArrayList<String> listOfPostId = new ArrayList<>();
+    private final Map<String, DirectedGraph> mapOfGraph = new HashMap<>();
+    private final Map<String, Resource> mapOfResource = new HashMap<>();
+    private final IterableMap<String, Boolean> mapOfAchievement = new IterableMap<>();
 
  
     public UserInfo(String username, String email, String password) {
@@ -145,7 +146,7 @@ public class UserInfo implements HasName {
         return lastLogin;
     }
 
-    public Map<String, Boolean> getMapOfAchievement() {
+    public IterableMap<String, Boolean> getMapOfAchievement() {
         return mapOfAchievement;
     }
 
@@ -155,9 +156,8 @@ public class UserInfo implements HasName {
 
     public String displayAchievement() {
         StringBuilder achievements = new StringBuilder();
-        for(Map.Entry<String, Boolean> achievement: mapOfAchievement.entrySet()){
-            String name = achievement.getKey();
-            Boolean status = achievement.getValue();
+        for(String name: mapOfAchievement){
+            Boolean status = mapOfAchievement.get(name);
             if(status) {
                 achievements.append(name).append(": acquired").append("\n");
             }
