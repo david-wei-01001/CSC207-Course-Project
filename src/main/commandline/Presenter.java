@@ -1,6 +1,7 @@
 package commandline;
 
 import constants.Exceptions;
+import graph.GraphManager;
 import resource.ResourceManager;
 import user.UserManager;
 import java.util.Scanner;
@@ -8,6 +9,8 @@ import java.util.Scanner;
 public class Presenter {
     private UserManager userManager;
     private ResourceManager resourceManager;
+    private GraphManager graphManager;
+
 
     protected static final String ONE = "1";
     protected static final String TWO = "2";
@@ -26,12 +29,18 @@ public class Presenter {
     protected static final String OR = "or";
     protected static final String ENTER_RETURN = "enter \"" + RETURN + "\" to return to \"Options.\"";
 
-    public Presenter(UserManager userManager, ResourceManager resourceManager) {
+    public Presenter(UserManager userManager, ResourceManager resourceManager, GraphManager graphManager) {
         this.userManager = userManager;
         this.resourceManager = resourceManager;
+        this.graphManager = graphManager;
+
     }
     public void mainMenuReturn(){
         System.out.println("Enter anything to return to Main Menu.");
+    }
+
+    public void mainMenuOptions(){
+        System.out.println("Main Menu: 1.Technical Tree, 2.Resource, 3.Achievement, or enter \"exit\" to exit program");
     }
 
     public void rewardPoints(){
@@ -81,12 +90,60 @@ public class Presenter {
     }
 
 
+    public void achievementPage(){
+        System.out.println(userManager.displayAchievement());
+    }
+
+
+    public void technicalTreeMainPage(){
+        System.out.println("Hi! Now you've entered the technical tree page");
+        System.out.println("Select the tree you want to study!");
+        System.out.println("Tech Trees: " + graphManager.getAllGraphs());
+        System.out.println("Enter \"main\" to return to main page.");
+    }
+
+    public void technicalTreeDisplayCurrentGraph(){
+        System.out.println(graphManager.displayCurrentGraph());
+    }
+
+    public void technicalTreePage() throws Exception {
+        System.out.println("Please choose the node you want to start with" +
+                graphManager.getCurrentGraph().availableVertex() + "or enter \"main\" to return to home page");
+    }
+
+    public void studyVertex(){
+        System.out.println("Now study the node you have chosen, once you're finished, type \"Yes\" below");
+    }
+
+    public void studyVertexNotFinished(){
+        System.out.println("It seems like you have not finished your study yet, keep working on it!" +
+                "Once you finished, type \"Yes\" below");
+    }
+
+    public void studyVertexFinished(){
+        System.out.println("Congratulations! You've made one giant step toward success! Now let's make some posts " +
+                "on what you've just learned.");
+    }
+
+    public void enterPublishContent(){
+        System.out.println("Please enter the content you want to publish below: ");
+    }
+
+    public void publishPostSuccessful(){
+        System.out.println("Congratulations! You've successfully published a post :)");
+    }
+
+    public void nodeCompleted(){
+        System.out.println("You have completed this node, you can now proceed to the next " +
+                "node you want to study. Press any key to continue");
+    }
 
     protected String LoginOptions() {
         Scanner scanner = new Scanner(System.in);
         System.out.println(LOGIN_OPTIONS);
         return scanner.nextLine();
     }
+
 
     protected String getCorrectLoginOption(String input) {
         Scanner scanner = new Scanner(System.in);
