@@ -1,3 +1,5 @@
+package user;
+
 import graph.DirectedGraph;
 import graphbuilders.GraphArchitect;
 import user.UserInfo;

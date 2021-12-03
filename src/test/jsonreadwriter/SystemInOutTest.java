@@ -1,4 +1,6 @@
-import phase1.SystemInOut;
+package jsonreadwriter;
+
+import commandline.SystemInOut;
 import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +25,7 @@ class SystemInOutTest {
 
 //        inOut.getNonEmptyCredential("username");
         inOut.run();
-        inOut.mainMenu();
+//        inOut.mainMenu();
 
     }
 
@@ -40,8 +42,8 @@ class SystemInOutTest {
     void getPasswordRegister() {
     }
 
-    @Test
-    void getNonEmptyCredential() {
-        inOut.getNonEmptyCredential("username");
-    }
+//    @Test
+//    void getNonEmptyCredential() {
+//        inOut.getNonEmptyCredential("username");
+//    }
 }

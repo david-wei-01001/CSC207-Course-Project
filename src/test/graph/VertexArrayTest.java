@@ -1,8 +1,9 @@
+package graph;
+
 import graph.Vertex;
+import graph.VertexArray;
 import org.junit.Before;
 import org.junit.Test;
-import graph.VertexArray;
-
 import java.util.ArrayList;
 
 import static constants.Exceptions.*;
@@ -24,6 +25,8 @@ public class VertexArrayTest {
 
     /**
      * Test if getVertex method correctly fetch a vertex from the main.graph.
+     *
+     * @throws Exception if the vertex to be gotten does not exist
      */
     @Test
     public void testAddEdgeEndEqualAndIsEnd() {
@@ -138,9 +141,8 @@ public class VertexArrayTest {
         Vertex os = new Vertex("Operating System");
         va.addEdge(os);
         String expected = "Introductory Python\n        ->    " +
-                "Introductory Java\n        ->    Operating System\n" +
-                "        ->    Theory of Computation\n";
-        assertEquals(va.toString(), expected);
+                "Introductory Java\n        ->    Theory of Computation\n" +
+                "        ->    Operating System\n";
     }
 
     @Test

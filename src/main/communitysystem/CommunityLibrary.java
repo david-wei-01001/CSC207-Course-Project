@@ -1,5 +1,8 @@
 package communitysystem;
 
+import achievementsystem.AchievementManager;
+import constants.Achievements;
+import rewardsystem.RewardManager;
 import user.UserInfo;
 import constants.Exceptions;
 
@@ -10,7 +13,7 @@ import java.util.Map;
  * The use case that controls a main.user's interaction with the achievement system.
  */
 public class CommunityLibrary {
-    private static Map<String, Community> mapOfCommunity = new HashMap<>();
+    private static CommunityList mapOfCommunity = new CommunityList();
     private Community currentCommunity;
     private UserInfo currentUserInfo;
 
@@ -35,7 +38,7 @@ public class CommunityLibrary {
     public static void addCommunity(String name){
         if(!checkCommunityExist(name)){
             Community com = new Community(name);
-            mapOfCommunity.put(name, com);
+            mapOfCommunity.add(com);
         }
     }
 
@@ -47,8 +50,21 @@ public class CommunityLibrary {
      //     * @return the id of the post being added.
      //     * @throws Exception throws an exception if the community with the communityName is not found.
      //     */
-    public String addPost(String content) {
-        return currentCommunity.addPublishedContent(content, currentUserInfo);
+
+
+    public void createPost(String content, AchievementManager achievementManager,
+                           RewardManager rewardManager) throws Exception {
+        String postId = currentCommunity.addPublishedContent(content, currentUserInfo);
+        currentUserInfo.addToListOfPostId(postId);
+        boolean achievementAwarded = achievementManager.requestAchievement(
+                Achievements.ARRAY_OF_POST_THRESHOLDS,
+                Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
+                currentUserInfo.getListOfPostId().size());
+        if (achievementAwarded) {
+            rewardManager.addRewardPoint(
+                    Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(currentUserInfo.getListOfPostId().size()));
+        }
+
     }
 
     /**
@@ -83,7 +99,7 @@ public class CommunityLibrary {
 
     }
 
-    public Map<String, Community> getMapOfCommunity() {
+    public CommunityList getMapOfCommunity() {
         return mapOfCommunity;
     }
 }

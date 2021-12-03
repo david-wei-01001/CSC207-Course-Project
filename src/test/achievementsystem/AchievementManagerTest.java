@@ -1,4 +1,5 @@
-import achievementsystem.AchievementManager;
+package achievementsystem;
+
 import user.UserInfo;
 import constants.Achievements;
 import org.junit.jupiter.api.BeforeEach;

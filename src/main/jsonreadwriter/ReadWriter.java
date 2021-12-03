@@ -1,15 +1,24 @@
-package jsonwriterandreader;
+package jsonreadwriter;
 
+
+import user.UserList;
 
 import java.io.*;
-import java.util.Map;
 
-public interface ReaderWriter{
-    void saveToFile() throws IOException;
+public interface ReadWriter {
 
+    /**
+     * @param filepath location of ser file
+     * @param o object to be serialized
+     */
+    void saveToFile(String filepath, Object o) throws IOException;
 
+    /**
+     * @param filepath location of ser file
+     */
+    Object readFromFile(String filepath) throws IOException, ClassNotFoundException;
 
-    Map<String, ?> readFromFile() throws IOException, ClassNotFoundException;
+//    Map<String, ?> readFromFile() throws IOException, ClassNotFoundException;
 //    private Map<String, User> libraryOfUsers;
 //    private String filePath;
 
