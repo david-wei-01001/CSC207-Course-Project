@@ -17,7 +17,8 @@ public class Presenter {
     protected static final String USERNAME = "username";
     protected static final String EMAIL = "email";
     protected static final String AT = "@";
-    protected static final String LOGIN_OPTIONS = "Options: " + ONE + ".Sign-in, "+ TWO + ".Register, or enter \"" + EXIT + "\" to exit program";
+    protected static final String LOGIN_OPTIONS = "Options: " + ONE + ".Sign-in, "+ TWO + ".Register, or enter \""
+            + EXIT + "\" to exit program";
     protected static final String INCORRECT_INPUT = "Incorrect input";
     protected static final String YOU_DID_NOT_ENTER_A = "You did not enter a";
     protected static final String PLEASE_TRY_AGAIN = "please try again";

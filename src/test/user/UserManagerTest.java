@@ -43,10 +43,9 @@ class UserManagerTest {
         userManager = new UserManager();
         userManager.setCurrentUserInfoTo(USERNAME);
 
-        GraphArchitect graphArchitect = new GraphArchitect();
-        graph1 = graphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
-        graph2 = graphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
-        graph3 = graphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
+        graph1 = GraphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
+        graph2 = GraphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
+        graph3 = GraphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
     }
 
     @AfterEach
