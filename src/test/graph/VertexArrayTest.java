@@ -140,9 +140,9 @@ public class VertexArrayTest {
         va.addEdge(toc);
         Vertex os = new Vertex("Operating System");
         va.addEdge(os);
-        String expected = "Introductory Python\n        ->    " +
-                "Introductory Java\n        ->    Theory of Computation\n" +
-                "        ->    Operating System\n";
+        String expected = "Introductory Python\n        ->    Operating System\n" +
+                "Introductory Java\n        ->    " +
+                "        ->    Theory of Computation\n";
     }
 
     @Test

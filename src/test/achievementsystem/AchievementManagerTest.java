@@ -17,7 +17,8 @@ class AchievementManagerTest {
     @BeforeEach
     void setUp() {
         userInfo = new UserInfo(USERNAME, EMAIL, PASSWORD);
-        achievementManager = new AchievementManager(userInfo);
+        achievementManager = new AchievementManager();
+        achievementManager.setCurrentUserInfo(userInfo);
     }
 
     @Test

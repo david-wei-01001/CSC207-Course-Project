@@ -1,5 +1,6 @@
 package graphbuilders;
 
+import constants.BuiltInGraphs;
 import graph.DirectedGraph;
 import constants.Exceptions;
 
@@ -22,13 +23,17 @@ public class GraphArchitect {
      * @return a DirectedGraph with the treeName
      * @throws Exception if the name does not represent a default tree
      */
-    public DirectedGraph setBuilderAndBuildGraph(String treeName) throws Exception {
+    public static DirectedGraph setBuilderAndBuildGraph(String treeName) throws Exception {
 
         // create more if statements when we come up with more built-in Technical Trees.
         GraphBuilder graphBuilder;
-        if (treeName.equals("Introductory CS Series")) {
+        if (treeName.equals(BuiltInGraphs.INTRODUCTORY_CS_SERIES)) {
             graphBuilder = new IntroCSGraphBuilder();
-        } else {
+        }
+        else if (treeName.equals(BuiltInGraphs.INTRODUCTORY_MAKEUP)){
+            graphBuilder = new IntroMakeupGraphBuilder();
+        }
+        else {
             throw new Exception(Exceptions.CANNOT_RECOGNIZE_BUILT_IN_TREE);
         }
 

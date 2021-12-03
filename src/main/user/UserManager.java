@@ -3,6 +3,9 @@ package user;
 
 import graphbuilders.GraphArchitect;
 import constants.Exceptions;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,8 +72,7 @@ public class UserManager {
      */
     public void addGraphToCurrent(String graphName) throws Exception {
         if (!currentUserInfo.hasGraph(graphName)) {
-            GraphArchitect graphArchitect = new GraphArchitect();
-            currentUserInfo.addGraph(graphArchitect.setBuilderAndBuildGraph(graphName));
+            currentUserInfo.addGraph(GraphArchitect.setBuilderAndBuildGraph(graphName));
         } else {
             throw new Exception(Exceptions.GRAPH_ALREADY_EXISTS);
         }
@@ -151,5 +153,9 @@ public class UserManager {
 
     public String displayAchievement() {
         return currentUserInfo.displayAchievement();
+    }
+
+    public ArrayList<String> getListOfPostId() {
+        return currentUserInfo.getListOfPostId();
     }
 }

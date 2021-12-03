@@ -1,6 +1,9 @@
 package graph;
 
+import communitysystem.CommunityLibrary;
+import constants.BuiltInGraphs;
 import constants.Exceptions;
+import graphbuilders.GraphArchitect;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +16,31 @@ public class GraphManager {
     private final Map<String, DirectedGraph> mapOfGraphs = new HashMap<>();
     private int numberOfGraphs;
     private DirectedGraph currentGraph;
+    private CommunityLibrary communityLibrary;
+
+    /**
+     * Constructor of GraphManager
+     */
+    public void addBuiltInGrpah(CommunityLibrary communityLibrary){
+        setCommunityLibrary(communityLibrary);
+        GraphArchitect graphArchitect = new GraphArchitect();
+        int i = 0;
+        for (String builtInGraph : BuiltInGraphs.BUILT_IN_GRAPHS) {
+            try {
+                DirectedGraph graphToAdd = graphArchitect.setBuilderAndBuildGraph(builtInGraph);
+                createCommunities(graphToAdd);
+                mapOfGraphs.put(Integer.toString(i), graphToAdd);
+                i++;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void setCommunityLibrary(CommunityLibrary communityLibrary){
+        this.communityLibrary = communityLibrary;
+    }
+
 
 
     /**
@@ -44,6 +72,16 @@ public class GraphManager {
     }
 
     /**
+     * Create the communities corresponding to the vertices of the inputted main.graph
+     * @param graph the main.graph whose vertices' community need to be created
+     */
+    private void createCommunities(DirectedGraph graph) {
+        for (String vertexName : graph.getVertices().keySet()) {
+            communityLibrary.addCommunity(vertexName);
+        }
+    }
+
+    /**
      *  complete a vertex in the current main.graph.
      * @param name the name of the vertex to be completed
      * @throws Exception if the name of the vertex does not exist in the current main.graph
@@ -63,12 +101,8 @@ public class GraphManager {
         return currentGraph.getVertex(name);
     }
 
-    /**
-     * @return a string representation of the current main.graph
-     */
-    public String getName() {
-        return currentGraph.toString();
-    }
+
+
 
 
     /**
@@ -77,12 +111,13 @@ public class GraphManager {
     public DirectedGraph getCurrentGraph() {
         return currentGraph;
     }
+
     public Map<String, DirectedGraph> getMapOfGraphs(){
         return mapOfGraphs;
     }
 
     /**
-     * Display the current graph
+     * @return a string representation of the current main.graph
      */
     public String displayCurrentGraph(){
         return currentGraph.toString();
