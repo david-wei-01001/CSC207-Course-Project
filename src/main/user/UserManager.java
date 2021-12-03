@@ -72,8 +72,7 @@ public class UserManager {
      */
     public void addGraphToCurrent(String graphName) throws Exception {
         if (!currentUserInfo.hasGraph(graphName)) {
-            GraphArchitect graphArchitect = new GraphArchitect();
-            currentUserInfo.addGraph(graphArchitect.setBuilderAndBuildGraph(graphName));
+            currentUserInfo.addGraph(GraphArchitect.setBuilderAndBuildGraph(graphName));
         } else {
             throw new Exception(Exceptions.GRAPH_ALREADY_EXISTS);
         }

@@ -14,8 +14,7 @@ public class SerializationTest {
 
     public static void main(String[] args) throws Exception {
 
-        GraphArchitect graphArchitect = new GraphArchitect();
-        DirectedGraph csIntroductorySeriesTreeToSave = graphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
+        DirectedGraph csIntroductorySeriesTreeToSave = GraphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
 
 
          // creating the file to save the particular instance of DirectedGraph to, and creating the

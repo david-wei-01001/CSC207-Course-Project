@@ -23,10 +23,9 @@ public class GraphCommunityFacade {
         this.communityLibrary = communityLibrary;
 
         if (includeBuiltInGraphs) {
-            GraphArchitect graphArchitect = new GraphArchitect();
             for (String builtInGraph : BuiltInGraphs.BUILT_IN_GRAPHS) {
                 try {
-                    DirectedGraph graphToAdd = graphArchitect.setBuilderAndBuildGraph(builtInGraph);
+                    DirectedGraph graphToAdd = GraphArchitect.setBuilderAndBuildGraph(builtInGraph);
                     createCommunities(graphToAdd);
                     graphManager.addGraph(graphToAdd);
 

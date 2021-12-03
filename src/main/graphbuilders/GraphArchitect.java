@@ -23,7 +23,7 @@ public class GraphArchitect {
      * @return a DirectedGraph with the treeName
      * @throws Exception if the name does not represent a default tree
      */
-    public DirectedGraph setBuilderAndBuildGraph(String treeName) throws Exception {
+    public static DirectedGraph setBuilderAndBuildGraph(String treeName) throws Exception {
 
         // create more if statements when we come up with more built-in Technical Trees.
         GraphBuilder graphBuilder;

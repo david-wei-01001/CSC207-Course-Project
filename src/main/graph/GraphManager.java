@@ -110,6 +110,7 @@ public class GraphManager {
     public DirectedGraph getCurrentGraph() {
         return currentGraph;
     }
+
     public Map<String, DirectedGraph> getMapOfGraphs(){
         return mapOfGraphs;
     }

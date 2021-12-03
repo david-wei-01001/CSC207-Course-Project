@@ -2,6 +2,7 @@ package graph;
 
 import constants.Exceptions;
 import constants.HasName;
+import constants.IterableMap;
 import constants.VertexArrayDefaultComparator;
 
 import java.io.Serializable;
@@ -19,7 +20,7 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
      * 2 where the first element is a Vertex which is the starting vertex of many edges and the second element is an
      * ArrayList containing all Vertices that is the ending vertex which the starting vertex points to.
      */
-    private final Map<String, VertexArray> VERTICES = new HashMap<>();
+    private final IterableMap<String, VertexArray> VERTICES = new IterableMap<>();
     private final String NAME;
     private final List<String> CURRENTUNCLOCK = new ArrayList<>();
     private final List<String> COMPLETED = new ArrayList<>();
@@ -111,7 +112,7 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
     }
 
     public void updateAll(Vertex vertex) throws Exception {
-        for (String name: VERTICES.keySet()) {
+        for (String name: VERTICES) {
             if (getVertexArray(name).isEnd(vertex)) {
                 getVertexArray(name).updateVertex(vertex);
             }
@@ -134,7 +135,7 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
                 CURRENTUNCLOCK.add(v.getName());
             }
         }
-        for (String vertexName : VERTICES.keySet()) {
+        for (String vertexName : VERTICES) {
             if (getVertexArray(vertexName).isEnd(delete)) {
                 Vertex[] edge = {getVertexArray(vertexName).getStart(), delete};
                 deleteEdge(edge);
@@ -185,7 +186,7 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
      * @throws Exception if the name of the vertex does not exist in the DirectedGraph
      */
     public Vertex getVertex(String name) throws Exception {
-        for (String vertexName : VERTICES.keySet()){
+        for (String vertexName : VERTICES){
             if (vertexName.equals(name)) {
                 return  getVertexArray(name).getStart();
             }
@@ -272,7 +273,7 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
 
     private List<VertexArray> arrangeArray() {
         List<VertexArray> vertexArray = new ArrayList<>();
-        for (String vertexName : VERTICES.keySet()) {
+        for (String vertexName : VERTICES) {
             try{
                 vertexArray.add(getVertexArray(vertexName));
             } catch (Exception e) {

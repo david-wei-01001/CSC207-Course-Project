@@ -1,4 +1,4 @@
-package phase1;
+package commandline;
 
 import achievementsystem.AchievementManager;
 import constants.Achievements;
@@ -21,6 +21,7 @@ public class SystemInOut {
     private CommunityLibrary communityLibrary;
     private ResourceManager resourceManager;
     private Scanner scanner = new Scanner(System.in);
+    private Presenter presenter = new Presenter(userManager, resourceManager);
 
     public SystemInOut() throws Exception {
         graphManager = new GraphManager();
@@ -32,20 +33,17 @@ public class SystemInOut {
         achievementManager = new AchievementManager();
         communityLibrary = new CommunityLibrary();
         graphManager.addBuiltInGrpah(communityLibrary);
+        presenter = new Presenter(userManager, resourceManager);
     }
 
     public void run() {
         load();
         logIn();
         mainMenu();
-
         scanner.close();
     }
 
     public void mainMenu() {
-        boolean keepRunning = true;
-
-        while (keepRunning) {
             System.out.println("Main Menu: 1.Technical Tree, 2.Resource, 3.Achievement, or enter \"exit\" to exit program");
             String input = scanner.nextLine();
 
@@ -69,26 +67,24 @@ public class SystemInOut {
                     achievementPage();
                     break;
                 case "exit":
-                    keepRunning = false;
+                    exitProgram();
                     break;
             }
-        }
     }
 
     private void achievementPage() {
         System.out.println(userManager.displayAchievement());
-        System.out.println("Enter anything to return to Main Menu.");
+        presenter.mainMenuReturn();
         String input = scanner.nextLine();
         mainMenu();
     }
 
     private void resourcePage() {
-        System.out.println("Your reward point: " + userManager.getCurrentUserInfo().getRewardPoints());
-        System.out.println("Resource: 1.My Resource, 2.Download Resource, 3.Create Resource, " +
-                "0. Main Menu");
+        presenter.rewardPoints();
+        presenter.resourcePage();
         String input = scanner.nextLine();
         while (!(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("0"))) {
-            System.out.println("Incorrect input, please try again.");
+            presenter.incorrectInput();
             input = scanner.nextLine();
         }
 
@@ -110,43 +106,40 @@ public class SystemInOut {
 
 
     private void myResource() {
-        System.out.println("Your resource: " + userManager.getCurrentUserInfo().getMapOfResource());
-        System.out.println("Enter anything to return to Main Menu.");
+        presenter.currentResource();
+        presenter.mainMenuReturn();
         String input = scanner.nextLine();
         mainMenu();
         }
 
     private void downloadResources() {
-        System.out.println("Please choose the resource you want to download:" +
-                this.resourceManager.getMapOfResource());
+        presenter.resourceChoose();
         String content = scanner.nextLine();
         while(resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
-            System.out.println("Sorry, you do not have enough points");
-            System.out.println("Please choose the resource you want to download:" +
-                    this.resourceManager.getMapOfResource());
+            presenter.insufficientPoints();
+            presenter.resourceChoose();
             content = scanner.nextLine();
-        };
+        }
         while(!resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
-            System.out.println("You have successfully download this resource");
+            presenter.downloadSuccessfully();
             resourceManager.downloadResource(content);
-            System.out.println("Enter anything to return to Main Menu.");
+            presenter.mainMenuReturn();
             String input = scanner.nextLine();
             mainMenu();
-        };
-
+        }
     }
 
     private void createResource() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please write the description of the resource you want to create");
+        presenter.resourceDescription();
         String description = scanner.nextLine();
-        System.out.println("Please write the required points of the resource you want to create");
+        presenter.resourcePoints();
         String point = scanner.nextLine();
-        System.out.println("Please write the content of the resource you want to create");
+        presenter.resourceContents();
         String content = scanner.nextLine();
         resourceManager.addResource(content, Integer.parseInt(point), description);
-        System.out.println("You have successfully created this resource");
-        System.out.println("Enter anything to return to Main Menu.");
+        presenter.resourceCreateSuccessfully();
+        presenter.mainMenuReturn();
         String input = scanner.nextLine();
         mainMenu();
     }
@@ -240,30 +233,26 @@ public class SystemInOut {
 
 
     public void logIn() {
-        System.out.println("Options: 1.Sign-in, 2.Register, or enter \"exit\" to exit program");
-        String input = scanner.nextLine();
+        String input = presenter.LoginOptions();
 
-        while (!(input.equals("1") || input.equals("2") || input.equals("exit"))) {
-            System.out.println("Incorrect input, please try again.");
-            input = scanner.nextLine();
-        }
+        input = presenter.getCorrectLoginOption(input);
 
         switch (input) {
-            case "1":
+            case Presenter.ONE:
                 if (!signIn()) {
                     logIn();
                 } else {
                     userManager.incrementTotalLogins();
                 }
                 break;
-            case "2":
+            case Presenter.TWO:
                 if (!register()) {
                     logIn();
                 } else {
                     userManager.incrementTotalLogins();
                 }
                 break;
-            case "exit":
+            case Presenter.EXIT:
                 exitProgram();
                 break;
         }
@@ -271,7 +260,7 @@ public class SystemInOut {
 
     public boolean signIn() {
         String username = getUsernameSignIn();
-        if (username.equals("return")) {
+        if (username.equals(Presenter.RETURN)) {
             return false;
         }
         if (!enterPassword(username)) {
@@ -298,11 +287,11 @@ public class SystemInOut {
     }
 
     public boolean enterPassword(String username) {
-        String password = getNonEmptyCredential("password");
+        String password = presenter.getNonEmptyPassword();
         while (!getCorrectPassword(username).equals(password)) {
-            System.out.println("Incorrect password, please try again, or enter \"return\" to return to Options.\"");
-            password = getNonEmptyCredential("password");
-            if (password.equals("return")) {
+            presenter.incorrectPassword();
+            password = presenter.getNonEmptyPassword();
+            if (password.equals(Presenter.RETURN)) {
                 return false;
             }
         }
@@ -319,22 +308,12 @@ public class SystemInOut {
         return password;
     }
 
-    public String getNonEmptyCredential(String credential) {
-        System.out.println(credential + ": ");
-        String nonEmptyCredential = scanner.nextLine();
-        while (nonEmptyCredential.length() == 0) {
-            System.out.println("You did not enter a " + credential + ", please try again:");
-            nonEmptyCredential = scanner.nextLine();
-        }
-        return nonEmptyCredential;
-    }
-
     private String getUsernameSignIn() {
-        String username = getNonEmptyCredential("username");
+        String username = presenter.getNonEmptyUsername();
         while (!userManager.containsUsername(username)) {
-            System.out.println(Exceptions.INCORRECT_USERNAME + ", please try again, or enter \"return\" to return to Options.");
-            username = getNonEmptyCredential("username");
-            if (username.equals("return")) {
+            presenter.incorrectUsername();
+            username = presenter.getNonEmptyUsername();
+            if (username.equals(Presenter.RETURN)) {
                 return username;
             }
         }
@@ -342,11 +321,11 @@ public class SystemInOut {
     }
 
     public String getUsernameRegister() {
-        String username = getNonEmptyCredential("username");
+        String username = presenter.getNonEmptyUsername();
         while (userManager.containsUsername(username)) {
-            System.out.println(Exceptions.USER_NAME_TAKEN + ", please try again, or enter \"return\" to return to Options.");
-            username = getNonEmptyCredential("username");
-            if (username.equals("return")) {
+            presenter.usernameTaken();
+            username = presenter.getNonEmptyUsername();
+            if (username.equals(Presenter.RETURN)) {
                 return username;
             }
         }
@@ -354,12 +333,12 @@ public class SystemInOut {
     }
 
     public String getEmailRegister() {
-        System.out.println("email: ");
+        presenter.getEmail();
         String email = scanner.nextLine();
-        while (!email.contains("@")) {
-            System.out.println("Invalid email, or enter \"return\" to return to Options.");
+        while (!email.contains(Presenter.AT)) {
+            presenter.incorrectEmail();
             email = scanner.nextLine();
-            if (email.equals("return")) {
+            if (email.equals(Presenter.RETURN)) {
                 return email;
             }
         }
@@ -367,17 +346,17 @@ public class SystemInOut {
     }
 
     public String getPasswordRegister() {
-        return getNonEmptyCredential("password");
+        return presenter.getNonEmptyPassword();
     }
 
 
     private boolean register() {
         String username = getUsernameRegister();
-        if (username.equals("return")) {
+        if (username.equals(Presenter.RETURN)) {
             return false;
         }
         String email = getEmailRegister();
-        if (email.equals("return")) {
+        if (email.equals(Presenter.RETURN)) {
             return false;
         }
         String password = getPasswordRegister();
