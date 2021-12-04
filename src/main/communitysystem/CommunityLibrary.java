@@ -27,7 +27,7 @@ public class CommunityLibrary {
      * @param name: The community name
      * @return: This community exists or not
      */
-    public static boolean checkCommunityExist(String name){
+    public boolean checkCommunityExist(String name){
         return mapOfCommunity.containsKey(name);
     }
 
@@ -35,7 +35,7 @@ public class CommunityLibrary {
      * Create a new community.
      * @param name: The community name
      */
-    public static void addCommunity(String name){
+    public void addCommunity(String name){
         if(!checkCommunityExist(name)){
             Community com = new Community(name);
             mapOfCommunity.add(com);
@@ -63,7 +63,7 @@ public class CommunityLibrary {
      * Delete an existing community
      * @param name: The name of Community
      */
-    public static void deleteCommunity(String name){
+    public void deleteCommunity(String name){
         mapOfCommunity.remove(name);
     }
 
@@ -72,7 +72,7 @@ public class CommunityLibrary {
      * @param name: The name of the community
      * @return Community that with the name
      */
-    public static Community getCommunity(String name){
+    public Community getCommunity(String name){
         return mapOfCommunity.get(name);
     }
 

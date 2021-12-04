@@ -4,13 +4,10 @@ import achievementsystem.AchievementManager;
 import constants.Achievements;
 import graph.GraphManager;
 import communitysystem.CommunityLibrary;
-import graph.Vertex;
 import resource.ResourceManager;
 import rewardsystem.RewardManager;
 import user.UserManager;
-import constants.Exceptions;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class SystemInOut {
@@ -31,7 +28,7 @@ public class SystemInOut {
         resourceManager.addDefault();
         rewardManager = new RewardManager();
         achievementManager = new AchievementManager();
-        graphManager.addBuiltInGrpah();
+        graphManager.addBuiltInGraph(communityLibrary);
         presenter = new Presenter(userManager, resourceManager, graphManager);
     }
 
