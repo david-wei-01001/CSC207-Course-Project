@@ -1,7 +1,7 @@
 package user;
 
 import graph.DirectedGraph;
-import user.User;
+import user.UserInfo;
 import constants.Achievements;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,16 +18,16 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * TODO: implement this test
  */
-public class UserTest {
+public class UserInfoTest {
     final String USERNAME = "userName";
     final String EMAIL = "email@.com";
     final String PASSWORD = "password";
-    User user;
+    UserInfo userInfo;
 
     @BeforeEach
     void setUp() {
 
-        user = new User(USERNAME, EMAIL, PASSWORD);
+        userInfo = new UserInfo(USERNAME, EMAIL, PASSWORD);
     }
 
     @AfterEach
@@ -39,11 +39,11 @@ public class UserTest {
      */
     @Test
     void initializeMapOfAchievement() {
-        user.getMapOfAchievement().replace(Achievements.FIFTH_POST, false, true);
-        assertTrue(user.getMapOfAchievement().get(Achievements.FIFTH_POST));
-        user.initializeMapOfAchievement();
-        for (String achievement : user.getMapOfAchievement()) {
-            assertFalse(user.getMapOfAchievement().get(achievement));
+        userInfo.getMapOfAchievement().replace(Achievements.FIFTH_POST, false, true);
+        assertTrue(userInfo.getMapOfAchievement().get(Achievements.FIFTH_POST));
+        userInfo.initializeMapOfAchievement();
+        for (String achievement : userInfo.getMapOfAchievement()) {
+            assertFalse(userInfo.getMapOfAchievement().get(achievement));
         }
     }
 
@@ -65,16 +65,16 @@ public class UserTest {
                 ", listOfPostId=" + emptyArray +
                 ", listOfGraph=" + emptyMap +
                 ", mapOfResource=" + emptyArray +
-                ", mapOfAchievement=" + user.getMapOfAchievement() +
-                '}', user.toString());
+                ", mapOfAchievement=" + userInfo.getMapOfAchievement() +
+                '}', userInfo.toString());
     }
 
     @Test
     void incrementTotalLogins() {
-        user.incrementTotalLogins();
-        user.incrementTotalLogins();
-        user.incrementTotalLogins();
-        assertEquals(3, user.getTotalLogins());
+        userInfo.incrementTotalLogins();
+        userInfo.incrementTotalLogins();
+        userInfo.incrementTotalLogins();
+        assertEquals(3, userInfo.getTotalLogins());
     }
 
     /**
@@ -82,8 +82,8 @@ public class UserTest {
      */
     @Test
     void testDisplayAchievements(){
-        user.initializeMapOfAchievement();
-        Object[] achievementNames = user.getMapOfAchievement().keySet().toArray();
+        userInfo.initializeMapOfAchievement();
+        Object[] achievementNames = userInfo.getMapOfAchievement().keySet().toArray();
         assertEquals( achievementNames[0]
                         + ": "
                         + "not acquired"
@@ -101,6 +101,6 @@ public class UserTest {
                         + "not acquired"
                         + '\n'
 
-                ,user.displayAchievement());
+                ,userInfo.displayAchievement());
     }
 }

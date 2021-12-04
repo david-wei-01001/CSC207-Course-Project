@@ -3,7 +3,7 @@ package communitysystem;
 import constants.IterableMap;
 import posts.HasPublishedContents;
 import posts.Post;
-import user.User;
+import user.UserInfo;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -51,7 +51,7 @@ public class Community implements HasPublishedContents, Serializable {
      * @return the id of the post being added.
      */
     @Override
-    public String addPublishedContent(String content, User creator) {
+    public String addPublishedContent(String content, UserInfo creator) {
         String postId = getNextId();
         mapOfPost.put(postId, new Post(content, postId, creator));
         return postId;

@@ -1,14 +1,14 @@
 package rewardsystem;
 
-import user.User;
+import user.UserInfo;
 
 /**
- * The use case that controls a user's interaction with the reward system.
+ * The use case that controls a main.user's interaction with the reward system.
  */
 public class RewardManager {
 
 
-    private User currentUser;
+    private UserInfo currentUserInfo;
 
     /**
      * TODO: need to fix this:
@@ -17,8 +17,8 @@ public class RewardManager {
     private int pointsRewardedPerLike = 1;
     private int pointRewardedDailyLogin = 5;
 
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
+    public void setCurrentUserInfo(UserInfo currentUserInfo) {
+        this.currentUserInfo = currentUserInfo;
     }
 
 
@@ -50,7 +50,7 @@ public class RewardManager {
 
 
     public void addRewardPoint(int points) {
-        currentUser.addRewardPoints(points);
+        currentUserInfo.addRewardPoints(points);
     }
 
 

@@ -1,40 +1,38 @@
 package user;
 
-import constants.IterableMap;
-
 import java.io.Serializable;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * A map of username —> User object.
  */
 
-public class UserList implements Serializable, Iterable<String>{
+public class UserList implements Serializable {
 
-    private final IterableMap<String, User> usersList = new IterableMap<>();
+    private final Map<String, UserInfo> usersList = new HashMap<>();
 
     /**
      * Return the userlists.
      * @return the userlist in this UserList class
      */
-    public Map<String, User> getUsersList() {
+    public Map<String, UserInfo> getUsersList() {
         return usersList;
     }
 
     /**
      * Add user to this user list.
-     * @param user the userinfo to add
+     * @param userinfo the userinfo to add
      */
-    public void add(User user) {
-        usersList.put(user.getName(), user);
+    public void add(UserInfo userinfo) {
+        usersList.put(userinfo.getName(), userinfo);
     }
 
     /**
      * Return the User associated with username.
      * @param username the username of the user to get.
      */
-    public User get(String username) {
+    public UserInfo get(String username) {
         return usersList.get(username);
     }
 
@@ -45,8 +43,4 @@ public class UserList implements Serializable, Iterable<String>{
      */
     public boolean containsKey(String username){ return usersList.containsKey(username); }
 
-    @Override
-    public Iterator<String> iterator() {
-        return usersList.iterator();
-    }
 }

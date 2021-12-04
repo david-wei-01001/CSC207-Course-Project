@@ -26,12 +26,13 @@ public class SystemInOut {
     public SystemInOut() throws Exception {
         graphManager = new GraphManager();
         userManager = new UserManager();
-        userManager.addNewUser("alfred", "@", "123");
+        userManager.addNewUserInfo("alfred", "@", "123");
         resourceManager = new ResourceManager();
         resourceManager.addDefault();
         rewardManager = new RewardManager();
         achievementManager = new AchievementManager();
-        graphManager.addBuiltInGrpah();
+        communityLibrary = new CommunityLibrary();
+        graphManager.addBuiltInGrpah(communityLibrary);
         presenter = new Presenter(userManager, resourceManager, graphManager);
     }
 
@@ -201,7 +202,7 @@ public class SystemInOut {
 
 
         presenter.studyVertexFinished();
-        userManager.getCurrentUser().addRewardPoints(5);
+        userManager.getCurrentUserInfo().addRewardPoints(5);
         presenter.enterPublishContent();
         String publishedContent = scanner.nextLine();
 
@@ -268,11 +269,11 @@ public class SystemInOut {
      */
     public void setCurrentUser(String username) {
         try {
-            userManager.setCurrentUser(username);
-            achievementManager.setCurrentUser(userManager.getCurrentUser());
-            rewardManager.setCurrentUser(userManager.getCurrentUser());
-            communityLibrary.setCurrentUser(userManager.getCurrentUser());
-            resourceManager.setCurrentUser(userManager.getCurrentUser());
+            userManager.setCurrentUserInfoTo(username);
+            achievementManager.setCurrentUserInfo(userManager.getCurrentUserInfo());
+            rewardManager.setCurrentUserInfo(userManager.getCurrentUserInfo());
+            communityLibrary.setCurrentUserInfo(userManager.getCurrentUserInfo());
+            resourceManager.setCurrentUserInfo(userManager.getCurrentUserInfo());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -293,7 +294,7 @@ public class SystemInOut {
     public String getCorrectPassword(String username) {
         String password = null;
         try {
-            password = userManager.getAUser(username).getPassword();
+            password = userManager.getAUserInfo(username).getPassword();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -353,7 +354,7 @@ public class SystemInOut {
         }
         String password = getPasswordRegister();
         try {
-            userManager.addNewUser(username, email, password);
+            userManager.addNewUserInfo(username, email, password);
         } catch (Exception e) {
             e.printStackTrace();
         }

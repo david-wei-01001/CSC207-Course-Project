@@ -6,7 +6,7 @@ import posts.Post;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.After;
-import user.User;
+import user.UserInfo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,19 +15,24 @@ import static org.junit.Assert.*;
 
 public class postTest {
     Post post;
-    User user;
+    UserInfo userInfo;
 
     @Before
     public void setUp() {
-        user = new User("Tong", "123@mail.com", "123");
-        post = new Post("nothing", "0", user);
-        post.addPublishedContent("testing", user);
-        post.addPublishedContent("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", user);
+        userInfo = new UserInfo("Tong", "123@mail.com", "123");
+        post = new Post("nothing", "0", userInfo);
+        post.addPublishedContent("testing", userInfo);
+        post.addPublishedContent("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", userInfo);
+    }
+
+    @After
+    public void tearDown() {
+
     }
 
     @Test
     public void testAddCommentSuccessfulAndGetMapOfContents() {
-        Comment c1 = new Comment("testing", "Comment #0",user);
+        Comment c1 = new Comment("testing", "Comment #0",userInfo);
 
         Map<String, Comment> mapToCompare = new HashMap<>();
 
@@ -62,7 +67,7 @@ public class postTest {
     public void testDeleteAndNumberOfComments() throws HasPublishedContents.PostNotFoundException {
         post.deletePublishedContent("Comment #0");
 
-        Comment c1 = new Comment("testing", "Comment #0",user);
+        Comment c1 = new Comment("testing", "Comment #0",userInfo);
 
         Map<String, Comment> mapToCompare = new HashMap<>();
 
@@ -99,13 +104,13 @@ public class postTest {
 
     @Test
     public void testGetNextIdNoDelete() {
-        post.addPublishedContent("debugging", user);
+        post.addPublishedContent("debugging", userInfo);
         assertEquals("Comment #2", post.getNextId());
     }
 
     @Test
     public void testGetNextIdWithDelete() throws HasPublishedContents.PostNotFoundException {
-        post.addPublishedContent("debugging", user);
+        post.addPublishedContent("debugging", userInfo);
         post.deletePublishedContent("Comment #0");
         assertEquals("Comment #2", post.getNextId());
     }
