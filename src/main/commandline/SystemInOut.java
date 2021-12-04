@@ -394,9 +394,7 @@ public class SystemInOut {
                     "src/main/commandline/community.json");
             userManager.setMapOfUser((UserList) data.get(0));
             communityLibrary.setMapOfCommunity((CommunityList) data.get(1));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
