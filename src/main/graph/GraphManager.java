@@ -14,20 +14,18 @@ import java.util.Map;
 public class GraphManager {
 
     private final Map<String, DirectedGraph> mapOfGraphs = new HashMap<>();
-    private int numberOfGraphs;
     private DirectedGraph currentGraph;
     private CommunityLibrary communityLibrary;
 
     /**
      * Constructor of GraphManager
      */
-    public void addBuiltInGrpah(CommunityLibrary communityLibrary){
+    public void addBuiltInGraph(CommunityLibrary communityLibrary){
         setCommunityLibrary(communityLibrary);
-        GraphArchitect graphArchitect = new GraphArchitect();
         int i = 0;
         for (String builtInGraph : BuiltInGraphs.BUILT_IN_GRAPHS) {
             try {
-                DirectedGraph graphToAdd = graphArchitect.setBuilderAndBuildGraph(builtInGraph);
+                DirectedGraph graphToAdd = GraphArchitect.setBuilderAndBuildGraph(builtInGraph);
                 createCommunities(graphToAdd);
                 mapOfGraphs.put(Integer.toString(i), graphToAdd);
                 i++;
@@ -40,6 +38,7 @@ public class GraphManager {
     public void setCommunityLibrary(CommunityLibrary communityLibrary){
         this.communityLibrary = communityLibrary;
     }
+
 
 
     /**
