@@ -12,29 +12,29 @@ import java.util.Map;
 
 public class UserList implements Serializable, Iterable<String>{
 
-    private final IterableMap<String, UserInfo> usersList = new IterableMap<>();
+    private final IterableMap<String, User> usersList = new IterableMap<>();
 
     /**
      * Return the userlists.
      * @return the userlist in this UserList class
      */
-    public Map<String, UserInfo> getUsersList() {
+    public Map<String, User> getUsersList() {
         return usersList;
     }
 
     /**
      * Add user to this user list.
-     * @param userinfo the userinfo to add
+     * @param user the userinfo to add
      */
-    public void add(UserInfo userinfo) {
-        usersList.put(userinfo.getName(), userinfo);
+    public void add(User user) {
+        usersList.put(user.getName(), user);
     }
 
     /**
      * Return the User associated with username.
      * @param username the username of the user to get.
      */
-    public UserInfo get(String username) {
+    public User get(String username) {
         return usersList.get(username);
     }
 

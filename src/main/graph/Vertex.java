@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public class Vertex implements Serializable, HasName {
     private String name;
-    // inLevel is a int representing the depth of this vertex in a DirectedGraph.
+    // inLevel is an int representing the depth of this vertex in a DirectedGraph.
     private int inLevel;
 
     /**

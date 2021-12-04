@@ -65,7 +65,7 @@ public class Presenter {
      * Information to display a user's reward points.
      */
     public void rewardPoints(){
-        System.out.println("Your reward point: " + userManager.getCurrentUserInfo().getRewardPoints());
+        System.out.println("Your reward point: " + userManager.getCurrentUser().getRewardPoints());
     }
 
     /**
@@ -87,7 +87,7 @@ public class Presenter {
      * Information to display a user's current resources.
      */
     public void currentResource(){
-        System.out.println( "Your resource: " + userManager.getCurrentUserInfo().getMapOfResource());
+        System.out.println( "Your resource: " + userManager.getCurrentUser().getMapOfResource());
     }
 
     /**

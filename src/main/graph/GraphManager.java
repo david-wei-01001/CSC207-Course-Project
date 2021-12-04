@@ -16,11 +16,9 @@ public class GraphManager {
     private final Map<String, DirectedGraph> mapOfGraphs = new HashMap<>();
     private int numberOfGraphs;
     private DirectedGraph currentGraph;
-    private CommunityLibrary communityLibrary;
 
 
-    public void addBuiltInGrpah(CommunityLibrary communityLibrary){
-        setCommunityLibrary(communityLibrary);
+    public void addBuiltInGrpah(){
         int i = 0;
         for (String builtInGraph : BuiltInGraphs.BUILT_IN_GRAPHS) {
             try {
@@ -33,11 +31,6 @@ public class GraphManager {
             }
         }
     }
-
-    public void setCommunityLibrary(CommunityLibrary communityLibrary){
-        this.communityLibrary = communityLibrary;
-    }
-
 
     /**
      * @return the instance variable mapOfGraphs
@@ -73,7 +66,7 @@ public class GraphManager {
      */
     private void createCommunities(DirectedGraph graph) {
         for (String vertexName : graph.getVertices().keySet()) {
-            communityLibrary.addCommunity(vertexName);
+            CommunityLibrary.addCommunity(vertexName);
         }
     }
 
