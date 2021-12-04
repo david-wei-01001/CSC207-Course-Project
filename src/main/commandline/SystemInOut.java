@@ -28,6 +28,7 @@ public class SystemInOut {
         resourceManager.addDefault();
         rewardManager = new RewardManager();
         achievementManager = new AchievementManager();
+        communityLibrary = new CommunityLibrary();
         graphManager.addBuiltInGraph(communityLibrary);
         presenter = new Presenter(userManager, resourceManager, graphManager);
     }
