@@ -13,7 +13,7 @@ import java.util.Map;
  * The use case that controls a user's interaction with the achievement system.
  */
 public class CommunityLibrary {
-    private static final CommunityList mapOfCommunity = new CommunityList();
+    private final CommunityList mapOfCommunity = new CommunityList();
     private Community currentCommunity;
     private User currentUser;
 
