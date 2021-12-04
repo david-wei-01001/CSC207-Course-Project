@@ -5,11 +5,13 @@ import constants.Achievements;
 import graph.GraphManager;
 import communitysystem.CommunityLibrary;
 import graph.Vertex;
+import jsonreadwriter.WholeReadWriter;
 import resource.ResourceManager;
 import rewardsystem.RewardManager;
 import user.UserManager;
 import constants.Exceptions;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -36,7 +38,7 @@ public class SystemInOut {
     }
 
     public void run() {
-        load();
+        // load();
         logIn();
         mainMenu();
         scanner.close();
@@ -365,15 +367,29 @@ public class SystemInOut {
 
 
     public void exitProgram() {
-        save();
+//        try {
+//            save();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         System.exit(0);
     }
 
-    private void save() {
-        // uses an interface to save.
+    private void save() throws IOException {
+        WholeReadWriter.saveToFile("user.json",
+                "community.json",
+                userManager.getMapOfUser(),
+                communityLibrary.getMapOfCommunity());
     }
 
     private void load() {
-
+        try {
+            WholeReadWriter.readFromFile("user.json",
+                    "community.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
