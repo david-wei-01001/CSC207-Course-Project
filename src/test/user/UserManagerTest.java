@@ -2,7 +2,7 @@ package user;
 
 import graph.DirectedGraph;
 import graphbuilders.GraphArchitect;
-import user.UserInfo;
+import user.User;
 import user.UserManager;
 import constants.BuiltInGraphs;
 import org.junit.jupiter.api.AfterEach;
@@ -26,10 +26,10 @@ class UserManagerTest {
     final String ANOTHER_EMAIL = "anotherEmail@.com";
     final String ANOTHER_PASSWORD = "anotherPassword";
     final String GRAPH = BuiltInGraphs.INTRODUCTORY_CS_SERIES;
-    UserInfo userinfo = new UserInfo(USERNAME, EMAIL, PASSWORD);
+    User user = new User(USERNAME, EMAIL, PASSWORD);
 
     UserManager userManager;
-    Map<String, UserInfo> mapOfUserInfo;
+    Map<String, User> mapOfUser;
 
     DirectedGraph graph1;
     DirectedGraph graph2;
@@ -38,15 +38,14 @@ class UserManagerTest {
     @BeforeEach
     void setUp() throws Exception {
 
-        mapOfUserInfo = new HashMap<>();
-        mapOfUserInfo.put(USERNAME, userinfo);
+        mapOfUser = new HashMap<>();
+        mapOfUser.put(USERNAME, user);
         userManager = new UserManager();
-        userManager.setCurrentUserInfoTo(USERNAME);
+        userManager.setCurrentUser(USERNAME);
 
-        GraphArchitect graphArchitect = new GraphArchitect();
-        graph1 = graphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
-        graph2 = graphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
-        graph3 = graphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
+        graph1 = GraphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
+        graph2 = GraphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
+        graph3 = GraphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
     }
 
     @AfterEach
@@ -54,62 +53,62 @@ class UserManagerTest {
     }
 
     @Test
-    void addNewUserInfo() throws Exception {
-        userManager.addNewUserInfo(ANOTHER_USERNAME, ANOTHER_EMAIL, ANOTHER_PASSWORD);
+    void testAddNewUse() throws Exception {
+        userManager.addNewUser(ANOTHER_USERNAME, ANOTHER_EMAIL, ANOTHER_PASSWORD);
 
-        UserInfo userInfoToCompare = new UserInfo(ANOTHER_USERNAME, ANOTHER_EMAIL, ANOTHER_PASSWORD);
-        assertEquals(userManager.getMapOfUserInfo().get(ANOTHER_USERNAME).toString(), userInfoToCompare.toString());
+        User userToCompare = new User(ANOTHER_USERNAME, ANOTHER_EMAIL, ANOTHER_PASSWORD);
+        assertEquals(userManager.getMapOfUser().get(ANOTHER_USERNAME).toString(), userToCompare.toString());
     }
 
     /**
      * test if the userName has been taken
      */
     @Test
-    void addNewUserUnsuccessful() throws Exception {
+    void testAddNewUserUnsuccessful() throws Exception {
 
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
-                userManager.addNewUserInfo("userName", "antherEmail@", "anotherPassword"));
+                userManager.addNewUser("userName", "antherEmail@", "anotherPassword"));
         Assertions.assertEquals("This username has already been taken", thrown.getMessage());
 
-        UserInfo userInfoToCompare = new UserInfo(USERNAME, EMAIL, PASSWORD);
-        assertEquals(userManager.getMapOfUserInfo().get(USERNAME).toString(), userInfoToCompare.toString());
+        User userToCompare = new User(USERNAME, EMAIL, PASSWORD);
+        assertEquals(userManager.getMapOfUser().get(USERNAME).toString(), userToCompare.toString());
 
 
     }
 
 
     @Test
-    void getAUserInfo() throws Exception {
-        UserInfo anotherUserInfo = new UserInfo(ANOTHER_USERNAME, ANOTHER_EMAIL, ANOTHER_PASSWORD);
-        userManager.addNewUserInfo(ANOTHER_USERNAME, ANOTHER_EMAIL, ANOTHER_PASSWORD);
+    void testGetAUser() throws Exception {
+        User anotherUser = new User(ANOTHER_USERNAME, ANOTHER_EMAIL, ANOTHER_PASSWORD);
+        userManager.addNewUser(ANOTHER_USERNAME, ANOTHER_EMAIL, ANOTHER_PASSWORD);
 
-        UserInfo userInfoActual = userManager.getAUserInfo(USERNAME);
-        assertEquals(userinfo, userInfoActual);
-        assertEquals(anotherUserInfo.toString(), userManager.getAUserInfo(ANOTHER_USERNAME).toString());
+        User userActual = userManager.getAUser(USERNAME);
+        assertEquals(user, userActual);
+        assertEquals(anotherUser.toString(), userManager.getAUser(ANOTHER_USERNAME).toString());
     }
 
     @Test
-    void getAUserInfoUnsuccessful() throws Exception {
+    void testGetAUserUnsuccessful() throws Exception {
 
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
-                userManager.getAUserInfo("anotherUserName"));
+                userManager.getAUser("anotherUserName"));
         Assertions.assertEquals("Cannot recognize this main.user", thrown.getMessage());
     }
 
     @Test
-    void addGraphToCurrent() throws Exception {
+    void testAddGraphToCurrent() throws Exception {
         userManager.addGraphToCurrent(GRAPH);
 
         Map<String, DirectedGraph> mapToCompare = new HashMap<>();
         mapToCompare.put(GRAPH, graph1);
 
-        assertEquals(mapToCompare.toString(), userManager.getCurrentUserInfo().getMapOfGraph().toString());
-        assertEquals(GRAPH, userManager.getCurrentUserInfo().getMapOfGraph().get(GRAPH).toString());
-        assertEquals(1, userManager.getCurrentUserInfo().getMapOfGraph().size());
+        assertEquals(mapToCompare.toString(), userManager.getCurrentUser().getMapOfGraph().toString());
+        assertEquals(GRAPH, userManager.getCurrentUser().getMapOfGraph().get(GRAPH).toString());
+        assertEquals(1, userManager.getCurrentUser().getMapOfGraph().size());
     }
 
     @Test
-    void addGraphToCurrentUnsuccessful() throws Exception {
+    void testAddGraphToCurrentUnsuccessful() throws Exception {
         userManager.addGraphToCurrent(GRAPH);
 
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
@@ -118,13 +117,13 @@ class UserManagerTest {
     }
 
     @Test
-    void setUserNameOfCurrent() throws Exception {
+    void testSetUserNameOfCurrent() throws Exception {
         userManager.setUserNameOfCurrent("newUserName");
-        assertEquals("newUserName", userManager.getCurrentUserInfo().getName());
+        assertEquals("newUserName", userManager.getCurrentUser().getName());
     }
 
     @Test
-    void setUserNameOfCurrentUnsuccessfulWithSameName() throws Exception {
+    void testSetUserNameOfCurrentUnsuccessfulWithSameName() throws Exception {
 
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.setUserNameOfCurrent("userName"));
@@ -133,26 +132,26 @@ class UserManagerTest {
     }
 
     @Test
-    void setUserNameOfCurrentUnsuccessfulWithDifferentName() throws Exception {
+    void testSetUserNameOfCurrentUnsuccessfulWithDifferentName() throws Exception {
 
-        userManager.addNewUserInfo("anotherUsername", "anotherEmail", "anotherPassword");
+        userManager.addNewUser("anotherUsername", "anotherEmail", "anotherPassword");
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.setUserNameOfCurrent("anotherUsername"));
         Assertions.assertEquals("This username has already been taken", thrown.getMessage());
     }
 
     @Test
-    void setCurrentUserInfoTo() throws Exception {
-        userManager.addNewUserInfo(ANOTHER_USERNAME, ANOTHER_EMAIL, ANOTHER_PASSWORD);
-        assertEquals(userinfo, userManager.getCurrentUserInfo());
-        userManager.setCurrentUserInfoTo(ANOTHER_USERNAME);
-        assertEquals(ANOTHER_USERNAME, userManager.getCurrentUserInfo().getName());
+    void testSetCurrentUser() throws Exception {
+        userManager.addNewUser(ANOTHER_USERNAME, ANOTHER_EMAIL, ANOTHER_PASSWORD);
+        assertEquals(user, userManager.getCurrentUser());
+        userManager.setCurrentUser(ANOTHER_USERNAME);
+        assertEquals(ANOTHER_USERNAME, userManager.getCurrentUser().getName());
     }
 
     @Test
-    void setCurrentUserInfoToUnsuccessful() throws Exception {
+    void testSetCurrentUserUnsuccessful() throws Exception {
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
-                userManager.setCurrentUserInfoTo(ANOTHER_USERNAME));
+                userManager.setCurrentUser(ANOTHER_USERNAME));
         Assertions.assertEquals("Cannot recognize this main.user", thrown.getMessage());
     }
 }

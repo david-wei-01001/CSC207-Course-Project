@@ -1,8 +1,8 @@
 package posts;
 
-import user.UserInfo;
+import constants.IterableMap;
+import user.User;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -16,7 +16,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
     /**
      * The map of all comments to this post, with comment ids as keys and comments as values.
      */
-    private final Map<String, Comment> mapOfComments = new HashMap<>();
+    private final IterableMap<String, Comment> mapOfComments = new IterableMap<>();
     private int numberOfComments;
 
 
@@ -26,7 +26,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
      * @param id: The ID of the post
      * @param creator: The creator of the post
      */
-  public Post(String content, String id, UserInfo creator) {
+  public Post(String content, String id, User creator) {
         super(id, creator);
         this.content = content;
     }
@@ -39,7 +39,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
      * @return the id of the comment added.
      */
     @Override
-    public String addPublishedContent(String content, UserInfo creator) {
+    public String addPublishedContent(String content, User creator) {
         String commentId = getNextId();
         mapOfComments.put(commentId, new Comment(content, commentId, creator));
         numberOfComments ++;
@@ -91,7 +91,8 @@ public class Post extends PublishedContents implements HasPublishedContents {
     @Override
     public String toString() {
         StringBuilder comments = new StringBuilder();
-        for(Map.Entry<String, Comment> comment: mapOfComments.entrySet()){
+        for(String commentName: mapOfComments){
+            Comment comment = mapOfComments.get(commentName);
             comments.append(comment.toString()).append('\n').append("-----------------------------------------------" +
                     "-------------------------------------------------------").append('\n');
         }

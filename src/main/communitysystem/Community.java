@@ -1,18 +1,18 @@
 package communitysystem;
 
+import constants.IterableMap;
 import posts.HasPublishedContents;
 import posts.Post;
-import user.UserInfo;
+import user.User;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * A community, where users add main.posts.
  */
 public class Community implements HasPublishedContents, Serializable {
-    private final Map<String, Post> mapOfPost = new HashMap<>();
+    private final IterableMap<String, Post> mapOfPost = new IterableMap<>();
     private final String nameOfCommunity;
 
     /**
@@ -51,7 +51,7 @@ public class Community implements HasPublishedContents, Serializable {
      * @return the id of the post being added.
      */
     @Override
-    public String addPublishedContent(String content, UserInfo creator) {
+    public String addPublishedContent(String content, User creator) {
         String postId = getNextId();
         mapOfPost.put(postId, new Post(content, postId, creator));
         return postId;
@@ -77,7 +77,8 @@ public class Community implements HasPublishedContents, Serializable {
      */
     public String displayPosts() {
         StringBuilder result = new StringBuilder();
-        for (Post post : mapOfPost.values()) {
+        for (String postName : mapOfPost) {
+            Post post = mapOfPost.get(postName);
             if(post.visibility()) {
                 result.append(post).append("\n");
             }
