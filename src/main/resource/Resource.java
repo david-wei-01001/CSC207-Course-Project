@@ -1,7 +1,7 @@
 package resource;
 
 import posts.PublishedContents;
-import user.User;
+import user.UserInfo;
 
 public class Resource extends PublishedContents {
     private final String content;
@@ -18,7 +18,7 @@ public class Resource extends PublishedContents {
      * @param description: The description of the main.resource
      * @param creator: The creator of the main.resource
      */
-    public Resource(String content, String id, int point, String description, User creator) {
+    public Resource(String content, String id, int point, String description, UserInfo creator) {
         super(id, creator);
         this.content = content;
         this.pointsRequired = point;

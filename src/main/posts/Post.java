@@ -1,7 +1,7 @@
 package posts;
 
 import constants.IterableMap;
-import user.User;
+import user.UserInfo;
 
 import java.util.Map;
 
@@ -26,7 +26,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
      * @param id: The ID of the post
      * @param creator: The creator of the post
      */
-  public Post(String content, String id, User creator) {
+  public Post(String content, String id, UserInfo creator) {
         super(id, creator);
         this.content = content;
     }
@@ -39,7 +39,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
      * @return the id of the comment added.
      */
     @Override
-    public String addPublishedContent(String content, User creator) {
+    public String addPublishedContent(String content, UserInfo creator) {
         String commentId = getNextId();
         mapOfComments.put(commentId, new Comment(content, commentId, creator));
         numberOfComments ++;

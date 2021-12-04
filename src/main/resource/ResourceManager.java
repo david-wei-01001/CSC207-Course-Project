@@ -1,38 +1,34 @@
 package resource;
 
-import user.User;
+import user.UserInfo;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * The use case that controls a main.user's interaction with the resource system.
- */
 public class ResourceManager implements HasResource, Serializable{
 
 
     private Map<String, Resource> mapOfResource = new HashMap<>();
 
-
-    private User currentUser;
-
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
+    public void setCurrentUserInfo(UserInfo currentUserInfo) {
+        this.currentUserInfo = currentUserInfo;
     }
 
+    private UserInfo currentUserInfo;
+
     /**
-     * Add the target resource to the map of resource
-     * @param content: The content that the resource contains, normally a link
-     * @param point: The point which the resource contains
-     * @param description: The brief description for the resource
+     * Add the target main.resource to the map of main.resource
+     * @param content: The content that the main.resource contains, normally a link
+     * @param point: The point which the main.resource contains
+     * @param description: The brief description for the main.resource
      */
     @Override
     public void addResource(String content, int point, String description) {
         String id = getNextId();
-        Resource resourceToAdd = new Resource(content,id , point, description, currentUser);
+        Resource resourceToAdd = new Resource(content,id , point, description, currentUserInfo);
         mapOfResource.put(resourceToAdd.getId(), resourceToAdd);
-        currentUser.addResource(resourceToAdd);
+        currentUserInfo.addResource(resourceToAdd);
     }
 
     /**
@@ -66,13 +62,13 @@ public class ResourceManager implements HasResource, Serializable{
      */
     public String downloadResource(String resourceId) {
         Resource resource = this.mapOfResource.get(resourceId);
-        if (currentUser.getRewardPoints() < resource.getPointsRequired()) {
+        if (currentUserInfo.getRewardPoints() < resource.getPointsRequired()) {
             return "Sorry, you do not have enough points";
         }
         else{
-            int newPoints = currentUser.getRewardPoints() - resource.getPointsRequired();
-            currentUser.setRewardPoints(newPoints);
-            currentUser.addResource(resource);
+            int newPoints = currentUserInfo.getRewardPoints() - resource.getPointsRequired();
+            currentUserInfo.setRewardPoints(newPoints);
+            currentUserInfo.addResource(resource);
             resource.addDownloadTimes();
         }
         return resource.getContent();
@@ -95,12 +91,12 @@ public class ResourceManager implements HasResource, Serializable{
     }
 
     public void addDefault() {
-        User user = new User("Tong", "123@mail.com", "123");
+        UserInfo userInfo = new UserInfo("Tong", "123@mail.com", "123");
         Resource resourceToAdd1 = new Resource("https://www.teach.cs.toronto.edu/~csc110y/fall/notes/",
-                getNextId(), 0, "Course notes of csc110", user);
+                getNextId(), 0, "Course notes of csc110", userInfo);
         mapOfResource.put(resourceToAdd1.getId(), resourceToAdd1);
         Resource resourceToAdd2 = new Resource("https://www.youtube.com/watch?v=eIrMbAQSU34",
-                getNextId(), 25, "Java Tutorial for Beginners", user);
+                getNextId(), 25, "Java Tutorial for Beginners", userInfo);
         mapOfResource.put(resourceToAdd2.getId(), resourceToAdd2);
     }
 

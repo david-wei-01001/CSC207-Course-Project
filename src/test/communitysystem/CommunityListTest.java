@@ -1,7 +1,7 @@
 package communitysystem;
 
 import org.junit.jupiter.api.Test;
-import user.User;
+import user.UserInfo;
 import user.UserList;
 
 import java.util.HashMap;

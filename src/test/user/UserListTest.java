@@ -10,28 +10,28 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserListTest {
 
     @Test
-    void testAdd() {
+    void add() {
         UserList userlist = new UserList();
-        User user = new User("ash", "OAO@email.com", "123");
-        userlist.add(user);
-        HashMap<String, User> target = new HashMap<>();
-        target.put("ash", user);
-        assertEquals(userlist.getUsersList(), target);
+        UserInfo userinfo = new UserInfo("ash", "OAO@email.com", "123");
+        userlist.add(userinfo);
+        HashMap<String, UserInfo> target = new HashMap<>();
+        target.put("ash", userinfo);
+        assertTrue(userlist.getUsersList().equals(target));
     }
 
     @Test
-    void testGet() {
+    void get() {
         UserList userlist = new UserList();
-        User user = new User("ash", "OAO@email.com", "123");
-        userlist.add(user);
-        assertEquals(userlist.get("ash"), user);
+        UserInfo userinfo = new UserInfo("ash", "OAO@email.com", "123");
+        userlist.add(userinfo);
+        assertTrue(userlist.get("ash").equals(userinfo));
     }
 
     @Test
-    void testContainsKey() {
+    void containsKey() {
         UserList userlist = new UserList();
-        User user = new User("ash", "OAO@email.com", "123");
-        userlist.add(user);
+        UserInfo userinfo = new UserInfo("ash", "OAO@email.com", "123");
+        userlist.add(userinfo);
         assertTrue(userlist.containsKey("ash"));
         assertFalse(userlist.containsKey("alfred"));
 
