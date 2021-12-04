@@ -13,9 +13,18 @@ import java.util.Map;
  * The use case that controls a user's interaction with the achievement system.
  */
 public class CommunityLibrary {
-    private static final CommunityList mapOfCommunity = new CommunityList();
+
+
+
+
+    private static CommunityList mapOfCommunity = new CommunityList();
     private Community currentCommunity;
     private User currentUser;
+
+    public static void setMapOfCommunity(CommunityList mapOfCommunity) {
+        CommunityLibrary.mapOfCommunity = mapOfCommunity;
+    }
+
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;

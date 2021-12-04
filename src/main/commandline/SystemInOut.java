@@ -1,6 +1,7 @@
 package commandline;
 
 import achievementsystem.AchievementManager;
+import communitysystem.CommunityList;
 import constants.Achievements;
 import graph.GraphManager;
 import communitysystem.CommunityLibrary;
@@ -8,10 +9,13 @@ import graph.Vertex;
 import jsonreadwriter.WholeReadWriter;
 import resource.ResourceManager;
 import rewardsystem.RewardManager;
+import user.UserList;
 import user.UserManager;
 import constants.Exceptions;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -34,11 +38,12 @@ public class SystemInOut {
         rewardManager = new RewardManager();
         achievementManager = new AchievementManager();
         graphManager.addBuiltInGrpah();
+        communityLibrary = new CommunityLibrary();
         presenter = new Presenter(userManager, resourceManager, graphManager);
     }
 
     public void run() {
-        // load();
+        load();
         logIn();
         mainMenu();
         scanner.close();
@@ -367,25 +372,28 @@ public class SystemInOut {
 
 
     public void exitProgram() {
-//        try {
-//            save();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            save();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
     }
 
     private void save() throws IOException {
-        WholeReadWriter.saveToFile("user.json",
-                "community.json",
+        WholeReadWriter.saveToFile("src/main/commandline/user.json",
+                "src/main/commandline/community.json",
                 userManager.getMapOfUser(),
                 communityLibrary.getMapOfCommunity());
     }
 
     private void load() {
+        List<Object> data = new ArrayList<Object>();
         try {
-            WholeReadWriter.readFromFile("user.json",
-                    "community.json");
+            data = WholeReadWriter.readFromFile("src/main/commandline/user.json",
+                    "src/main/commandline/community.json");
+            userManager.setMapOfUser((UserList) data.get(0));
+            communityLibrary.setMapOfCommunity((CommunityList) data.get(1));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
