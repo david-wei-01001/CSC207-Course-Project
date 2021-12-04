@@ -18,16 +18,13 @@ public class GraphManager {
     private DirectedGraph currentGraph;
     private CommunityLibrary communityLibrary;
 
-    /**
-     * Constructor of GraphManager
-     */
+
     public void addBuiltInGrpah(CommunityLibrary communityLibrary){
         setCommunityLibrary(communityLibrary);
-        GraphArchitect graphArchitect = new GraphArchitect();
         int i = 0;
         for (String builtInGraph : BuiltInGraphs.BUILT_IN_GRAPHS) {
             try {
-                DirectedGraph graphToAdd = graphArchitect.setBuilderAndBuildGraph(builtInGraph);
+                DirectedGraph graphToAdd = GraphArchitect.setBuilderAndBuildGraph(builtInGraph);
                 createCommunities(graphToAdd);
                 mapOfGraphs.put(Integer.toString(i), graphToAdd);
                 i++;

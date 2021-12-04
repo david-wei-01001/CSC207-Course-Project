@@ -1,16 +1,18 @@
 package user;
 
+import constants.IterableMap;
+
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
  * A map of username —> User object.
  */
 
-public class UserList implements Serializable {
+public class UserList implements Serializable, Iterable<String>{
 
-    private final Map<String, UserInfo> usersList = new HashMap<>();
+    private final IterableMap<String, UserInfo> usersList = new IterableMap<>();
 
     /**
      * Return the userlists.
@@ -43,4 +45,8 @@ public class UserList implements Serializable {
      */
     public boolean containsKey(String username){ return usersList.containsKey(username); }
 
+    @Override
+    public Iterator<String> iterator() {
+        return usersList.iterator();
+    }
 }

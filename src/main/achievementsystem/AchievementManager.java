@@ -9,6 +9,10 @@ public class AchievementManager {
 
     private UserInfo currentUserInfo;
 
+    /**
+     * set the instance variable currentUserInfo to be the user who is going to interact with the achievement system.
+     * @param currentUserInfo A user who is going to interact with the achievement system.
+     */
     public void setCurrentUserInfo(UserInfo currentUserInfo) {
         this.currentUserInfo = currentUserInfo;
     }
@@ -23,7 +27,6 @@ public class AchievementManager {
      *                 For example, the number of post created.
      * @return true if any achievement is awarded.
      */
-
     public boolean requestAchievement(int[] thresholds, Map<Integer, String> thresholdsToAchievement, int property) {
         for (int threshold : thresholds) {
             if (property == threshold) {
@@ -34,7 +37,4 @@ public class AchievementManager {
         }
         return false;
     }
-
-
-
 }

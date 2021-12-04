@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The use case that controls a main.user's interaction with the resource system.
+ */
 public class ResourceManager implements HasResource, Serializable{
 
 

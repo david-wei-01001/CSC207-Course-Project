@@ -55,9 +55,9 @@ public class UserManager {
     /**
      * Return UserInfo on given username.
      *
-     * @param userName
-     * @return UserInfo
-     * @throws Exception
+     * @param userName the name of the user whose UserInfo is to be retrieved
+     * @return UserInfo the UserInfo corresponds to the input userName
+     * @throws Exception throws an exception if the input userName is not in mapOfUserInfo
      */
     public UserInfo getAUserInfo(String userName) throws Exception {
         if (mapOfUserInfo.containsKey(userName)) {
@@ -68,7 +68,10 @@ public class UserManager {
     }
 
     /**
-     * add a main.graph to current main.user
+     * add a DirectedGraph to current user.
+     *
+     * @param graphName the name of the DirectedGraph to be added
+     * @throws Exception throws an exception if the user already has the graph.
      */
     public void addGraphToCurrent(String graphName) throws Exception {
         if (!currentUserInfo.hasGraph(graphName)) {
@@ -95,11 +98,17 @@ public class UserManager {
     }
 
     /**
-     * TODO: upgrade this method so that no duplicated email address is allowed.
-     *
-     * @param newEmail
+     * Set the email address of the current user to be the input email address, given it is not already taken.
+     * @param newEmail an email address to be set to the current user.
+     * @throws Exception if newEmail has been taken.
      */
-    public void setEmailOfCurrent(String newEmail) {
+    public void setEmailOfCurrent(String newEmail) throws Exception {
+        for (String userName: mapOfUserInfo) {
+            UserInfo userInfo = mapOfUserInfo.get(userName);
+            if (userInfo.getEmail().equals(newEmail)) {
+                throw new Exception(Exceptions.EMAIL_ALREADY_EXIST);
+            }
+        }
         currentUserInfo.setEmail(newEmail);
     }
 
