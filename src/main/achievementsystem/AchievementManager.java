@@ -1,5 +1,5 @@
 package achievementsystem;
-import user.UserInfo;
+import user.User;
 import java.util.Map;
 
 /**
@@ -7,34 +7,34 @@ import java.util.Map;
  */
 public class AchievementManager {
 
-    private UserInfo currentUserInfo;
+    private User currentUser;
 
-    public void setCurrentUserInfo(UserInfo currentUserInfo) {
-        this.currentUserInfo = currentUserInfo;
+    /**
+     * set the instance variable currentUserInfo to be the user who is going to interact with the achievement system.
+     * @param currentUser A user who is going to interact with the achievement system.
+     */
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
     /**
-     * Check if the main.user is eligible for any achievement that he/she has not received. If there is any, award that
+     * Check if the user is eligible for any achievement that he/she has not received. If there is any, award that
      * achievement to main.user.
      *
      * @param thresholds the requirements of the type of achievements.
      * @param thresholdsToAchievement the Map of requirements to their particular achievement.
-     * @param property the property of main.user that can be awarded with achievement.
+     * @param property the property of user that can be awarded with achievement.
      *                 For example, the number of post created.
      * @return true if any achievement is awarded.
      */
-
     public boolean requestAchievement(int[] thresholds, Map<Integer, String> thresholdsToAchievement, int property) {
         for (int threshold : thresholds) {
             if (property == threshold) {
-                currentUserInfo.getMapOfAchievement().replace(thresholdsToAchievement.get(property),
+                currentUser.getMapOfAchievement().replace(thresholdsToAchievement.get(property),
                         false, true);
                 return true;
             }
         }
         return false;
     }
-
-
-
 }
