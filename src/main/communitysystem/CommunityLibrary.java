@@ -3,22 +3,22 @@ package communitysystem;
 import achievementsystem.AchievementManager;
 import constants.Achievements;
 import rewardsystem.RewardManager;
-import user.UserInfo;
+import user.User;
 import constants.Exceptions;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The use case that controls a main.user's interaction with the achievement system.
+ * The use case that controls a user's interaction with the achievement system.
  */
 public class CommunityLibrary {
-    private static CommunityList mapOfCommunity = new CommunityList();
+    private static final CommunityList mapOfCommunity = new CommunityList();
     private Community currentCommunity;
-    private UserInfo currentUserInfo;
+    private User currentUser;
 
-    public void setCurrentUserInfo(UserInfo currentUserInfo) {
-        this.currentUserInfo = currentUserInfo;
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
 
@@ -44,7 +44,7 @@ public class CommunityLibrary {
 
     /**
      //     * Add a post to a community.
-     //     * @param main.user the main.user adding this post
+     //     * @param user the main.user adding this post
      //     * @param communityName the name of the community this post is being added to
      //     * @param content the content of the post being added
      //     * @return the id of the post being added.
@@ -54,8 +54,8 @@ public class CommunityLibrary {
 
     public void createPost(String content, AchievementManager achievementManager,
                            RewardManager rewardManager) throws Exception {
-        String postId = currentCommunity.addPublishedContent(content, currentUserInfo);
-        currentUserInfo.addToListOfPostId(postId);
+        String postId = currentCommunity.addPublishedContent(content, currentUser);
+        currentUser.addToListOfPostId(postId);
         rewardManager.addRewardPoint(5);
     }
 
