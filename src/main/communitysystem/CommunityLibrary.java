@@ -17,6 +17,11 @@ public class CommunityLibrary {
     private Community currentCommunity;
     private User currentUser;
 
+    public void setMapOfCommunity(CommunityList mapOfCommunity) {
+        mapOfCommunity = mapOfCommunity;
+    }
+
+
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }

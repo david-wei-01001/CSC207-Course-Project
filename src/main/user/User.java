@@ -6,6 +6,7 @@ import graph.DirectedGraph;
 import resource.Resource;
 import constants.Achievements;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.Map;
 /**
  * The class that stores all information of a main.user.
  */
-public class User implements HasName {
+public class User implements HasName, Serializable {
     private String username;
     private String email;
     private String password;

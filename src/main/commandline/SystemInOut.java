@@ -1,13 +1,22 @@
 package commandline;
 
 import achievementsystem.AchievementManager;
+import communitysystem.CommunityList;
 import constants.Achievements;
 import graph.GraphManager;
 import communitysystem.CommunityLibrary;
+import graph.Vertex;
+import jsonreadwriter.WholeReadWriter;
 import resource.ResourceManager;
 import rewardsystem.RewardManager;
+import user.UserList;
 import user.UserManager;
+import constants.Exceptions;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class SystemInOut {
@@ -363,15 +372,30 @@ public class SystemInOut {
 
 
     public void exitProgram() {
-        save();
+        try {
+            save();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
     }
 
-    private void save() {
-        // uses an interface to save.
+    private void save() throws IOException {
+        WholeReadWriter.saveToFile("src/main/commandline/user.json",
+                "src/main/commandline/community.json",
+                userManager.getMapOfUser(),
+                communityLibrary.getMapOfCommunity());
     }
 
     private void load() {
-
+        List<Object> data = new ArrayList<Object>();
+        try {
+            data = WholeReadWriter.readFromFile("src/main/commandline/user.json",
+                    "src/main/commandline/community.json");
+            userManager.setMapOfUser((UserList) data.get(0));
+            communityLibrary.setMapOfCommunity((CommunityList) data.get(1));
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
