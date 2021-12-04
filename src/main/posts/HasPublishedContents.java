@@ -1,6 +1,6 @@
 package posts;
 
-import user.UserInfo;
+import user.User;
 
 public interface HasPublishedContents {
 
@@ -22,7 +22,7 @@ public interface HasPublishedContents {
     /**
      * Add the intended content to the map which the content belongs to
      */
-    String addPublishedContent(String content, UserInfo creator);
+    String addPublishedContent(String content, User creator);
 
 
 
