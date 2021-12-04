@@ -142,6 +142,9 @@ public class Presenter {
     }
 
 
+    /**
+     * Information about displaying a user's achievement page which listed all his achievements.
+     */
     public void achievementPage(){
         System.out.println(userManager.displayAchievement());
     }
