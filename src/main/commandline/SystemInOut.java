@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SystemInOut {
     private UserManager userManager;
@@ -334,12 +336,15 @@ public class SystemInOut {
     public String getEmailRegister() {
         presenter.getEmail();
         String email = scanner.nextLine();
-        while (!email.contains(Presenter.AT)) {
-            presenter.incorrectEmail();
-            email = scanner.nextLine();
+        Pattern p = Pattern.compile("^\\w{1,63}@[a-zA-Z0-9]{2,63}\\.[a-zA-Z]{2,63}(\\.[a-zA-Z]{2,63})?$");
+        Matcher m = p.matcher(email);
+        while (!m.matches()) {
             if (email.equals(Presenter.RETURN)) {
                 return email;
             }
+            presenter.incorrectEmail();
+            email = scanner.nextLine();
+            m = p.matcher(email);
         }
         return email;
     }
