@@ -53,26 +53,27 @@ public class SystemInOut {
             presenter.mainMenuOptions();
             String input = scanner.nextLine();
 
-            while (!(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("exit"))) {
+            while (!(input.equals(Presenter.ONE) || input.equals(Presenter.TWO) || input.equals(Presenter.THREE)
+                    || input.equals(Presenter.EXIT))) {
                 presenter.incorrectInput();
                 input = scanner.nextLine();
             }
 
             switch (input) {
-                case "1":
+                case Presenter.ONE:
                     try {
                         technicalTreeMainPage();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     break;
-                case "2":
+                case Presenter.TWO:
                     resourcePage();
                     break;
-                case "3":
+                case Presenter.THREE:
                     achievementPage();
                     break;
-                case "exit":
+                case Presenter.EXIT:
                     exitProgram();
                     break;
             }
@@ -89,22 +90,23 @@ public class SystemInOut {
         presenter.rewardPoints();
         presenter.resourcePage();
         String input = scanner.nextLine();
-        while (!(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("0"))) {
+        while (!(input.equals(Presenter.ONE) || input.equals(Presenter.TWO) || input.equals(Presenter.THREE)
+                || input.equals(Presenter.ZERO))) {
             presenter.incorrectInput();
             input = scanner.nextLine();
         }
 
         switch (input) {
-            case "1":
+            case Presenter.ONE:
                 myResource();
                 break;
-            case "2":
+            case Presenter.TWO:
                 downloadResources();
                 break;
-            case "3":
+            case Presenter.THREE:
                 createResource();
                 break;
-            case "0":
+            case Presenter.ZERO:
                 mainMenu();
         }
     }
@@ -121,12 +123,12 @@ public class SystemInOut {
     private void downloadResources() {
         presenter.resourceChoose();
         String content = scanner.nextLine();
-        while(resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
+        while(resourceManager.downloadResource(content).equals(Presenter.INSUFFICIENT_POINTS)){
             presenter.insufficientPoints();
             presenter.resourceChoose();
             content = scanner.nextLine();
         }
-        while(!resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
+        while(!resourceManager.downloadResource(content).equals(Presenter.INSUFFICIENT_POINTS)){
             presenter.downloadSuccessfully();
             resourceManager.downloadResource(content);
             presenter.mainMenuReturn();
@@ -155,12 +157,12 @@ public class SystemInOut {
         presenter.technicalTreeMainPage();
         String input = scanner.nextLine();
 
-        while (!graphManager.getAllGraphs().containsKey(input) && !input.equals("main")) {
+        while (!graphManager.getAllGraphs().containsKey(input) && !input.equals(Presenter.MAIN)) {
             presenter.incorrectInput();
             input = scanner.nextLine();
         }
 
-        if (input.equals("main")){
+        if (input.equals(Presenter.MAIN)){
             mainMenu();
         }
 
@@ -176,12 +178,12 @@ public class SystemInOut {
 
         presenter.technicalTreePage();
         String input = scanner.nextLine();
-        while (!graphManager.getCurrentGraph().availableVertex().containsKey(input) && !input.equals("main")){
+        while (!graphManager.getCurrentGraph().availableVertex().containsKey(input) && !input.equals(Presenter.MAIN)){
             presenter.incorrectInput();
             input = scanner.nextLine();
         }
 
-        if (input.equals("main")){
+        if (input.equals(Presenter.MAIN)){
             mainMenu();
         }
         else {
@@ -197,7 +199,7 @@ public class SystemInOut {
 
         presenter.studyVertex();
         String input = scanner.nextLine();
-        while (!input.equals("Yes")){
+        while (!input.equals(Presenter.YES)){
             presenter.studyVertexNotFinished();
             input = scanner.nextLine();
         }

@@ -14,10 +14,13 @@ public class Presenter {
     private ResourceManager resourceManager;
     private GraphManager graphManager;
 
-
+    protected static final String ZERO = "0";
     protected static final String ONE = "1";
     protected static final String TWO = "2";
+    protected static final String THREE = "3";
+    protected static final String YES = "yes";
     protected static final String EXIT = "exit";
+    protected static final String MAIN = "main";
     protected static final String RETURN = "return";
     protected static final String PASSWORD = "password";
     protected static final String USERNAME = "username";
@@ -25,6 +28,7 @@ public class Presenter {
     protected static final String AT = "@";
     protected static final String LOGIN_OPTIONS = "Options: " + ONE + ".Sign-in, "+ TWO + ".Register, or enter \""
             + EXIT + "\" to exit program";
+    protected static final String INSUFFICIENT_POINTS = "Sorry, you do not have enough points";
     protected static final String INCORRECT_INPUT = "Incorrect input";
     protected static final String YOU_DID_NOT_ENTER_A = "You did not enter a";
     protected static final String PLEASE_TRY_AGAIN = "please try again";
@@ -141,62 +145,95 @@ public class Presenter {
         System.out.println( "You have successfully created this resource.");
     }
 
-
+    /**
+     * Information to display when prompted for displaying the achievement page.
+     */
     public void achievementPage(){
         System.out.println(userManager.displayAchievement());
     }
 
-
+    /**
+     * Information to display when a prompted for displaying the technical tree main page.
+     */
     public void technicalTreeMainPage(){
         System.out.println("Hi! Now you've entered the technical tree page.");
         System.out.println("Select the tree you want to study!");
-        System.out.println("Tech Trees: " + graphManager.getAllGraphs());
+        System.out.println("Tech Trees: " + "\n" + graphManager.getAllGraphName());
         System.out.println("Enter \"main\" to return to main page.");
     }
 
+    /**
+     * Information to display when prompted for displaying the current graph.
+     */
     public void technicalTreeDisplayCurrentGraph(){
         System.out.println(graphManager.displayCurrentGraph());
     }
 
+    /**
+     * Information to display when the user are required to choose a tree or return to the home page.
+     */
     public void technicalTreePage() throws Exception {
-        System.out.println("Please choose the node you want to start with" +
-                graphManager.getCurrentGraph().availableVertex() + "or enter \"main\" to return to home page.");
+        System.out.println("Please choose the node you want to study with: " +
+                graphManager.getCurrentGraph().availableVertex() + ", or enter \"main\" to return to home page.");
     }
 
+    /**
+     * Information to display when studying the node.
+     */
     public void studyVertex(){
-        System.out.println("Now study the node you have chosen, once you're finished, type \"Yes\" below:");
+        System.out.println("Now study the node you have chosen, once you're finished, type \"yes\" below:");
     }
 
+    /**
+     * Information to display when entered other than yes.
+     */
     public void studyVertexNotFinished(){
         System.out.println("It seems like you have not finished your study yet, keep working on it!" +
-                "Once you finished, type \"Yes\" below:");
+                "Once you finished, type \"yes\" below:");
     }
 
+    /**
+     * Information to display when finish studying a node.
+     */
     public void studyVertexFinished(){
         System.out.println("Congratulations! You've made one giant step toward success! Now let's make some posts " +
                 "on what you've just learned.");
     }
 
+    /**
+     * Information to display when finishing a node and prompted for a comment.
+     */
     public void enterPublishContent(){
         System.out.println("Please enter the content you want to publish below: ");
     }
 
+    /**
+     * Information to display when post is published successfully.
+     */
     public void publishPostSuccessful(){
         System.out.println("Congratulations! You've successfully published a post. :)");
     }
 
+    /**
+     * Information to display when the node is finished.
+     */
     public void nodeCompleted(){
         System.out.println("You have completed this node, you can now proceed to the next " +
                 "node you want to study. Press any key to continue.");
     }
 
+    /**
+     * Requiring for the login options
+     */
     protected String LoginOptions() {
         Scanner scanner = new Scanner(System.in);
         System.out.println(LOGIN_OPTIONS);
         return scanner.nextLine();
     }
 
-
+    /**
+     * Prompting the user to enter the correct login option
+     */
     protected String getCorrectLoginOption(String input) {
         Scanner scanner = new Scanner(System.in);
         while (!(input.equals(ONE) || input.equals(TWO) || input.equals(EXIT))) {
@@ -206,6 +243,9 @@ public class Presenter {
         return input;
     }
 
+    /**
+     * Prompting the user to enter a non-empty credential
+     */
     protected String getNonEmptyCredential(String credential) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(credential + ": ");
@@ -217,34 +257,58 @@ public class Presenter {
         return nonEmptyCredential;
     }
 
+    /**
+     * Prompting the user to enter a non-empty password
+     */
     protected String getNonEmptyPassword() {
         return getNonEmptyCredential(PASSWORD);
     }
 
+    /**
+     * Prompting the user to enter a non-empty username
+     */
     protected String getNonEmptyUsername() {
         return getNonEmptyCredential(USERNAME);
     }
 
+    /**
+     * Prompting the user to enter the correct password
+     */
     protected void incorrectPassword() {
         pleaseTryAgain(PASSWORD);
     }
 
+    /**
+     * Prompting the user to enter the correct username
+     */
     protected void incorrectUsername() {
         pleaseTryAgain(USERNAME);
     }
 
+    /**
+     * Prompting the user to enter the correct email
+     */
     protected void incorrectEmail() {
         pleaseTryAgain(EMAIL);
     }
 
+    /**
+     * Prompting the user to enter another username since the current one is already in use
+     */
     protected void usernameTaken() {
         pleaseTryAgain(Exceptions.USER_NAME_TAKEN);
     }
 
+    /**
+     * Prompting the user to try again since the credentials entered is incorrect
+     */
     private void pleaseTryAgain(String credential) {
         System.out.println(INCORRECT + " " + credential + ", " + PLEASE_TRY_AGAIN + ", " + OR + " " + ENTER_RETURN);
     }
 
+    /**
+     * Prompting the user to enter the email
+     */
     protected void getEmail() {
         System.out.println(EMAIL + ": ");
     }
