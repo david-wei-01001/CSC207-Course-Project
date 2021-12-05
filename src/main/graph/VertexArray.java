@@ -3,6 +3,7 @@ package graph;
 import constants.Exceptions;
 import constants.InLevelComparator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,7 +14,7 @@ import static constants.Algorithm.*;
 /**
  * A special Array which stores a vertex and all DirectedEdges started from a vertex.
  */
-public class VertexArray implements Iterable<Vertex> {
+public class VertexArray implements Iterable<Vertex>, Serializable {
 
     private final Vertex start;
     /**

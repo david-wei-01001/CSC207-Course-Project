@@ -23,7 +23,12 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
     private final IterableMap<String, VertexArray> VERTICES = new IterableMap<>();
     private final String NAME;
     private final List<String> CURRENTUNCLOCK = new ArrayList<>();
+
     private final List<String> COMPLETED = new ArrayList<>();
+
+    public int getNumOfCOMPLETED() {
+        return COMPLETED.size();
+    }
 
     /**
      * The constructor of the DirectedGraph class.
@@ -310,6 +315,21 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
             VertexArray toReturn = arranged.get(index);
             index ++;
             return toReturn;
+        }
+    }
+
+    /**
+     * Check if the completed set is zero, in other word, this
+     * method is used to check whether the tree/graph was
+     * began to learn
+     */
+    public boolean isLearnedGraph(){
+        int number = COMPLETED.size();
+        if (number == 0){
+            return false;
+        }
+        else{
+            return true;
         }
     }
 }

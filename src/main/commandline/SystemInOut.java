@@ -3,20 +3,19 @@ package commandline;
 import achievementsystem.AchievementManager;
 import communitysystem.CommunityList;
 import constants.Achievements;
+import graph.DirectedGraph;
 import graph.GraphManager;
 import communitysystem.CommunityLibrary;
-import graph.Vertex;
 import jsonreadwriter.WholeReadWriter;
 import resource.ResourceManager;
 import rewardsystem.RewardManager;
 import user.UserList;
 import user.UserManager;
-import constants.Exceptions;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,12 +54,15 @@ public class SystemInOut {
             presenter.mainMenuOptions();
             String input = scanner.nextLine();
 
-            while (!(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("exit"))) {
+            while (!(input.equals("1") || input.equals("2") || input.equals("3") ||
+                    input.equals("0") || input.equals("exit"))) {
                 presenter.incorrectInput();
                 input = scanner.nextLine();
             }
 
             switch (input) {
+                case "0":
+                    myTreeMainPage();
                 case "1":
                     try {
                         technicalTreeMainPage();
@@ -80,6 +82,79 @@ public class SystemInOut {
             }
     }
 
+    private void myTreeMainPage(){
+//        presenter.technicalTreeMainPage();
+//        String input = scanner.nextLine();
+//
+//        while (!graphManager.getAllGraphs().containsKey(input) && !input.equals("main")) {
+//            presenter.incorrectInput();
+//            input = scanner.nextLine();
+//        }
+//
+//        if (input.equals("main")){
+//            mainMenu();
+//        }
+//
+//        else {
+//            technicalTreePage(input);
+//        }
+        if(userManager.getCurrentUser().getMapOfGraph().size() == 0){
+            presenter.myTreePageEmpty();
+            presenter.mainMenuReturn();
+            String input = scanner.nextLine();
+            mainMenu();
+        }
+        else{
+            presenter.myTreePage();
+
+            String input = scanner.nextLine();
+
+            while (!userManager.getCurrentUser().getMapOfGraph().containsKey(input) && !input.equals("main")) {
+                presenter.incorrectInput();
+                input = scanner.nextLine();
+            }
+
+            if (input.equals("main")){
+                mainMenu();
+            }
+            else{
+                try {
+                    myTreePage(input);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    private void myTreePage(String treeId) throws Exception {
+        DirectedGraph currgraph = userManager.getCurrentUser().getMapOfGraph().get(treeId);
+        graphManager.updateWithPrivateGraph(currgraph);
+        graphManager.setCurrentGraph(treeId);
+
+        technicalTreePage(treeId);
+
+        // TODO: need to change the way to call the tree
+
+
+//
+//        presenter.technicalTreePage();
+//        String input = scanner.nextLine();
+//        while (!graphManager.getCurrentGraph().availableVertex().containsKey(input) && !input.equals("main")){
+//            presenter.incorrectInput();
+//            input = scanner.nextLine();
+//        }
+//
+//        if (input.equals("main")){
+//            mainMenu();
+//        }
+//        else {
+//
+//            String vertexName = graphManager.getCurrentGraph().availableVertex().get(input).toString();
+//
+//            studyVertex(vertexName, treeId);
+//        }
+
+    }
     private void achievementPage() {
         presenter.achievementPage();
         presenter.mainMenuReturn();
@@ -173,7 +248,17 @@ public class SystemInOut {
     }
 
     private void technicalTreePage(String treeId) throws Exception {
+
+        DirectedGraph currgraph = userManager.getCurrentUser().getMapOfGraph().get("1");
+        if (currgraph != null){
+            graphManager.updateWithPrivateGraph(currgraph);
+        }
+
+        System.out.println("this is current user's graph");
+        System.out.println(currgraph.toString());
+
         graphManager.setCurrentGraph(treeId);
+
         presenter.technicalTreeDisplayCurrentGraph();
 
         presenter.technicalTreePage();
@@ -187,7 +272,6 @@ public class SystemInOut {
             mainMenu();
         }
         else {
-
             String vertexName = graphManager.getCurrentGraph().availableVertex().get(input).toString();
 
             studyVertex(vertexName, treeId);
@@ -385,7 +469,20 @@ public class SystemInOut {
         System.exit(0);
     }
 
+    /**
+     * Check for the learned tree and update them into user's info storage.
+     */
+    public void checkForMyTree(){
+        for(DirectedGraph graph: graphManager.getAllGraphs().values()){
+            if(graph.isLearnedGraph()){
+                user.User curruser=userManager.getCurrentUser();
+                curruser.addGraph(graph);
+            }
+        }
+    }
+
     private void save() throws IOException {
+        checkForMyTree();
         WholeReadWriter.saveToFile("src/main/commandline/user.json",
                 "src/main/commandline/community.json",
                 userManager.getMapOfUser(),

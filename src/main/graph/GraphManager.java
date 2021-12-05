@@ -13,9 +13,28 @@ import java.util.Map;
  */
 public class GraphManager {
 
-    private final Map<String, DirectedGraph> mapOfGraphs = new HashMap<>();
+    private Map<String, DirectedGraph> mapOfGraphs = new HashMap<>();
     private DirectedGraph currentGraph;
     private CommunityLibrary communityLibrary;
+
+    /**
+     * Update the graph with user's private graph.
+     */
+    public void updateWithPrivateGraph(DirectedGraph newgraph){
+        String graphname = newgraph.getName();
+        int treeId = 0;
+        if(graphname == "Introductory Makeup Steps"){
+            treeId = 1;
+        }
+        if(mapOfGraphs.get(treeId).getNumOfCOMPLETED() <= newgraph.getNumOfCOMPLETED()){
+            System.out.println("ATTENTION!!");
+            mapOfGraphs.get(treeId).getNumOfCOMPLETED();
+            newgraph.getNumOfCOMPLETED();
+            mapOfGraphs.replace(graphname, newgraph);
+        }
+
+    }
+
 
     /**
      * Constructor of GraphManager
