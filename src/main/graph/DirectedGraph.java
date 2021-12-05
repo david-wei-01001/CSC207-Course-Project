@@ -256,6 +256,7 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
         stringBuilder.append("\n");
         for (VertexArray edges : arrangeArray()) {
             if (edges.getStart().getInLevel() == 0) {
+                stringBuilder.append("\n");
                 stringBuilder.append(singleVertexToString(edges, 1));
             }
         }

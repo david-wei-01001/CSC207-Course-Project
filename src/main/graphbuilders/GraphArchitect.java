@@ -33,6 +33,9 @@ public class GraphArchitect {
         else if (treeName.equals(BuiltInGraphs.INTRODUCTORY_MAKEUP)){
             graphBuilder = new IntroMakeupGraphBuilder();
         }
+        else if (treeName.equals(BuiltInGraphs.MATHEMATICS)){
+            graphBuilder = new MathematicsGraphBuilder();
+        }
         else {
             throw new Exception(Exceptions.CANNOT_RECOGNIZE_BUILT_IN_TREE);
         }
@@ -45,7 +48,7 @@ public class GraphArchitect {
 
     public static void main(String[] args) {
         try {
-            System.out.println(GraphArchitect.setBuilderAndBuildGraph(BuiltInGraphs.INTRODUCTORY_CS_SERIES).toString());
+            System.out.println(GraphArchitect.setBuilderAndBuildGraph(BuiltInGraphs.MATHEMATICS).toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
