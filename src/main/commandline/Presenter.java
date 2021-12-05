@@ -170,7 +170,7 @@ public class Presenter {
                 myTree2.put(id, graph);
             }
         }
-        System.out.println("Tech Trees: " + myTree2);
+        System.out.println("Tech Trees: " + "\n" + getAllGraphName(myTree2));
         System.out.println("Enter \"main\" to return to main page.");
 
     }
@@ -178,10 +178,20 @@ public class Presenter {
         System.out.println("Oops, your have not begin the study for any graph.");
         System.out.println("To begin your learning experience, back to main menu and select Tech Tree!");
     }
+
+    public String getAllGraphName(HashMap<String,DirectedGraph> mapOfGraphs){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(String i : mapOfGraphs.keySet()){
+            stringBuilder.append(i).append(": ");
+            stringBuilder.append(mapOfGraphs.get(i).getName());
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
+    }
     public void technicalTreeMainPage(){
         System.out.println("Hi! Now you've entered the technical tree page.");
         System.out.println("Select the tree you want to study!");
-        System.out.println("Tech Trees: " + "\n" + graphManager.getAllGraphName());
+        System.out.println("Tech Trees: " + "\n" + getAllGraphName((HashMap<String, DirectedGraph>) graphManager.getAllGraphs()));
         System.out.println("Enter \"main\" to return to main page.");
     }
 
