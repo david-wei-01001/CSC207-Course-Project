@@ -43,4 +43,12 @@ public class GraphArchitect {
 //        }
     }
 
+    public static void main(String[] args) {
+        try {
+            System.out.println(GraphArchitect.setBuilderAndBuildGraph(BuiltInGraphs.INTRODUCTORY_CS_SERIES).toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

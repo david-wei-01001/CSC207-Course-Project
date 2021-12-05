@@ -48,6 +48,10 @@ public class VertexArray implements Iterable<Vertex>, Serializable {
         addEdge(vertex);
     }
 
+    public boolean isEmpty(){
+        return END.isEmpty();
+    }
+
 
     public int indexToInsert(Vertex vertex) {
         if (END.isEmpty()) {
