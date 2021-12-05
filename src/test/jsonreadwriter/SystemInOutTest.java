@@ -1,6 +1,6 @@
 package jsonreadwriter;
 
-import commandline.SystemInOut;
+import interfaceadapter.SystemInOut;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

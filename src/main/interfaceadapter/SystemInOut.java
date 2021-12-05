@@ -1,4 +1,4 @@
-package commandline;
+package interfaceadapter;
 
 import achievementsystem.AchievementManager;
 import communitysystem.CommunityLibrary;
