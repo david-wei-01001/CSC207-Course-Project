@@ -1,4 +1,4 @@
-package commandline;
+package interfaceadapter;
 
 import constants.Exceptions;
 import graph.DirectedGraph;

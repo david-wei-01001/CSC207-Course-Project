@@ -45,7 +45,7 @@ public class Achievements {
      * The achievement that is awarded for the first login, and its corresponding threshold and reward point.
      */
     public static final int FIRST_LOGIN_THRESHOLD = 1;
-    public static final String FIRST_LOGIN = "First User.Login";
+    public static final String FIRST_LOGIN = "First Login";
 
     public static final int[] ARRAY_OF_TOTAL_LOGINS_THRESHOLDS = {FIRST_LOGIN_THRESHOLD};
     public static final Map<Integer, String> MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT = Map.ofEntries(
@@ -53,6 +53,6 @@ public class Achievements {
     );
 
 
-    public static final String[] ARRAY_OF_ALL_ACHIEVEMENTS = {FIRST_POST, FIRST_LOGIN, FIFTH_POST,
-            TENTH_POST, FIRST_LOGIN};
+    public static final String[] ARRAY_OF_ALL_ACHIEVEMENTS = {FIRST_LOGIN, TENTH_POST, FIRST_POST, FIFTH_POST,
+            };
 }
