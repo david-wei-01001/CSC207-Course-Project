@@ -1,6 +1,5 @@
 package user;
 
-import constants.Achievements;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

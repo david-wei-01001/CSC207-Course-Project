@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Iterator;
 
 /**
- * Strategy Design Pattern applied throughout the class.
+ * Algorithms class which contains supporting algorithms for building the directed tree
  */
 public class Algorithm {
 

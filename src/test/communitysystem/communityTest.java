@@ -1,11 +1,11 @@
 package communitysystem;
 
-import communitysystem.Community;
-import posts.HasPublishedContents;
-import posts.Post;
 import org.junit.Before;
 import org.junit.Test;
+import posts.HasPublishedContents;
+import posts.Post;
 import user.User;
+
 import static org.junit.Assert.*;
 
 public class communityTest {
@@ -56,7 +56,7 @@ public class communityTest {
         assertEquals("Post #2",community.getNextId());
     }
     /**
-     * Test if the getNumPost method correctly reflect the number of main.posts in the community.
+     * Test if the getNumPost method correctly reflect the number of main. posts in the community.
      */
     @Test
     public void testGetNumPost() {
@@ -84,11 +84,6 @@ public class communityTest {
 
     @Test(timeout = 500)
 
-    /**
-     * test whether the delete method correctly set the post to be deleted as invisible
-     * and whether the getNumberOfPosts method correctly reflect this delete.
-     * @throws HasPublishedContents.PostNotFoundException if the post to be deleted does not exist.
-     */
     public void testDelete() {
         try {
             Post post0 = new Post("abc", community.getNextId(), user);

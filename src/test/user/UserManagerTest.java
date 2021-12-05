@@ -1,10 +1,8 @@
 package user;
 
+import constants.BuiltInGraphs;
 import graph.DirectedGraph;
 import graphbuilders.GraphArchitect;
-import user.User;
-import user.UserManager;
-import constants.BuiltInGraphs;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * implement this test
@@ -64,7 +62,7 @@ class UserManagerTest {
      * test if the userName has been taken
      */
     @Test
-    void testAddNewUserUnsuccessful() throws Exception {
+    void testAddNewUserUnsuccessful() {
 
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.addNewUser("userName", "antherEmail@", "anotherPassword"));
@@ -88,7 +86,7 @@ class UserManagerTest {
     }
 
     @Test
-    void testGetAUserUnsuccessful() throws Exception {
+    void testGetAUserUnsuccessful() {
 
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.getAUser("anotherUserName"));
@@ -123,7 +121,7 @@ class UserManagerTest {
     }
 
     @Test
-    void testSetUserNameOfCurrentUnsuccessfulWithSameName() throws Exception {
+    void testSetUserNameOfCurrentUnsuccessfulWithSameName() {
 
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.setUserNameOfCurrent("userName"));
@@ -149,7 +147,7 @@ class UserManagerTest {
     }
 
     @Test
-    void testSetCurrentUserUnsuccessful() throws Exception {
+    void testSetCurrentUserUnsuccessful() {
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.setCurrentUser(ANOTHER_USERNAME));
         Assertions.assertEquals("Cannot recognize this main.user", thrown.getMessage());

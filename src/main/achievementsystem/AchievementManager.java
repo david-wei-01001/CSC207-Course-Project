@@ -3,7 +3,7 @@ import user.User;
 import java.util.Map;
 
 /**
- * The use case that controls a main.user's interaction with the achievement system.
+ * The use case that controls a main. user's interaction with the achievement system.
  */
 public class AchievementManager {
 

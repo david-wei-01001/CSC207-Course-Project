@@ -1,9 +1,9 @@
 package user;
 
-import graph.DirectedGraph;
-import user.User;
 import constants.Achievements;
+import graph.DirectedGraph;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +12,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * TODO: implement this test
  */
+@SuppressWarnings("ALL")
 public class UserTest {
     final String USERNAME = "userName";
     final String EMAIL = "email@.com";
@@ -55,7 +56,7 @@ public class UserTest {
         ArrayList<String> emptyArray = new ArrayList<>();
         Map<String, DirectedGraph> emptyMap = new HashMap<>();
 
-        assertEquals("UserInfo{" +
+        Assertions.assertEquals("UserInfo{" +
                 "userName='" + USERNAME + '\'' +
                 ", email='" + EMAIL + '\'' +
                 ", password='" + PASSWORD + '\'' +
@@ -74,7 +75,7 @@ public class UserTest {
         user.incrementTotalLogins();
         user.incrementTotalLogins();
         user.incrementTotalLogins();
-        assertEquals(3, user.getTotalLogins());
+        Assertions.assertEquals(3, user.getTotalLogins());
     }
 
     /**
@@ -84,7 +85,7 @@ public class UserTest {
     void testDisplayAchievements(){
         user.initializeMapOfAchievement();
         Object[] achievementNames = user.getMapOfAchievement().keySet().toArray();
-        assertEquals( achievementNames[0]
+        Assertions.assertEquals( achievementNames[0]
                         + ": "
                         + "not acquired"
                         + '\n'

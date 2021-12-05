@@ -21,11 +21,10 @@ public class User implements HasName, Serializable {
     private String email;
     private String password;
     private int rewardPoints;
-    // TODO： How do we update lastlogin?
-    private LocalDate lastLogin;
+    private final LocalDate lastLogin;
     private int totalLogins;
     private final ArrayList<String> listOfPostId = new ArrayList<>();
-    private Map<String, DirectedGraph> mapOfGraph = new HashMap<>();
+    private final Map<String, DirectedGraph> mapOfGraph = new HashMap<>();
     private final Map<String, Resource> mapOfResource = new HashMap<>();
     private final IterableMap<String, Boolean> mapOfAchievement = new IterableMap<>();
 
@@ -143,10 +142,6 @@ public class User implements HasName, Serializable {
 
     public String getPassword() {
         return password;
-    }
-
-    public LocalDate getLastLogin() {
-        return lastLogin;
     }
 
     public IterableMap<String, Boolean> getMapOfAchievement() {
