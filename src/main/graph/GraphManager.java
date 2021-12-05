@@ -18,7 +18,7 @@ public class GraphManager {
     private final Map<String, DirectedGraph> mapOfGraphs = new HashMap<>();
     private DirectedGraph currentGraph;
     private CommunityLibrary communityLibrary;
-    private final TreeIdMap idMap = new TreeIdMap(new HashMap<>());
+    private TreeIdMap idMap = new TreeIdMap(new HashMap<>());
 
     public TreeIdMap getIdMap() {
         return idMap;
@@ -74,16 +74,6 @@ public class GraphManager {
         return mapOfGraphs;
     }
 
-
-    public String getAllGraphName(){
-        StringBuilder stringBuilder = new StringBuilder();
-        for(String i : mapOfGraphs.keySet()){
-            stringBuilder.append(i).append(": ");
-            stringBuilder.append(mapOfGraphs.get(i).getName());
-            stringBuilder.append("\n");
-        }
-        return stringBuilder.toString();
-    }
 
 
     /**
