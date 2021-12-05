@@ -2,6 +2,7 @@ package graph;
 
 import constants.Exceptions;
 import constants.HasName;
+import constants.IterableMap;
 import constants.VertexArrayDefaultComparator;
 
 import java.io.Serializable;
@@ -12,17 +13,42 @@ import static constants.Algorithm.*;
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.
  */
-public class DirectedGraph extends Observable implements Serializable, Iterable<VertexArray>, HasName {
+public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasName {
 
     /**
      * The key of VERTICES is a String which is the name of a Vertex, the value of the VERTICES is an Array of length
      * 2 where the first element is a Vertex which is the starting vertex of many edges and the second element is an
      * ArrayList containing all Vertices that is the ending vertex which the starting vertex points to.
      */
-    private final Map<String, VertexArray> VERTICES = new HashMap<>();
+    private final IterableMap<String, VertexArray> VERTICES = new IterableMap<>();
     private final String NAME;
     private final List<String> CURRENTUNCLOCK = new ArrayList<>();
     private final List<String> COMPLETED = new ArrayList<>();
+    private int treeid;
+
+    /**
+     * get the number of completed vertex
+     * @return number of complete
+     */
+    public int getNumOfCOMPLETED() {
+        return COMPLETED.size();
+    }
+
+    /**
+     * set tree id
+     * @param treeid
+     */
+    public void setTreeid(int treeid) {
+        this.treeid = treeid;
+    }
+
+    /**
+     * return identical graph id
+     * @return treeid
+     */
+    public int getTreeid() {
+        return treeid;
+    }
 
     /**
      * The constructor of the DirectedGraph class.
@@ -111,7 +137,7 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
     }
 
     public void updateAll(Vertex vertex) throws Exception {
-        for (String name: VERTICES.keySet()) {
+        for (String name: VERTICES) {
             if (getVertexArray(name).isEnd(vertex)) {
                 getVertexArray(name).updateVertex(vertex);
             }
@@ -134,7 +160,7 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
                 CURRENTUNCLOCK.add(v.getName());
             }
         }
-        for (String vertexName : VERTICES.keySet()) {
+        for (String vertexName : VERTICES) {
             if (getVertexArray(vertexName).isEnd(delete)) {
                 Vertex[] edge = {getVertexArray(vertexName).getStart(), delete};
                 deleteEdge(edge);
@@ -185,7 +211,7 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
      * @throws Exception if the name of the vertex does not exist in the DirectedGraph
      */
     public Vertex getVertex(String name) throws Exception {
-        for (String vertexName : VERTICES.keySet()){
+        for (String vertexName : VERTICES){
             if (vertexName.equals(name)) {
                 return  getVertexArray(name).getStart();
             }
@@ -229,10 +255,33 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
         stringBuilder.append(NAME);
         stringBuilder.append("\n");
         for (VertexArray edges : arrangeArray()) {
-            stringBuilder.append("    ");
-            stringBuilder.append(edges.toString());
+            if (edges.getStart().getInLevel() == 0) {
+                stringBuilder.append("\n");
+                stringBuilder.append(singleVertexToString(edges, 1));
+            }
         }
         return stringBuilder.toString();
+    }
+
+    public String singleVertexToString(VertexArray edge, int numInward) {
+        if (edge.isEmpty()) {
+            return edge.getStart().toString();
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(edge.getStart().toString());
+            for (Vertex vertex : edge) {
+                try {
+                    VertexArray vertexArray = getVertexArray(vertex);
+                    stringBuilder.append("\n");
+                    stringBuilder.append("    ".repeat(numInward));
+                    stringBuilder.append("-> ");
+                    stringBuilder.append(singleVertexToString(vertexArray, numInward + 1));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return stringBuilder.toString();
+        }
     }
 
     /**
@@ -272,7 +321,7 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
 
     private List<VertexArray> arrangeArray() {
         List<VertexArray> vertexArray = new ArrayList<>();
-        for (String vertexName : VERTICES.keySet()) {
+        for (String vertexName : VERTICES) {
             try{
                 vertexArray.add(getVertexArray(vertexName));
             } catch (Exception e) {
@@ -310,5 +359,15 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
             index ++;
             return toReturn;
         }
+    }
+
+    /**
+     * Check if the completed set is zero, in other word, this
+     * method is used to check whether the tree/graph was
+     * began to learn
+     */
+    public boolean isLearnedGraph(){
+        int number = COMPLETED.size();
+        return number != 0;
     }
 }

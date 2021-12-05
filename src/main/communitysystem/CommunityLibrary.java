@@ -3,22 +3,34 @@ package communitysystem;
 import achievementsystem.AchievementManager;
 import constants.Achievements;
 import rewardsystem.RewardManager;
-import user.UserInfo;
+import user.User;
 import constants.Exceptions;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The use case that controls a main.user's interaction with the achievement system.
+ * The use case that controls a user's interaction with the achievement system.
  */
 public class CommunityLibrary {
-    private static CommunityList mapOfCommunity = new CommunityList();
+    private CommunityList mapOfCommunity = new CommunityList();
     private Community currentCommunity;
-    private UserInfo currentUserInfo;
+    private User currentUser;
 
-    public CommunityLibrary(UserInfo currentUserInfo) {
-        this.currentUserInfo = currentUserInfo;
+    /**
+     * Setter function for mapOfCommunity
+     * @param mapOfCommunity
+     */
+    public void setMapOfCommunity(CommunityList mapOfCommunity) {
+        this.mapOfCommunity = mapOfCommunity;
+    }
+
+    /**
+     * Setter function for currentUser
+     * @param currentUser
+     */
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
 
@@ -27,7 +39,7 @@ public class CommunityLibrary {
      * @param name: The community name
      * @return: This community exists or not
      */
-    public static boolean checkCommunityExist(String name){
+    public boolean checkCommunityExist(String name){
         return mapOfCommunity.containsKey(name);
     }
 
@@ -35,7 +47,7 @@ public class CommunityLibrary {
      * Create a new community.
      * @param name: The community name
      */
-    public static void addCommunity(String name){
+    public void addCommunity(String name){
         if(!checkCommunityExist(name)){
             Community com = new Community(name);
             mapOfCommunity.add(com);
@@ -44,34 +56,24 @@ public class CommunityLibrary {
 
     /**
      //     * Add a post to a community.
-     //     * @param main.user the main.user adding this post
+     //     * @param user the main.user adding this post
      //     * @param communityName the name of the community this post is being added to
      //     * @param content the content of the post being added
      //     * @return the id of the post being added.
      //     * @throws Exception throws an exception if the community with the communityName is not found.
      //     */
-
-
     public void createPost(String content, AchievementManager achievementManager,
                            RewardManager rewardManager) throws Exception {
-        String postId = currentCommunity.addPublishedContent(content, currentUserInfo);
-        currentUserInfo.addToListOfPostId(postId);
-        boolean achievementAwarded = achievementManager.requestAchievement(
-                Achievements.ARRAY_OF_POST_THRESHOLDS,
-                Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
-                currentUserInfo.getListOfPostId().size());
-        if (achievementAwarded) {
-            rewardManager.addRewardPoint(
-                    Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(currentUserInfo.getListOfPostId().size()));
-        }
-
+        String postId = currentCommunity.addPublishedContent(content, currentUser);
+        currentUser.addToListOfPostId(postId);
+        rewardManager.addRewardPoint(5);
     }
 
     /**
      * Delete an existing community
      * @param name: The name of Community
      */
-    public static void deleteCommunity(String name){
+    public void deleteCommunity(String name){
         mapOfCommunity.remove(name);
     }
 
@@ -80,16 +82,22 @@ public class CommunityLibrary {
      * @param name: The name of the community
      * @return Community that with the name
      */
-    public static Community getCommunity(String name){
+    public Community getCommunity(String name){
         return mapOfCommunity.get(name);
     }
 
-
-
+    /**
+     * Return the currentCommunity
+     * @return currentCommunity
+     */
     public Community getCurrentCommunity() {
         return currentCommunity;
     }
 
+    /**
+     * Set the currentCommunity with the given communityName
+     * @param communityName: The name of the community to set for currentCommunity
+     */
     public void setCurrentCommunity(String communityName) throws Exception {
         if (checkCommunityExist(communityName)) {
             this.currentCommunity = mapOfCommunity.get(communityName);
@@ -99,6 +107,10 @@ public class CommunityLibrary {
 
     }
 
+    /**
+     * The getter function for mapOfCommunity
+     * @return mapOfCommunity
+     */
     public CommunityList getMapOfCommunity() {
         return mapOfCommunity;
     }

@@ -1,14 +1,25 @@
 package commandline;
 
 import achievementsystem.AchievementManager;
+import communitysystem.CommunityList;
+import constants.Achievements;
+import constants.TreeidMap;
+import graph.DirectedGraph;
 import graph.GraphManager;
 import communitysystem.CommunityLibrary;
+import jsonreadwriter.WholeReadWriter;
 import resource.ResourceManager;
 import rewardsystem.RewardManager;
+import user.UserList;
 import user.UserManager;
-import constants.Exceptions;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SystemInOut {
     private UserManager userManager;
@@ -18,59 +29,135 @@ public class SystemInOut {
     private CommunityLibrary communityLibrary;
     private ResourceManager resourceManager;
     private Scanner scanner = new Scanner(System.in);
-    private Presenter presenter = new Presenter(userManager, resourceManager);
+    private Presenter presenter;
+    private TreeidMap idmap;
 
     public SystemInOut() throws Exception {
         graphManager = new GraphManager();
         userManager = new UserManager();
-        userManager.addNewUserInfo("alfred", "@", "123");
+        userManager.addNewUser("alfred", "@", "123");
         resourceManager = new ResourceManager();
         resourceManager.addDefault();
-        presenter = new Presenter(userManager, resourceManager);
+        rewardManager = new RewardManager();
+        achievementManager = new AchievementManager();
+        communityLibrary = new CommunityLibrary();
+        graphManager.addBuiltInGraph(communityLibrary);
+        presenter = new Presenter(userManager, resourceManager, graphManager);
+        idmap = graphManager.getIdmap();
     }
 
     public void run() {
+        load();
         logIn();
         mainMenu();
-
         scanner.close();
     }
 
     public void mainMenu() {
-        boolean keepRunning = true;
-
-        while (keepRunning) {
-            System.out.println("Main Menu: 1.Technical Tree, 2.Resource, 3.Achievement, or enter \"exit\" to exit program");
+            presenter.mainMenuOptions();
             String input = scanner.nextLine();
 
-            while (!(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("exit"))) {
-                System.out.println("Incorrect input, please try again.");
+            while (!(input.equals(Presenter.ONE) || input.equals(Presenter.TWO) || input.equals(Presenter.THREE) ||
+                    input.equals(Presenter.ZERO) || input.equals(Presenter.EXIT))) {
+                presenter.incorrectInput();
                 input = scanner.nextLine();
             }
 
             switch (input) {
-                case "1":
+                case Presenter.ZERO:
+                    myTreeMainPage();
+                case Presenter.ONE:
                     try {
                         technicalTreeMainPage();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     break;
-                case "2":
+                case Presenter.TWO:
                     resourcePage();
                     break;
-                case "3":
+                case Presenter.THREE:
                     achievementPage();
                     break;
-                case "exit":
-                    keepRunning = false;
+                case Presenter.EXIT:
+                    exitProgram();
                     break;
+            }
+    }
+
+    private void myTreeMainPage(){
+//        presenter.technicalTreeMainPage();
+//        String input = scanner.nextLine();
+//
+//        while (!graphManager.getAllGraphs().containsKey(input) && !input.equals("main")) {
+//            presenter.incorrectInput();
+//            input = scanner.nextLine();
+//        }
+//
+//        if (input.equals("main")){
+//            mainMenu();
+//        }
+//
+//        else {
+//            technicalTreePage(input);
+//        }
+        if(userManager.getCurrentUser().getMapOfGraph().size() == 0){
+            presenter.myTreePageEmpty();
+            presenter.mainMenuReturn();
+            String input = scanner.nextLine();
+            mainMenu();
+        }
+        else{
+            presenter.myTreePage();
+
+            String input = scanner.nextLine();
+//            //debug line
+//            System.out.println(idmap.getIdMap());
+//            // idmap.useIdToGetName(input)
+            while (!userManager.getCurrentUser().getMapOfGraph().containsKey(idmap.useIdToGetName(input))
+                    && !input.equals("main")) {
+                presenter.incorrectInput();
+                input = scanner.nextLine();
+            }
+
+            if (input.equals("main")){
+                mainMenu();
+            }
+            else{
+                try {
+                    myTreePage(input);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
+    private void myTreePage(String treeId) throws Exception {
 
+        technicalTreePage(treeId);
+
+
+//
+//        presenter.technicalTreePage();
+//        String input = scanner.nextLine();
+//        while (!graphManager.getCurrentGraph().availableVertex().containsKey(input) && !input.equals("main")){
+//            presenter.incorrectInput();
+//            input = scanner.nextLine();
+//        }
+//
+//        if (input.equals("main")){
+//            mainMenu();
+//        }
+//        else {
+//
+//            String vertexName = graphManager.getCurrentGraph().availableVertex().get(input).toString();
+//
+//            studyVertex(vertexName, treeId);
+//        }
+
+    }
     private void achievementPage() {
-        System.out.println(userManager.displayAchievement());
+        presenter.achievementPage();
         presenter.mainMenuReturn();
         String input = scanner.nextLine();
         mainMenu();
@@ -80,22 +167,23 @@ public class SystemInOut {
         presenter.rewardPoints();
         presenter.resourcePage();
         String input = scanner.nextLine();
-        while (!(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("0"))) {
+        while (!(input.equals(Presenter.ONE) || input.equals(Presenter.TWO) || input.equals(Presenter.THREE)
+                || input.equals(Presenter.ZERO))) {
             presenter.incorrectInput();
             input = scanner.nextLine();
         }
 
         switch (input) {
-            case "1":
+            case Presenter.ONE:
                 myResource();
                 break;
-            case "2":
+            case Presenter.TWO:
                 downloadResources();
                 break;
-            case "3":
+            case Presenter.THREE:
                 createResource();
                 break;
-            case "0":
+            case Presenter.ZERO:
                 mainMenu();
         }
     }
@@ -112,12 +200,12 @@ public class SystemInOut {
     private void downloadResources() {
         presenter.resourceChoose();
         String content = scanner.nextLine();
-        while(resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
+        while(resourceManager.downloadResource(content).equals(Presenter.INSUFFICIENT_POINTS)){
             presenter.insufficientPoints();
             presenter.resourceChoose();
             content = scanner.nextLine();
         }
-        while(!resourceManager.downloadResource(content).equals("Sorry, you do not have enough points")){
+        while(!resourceManager.downloadResource(content).equals(Presenter.INSUFFICIENT_POINTS)){
             presenter.downloadSuccessfully();
             resourceManager.downloadResource(content);
             presenter.mainMenuReturn();
@@ -143,18 +231,15 @@ public class SystemInOut {
 
 
     private void technicalTreeMainPage() throws Exception {
-        System.out.println("Hi! Now you've entered the technical tree page");
-        System.out.println("Select the tree you want to study!");
-        System.out.println("Tech Trees: " + graphManager.getAllGraphs());
-        System.out.println("Enter \"main\" to return to main page.");
+        presenter.technicalTreeMainPage();
         String input = scanner.nextLine();
 
-        while (!graphManager.getAllGraphs().containsKey(input) && !input.equals("main")) {
-            System.out.println("You have input an invalid number, try again :(");
+        while (!graphManager.getAllGraphs().containsKey(input) && !input.equals(Presenter.MAIN)) {
+            presenter.incorrectInput();
             input = scanner.nextLine();
         }
 
-        if (input.equals("main")){
+        if (input.equals(Presenter.MAIN)){
             mainMenu();
         }
 
@@ -165,73 +250,107 @@ public class SystemInOut {
     }
 
     private void technicalTreePage(String treeId) throws Exception {
-        graphManager.setCurrentGraph(treeId);
-        System.out.println(graphManager.displayCurrentGraph());
 
-        System.out.println("Please choose the node you want to start with" + graphManager.getCurrentGraph().availableVertex());
+        DirectedGraph currgraph= null;
+        if(treeId.equals("0")){
+            currgraph = userManager.getCurrentUser().getMapOfGraph().get("Introductory CS Series");
+        }
+        else if(treeId.equals("1")){
+            currgraph = userManager.getCurrentUser().getMapOfGraph().get("Introductory Makeup Steps");
+        }
+
+
+        if (currgraph != null){
+//            // debug lines
+//            System.out.println("this is current user's graph");
+//            System.out.println(currgraph);
+//            System.out.println(currgraph.getNumOfCOMPLETED());
+//            // end for debug
+            graphManager.updateWithPrivateGraph(currgraph);
+        }
+
+
+        graphManager.setCurrentGraph(treeId);
+
+        presenter.technicalTreeDisplayCurrentGraph();
+
+        presenter.technicalTreePage();
         String input = scanner.nextLine();
-        while (!graphManager.getCurrentGraph().availableVertex().containsKey(input)){
-            System.out.println("You have input an invalid number. Please try again :(");
+        while (!graphManager.getCurrentGraph().availableVertex().containsKey(input) && !input.equals(Presenter.MAIN)){
+            presenter.incorrectInput();
             input = scanner.nextLine();
         }
-        String vertexName = graphManager.getCurrentGraph().availableVertex().get(input).toString();
 
-        studyVertex(vertexName);
+        if (input.equals(Presenter.MAIN)){
+            mainMenu();
+        }
+        else {
+            String vertexName = graphManager.getCurrentGraph().availableVertex().get(input).toString();
+
+            studyVertex(vertexName, treeId);
+        }
 
     }
 
-    private void studyVertex(String vertexName) throws Exception {
+    private void studyVertex(String vertexName, String treeId) throws Exception {
 
-        System.out.println("Now study the node you have chosen, once you're finished, type \"Yes\" below");
+        presenter.studyVertex();
         String input = scanner.nextLine();
-        while (!input.equals("Yes")){
-            System.out.println("It seems like you have not finished your study yet, keep working on it!" +
-                    "Once you finished, type \"Yes\" below");
+        while (!input.equals(Presenter.YES)){
+            presenter.studyVertexNotFinished();
             input = scanner.nextLine();
         }
 
-        System.out.println("Congratulations! You've made one giant step toward success! Now let's make some posts" +
-                "on what you've just learned.");
-        userManager.getCurrentUserInfo().addRewardPoints(5); // TODO: Add this to studyVertex
-        System.out.println("Please enter the content you want to publish below: ");
+        graphManager.setCurrentGraph(treeId);
+
+        graphManager.complete(vertexName); // Marking the given vertex as completed
+
+
+        presenter.studyVertexFinished();
+        userManager.getCurrentUser().addRewardPoints(5);
+        presenter.enterPublishContent();
         String publishedContent = scanner.nextLine();
 
         communityLibrary.setCurrentCommunity(vertexName);
         communityLibrary.createPost(publishedContent, achievementManager, rewardManager);
-        System.out.println("Congratulations! You've successfully published a post :)");
-        userManager.getCurrentUserInfo().addRewardPoints(5); // TODO: Add this line to createPost
-        System.out.println("You have completed this node, you can now proceed to the next " +
-                "node or return to the main menu.");
+        boolean achievementAwarded = achievementManager.requestAchievement(
+                Achievements.ARRAY_OF_POST_THRESHOLDS,
+                Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
+                userManager.getListOfPostId().size());
+        if (achievementAwarded) {
+            rewardManager.addRewardPoint(
+                    Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(userManager.getListOfPostId().size()));
+        }
+        presenter.publishPostSuccessful();
+        presenter.nodeCompleted();
+        scanner.nextLine(); // Let the user enter anything they want here to proceed
 
+        technicalTreePage(treeId);
 
     }
 
 
     public void logIn() {
-        System.out.println("Options: 1.Sign-in, 2.Register, or enter \"exit\" to exit program");
-        String input = scanner.nextLine();
+        String input = presenter.LoginOptions();
 
-        while (!(input.equals("1") || input.equals("2") || input.equals("exit"))) {
-            System.out.println("Incorrect input, please try again.");
-            input = scanner.nextLine();
-        }
+        input = presenter.getCorrectLoginOption(input);
 
         switch (input) {
-            case "1":
+            case Presenter.ONE:
                 if (!signIn()) {
                     logIn();
                 } else {
                     userManager.incrementTotalLogins();
                 }
                 break;
-            case "2":
+            case Presenter.TWO:
                 if (!register()) {
                     logIn();
                 } else {
                     userManager.incrementTotalLogins();
                 }
                 break;
-            case "exit":
+            case Presenter.EXIT:
                 exitProgram();
                 break;
         }
@@ -239,7 +358,7 @@ public class SystemInOut {
 
     public boolean signIn() {
         String username = getUsernameSignIn();
-        if (username.equals("return")) {
+        if (username.equals(Presenter.RETURN)) {
             return false;
         }
         if (!enterPassword(username)) {
@@ -255,19 +374,22 @@ public class SystemInOut {
      */
     public void setCurrentUser(String username) {
         try {
-            userManager.setCurrentUserInfoTo(username);
-            resourceManager.setCurrentUserInfo(userManager.getCurrentUserInfo());
+            userManager.setCurrentUser(username);
+            achievementManager.setCurrentUser(userManager.getCurrentUser());
+            rewardManager.setCurrentUser(userManager.getCurrentUser());
+            communityLibrary.setCurrentUser(userManager.getCurrentUser());
+            resourceManager.setCurrentUser(userManager.getCurrentUser());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public boolean enterPassword(String username) {
-        String password = getNonEmptyCredential("password");
+        String password = presenter.getNonEmptyPassword();
         while (!getCorrectPassword(username).equals(password)) {
-            System.out.println("Incorrect password, please try again, or enter \"return\" to return to Options.\"");
-            password = getNonEmptyCredential("password");
-            if (password.equals("return")) {
+            presenter.incorrectPassword();
+            password = presenter.getNonEmptyPassword();
+            if (password.equals(Presenter.RETURN)) {
                 return false;
             }
         }
@@ -277,29 +399,19 @@ public class SystemInOut {
     public String getCorrectPassword(String username) {
         String password = null;
         try {
-            password = userManager.getAUserInfo(username).getPassword();
+            password = userManager.getAUser(username).getPassword();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return password;
     }
 
-    public String getNonEmptyCredential(String credential) {
-        System.out.println(credential + ": ");
-        String nonEmptyCredential = scanner.nextLine();
-        while (nonEmptyCredential.length() == 0) {
-            System.out.println("You did not enter a " + credential + ", please try again:");
-            nonEmptyCredential = scanner.nextLine();
-        }
-        return nonEmptyCredential;
-    }
-
     private String getUsernameSignIn() {
-        String username = getNonEmptyCredential("username");
+        String username = presenter.getNonEmptyUsername();
         while (!userManager.containsUsername(username)) {
-            System.out.println(Exceptions.INCORRECT_USERNAME + ", please try again, or enter \"return\" to return to Options.");
-            username = getNonEmptyCredential("username");
-            if (username.equals("return")) {
+            presenter.incorrectUsername();
+            username = presenter.getNonEmptyUsername();
+            if (username.equals(Presenter.RETURN)) {
                 return username;
             }
         }
@@ -307,11 +419,11 @@ public class SystemInOut {
     }
 
     public String getUsernameRegister() {
-        String username = getNonEmptyCredential("username");
+        String username = presenter.getNonEmptyUsername();
         while (userManager.containsUsername(username)) {
-            System.out.println(Exceptions.USER_NAME_TAKEN + ", please try again, or enter \"return\" to return to Options.");
-            username = getNonEmptyCredential("username");
-            if (username.equals("return")) {
+            presenter.usernameTaken();
+            username = presenter.getNonEmptyUsername();
+            if (username.equals(Presenter.RETURN)) {
                 return username;
             }
         }
@@ -319,35 +431,38 @@ public class SystemInOut {
     }
 
     public String getEmailRegister() {
-        System.out.println("email: ");
+        presenter.getEmail();
         String email = scanner.nextLine();
-        while (!email.contains("@")) {
-            System.out.println("Invalid email, or enter \"return\" to return to Options.");
-            email = scanner.nextLine();
-            if (email.equals("return")) {
+        Pattern p = Pattern.compile("^\\w{1,63}@[a-zA-Z0-9]{2,63}\\.[a-zA-Z]{2,63}(\\.[a-zA-Z]{2,63})?$");
+        Matcher m = p.matcher(email);
+        while (!m.matches()) {
+            if (email.equals(Presenter.RETURN)) {
                 return email;
             }
+            presenter.incorrectEmail();
+            email = scanner.nextLine();
+            m = p.matcher(email);
         }
         return email;
     }
 
     public String getPasswordRegister() {
-        return getNonEmptyCredential("password");
+        return presenter.getNonEmptyPassword();
     }
 
 
     private boolean register() {
         String username = getUsernameRegister();
-        if (username.equals("return")) {
+        if (username.equals(Presenter.RETURN)) {
             return false;
         }
         String email = getEmailRegister();
-        if (email.equals("return")) {
+        if (email.equals(Presenter.RETURN)) {
             return false;
         }
         String password = getPasswordRegister();
         try {
-            userManager.addNewUserInfo(username, email, password);
+            userManager.addNewUser(username, email, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -359,15 +474,43 @@ public class SystemInOut {
 
 
     public void exitProgram() {
-        save();
+        try {
+            save();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
     }
 
-    private void save() {
-        // uses an interface to save.
+    /**
+     * Check for the learned tree and update them into user's info storage.
+     */
+    public void checkForMyTree(){
+        for(DirectedGraph graph: graphManager.getAllGraphs().values()){
+            if(graph.isLearnedGraph()){
+                user.User curruser=userManager.getCurrentUser();
+                curruser.addGraph(graph);
+            }
+        }
+    }
+
+    private void save() throws IOException {
+        checkForMyTree();
+        WholeReadWriter.saveToFile("src/main/commandline/user.json",
+                "src/main/commandline/community.json",
+                userManager.getMapOfUser(),
+                communityLibrary.getMapOfCommunity());
     }
 
     private void load() {
-
+        List<Object> data = new ArrayList<Object>();
+        try {
+            data = WholeReadWriter.readFromFile("src/main/commandline/user.json",
+                    "src/main/commandline/community.json");
+            userManager.setMapOfUser((UserList) data.get(0));
+            communityLibrary.setMapOfCommunity((CommunityList) data.get(1));
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,9 +1,9 @@
 package posts;
 
-import user.UserInfo;
+import user.User;
 
 /**
- * A Comment class, which is used for leaving comments on main.posts and community
+ * A Comment class, which is used for leaving comments on posts and community
  */
 public class Comment extends PublishedContents {
     String content;
@@ -15,7 +15,7 @@ public class Comment extends PublishedContents {
      * @param id: The id of the comment
      * @param creator: The creator of the comment
      */
-    public Comment(String content, String id, UserInfo creator) {
+    public Comment(String content, String id, User creator) {
         super(id, creator);
         this.content = content;
     }

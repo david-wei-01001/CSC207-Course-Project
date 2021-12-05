@@ -1,6 +1,10 @@
 package graph;
 
+import communitysystem.CommunityLibrary;
+import constants.BuiltInGraphs;
 import constants.Exceptions;
+import constants.TreeidMap;
+import graphbuilders.GraphArchitect;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,9 +14,62 @@ import java.util.Map;
  */
 public class GraphManager {
 
-    private final Map<String, DirectedGraph> mapOfGraphs = new HashMap<>();
-    private int numberOfGraphs;
+    private Map<String, DirectedGraph> mapOfGraphs = new HashMap<>();
     private DirectedGraph currentGraph;
+    private CommunityLibrary communityLibrary;
+    private TreeidMap idmap = new TreeidMap(new HashMap<>());
+
+    public TreeidMap getIdmap() {
+        return idmap;
+    }
+
+    /**
+     * Update the graph with user's private graph.
+     */
+    public void updateWithPrivateGraph(DirectedGraph newgraph){
+        String graphname = newgraph.getName();
+        String treeId = "0";
+        if(graphname == "Introductory Makeup Steps"){
+            treeId = "1";
+        }
+
+        if(mapOfGraphs.get(treeId).getNumOfCOMPLETED() <= newgraph.getNumOfCOMPLETED()){
+//            //debug line
+//            System.out.println("ATTENTION!!");
+//            mapOfGraphs.get(treeId).getNumOfCOMPLETED();
+//            newgraph.getNumOfCOMPLETED();
+//            //end of debug line
+            mapOfGraphs.replace(treeId, newgraph);
+        }
+
+    }
+
+    /**
+     * Constructor of GraphManager
+     */
+    public void addBuiltInGraph(CommunityLibrary communityLibrary){
+        setCommunityLibrary(communityLibrary);
+        int i = 0;
+        for (String builtInGraph : BuiltInGraphs.BUILT_IN_GRAPHS) {
+            try {
+
+                idmap.setIdmap(Integer.toString(i), builtInGraph);
+                DirectedGraph graphToAdd = GraphArchitect.setBuilderAndBuildGraph(builtInGraph);
+                graphToAdd.setTreeid(i);
+                createCommunities(graphToAdd);
+                mapOfGraphs.put(Integer.toString(i), graphToAdd);
+                i++;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void setCommunityLibrary(CommunityLibrary communityLibrary){
+        this.communityLibrary = communityLibrary;
+    }
+
+
 
     /**
      * @return the instance variable mapOfGraphs
@@ -20,6 +77,18 @@ public class GraphManager {
     public Map<String, DirectedGraph> getAllGraphs(){
         return mapOfGraphs;
     }
+
+
+    public String getAllGraphName(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(String i : mapOfGraphs.keySet()){
+            stringBuilder.append(i).append(": ");
+            stringBuilder.append(mapOfGraphs.get(i).getName());
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
+    }
+
 
     /**
      * add a DirectedGraph to the GraphManager.
@@ -43,6 +112,16 @@ public class GraphManager {
     }
 
     /**
+     * Create the communities corresponding to the vertices of the inputted main.graph
+     * @param graph the main.graph whose vertices' community need to be created
+     */
+    private void createCommunities(DirectedGraph graph) {
+        for (String vertexName : graph.getVertices().keySet()) {
+            communityLibrary.addCommunity(vertexName);
+        }
+    }
+
+    /**
      *  complete a vertex in the current main.graph.
      * @param name the name of the vertex to be completed
      * @throws Exception if the name of the vertex does not exist in the current main.graph
@@ -62,12 +141,8 @@ public class GraphManager {
         return currentGraph.getVertex(name);
     }
 
-    /**
-     * @return a string representation of the current main.graph
-     */
-    public String getName() {
-        return currentGraph.toString();
-    }
+
+
 
 
     /**
@@ -76,12 +151,13 @@ public class GraphManager {
     public DirectedGraph getCurrentGraph() {
         return currentGraph;
     }
+
     public Map<String, DirectedGraph> getMapOfGraphs(){
         return mapOfGraphs;
     }
 
     /**
-     * Display the current graph
+     * @return a string representation of the current main.graph
      */
     public String displayCurrentGraph(){
         return currentGraph.toString();
