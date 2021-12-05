@@ -255,10 +255,33 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
         stringBuilder.append(NAME);
         stringBuilder.append("\n");
         for (VertexArray edges : arrangeArray()) {
-            stringBuilder.append("    ");
-            stringBuilder.append(edges.toString());
+            if (edges.getStart().getInLevel() == 0) {
+                stringBuilder.append("\n");
+                stringBuilder.append(singleVertexToString(edges, 1));
+            }
         }
         return stringBuilder.toString();
+    }
+
+    public String singleVertexToString(VertexArray edge, int numInward) {
+        if (edge.isEmpty()) {
+            return edge.getStart().toString();
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(edge.getStart().toString());
+            for (Vertex vertex : edge) {
+                try {
+                    VertexArray vertexArray = getVertexArray(vertex);
+                    stringBuilder.append("\n");
+                    stringBuilder.append("    ".repeat(numInward));
+                    stringBuilder.append("-> ");
+                    stringBuilder.append(singleVertexToString(vertexArray, numInward + 1));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return stringBuilder.toString();
+        }
     }
 
     /**
@@ -345,11 +368,6 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
      */
     public boolean isLearnedGraph(){
         int number = COMPLETED.size();
-        if (number == 0){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return number != 0;
     }
 }

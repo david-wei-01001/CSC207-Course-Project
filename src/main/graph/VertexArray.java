@@ -125,6 +125,10 @@ public class VertexArray implements Iterable<Vertex>, Serializable {
         }
     }
 
+    public boolean isEmpty(){
+        return END.isEmpty();
+    }
+
     /**
      * Helper method of toString.
      * For each ending vertices that start can reach,
