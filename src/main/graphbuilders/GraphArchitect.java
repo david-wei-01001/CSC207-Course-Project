@@ -45,13 +45,4 @@ public class GraphArchitect {
             return graphBuilder.buildGraph();
 //        }
     }
-
-    public static void main(String[] args) {
-        try {
-            System.out.println(GraphArchitect.setBuilderAndBuildGraph(BuiltInGraphs.MATHEMATICS).toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 }
