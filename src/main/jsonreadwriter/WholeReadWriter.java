@@ -1,10 +1,9 @@
 package jsonreadwriter;
 
-import communitysystem.Community;
 import communitysystem.CommunityList;
 import user.UserList;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +22,6 @@ public class WholeReadWriter{
         CommunityReadWriter crw = new CommunityReadWriter();
         UserList userlist = urw.readFromFile(pathForUser);
         CommunityList communitylist = crw.readFromFile(pathForCommunity);
-        List data = Arrays.asList(userlist, communitylist);
-        return data;
+        return Arrays.asList(userlist, communitylist);
     }
 }

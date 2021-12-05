@@ -22,9 +22,8 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
      */
     private final IterableMap<String, VertexArray> VERTICES = new IterableMap<>();
     private final String NAME;
-    private final List<String> CURRENTUNCLOCK = new ArrayList<>();
+    private final List<String> CURRENTUNLOCK = new ArrayList<>();
     private final List<String> COMPLETED = new ArrayList<>();
-    private int treeid;
 
     /**
      * get the number of completed vertex
@@ -36,37 +35,27 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
 
     /**
      * set tree id
-     * @param treeid
      */
-    public void setTreeid(int treeid) {
-        this.treeid = treeid;
-    }
-
-    /**
-     * return identical graph id
-     * @return treeid
-     */
-    public int getTreeid() {
-        return treeid;
+    public void setTreeId() {
     }
 
     /**
      * The constructor of the DirectedGraph class.
      * @param lstVertex A list of vertex to be added to the instance of DirectedGraph
-     * @param name The name of the a DirectedGraph
+     * @param name The name of the DirectedGraph
      */
     public DirectedGraph(Vertex[] lstVertex, String name) {
         for(Vertex v: lstVertex){
 
             addVertex(v);
-            CURRENTUNCLOCK.add(v.getName());
+            CURRENTUNLOCK.add(v.getName());
         }
         this.NAME = name;
     }
 
     /**
      * This method will add the provided directed edge into the main.graph.
-     * the starting vertex and ending vertex will be added into the main.graph,
+     * the starting vertex and ending vertex will be added into the main. graph,
      * and the ending vertex will be added into the ArrayList of the
      * starting vertex containing all vertices it points to.
      *
@@ -119,7 +108,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
 
     /**
      * Delete the given edge from the main.graph. Though both
-     * starting and ending vertices will remain in the main.graph,
+     * starting and ending vertices will remain in the main. graph,
      * the connection between them will be removed.
      *
      * @param edge An array of length 2 which represents a directed edge
@@ -132,7 +121,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         edge[1].minusInLevel();
         updateAll(edge[1]);
         if(edge[1].getInLevel() == 0){
-            CURRENTUNCLOCK.add(edge[1].getName());
+            CURRENTUNLOCK.add(edge[1].getName());
         }
     }
 
@@ -157,7 +146,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
             v.minusInLevel();
             updateAll(v);
             if (v.getInLevel() == 0){
-                CURRENTUNCLOCK.add(v.getName());
+                CURRENTUNLOCK.add(v.getName());
             }
         }
         for (String vertexName : VERTICES) {
@@ -167,7 +156,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
             }
         }
         VERTICES.remove(name);
-        CURRENTUNCLOCK.remove(name);
+        CURRENTUNLOCK.remove(name);
         COMPLETED.remove(name);
     }
 
@@ -228,18 +217,18 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     public void complete(String name) throws Exception {
         if (!VERTICES.containsKey(name)){
             throw new Exception(Exceptions.Vertex_NOT_FOUND);
-        }else if (!CURRENTUNCLOCK.contains(name)){
+        }else if (!CURRENTUNLOCK.contains(name)){
             throw new Exception(Exceptions.Vertex_LOCKED);
         } else if (COMPLETED.contains(name)) {
             throw new Exception(Exceptions.Vertex_ALREADY_COMPLETED);
         } else {
             COMPLETED.add(name);
-            CURRENTUNCLOCK.remove(name);
+            CURRENTUNLOCK.remove(name);
             for (Vertex next : getVertexArray(name)) {
                 next.minusInLevel();
                 updateAll(next);
                 if(next.getInLevel() == 0){
-                    CURRENTUNCLOCK.add(next.getName());}
+                    CURRENTUNLOCK.add(next.getName());}
             }
         }
     }
@@ -285,14 +274,14 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     }
 
     /**
-     * Return the vertex availiable now.
-     * @return Vertices that availiable now.
+     * Return the vertex available now.
+     * @return Vertices that available now.
      * @throws Exception if the name of the vertex does not exist in the DirectedGraph
      */
     public Map<String, Vertex> availableVertex() throws Exception {
         Map<String, Vertex> available = new HashMap<>();
         int count = 0;
-        for (String name : CURRENTUNCLOCK) {
+        for (String name : CURRENTUNLOCK) {
             available.put(Integer.toString(count), getVertexArray(name).getStart());
             count++;
         }

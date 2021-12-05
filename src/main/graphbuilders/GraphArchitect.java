@@ -8,15 +8,6 @@ import constants.Exceptions;
  * A class to select GraphBuilders and build corresponding graphs.
  */
 public class GraphArchitect {
-
-//    enum BuiltInTechnicalTree {
-//        INTRODUCTORY_CS_SERIES;
-//    }
-
-    /*
-     * GraphArchitect imitates Class Chef in the lecture material.
-     */
-
     /**
      * select GraphBuilders according to treeName and build corresponding graphs.
      * @param treeName the name of a default tree to be build

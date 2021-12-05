@@ -1,11 +1,7 @@
 package posts;
 
-import posts.Comment;
-import posts.HasPublishedContents;
-import posts.Post;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.After;
 import user.User;
 
 import java.util.HashMap;
@@ -22,7 +18,7 @@ public class postTest {
         user = new User("Tong", "123@mail.com", "123");
         post = new Post("nothing", "0", user);
         post.addPublishedContent("testing", user);
-        post.addPublishedContent("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", user);
+        post.addPublishedContent("aa", user);
     }
 
     @Test
@@ -56,7 +52,7 @@ public class postTest {
 
     /**
      *
-     * @throws HasPublishedContents.PostNotFoundException
+     * @throws HasPublishedContents.PostNotFoundException the exception is thrown
      */
     @Test
     public void testDeleteAndNumberOfComments() throws HasPublishedContents.PostNotFoundException {
@@ -74,28 +70,6 @@ public class postTest {
 
         assertFalse(post.getMapOfComments().get("Comment #0").visibility());
     }
-
-//    /**
-//     * TODO: @Alfred choose one from the previous one or this one.
-//     * This test contains a mistake
-//     * @throws HasPublishedContents.PostNotFoundException
-//     */
-//    @Test
-//    public void testDeleteComment() throws HasPublishedContents.PostNotFoundException {
-//        Comment c = new Comment("testing", "Comment #0", userInfo);
-//
-//        post.deletePublishedContent("Comment #0");
-//
-//        Map<String, Comment> mapToCompare = new HashMap<>();
-//
-//        mapToCompare.put("Comment #0", c);
-//
-//        assertEquals(mapToCompare.toString(), post.getMapOfComments().toString());
-//
-//        assertEquals(0, post.getNumberOfComments());
-//
-//        assertFalse(post.getMapOfComments().get("Comment #0").visibility());
-//    }
 
     @Test
     public void testGetNextIdNoDelete() {

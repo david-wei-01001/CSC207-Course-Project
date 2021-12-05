@@ -60,17 +60,6 @@ public class Vertex implements Serializable, HasName {
         return name;
     }
 
-//    @Override
-//    public int compareTo(Vertex o) {
-//        if (inLevel < o.getInLevel()) {
-//            return -1;
-//        } else if (inLevel > o.getInLevel()) {
-//            return 1;
-//        } else {
-//            return name.compareTo(o.getName());
-//        }
-//    }
-
     @Override
     public String toString(){
         return getName();

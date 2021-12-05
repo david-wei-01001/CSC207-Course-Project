@@ -1,16 +1,10 @@
 package user;
 
 
-import achievementsystem.AchievementManager;
-import constants.Achievements;
-import graphbuilders.GraphArchitect;
 import constants.Exceptions;
-import rewardsystem.RewardManager;
+import graphbuilders.GraphArchitect;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * The use case that control all actions of the User currently using our application.
@@ -27,18 +21,6 @@ public class UserManager {
      * of the User with that userName.
      */
     private UserList mapOfUser = new UserList();
-
-
-//    /**
-//     * The constructor of UserManager.
-//     *
-//     * @param mapOfUserInfo the map of User that is deserialized from a JSON file.
-//     */
-//    public UserManager(Map<String, User> mapOfUser) {
-//        this.mapOfUser = mapOfUser;
-//    }
-
-
     /**
      * Create a User for a new User and stores it in mapOfUser.
      *
@@ -100,25 +82,6 @@ public class UserManager {
         }
     }
 
-    /**
-     * Set the email address of the current user to be the input email address, given it is not already taken.
-     * @param newEmail an email address to be set to the current user.
-     * @throws Exception if newEmail has been taken.
-     */
-    public void setEmailOfCurrent(String newEmail) throws Exception {
-        for (String userName: mapOfUser) {
-            User user = mapOfUser.get(userName);
-            if (user.getEmail().equals(newEmail)) {
-                throw new Exception(Exceptions.EMAIL_ALREADY_EXIST);
-            }
-        }
-        currentUser.setEmail(newEmail);
-    }
-
-    public void setPasswordOfCurrent(String newPassword) {
-        currentUser.setPassword(newPassword);
-    }
-
     public UserList getMapOfUser() {
         return mapOfUser;
     }
@@ -139,37 +102,13 @@ public class UserManager {
         return mapOfUser.containsKey(username);
     }
 
-    public void incrementTotalLogins(RewardManager rewardManager, AchievementManager achievementManager) {
+    public void incrementTotalLogins() {
         currentUser.incrementTotalLogins();
-        boolean achievementAwarded = achievementManager.requestAchievement(
-                Achievements.ARRAY_OF_TOTAL_LOGINS_THRESHOLDS,
-                Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT,
-                currentUser.getTotalLogins());
-        if (achievementAwarded) {
-            rewardManager.addRewardPoint(
-                    Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_REWARD.get(currentUser.getTotalLogins()));
-        }
     }
 
     public void setMapOfUser(UserList mapOfUser) {
         this.mapOfUser = mapOfUser;
     }
-
-    // we might not need to remove a user. and correctly implementing removing an user
-    // is difficult: what if the user i am removing is the currentUser
-//    /**
-//     //     * Remove the User of an existing User (who is being removed from this program) by userName.
-//     //     *
-//     //     * @param userName userName of the User to be removed
-//     //     * @throws Exception throws an exception if the inputted userName does not exist.
-//     //     */
-//    public void removeUser(String userName) throws Exception {
-//        if (mapOfUser.containsKey(userName)) {
-//            mapOfUser.remove(userName);
-//        } else {
-//            throw new Exception(Exceptions.CANNOT_RECOGNIZE_USER);
-//        }
-//    }
 
     public String displayAchievement() {
         return currentUser.displayAchievement();

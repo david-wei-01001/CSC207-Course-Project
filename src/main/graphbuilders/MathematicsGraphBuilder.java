@@ -92,7 +92,7 @@ public class MathematicsGraphBuilder implements GraphBuilder{
         for (Vertex[] directedEdge : directedEdges) {
             result.addEdge(directedEdge);
         }
-        result.setTreeid(0);
+        result.setTreeId();
         return result;
     }
 }

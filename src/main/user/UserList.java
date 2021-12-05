@@ -15,8 +15,8 @@ public class UserList implements Serializable, Iterable<String>{
     private final IterableMap<String, User> usersList = new IterableMap<>();
 
     /**
-     * Return the userlists.
-     * @return the userlist in this UserList class
+     * Return the userLists.
+     * @return the userList in this UserList class
      */
     public Map<String, User> getUsersList() {
         return usersList;
@@ -40,8 +40,8 @@ public class UserList implements Serializable, Iterable<String>{
 
     /**
      *
-     * @param username
-     * @return if the user with given username in current userlist.
+     * @param username the username od the user
+     * @return if the user with given username in current userList.
      */
     public boolean containsKey(String username){ return usersList.containsKey(username); }
 

@@ -4,11 +4,10 @@ import user.User;
 
 import java.io.Serializable;
 
-public class PublishedContents implements Likable, Visible, Serializable {
-    private String id;
-    private int numLike;
+public class PublishedContents implements Visible, Serializable {
+    private final String id;
     private boolean visible = true;
-    private User creator;
+    private final User creator;
 
     /**
      * Constructor for the published contents class
@@ -37,31 +36,6 @@ public class PublishedContents implements Likable, Visible, Serializable {
         return creator;
     }
 
-    /**
-     * Get the number of like of the published contents
-     * @return Then number of like of the published contents
-     */
-    @Override
-    public int getNumberOfLike() {
-        return numLike;
-    }
-
-    /**
-     * Increment the like by 1
-     * @return The incremented likes
-     */
-    @Override
-    public void like() {
-        numLike += 1;
-    }
-
-    /**
-     * Set the status of published contents to true
-     */
-    @Override
-    public void setVisible() {
-        visible = true;
-    }
 
     /**
      * Set the status of published contents to false

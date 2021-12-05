@@ -72,8 +72,8 @@ public class Community implements HasPublishedContents, Serializable {
     }
 
     /**
-     * display all main.posts in this community in the form of text.
-     * @return all main.posts in the form of text
+     * display all main. posts in this community in the form of text.
+     * @return all main. posts in the form of text
      */
     public String displayPosts() {
         StringBuilder result = new StringBuilder();
