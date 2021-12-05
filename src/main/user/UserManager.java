@@ -1,8 +1,11 @@
 package user;
 
 
+import achievementsystem.AchievementManager;
+import constants.Achievements;
 import graphbuilders.GraphArchitect;
 import constants.Exceptions;
+import rewardsystem.RewardManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -136,8 +139,16 @@ public class UserManager {
         return mapOfUser.containsKey(username);
     }
 
-    public void incrementTotalLogins() {
+    public void incrementTotalLogins(RewardManager rewardManager, AchievementManager achievementManager) {
         currentUser.incrementTotalLogins();
+        boolean achievementAwarded = achievementManager.requestAchievement(
+                Achievements.ARRAY_OF_TOTAL_LOGINS_THRESHOLDS,
+                Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT,
+                currentUser.getTotalLogins());
+        if (achievementAwarded) {
+            rewardManager.addRewardPoint(
+                    Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_REWARD.get(currentUser.getTotalLogins()));
+        }
     }
 
     public void setMapOfUser(UserList mapOfUser) {

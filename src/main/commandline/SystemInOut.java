@@ -340,14 +340,14 @@ public class SystemInOut {
                 if (!signIn()) {
                     logIn();
                 } else {
-                    userManager.incrementTotalLogins();
+                    userManager.incrementTotalLogins(rewardManager, achievementManager);
                 }
                 break;
             case Presenter.TWO:
                 if (!register()) {
                     logIn();
                 } else {
-                    userManager.incrementTotalLogins();
+                    userManager.incrementTotalLogins(rewardManager, achievementManager);
                 }
                 break;
             case Presenter.EXIT:
