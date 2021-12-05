@@ -7,16 +7,15 @@ import resource.ResourceManager;
 import user.UserManager;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
  * Presenter class which is bridging Use Cases and the UI and contains information the UI outputs to user.
  */
 public class Presenter {
-    private UserManager userManager;
-    private ResourceManager resourceManager;
-    private GraphManager graphManager;
+    private final UserManager userManager;
+    private final ResourceManager resourceManager;
+    private final GraphManager graphManager;
 
     protected static final String ZERO = "0";
     protected static final String ONE = "1";
@@ -29,7 +28,6 @@ public class Presenter {
     protected static final String PASSWORD = "password";
     protected static final String USERNAME = "username";
     protected static final String EMAIL = "email";
-    protected static final String AT = "@";
     protected static final String LOGIN_OPTIONS = "Options: " + ONE + ".Sign-in, "+ TWO + ".Register, or enter \""
             + EXIT + "\" to exit program";
     protected static final String INSUFFICIENT_POINTS = "Sorry, you do not have enough points";
@@ -163,16 +161,16 @@ public class Presenter {
         System.out.println("Hi! Now you've entered your tree");
         System.out.println("Select the tree you want to study!");
 
-        HashMap<String, DirectedGraph> mytree1 = (HashMap<String, DirectedGraph>) userManager.getCurrentUser().getMapOfGraph();
-        HashMap<String, DirectedGraph> mytree2 = new HashMap<String, DirectedGraph>();
-        HashMap<String, DirectedGraph> alltree = (HashMap<String, DirectedGraph>) graphManager.getAllGraphs();
-        for(String id: alltree.keySet()){
-            DirectedGraph graph = alltree.get(id);
-            if(mytree1.containsKey(graph.getName())){
-                mytree2.put(id, graph);
+        HashMap<String, DirectedGraph> myTree1 = (HashMap<String, DirectedGraph>) userManager.getCurrentUser().getMapOfGraph();
+        HashMap<String, DirectedGraph> myTree2 = new HashMap<>();
+        HashMap<String, DirectedGraph> allTree = (HashMap<String, DirectedGraph>) graphManager.getAllGraphs();
+        for(String id: allTree.keySet()){
+            DirectedGraph graph = allTree.get(id);
+            if(myTree1.containsKey(graph.getName())){
+                myTree2.put(id, graph);
             }
         }
-        System.out.println("Tech Trees: " + mytree2);
+        System.out.println("Tech Trees: " + myTree2);
         System.out.println("Enter \"main\" to return to main page.");
 
     }

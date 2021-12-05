@@ -1,17 +1,11 @@
 package jsonreadwriter;
 
 import commandline.SystemInOut;
-import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.DisableOnDebug;
-import org.junit.rules.TestRule;
-import org.junit.rules.Timeout;
 
 class SystemInOutTest {
     SystemInOut inOut;
-    @Rule
-    public TestRule timeout = new DisableOnDebug(new Timeout(20));
 
     @BeforeEach
     void setUp() throws Exception {
@@ -41,9 +35,4 @@ class SystemInOutTest {
     @Test
     void getPasswordRegister() {
     }
-
-//    @Test
-//    void getNonEmptyCredential() {
-//        inOut.getNonEmptyCredential("username");
-//    }
 }

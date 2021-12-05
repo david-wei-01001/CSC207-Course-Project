@@ -6,7 +6,7 @@ import graph.Vertex;
 import java.util.Map;
 
 /**
- * An interface specifices what is needed to be a GraphBuilder.
+ * An interface specifies what is needed to be a GraphBuilder.
  */
 public interface GraphBuilder {
     /**
@@ -23,7 +23,7 @@ public interface GraphBuilder {
     Vertex[][] buildDirectedEdges(Map<String, Vertex> vertices);
 
     /**
-     * @return a DirectedGrah that is a built-in default main.graph
+     * @return a DirectedGraph that is a built-in default main. graph
      * @throws Exception if the name of the first vertex in edge does not exist in the DirectedGraph
      */
     DirectedGraph buildGraph() throws Exception;

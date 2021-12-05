@@ -7,12 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The use case that controls a main.user's interaction with the resource system.
+ * The use case that controls a main. user's interaction with the resource system.
  */
 public class ResourceManager implements HasResource, Serializable{
 
 
-    private Map<String, Resource> mapOfResource = new HashMap<>();
+    private final Map<String, Resource> mapOfResource = new HashMap<>();
 
 
     private User currentUser;
@@ -36,8 +36,8 @@ public class ResourceManager implements HasResource, Serializable{
     }
 
     /**
-     * @param id: The id of the main.resource to be deleted
-     * @throws PostNotFoundException
+     * @param id The id of the main. resource to be deleted
+     * @throws PostNotFoundException the exception is thrown
      */
     @Override
     public void deleteResource(String id) throws PostNotFoundException {
@@ -50,7 +50,7 @@ public class ResourceManager implements HasResource, Serializable{
     }
 
     /**
-     * Get the ID for the main.resource to be added
+     * Get the ID for the main. resource to be added
      * @return: The string for the next ID
      */
     public String getNextId(){
@@ -59,10 +59,10 @@ public class ResourceManager implements HasResource, Serializable{
 
 
     /**
-     * Return the download link for the resources if the main.user have had enough points to redeem it
-     * @param resourceId: The ID of the main.resource
-     * @return: A notification if the main.user does not have enough points to redeem the main.resource,
-     * or a download link if the main.user have enough points to redeem the main.resource
+     * Return the download link for the resources if the main. user have had enough points to redeem it
+     * @param resourceId The ID of the main. resource
+     * @return: A notification if the main. user does not have enough points to redeem the main. resource,
+     * or a download link if the main. user have enough points to redeem the main. resource
      */
     public String downloadResource(String resourceId) {
         Resource resource = this.mapOfResource.get(resourceId);
@@ -87,7 +87,7 @@ public class ResourceManager implements HasResource, Serializable{
     }
 
     /**
-     * Getter for the map of main.resource
+     * Getter for the map of main. resource
      * @return: The map of resources
      */
     public Map<String, Resource> getMapOfResource() {

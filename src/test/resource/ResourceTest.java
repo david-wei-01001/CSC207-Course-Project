@@ -1,13 +1,11 @@
 package resource;
 
-import user.User;
-import resource.ResourceManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import resource.Resource;
+import user.User;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class ResourceTest {

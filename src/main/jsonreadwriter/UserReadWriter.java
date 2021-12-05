@@ -10,7 +10,7 @@ public class UserReadWriter implements ReadWriter {
      *
      * @param filePath the file to write the records to
      * @param o    stores the list of users to be serialized
-     * @throws IOException
+     * @throws IOException the exception is thrown
      */
     @Override
     public void saveToFile(String filePath, Object o) throws IOException {
@@ -39,45 +39,8 @@ public class UserReadWriter implements ReadWriter {
         ObjectInput input = new ObjectInputStream(buffer);
 
         // serialize the Map
-        UserList userslist = (UserList) input.readObject();
+        UserList usersList = (UserList) input.readObject();
         input.close();
-        return userslist;
+        return usersList;
     }
 }
-
-//
-//public class UserReadWriter implements ReaderWriter{
-//
-//    private Map<String, UserInfo> libraryOfUsers;
-//    private String filePath;
-//
-//    public UserReadWriter(UserManager userManager) {
-//        this.libraryOfUsers = userManager.getMapOfUserInfo();
-//        this.filePath = "src/JSON/LibraryOfUsersUsers.main.json";
-//    }
-//
-//
-//    @Override
-//    public void saveToFile() throws IOException {
-//        OutputStream file = new FileOutputStream(filePath);
-//        OutputStream buffer = new BufferedOutputStream(file);
-//        ObjectOutput output = new ObjectOutputStream(buffer);
-//
-//        // serialize the Map
-//        output.writeObject(libraryOfUsers.toString());
-//        output.close();
-//    }
-//
-//    @Override
-//    public Map<String, UserInfo> readFromFile() throws IOException, ClassNotFoundException {
-//        InputStream file = new FileInputStream(filePath);
-//        InputStream buffer = new BufferedInputStream(file);
-//        ObjectInput input = new ObjectInputStream(buffer);
-//
-//        // deserialize the Map
-//        Map<String, UserInfo> result = (HashMap<String, UserInfo>) input.readObject();
-//        input.close();
-//        return result;
-//    }
-//
-//}

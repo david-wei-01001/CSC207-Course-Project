@@ -10,18 +10,18 @@ public class CommunityReadWriter implements ReadWriter {
      * Writes the community to file at filePath.
      *
      * @param filePath the file to write the records to
-     * @param communitylist   stores the list of communities to be serialized
-     * @throws IOException
+     * @param communityList   stores the list of communities to be serialized
+     * @throws IOException the exception is thrown
      */
     @Override
-    public void saveToFile(String filePath, Object communitylist) throws IOException {
+    public void saveToFile(String filePath, Object communityList) throws IOException {
 
         OutputStream file = new FileOutputStream(filePath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);
 
         // serialize the Map
-        output.writeObject(communitylist);
+        output.writeObject(communityList);
         output.close();
     }
 
@@ -31,7 +31,7 @@ public class CommunityReadWriter implements ReadWriter {
      *
      * @param filePath file where the user list is stored
      * @return list of communities
-     * @throws IOException
+     * @throws IOException the exception is thrown
      */
     @Override
     public CommunityList readFromFile(String filePath) throws IOException, ClassNotFoundException {

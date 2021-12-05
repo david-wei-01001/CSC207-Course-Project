@@ -1,8 +1,6 @@
 package communitysystem;
 
 import org.junit.jupiter.api.Test;
-import user.User;
-import user.UserList;
 
 import java.util.HashMap;
 
@@ -17,7 +15,7 @@ class CommunityListTest {
         communitylist.add(community);
         HashMap<String, Community> target = new HashMap<>();
         target.put("python", community);
-        assertTrue(communitylist.getCommunityList().equals(target));
+        assertEquals(communitylist.getCommunityList(), target);
     }
 
     @Test
@@ -26,8 +24,8 @@ class CommunityListTest {
         Community community = new Community("python");
         communitylist.add(community);
         communitylist.remove("python");
-        HashMap<String, Community> target = new HashMap<String, Community>();
-        assertTrue(communitylist.getCommunityList().equals(target));
+        HashMap<String, Community> target = new HashMap<>();
+        assertEquals(communitylist.getCommunityList(), target);
     }
 
     @Test

@@ -54,7 +54,7 @@ public class IntroCSGraphBuilder implements GraphBuilder {
     }
 
     /**
-     * @return a DirectedGrah that is a built-in default main.graph
+     * @return a DirectedGraph that is a built-in default main. graph
      * @throws Exception if the name of the first vertex in edge does not exist in the DirectedGraph
      */
     @Override
@@ -68,7 +68,7 @@ public class IntroCSGraphBuilder implements GraphBuilder {
         for (Vertex[] directedEdge : directedEdges) {
             result.addEdge(directedEdge);
         }
-        result.setTreeid(0);
+        result.setTreeId();
         return result;
     }
 

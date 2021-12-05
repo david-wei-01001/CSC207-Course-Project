@@ -1,13 +1,8 @@
 package communitysystem;
 
-import achievementsystem.AchievementManager;
-import constants.Achievements;
+import constants.Exceptions;
 import rewardsystem.RewardManager;
 import user.User;
-import constants.Exceptions;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * The use case that controls a user's interaction with the achievement system.
@@ -19,7 +14,7 @@ public class CommunityLibrary {
 
     /**
      * Setter function for mapOfCommunity
-     * @param mapOfCommunity
+     * @param mapOfCommunity the map of community
      */
     public void setMapOfCommunity(CommunityList mapOfCommunity) {
         this.mapOfCommunity = mapOfCommunity;
@@ -27,7 +22,7 @@ public class CommunityLibrary {
 
     /**
      * Setter function for currentUser
-     * @param currentUser
+     * @param currentUser the current user
      */
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
@@ -56,42 +51,19 @@ public class CommunityLibrary {
 
     /**
      //     * Add a post to a community.
-     //     * @param user the main.user adding this post
+     //     * @param user the main. user adding this post
      //     * @param communityName the name of the community this post is being added to
      //     * @param content the content of the post being added
      //     * @return the id of the post being added.
      //     * @throws Exception throws an exception if the community with the communityName is not found.
      //     */
-    public void createPost(String content, AchievementManager achievementManager,
-                           RewardManager rewardManager) throws Exception {
+    public void createPost(String content,
+                           RewardManager rewardManager) {
         String postId = currentCommunity.addPublishedContent(content, currentUser);
         currentUser.addToListOfPostId(postId);
         rewardManager.addRewardPoint(5);
-    }
 
-    /**
-     * Delete an existing community
-     * @param name: The name of Community
-     */
-    public void deleteCommunity(String name){
-        mapOfCommunity.remove(name);
-    }
 
-    /**
-     * Return the community with the given name.
-     * @param name: The name of the community
-     * @return Community that with the name
-     */
-    public Community getCommunity(String name){
-        return mapOfCommunity.get(name);
-    }
-
-    /**
-     * Return the currentCommunity
-     * @return currentCommunity
-     */
-    public Community getCurrentCommunity() {
-        return currentCommunity;
     }
 
     /**

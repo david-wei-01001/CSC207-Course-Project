@@ -11,14 +11,5 @@ class PresenterTest {
 
     @Test
     void getNonEmptyCredential() {
-
     }
-
-//    @Test
-//    public static void main(String[] args) {
-//        Presenter presenter = new Presenter();
-//        presenter.getNonEmptyCredential(Presenter.USERNAME);
-//    }
-
-
 }

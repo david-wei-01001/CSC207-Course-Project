@@ -1,7 +1,5 @@
 package graph;
 
-import graph.DirectedGraph;
-import graph.Vertex;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -134,10 +132,10 @@ public class DirectedGraphTest {
     }
 
     @Test
-    public void testCaseWithTwoPreqForAdd() {
+    public void testCaseWithTwoPreForAdd() {
         try {
             Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Combbb");
+            Vertex compIntro = new Vertex("Introductory Cobb");
             Vertex Intro165 = new Vertex("CSC165");
             Vertex JavaIntro = new Vertex("Introductory Java");
             Vertex CIntro = new Vertex("Introductory C++");
@@ -167,10 +165,10 @@ public class DirectedGraphTest {
     }
 
     @Test
-    public void testCaseWithTwoPreqForComplete() {
+    public void testCaseWithTwoPreForComplete() {
         try {
             Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Combbb");
+            Vertex compIntro = new Vertex("Introductory Cobb");
             Vertex Intro165 = new Vertex("CSC165");
             Vertex JavaIntro = new Vertex("Introductory Java");
             Vertex CIntro = new Vertex("Introductory C++");
@@ -202,10 +200,10 @@ public class DirectedGraphTest {
     }
 
     @Test
-    public void testCaseWithTwoPreqForDelete() {
+    public void testCaseWithTwoPreForDelete() {
         try {
             Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Combbb");
+            Vertex compIntro = new Vertex("Introductory Cobb");
             Vertex Intro165 = new Vertex("CSC165");
             Vertex JavaIntro = new Vertex("Introductory Java");
             Vertex CIntro = new Vertex("Introductory C++");
@@ -240,7 +238,7 @@ public class DirectedGraphTest {
     public void testDeleteEdgeThrowExceptionFirstNotExist() {
         try {
             Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Combbb");
+            Vertex compIntro = new Vertex("Introductory Cobb");
             Vertex Intro165 = new Vertex("CSC165");
             Vertex JavaIntro = new Vertex("Introductory Java");
             Vertex CIntro = new Vertex("Introductory C++");
@@ -280,7 +278,7 @@ public class DirectedGraphTest {
     public void testDeleteEdgeThrowExceptionSecondNotExist() {
         try {
             Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Combbb");
+            Vertex compIntro = new Vertex("Introductory Cobb");
             Vertex Intro165 = new Vertex("CSC165");
             Vertex JavaIntro = new Vertex("Introductory Java");
             Vertex CIntro = new Vertex("Introductory C++");
@@ -320,7 +318,7 @@ public class DirectedGraphTest {
     public void testDeleteVertexThrowException() {
         try {
             Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Combbb");
+            Vertex compIntro = new Vertex("Introductory Cobb");
             Vertex Intro165 = new Vertex("CSC165");
             Vertex JavaIntro = new Vertex("Introductory Java");
             Vertex CIntro = new Vertex("Introductory C++");
@@ -358,7 +356,7 @@ public class DirectedGraphTest {
     public void testGetVertexArrayStringThrowException() {
         try {
             Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Combbb");
+            Vertex compIntro = new Vertex("Introductory Cobb");
             Vertex Intro165 = new Vertex("CSC165");
             Vertex JavaIntro = new Vertex("Introductory Java");
             Vertex CIntro = new Vertex("Introductory C++");
@@ -396,7 +394,7 @@ public class DirectedGraphTest {
     public void testGetVertexArrayVertexThrowException() {
         try {
             Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Combbb");
+            Vertex compIntro = new Vertex("Introductory Cobb");
             Vertex Intro165 = new Vertex("CSC165");
             Vertex JavaIntro = new Vertex("Introductory Java");
             Vertex CIntro = new Vertex("Introductory C++");
@@ -435,7 +433,7 @@ public class DirectedGraphTest {
     public void testGetVertexThrowException() {
         try {
             Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Combbb");
+            Vertex compIntro = new Vertex("Introductory Cobb");
             Vertex Intro165 = new Vertex("CSC165");
             Vertex JavaIntro = new Vertex("Introductory Java");
             Vertex CIntro = new Vertex("Introductory C++");
@@ -473,7 +471,7 @@ public class DirectedGraphTest {
     public void testCompleteNotExist() {
         try {
             Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Combbb");
+            Vertex compIntro = new Vertex("Introductory Cobb");
             Vertex Intro165 = new Vertex("CSC165");
             Vertex JavaIntro = new Vertex("Introductory Java");
             Vertex CIntro = new Vertex("Introductory C++");
@@ -511,7 +509,7 @@ public class DirectedGraphTest {
     public void testCompleteAlreadyComplete() {
         try {
             Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Combbb");
+            Vertex compIntro = new Vertex("Introductory Cobb");
             Vertex Intro165 = new Vertex("CSC165");
             Vertex JavaIntro = new Vertex("Introductory Java");
             Vertex CIntro = new Vertex("Introductory C++");
@@ -550,7 +548,7 @@ public class DirectedGraphTest {
     public void testCompleteLocked() {
         try {
             Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Combbb");
+            Vertex compIntro = new Vertex("Introductory Cobb");
             Vertex Intro165 = new Vertex("CSC165");
             Vertex JavaIntro = new Vertex("Introductory Java");
             Vertex CIntro = new Vertex("Introductory C++");

@@ -46,14 +46,10 @@ public class Achievements {
      */
     public static final int FIRST_LOGIN_THRESHOLD = 1;
     public static final String FIRST_LOGIN = "First User.Login";
-    public static final int FIRST_LOGIN_REWARD = 1;
 
     public static final int[] ARRAY_OF_TOTAL_LOGINS_THRESHOLDS = {FIRST_LOGIN_THRESHOLD};
     public static final Map<Integer, String> MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT = Map.ofEntries(
             Map.entry(FIRST_LOGIN_THRESHOLD, FIRST_LOGIN)
-    );
-    public static final Map<Integer, Integer> MAP_TOTAL_LOGINS_THRESHOLDS_TO_REWARD = Map.ofEntries(
-            Map.entry(FIRST_LOGIN_THRESHOLD, FIRST_LOGIN_REWARD)
     );
 
 
