@@ -78,6 +78,18 @@ public class GraphManager {
         return mapOfGraphs;
     }
 
+
+    public String getAllGraphName(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(String i : mapOfGraphs.keySet()){
+            stringBuilder.append(i).append(": ");
+            stringBuilder.append(mapOfGraphs.get(i).getName());
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
+    }
+
+
     /**
      * add a DirectedGraph to the GraphManager.
      * @param graph a DirectedGraph to be added
