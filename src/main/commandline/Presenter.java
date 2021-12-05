@@ -1,9 +1,13 @@
 package commandline;
 
 import constants.Exceptions;
+import graph.DirectedGraph;
 import graph.GraphManager;
 import resource.ResourceManager;
 import user.UserManager;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -17,6 +21,7 @@ public class Presenter {
 
     protected static final String ONE = "1";
     protected static final String TWO = "2";
+    protected static final String ZERO ="0";
     protected static final String EXIT = "exit";
     protected static final String RETURN = "return";
     protected static final String PASSWORD = "password";
@@ -58,7 +63,7 @@ public class Presenter {
      * Information to display all Main Menu options.
      */
     public void mainMenuOptions(){
-        System.out.println("Main Menu: 1.Technical Tree, 2.Resource, 3.Achievement, or enter \"exit\" to exit program");
+        System.out.println("Main Menu: 0. My tree 1.Technical Tree, 2.Resource, 3.Achievement, or enter \"exit\" to exit program");
     }
 
     /**
@@ -149,7 +154,27 @@ public class Presenter {
         System.out.println(userManager.displayAchievement());
     }
 
+    public void myTreePage(){
+        System.out.println("Hi! Now you've entered your tree");
+        System.out.println("Select the tree you want to study!");
 
+        HashMap<String, DirectedGraph> mytree1 = (HashMap<String, DirectedGraph>) userManager.getCurrentUser().getMapOfGraph();
+        HashMap<String, DirectedGraph> mytree2 = new HashMap<String, DirectedGraph>();
+        HashMap<String, DirectedGraph> alltree = (HashMap<String, DirectedGraph>) graphManager.getAllGraphs();
+        for(String id: alltree.keySet()){
+            DirectedGraph graph = alltree.get(id);
+            if(mytree1.containsKey(graph.getName())){
+                mytree2.put(id, graph);
+            }
+        }
+        System.out.println("Tech Trees: " + mytree2);
+        System.out.println("Enter \"main\" to return to main page.");
+
+    }
+    public void myTreePageEmpty(){
+        System.out.println("Oops, your have not begin the study for any graph.");
+        System.out.println("To begin your learning experience, back to main menu and select Tech Tree!");
+    }
     public void technicalTreeMainPage(){
         System.out.println("Hi! Now you've entered the technical tree page.");
         System.out.println("Select the tree you want to study!");

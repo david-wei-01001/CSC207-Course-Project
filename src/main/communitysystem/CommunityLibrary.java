@@ -13,9 +13,14 @@ import java.util.Map;
  * The use case that controls a user's interaction with the achievement system.
  */
 public class CommunityLibrary {
-    private static final CommunityList mapOfCommunity = new CommunityList();
+    private final CommunityList mapOfCommunity = new CommunityList();
     private Community currentCommunity;
     private User currentUser;
+
+    public void setMapOfCommunity(CommunityList mapOfCommunity) {
+        mapOfCommunity = mapOfCommunity;
+    }
+
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
@@ -27,7 +32,7 @@ public class CommunityLibrary {
      * @param name: The community name
      * @return: This community exists or not
      */
-    public static boolean checkCommunityExist(String name){
+    public boolean checkCommunityExist(String name){
         return mapOfCommunity.containsKey(name);
     }
 
@@ -35,7 +40,7 @@ public class CommunityLibrary {
      * Create a new community.
      * @param name: The community name
      */
-    public static void addCommunity(String name){
+    public void addCommunity(String name){
         if(!checkCommunityExist(name)){
             Community com = new Community(name);
             mapOfCommunity.add(com);
@@ -63,7 +68,7 @@ public class CommunityLibrary {
      * Delete an existing community
      * @param name: The name of Community
      */
-    public static void deleteCommunity(String name){
+    public void deleteCommunity(String name){
         mapOfCommunity.remove(name);
     }
 
@@ -72,7 +77,7 @@ public class CommunityLibrary {
      * @param name: The name of the community
      * @return Community that with the name
      */
-    public static Community getCommunity(String name){
+    public Community getCommunity(String name){
         return mapOfCommunity.get(name);
     }
 
