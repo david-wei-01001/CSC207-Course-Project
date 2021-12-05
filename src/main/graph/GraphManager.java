@@ -3,6 +3,7 @@ package graph;
 import communitysystem.CommunityLibrary;
 import constants.BuiltInGraphs;
 import constants.Exceptions;
+import constants.TreeidMap;
 import graphbuilders.GraphArchitect;
 
 import java.util.HashMap;
@@ -16,6 +17,11 @@ public class GraphManager {
     private Map<String, DirectedGraph> mapOfGraphs = new HashMap<>();
     private DirectedGraph currentGraph;
     private CommunityLibrary communityLibrary;
+    private TreeidMap idmap = new TreeidMap(new HashMap<>());
+
+    public TreeidMap getIdmap() {
+        return idmap;
+    }
 
     /**
      * Update the graph with user's private graph.
@@ -38,7 +44,6 @@ public class GraphManager {
 
     }
 
-
     /**
      * Constructor of GraphManager
      */
@@ -47,7 +52,10 @@ public class GraphManager {
         int i = 0;
         for (String builtInGraph : BuiltInGraphs.BUILT_IN_GRAPHS) {
             try {
+
+                idmap.setIdmap(Integer.toString(i), builtInGraph);
                 DirectedGraph graphToAdd = GraphArchitect.setBuilderAndBuildGraph(builtInGraph);
+                graphToAdd.setTreeid(i);
                 createCommunities(graphToAdd);
                 mapOfGraphs.put(Integer.toString(i), graphToAdd);
                 i++;

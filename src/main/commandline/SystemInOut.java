@@ -3,6 +3,7 @@ package commandline;
 import achievementsystem.AchievementManager;
 import communitysystem.CommunityList;
 import constants.Achievements;
+import constants.TreeidMap;
 import graph.DirectedGraph;
 import graph.GraphManager;
 import communitysystem.CommunityLibrary;
@@ -29,6 +30,7 @@ public class SystemInOut {
     private ResourceManager resourceManager;
     private Scanner scanner = new Scanner(System.in);
     private Presenter presenter;
+    private TreeidMap idmap;
 
     public SystemInOut() throws Exception {
         graphManager = new GraphManager();
@@ -41,6 +43,7 @@ public class SystemInOut {
         communityLibrary = new CommunityLibrary();
         graphManager.addBuiltInGraph(communityLibrary);
         presenter = new Presenter(userManager, resourceManager, graphManager);
+        idmap = graphManager.getIdmap();
     }
 
     public void run() {
@@ -108,9 +111,11 @@ public class SystemInOut {
             presenter.myTreePage();
 
             String input = scanner.nextLine();
-
-            while (!userManager.getCurrentUser().getMapOfGraph().containsKey(input) && !input.equals("main")) {
-                // TODO: need to change the way to call the tree
+//            //debug line
+//            System.out.println(idmap.getIdMap());
+//            // idmap.useIdToGetName(input)
+            while (!userManager.getCurrentUser().getMapOfGraph().containsKey(idmap.useIdToGetName(input))
+                    && !input.equals("main")) {
                 presenter.incorrectInput();
                 input = scanner.nextLine();
             }

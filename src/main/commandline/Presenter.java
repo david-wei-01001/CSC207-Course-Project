@@ -1,6 +1,7 @@
 package commandline;
 
 import constants.Exceptions;
+import graph.DirectedGraph;
 import graph.GraphManager;
 import resource.ResourceManager;
 import user.UserManager;
@@ -153,7 +154,17 @@ public class Presenter {
     public void myTreePage(){
         System.out.println("Hi! Now you've entered your tree");
         System.out.println("Select the tree you want to study!");
-        System.out.println("Tech Trees: " + userManager.getCurrentUser().getMapOfGraph());
+
+        HashMap<String, DirectedGraph> mytree1 = (HashMap<String, DirectedGraph>) userManager.getCurrentUser().getMapOfGraph();
+        HashMap<String, DirectedGraph> mytree2 = new HashMap<String, DirectedGraph>();
+        HashMap<String, DirectedGraph> alltree = (HashMap<String, DirectedGraph>) graphManager.getAllGraphs();
+        for(String id: alltree.keySet()){
+            DirectedGraph graph = alltree.get(id);
+            if(mytree1.containsKey(graph.getName())){
+                mytree2.put(id, graph);
+            }
+        }
+        System.out.println("Tech Trees: " + mytree2);
         System.out.println("Enter \"main\" to return to main page.");
 
     }
