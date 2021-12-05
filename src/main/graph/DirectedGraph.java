@@ -23,11 +23,31 @@ public class DirectedGraph extends Observable implements Serializable, Iterable<
     private final IterableMap<String, VertexArray> VERTICES = new IterableMap<>();
     private final String NAME;
     private final List<String> CURRENTUNCLOCK = new ArrayList<>();
-
     private final List<String> COMPLETED = new ArrayList<>();
+    private int treeid;
 
+    /**
+     * get the number of completed vertex
+     * @return number of complete
+     */
     public int getNumOfCOMPLETED() {
         return COMPLETED.size();
+    }
+
+    /**
+     * set tree id
+     * @param treeid
+     */
+    public void setTreeid(int treeid) {
+        this.treeid = treeid;
+    }
+
+    /**
+     * return identical graph id
+     * @return treeid
+     */
+    public int getTreeid() {
+        return treeid;
     }
 
     /**

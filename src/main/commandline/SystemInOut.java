@@ -110,6 +110,7 @@ public class SystemInOut {
             String input = scanner.nextLine();
 
             while (!userManager.getCurrentUser().getMapOfGraph().containsKey(input) && !input.equals("main")) {
+                // TODO: need to change the way to call the tree
                 presenter.incorrectInput();
                 input = scanner.nextLine();
             }
@@ -127,13 +128,8 @@ public class SystemInOut {
         }
     }
     private void myTreePage(String treeId) throws Exception {
-        DirectedGraph currgraph = userManager.getCurrentUser().getMapOfGraph().get(treeId);
-        graphManager.updateWithPrivateGraph(currgraph);
-        graphManager.setCurrentGraph(treeId);
 
         technicalTreePage(treeId);
-
-        // TODO: need to change the way to call the tree
 
 
 //
@@ -249,13 +245,24 @@ public class SystemInOut {
 
     private void technicalTreePage(String treeId) throws Exception {
 
-        DirectedGraph currgraph = userManager.getCurrentUser().getMapOfGraph().get("1");
+        DirectedGraph currgraph= null;
+        if(treeId.equals("0")){
+            currgraph = userManager.getCurrentUser().getMapOfGraph().get("Introductory CS Series");
+        }
+        else if(treeId.equals("1")){
+            currgraph = userManager.getCurrentUser().getMapOfGraph().get("Introductory Makeup Steps");
+        }
+
+
         if (currgraph != null){
+//            // debug lines
+//            System.out.println("this is current user's graph");
+//            System.out.println(currgraph);
+//            System.out.println(currgraph.getNumOfCOMPLETED());
+//            // end for debug
             graphManager.updateWithPrivateGraph(currgraph);
         }
 
-        System.out.println("this is current user's graph");
-        System.out.println(currgraph.toString());
 
         graphManager.setCurrentGraph(treeId);
 

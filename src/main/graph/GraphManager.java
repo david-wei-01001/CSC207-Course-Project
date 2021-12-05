@@ -22,15 +22,18 @@ public class GraphManager {
      */
     public void updateWithPrivateGraph(DirectedGraph newgraph){
         String graphname = newgraph.getName();
-        int treeId = 0;
+        String treeId = "0";
         if(graphname == "Introductory Makeup Steps"){
-            treeId = 1;
+            treeId = "1";
         }
+
         if(mapOfGraphs.get(treeId).getNumOfCOMPLETED() <= newgraph.getNumOfCOMPLETED()){
-            System.out.println("ATTENTION!!");
-            mapOfGraphs.get(treeId).getNumOfCOMPLETED();
-            newgraph.getNumOfCOMPLETED();
-            mapOfGraphs.replace(graphname, newgraph);
+//            //debug line
+//            System.out.println("ATTENTION!!");
+//            mapOfGraphs.get(treeId).getNumOfCOMPLETED();
+//            newgraph.getNumOfCOMPLETED();
+//            //end of debug line
+            mapOfGraphs.replace(treeId, newgraph);
         }
 
     }

@@ -68,7 +68,7 @@ public class IntroCSGraphBuilder implements GraphBuilder {
         for (Vertex[] directedEdge : directedEdges) {
             result.addEdge(directedEdge);
         }
-
+        result.setTreeid(0);
         return result;
     }
 
