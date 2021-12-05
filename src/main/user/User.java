@@ -26,7 +26,7 @@ public class User implements HasName, Serializable {
     private final ArrayList<String> listOfPostId = new ArrayList<>();
     private final Map<String, DirectedGraph> mapOfGraph = new HashMap<>();
     private final Map<String, Resource> mapOfResource = new HashMap<>();
-    private final IterableMap<String, Boolean> mapOfAchievement = new IterableMap<>();
+    private final Map<String, Boolean> mapOfAchievement = new HashMap<>();
 
 
  
@@ -144,7 +144,7 @@ public class User implements HasName, Serializable {
         return password;
     }
 
-    public IterableMap<String, Boolean> getMapOfAchievement() {
+    public Map<String, Boolean> getMapOfAchievement() {
         return mapOfAchievement;
     }
 
@@ -157,7 +157,7 @@ public class User implements HasName, Serializable {
      */
     public String displayAchievement() {
         StringBuilder achievements = new StringBuilder();
-        for(String name: mapOfAchievement){
+        for(String name: mapOfAchievement.keySet()){
             Boolean status = mapOfAchievement.get(name);
             if(status) {
                 achievements.append(name).append(": acquired").append("\n");

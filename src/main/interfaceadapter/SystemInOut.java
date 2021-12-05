@@ -1,4 +1,4 @@
-package commandline;
+package interfaceadapter;
 
 import achievementsystem.AchievementManager;
 import communitysystem.CommunityLibrary;
@@ -451,8 +451,8 @@ public class SystemInOut {
 
     private void save() throws IOException {
         checkForMyTree();
-        WholeReadWriter.saveToFile("src/main/commandline/user.json",
-                "src/main/commandline/community.json",
+        WholeReadWriter.saveToFile("src/main/interfaceadapter/user.json",
+                "src/main/interfaceadapter/community.json",
                 userManager.getMapOfUser(),
                 communityLibrary.getMapOfCommunity());
     }
@@ -460,8 +460,8 @@ public class SystemInOut {
     private void load() {
         List<Object> data;
         try {
-            data = WholeReadWriter.readFromFile("src/main/commandline/user.json",
-                    "src/main/commandline/community.json");
+            data = WholeReadWriter.readFromFile("src/main/interfaceadapter/user.json",
+                    "src/main/interfaceadapter/community.json");
             userManager.setMapOfUser((UserList) data.get(0));
             communityLibrary.setMapOfCommunity((CommunityList) data.get(1));
         } catch (IOException | ClassNotFoundException e) {
