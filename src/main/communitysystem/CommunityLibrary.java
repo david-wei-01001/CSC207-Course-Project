@@ -13,15 +13,22 @@ import java.util.Map;
  * The use case that controls a user's interaction with the achievement system.
  */
 public class CommunityLibrary {
-    private final CommunityList mapOfCommunity = new CommunityList();
+    private CommunityList mapOfCommunity = new CommunityList();
     private Community currentCommunity;
     private User currentUser;
 
+    /**
+     * Setter function for mapOfCommunity
+     * @param mapOfCommunity
+     */
     public void setMapOfCommunity(CommunityList mapOfCommunity) {
-        mapOfCommunity = mapOfCommunity;
+        this.mapOfCommunity = mapOfCommunity;
     }
 
-
+    /**
+     * Setter function for currentUser
+     * @param currentUser
+     */
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
@@ -55,8 +62,6 @@ public class CommunityLibrary {
      //     * @return the id of the post being added.
      //     * @throws Exception throws an exception if the community with the communityName is not found.
      //     */
-
-
     public void createPost(String content, AchievementManager achievementManager,
                            RewardManager rewardManager) throws Exception {
         String postId = currentCommunity.addPublishedContent(content, currentUser);
@@ -81,12 +86,18 @@ public class CommunityLibrary {
         return mapOfCommunity.get(name);
     }
 
-
-
+    /**
+     * Return the currentCommunity
+     * @return currentCommunity
+     */
     public Community getCurrentCommunity() {
         return currentCommunity;
     }
 
+    /**
+     * Set the currentCommunity with the given communityName
+     * @param communityName: The name of the community to set for currentCommunity
+     */
     public void setCurrentCommunity(String communityName) throws Exception {
         if (checkCommunityExist(communityName)) {
             this.currentCommunity = mapOfCommunity.get(communityName);
@@ -96,6 +107,10 @@ public class CommunityLibrary {
 
     }
 
+    /**
+     * The getter function for mapOfCommunity
+     * @return mapOfCommunity
+     */
     public CommunityList getMapOfCommunity() {
         return mapOfCommunity;
     }

@@ -24,6 +24,31 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     private final String NAME;
     private final List<String> CURRENTUNCLOCK = new ArrayList<>();
     private final List<String> COMPLETED = new ArrayList<>();
+    private int treeid;
+
+    /**
+     * get the number of completed vertex
+     * @return number of complete
+     */
+    public int getNumOfCOMPLETED() {
+        return COMPLETED.size();
+    }
+
+    /**
+     * set tree id
+     * @param treeid
+     */
+    public void setTreeid(int treeid) {
+        this.treeid = treeid;
+    }
+
+    /**
+     * return identical graph id
+     * @return treeid
+     */
+    public int getTreeid() {
+        return treeid;
+    }
 
     /**
      * The constructor of the DirectedGraph class.
@@ -230,10 +255,33 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         stringBuilder.append(NAME);
         stringBuilder.append("\n");
         for (VertexArray edges : arrangeArray()) {
-            stringBuilder.append("    ");
-            stringBuilder.append(edges.toString());
+            if (edges.getStart().getInLevel() == 0) {
+                stringBuilder.append("\n");
+                stringBuilder.append(singleVertexToString(edges, 1));
+            }
         }
         return stringBuilder.toString();
+    }
+
+    public String singleVertexToString(VertexArray edge, int numInward) {
+        if (edge.isEmpty()) {
+            return edge.getStart().toString();
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(edge.getStart().toString());
+            for (Vertex vertex : edge) {
+                try {
+                    VertexArray vertexArray = getVertexArray(vertex);
+                    stringBuilder.append("\n");
+                    stringBuilder.append("    ".repeat(numInward));
+                    stringBuilder.append("-> ");
+                    stringBuilder.append(singleVertexToString(vertexArray, numInward + 1));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return stringBuilder.toString();
+        }
     }
 
     /**
@@ -311,5 +359,15 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
             index ++;
             return toReturn;
         }
+    }
+
+    /**
+     * Check if the completed set is zero, in other word, this
+     * method is used to check whether the tree/graph was
+     * began to learn
+     */
+    public boolean isLearnedGraph(){
+        int number = COMPLETED.size();
+        return number != 0;
     }
 }

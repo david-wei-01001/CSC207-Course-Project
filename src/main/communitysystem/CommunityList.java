@@ -23,8 +23,12 @@ public class CommunityList implements Serializable {
         communityList.put(community.getNameOfCommunity(), community);
     }
 
-    public void remove(String nameofCommunity){
-        communityList.remove(nameofCommunity);
+    /**
+     * Remove community to this community list.
+     * @param nameOfCommunity is the community need to add
+     */
+    public void remove(String nameOfCommunity){
+        communityList.remove(nameOfCommunity);
     }
 
     /**
@@ -35,6 +39,10 @@ public class CommunityList implements Serializable {
         return communityList.get(nameOfCommunity);
     }
 
+    /**
+     * Check whether the given key is in the list
+     * @param nameOfCommunity is the key to check whether this community is in the list
+     */
     public boolean containsKey(String nameOfCommunity){ return communityList.containsKey(nameOfCommunity); }
 
 }
