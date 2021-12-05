@@ -169,7 +169,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
      */
     public VertexArray getVertexArray(String name) throws Exception {
         if (!VERTICES.containsKey(name)) {
-            throw new Exception(Exceptions.Vertex_NOT_FOUND);
+            throw new Exception(Exceptions.VERTEX_NOT_FOUND);
         }
         else {
             return VERTICES.get(name);
@@ -186,7 +186,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     public VertexArray getVertexArray(Vertex vertex) throws Exception {
         String name = vertex.getName();
         if (!VERTICES.containsKey(name)) {
-            throw new Exception(Exceptions.Vertex_NOT_FOUND);
+            throw new Exception(Exceptions.VERTEX_NOT_FOUND);
         }
         else {
             return VERTICES.get(name);
@@ -205,7 +205,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
                 return  getVertexArray(name).getStart();
             }
         }
-        throw new Exception(Exceptions.Vertex_NOT_FOUND);
+        throw new Exception(Exceptions.VERTEX_NOT_FOUND);
     }
 
     /**
@@ -216,11 +216,11 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
      */
     public void complete(String name) throws Exception {
         if (!VERTICES.containsKey(name)){
-            throw new Exception(Exceptions.Vertex_NOT_FOUND);
+            throw new Exception(Exceptions.VERTEX_NOT_FOUND);
         }else if (!CURRENTUNLOCK.contains(name)){
-            throw new Exception(Exceptions.Vertex_LOCKED);
+            throw new Exception(Exceptions.VERTEX_LOCKED);
         } else if (COMPLETED.contains(name)) {
-            throw new Exception(Exceptions.Vertex_ALREADY_COMPLETED);
+            throw new Exception(Exceptions.VERTEX_ALREADY_COMPLETED);
         } else {
             COMPLETED.add(name);
             CURRENTUNLOCK.remove(name);

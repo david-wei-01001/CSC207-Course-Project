@@ -142,8 +142,8 @@ public class DirectedGraphTest {
             Vertex Intro236 = new Vertex("CSC236");
             Vertex Intro209 = new Vertex("CSC209");
             Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] Starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+            Vertex[] starter = {pythonIntro};
+            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
             Vertex[] v1 = {pythonIntro, JavaIntro};
             Vertex[] vx = {compIntro, JavaIntro};
             Vertex[] v2 = {pythonIntro, CIntro};
@@ -175,8 +175,8 @@ public class DirectedGraphTest {
             Vertex Intro236 = new Vertex("CSC236");
             Vertex Intro209 = new Vertex("CSC209");
             Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] Starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+            Vertex[] starter = {pythonIntro};
+            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
             Vertex[] v1 = {pythonIntro, JavaIntro};
             Vertex[] vx = {compIntro, JavaIntro};
             Vertex[] v2 = {pythonIntro, CIntro};
@@ -210,8 +210,8 @@ public class DirectedGraphTest {
             Vertex Intro236 = new Vertex("CSC236");
             Vertex Intro209 = new Vertex("CSC209");
             Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] Starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+            Vertex[] starter = {pythonIntro};
+            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
             Vertex[] v1 = {pythonIntro, JavaIntro};
             Vertex[] vx = {compIntro, JavaIntro};
             Vertex[] v2 = {pythonIntro, CIntro};
@@ -245,8 +245,8 @@ public class DirectedGraphTest {
             Vertex Intro236 = new Vertex("CSC236");
             Vertex Intro209 = new Vertex("CSC209");
             Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] Starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+            Vertex[] starter = {pythonIntro};
+            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
             Vertex[] v1 = {pythonIntro, JavaIntro};
             Vertex[] vx = {compIntro, JavaIntro};
             Vertex[] v2 = {pythonIntro, CIntro};
@@ -267,7 +267,7 @@ public class DirectedGraphTest {
                 graph.addEdge(v7);
                 fail();
             } catch (Exception e) {
-                assertEquals(e.getMessage(), Vertex_NOT_FOUND);
+                assertEquals(e.getMessage(), VERTEX_NOT_FOUND);
             }
         } catch (Exception e) {
             fail();
@@ -285,8 +285,8 @@ public class DirectedGraphTest {
             Vertex Intro236 = new Vertex("CSC236");
             Vertex Intro209 = new Vertex("CSC209");
             Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] Starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+            Vertex[] starter = {pythonIntro};
+            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
             Vertex[] v1 = {pythonIntro, JavaIntro};
             Vertex[] vx = {compIntro, JavaIntro};
             Vertex[] v2 = {pythonIntro, CIntro};
@@ -304,7 +304,7 @@ public class DirectedGraphTest {
             Vertex PhilIntro = new Vertex("Introductory Philosophy");
             Vertex[] v7 = {Intro165, PhilIntro};
             try{
-                graph.addEdge(v7);
+                graph.deleteEdge(v7);
                 fail();
             } catch (Exception e) {
                 assertEquals(e.getMessage(), EDGE_NOT_FOUND);
@@ -325,8 +325,8 @@ public class DirectedGraphTest {
             Vertex Intro236 = new Vertex("CSC236");
             Vertex Intro209 = new Vertex("CSC209");
             Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] Starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+            Vertex[] starter = {pythonIntro};
+            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
             Vertex[] v1 = {pythonIntro, JavaIntro};
             Vertex[] vx = {compIntro, JavaIntro};
             Vertex[] v2 = {pythonIntro, CIntro};
@@ -345,7 +345,7 @@ public class DirectedGraphTest {
                 graph.deleteVertex("Introductory Philosophy");
                 fail();
             } catch (Exception e) {
-                assertEquals(e.getMessage(), Vertex_NOT_FOUND);
+                assertEquals(e.getMessage(), VERTEX_NOT_FOUND);
             }
         } catch (Exception e) {
             fail();
@@ -363,8 +363,8 @@ public class DirectedGraphTest {
             Vertex Intro236 = new Vertex("CSC236");
             Vertex Intro209 = new Vertex("CSC209");
             Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] Starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+            Vertex[] starter = {pythonIntro};
+            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
             Vertex[] v1 = {pythonIntro, JavaIntro};
             Vertex[] vx = {compIntro, JavaIntro};
             Vertex[] v2 = {pythonIntro, CIntro};
@@ -383,7 +383,7 @@ public class DirectedGraphTest {
                 graph.getVertexArray("Introductory Philosophy");
                 fail();
             } catch (Exception e) {
-                assertEquals(e.getMessage(), Vertex_NOT_FOUND);
+                assertEquals(e.getMessage(), VERTEX_NOT_FOUND);
             }
         } catch (Exception e) {
             fail();
@@ -401,8 +401,8 @@ public class DirectedGraphTest {
             Vertex Intro236 = new Vertex("CSC236");
             Vertex Intro209 = new Vertex("CSC209");
             Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] Starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+            Vertex[] starter = {pythonIntro};
+            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
             Vertex[] v1 = {pythonIntro, JavaIntro};
             Vertex[] vx = {compIntro, JavaIntro};
             Vertex[] v2 = {pythonIntro, CIntro};
@@ -422,7 +422,7 @@ public class DirectedGraphTest {
                 graph.getVertexArray(PhilIntro);
                 fail();
             } catch (Exception e) {
-                assertEquals(e.getMessage(), Vertex_NOT_FOUND);
+                assertEquals(e.getMessage(), VERTEX_NOT_FOUND);
             }
         } catch (Exception e) {
             fail();
@@ -440,8 +440,8 @@ public class DirectedGraphTest {
             Vertex Intro236 = new Vertex("CSC236");
             Vertex Intro209 = new Vertex("CSC209");
             Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] Starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+            Vertex[] starter = {pythonIntro};
+            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
             Vertex[] v1 = {pythonIntro, JavaIntro};
             Vertex[] vx = {compIntro, JavaIntro};
             Vertex[] v2 = {pythonIntro, CIntro};
@@ -460,7 +460,7 @@ public class DirectedGraphTest {
                 graph.getVertex("Introductory Philosophy");
                 fail();
             } catch (Exception e) {
-                assertEquals(e.getMessage(), Vertex_NOT_FOUND);
+                assertEquals(e.getMessage(), VERTEX_NOT_FOUND);
             }
         } catch (Exception e) {
             fail();
@@ -478,8 +478,8 @@ public class DirectedGraphTest {
             Vertex Intro236 = new Vertex("CSC236");
             Vertex Intro209 = new Vertex("CSC209");
             Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] Starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+            Vertex[] starter = {pythonIntro};
+            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
             Vertex[] v1 = {pythonIntro, JavaIntro};
             Vertex[] vx = {compIntro, JavaIntro};
             Vertex[] v2 = {pythonIntro, CIntro};
@@ -498,7 +498,7 @@ public class DirectedGraphTest {
                 graph.complete("Introductory Philosophy");
                 fail();
             } catch (Exception e) {
-                assertEquals(e.getMessage(), Vertex_NOT_FOUND);
+                assertEquals(e.getMessage(), VERTEX_NOT_FOUND);
             }
         } catch (Exception e) {
             fail();
@@ -516,8 +516,8 @@ public class DirectedGraphTest {
             Vertex Intro236 = new Vertex("CSC236");
             Vertex Intro209 = new Vertex("CSC209");
             Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] Starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+            Vertex[] starter = {pythonIntro};
+            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
             Vertex[] v1 = {pythonIntro, JavaIntro};
             Vertex[] vx = {compIntro, JavaIntro};
             Vertex[] v2 = {pythonIntro, CIntro};
@@ -537,7 +537,8 @@ public class DirectedGraphTest {
                 graph.complete("Introductory Python");
                 fail();
             } catch (Exception e) {
-                assertEquals(e.getMessage(), Vertex_ALREADY_COMPLETED);
+                System.out.println((e.getMessage()));
+                assertEquals(e.getMessage(), VERTEX_ALREADY_COMPLETED);
             }
         } catch (Exception e) {
             fail();
@@ -555,8 +556,8 @@ public class DirectedGraphTest {
             Vertex Intro236 = new Vertex("CSC236");
             Vertex Intro209 = new Vertex("CSC209");
             Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] Starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(Starter, "CS Introduction Series");
+            Vertex[] starter = {pythonIntro};
+            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
             Vertex[] v1 = {pythonIntro, JavaIntro};
             Vertex[] vx = {compIntro, JavaIntro};
             Vertex[] v2 = {pythonIntro, CIntro};
@@ -575,7 +576,7 @@ public class DirectedGraphTest {
                 graph.complete("CSC263");
                 fail();
             } catch (Exception e) {
-                assertEquals(e.getMessage(), Vertex_LOCKED);
+                assertEquals(e.getMessage(), VERTEX_LOCKED);
             }
         } catch (Exception e) {
             fail();
