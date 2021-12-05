@@ -16,6 +16,7 @@ import java.util.Map;
  * The class that stores all information of a main.user.
  */
 public class User implements HasName, Serializable {
+    private static final long serialVersionUID = 1113799434508676095L;
     private String username;
     private String email;
     private String password;
@@ -24,9 +25,10 @@ public class User implements HasName, Serializable {
     private LocalDate lastLogin;
     private int totalLogins;
     private final ArrayList<String> listOfPostId = new ArrayList<>();
-    private final Map<String, DirectedGraph> mapOfGraph = new HashMap<>();
+    private Map<String, DirectedGraph> mapOfGraph = new HashMap<>();
     private final Map<String, Resource> mapOfResource = new HashMap<>();
     private final IterableMap<String, Boolean> mapOfAchievement = new IterableMap<>();
+
 
  
     public User(String username, String email, String password) {
