@@ -27,17 +27,18 @@ public class GraphArchitect {
 
         // create more if statements when we come up with more built-in Technical Trees.
         GraphBuilder graphBuilder;
-        if (treeName.equals(BuiltInGraphs.INTRODUCTORY_CS_SERIES)) {
-            graphBuilder = new IntroCSGraphBuilder();
-        }
-        else if (treeName.equals(BuiltInGraphs.INTRODUCTORY_MAKEUP)){
-            graphBuilder = new IntroMakeupGraphBuilder();
-        }
-        else if (treeName.equals(BuiltInGraphs.MATHEMATICS)){
-            graphBuilder = new MathematicsGraphBuilder();
-        }
-        else {
-            throw new Exception(Exceptions.CANNOT_RECOGNIZE_BUILT_IN_TREE);
+        switch (treeName) {
+            case BuiltInGraphs.INTRODUCTORY_CS_SERIES:
+                graphBuilder = new IntroCSGraphBuilder();
+                break;
+            case BuiltInGraphs.INTRODUCTORY_MAKEUP:
+                graphBuilder = new IntroMakeupGraphBuilder();
+                break;
+            case BuiltInGraphs.MATHEMATICS:
+                graphBuilder = new MathematicsGraphBuilder();
+                break;
+            default:
+                throw new Exception(Exceptions.CANNOT_RECOGNIZE_BUILT_IN_TREE);
         }
 
         // if no exception is thrown, graphBuilder != null/
