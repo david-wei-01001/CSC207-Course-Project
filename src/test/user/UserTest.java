@@ -43,7 +43,7 @@ public class UserTest {
         user.getMapOfAchievement().replace(Achievements.FIFTH_POST, false, true);
         assertTrue(user.getMapOfAchievement().get(Achievements.FIFTH_POST));
         user.initializeMapOfAchievement();
-        for (String achievement : user.getMapOfAchievement()) {
+        for (String achievement : user.getMapOfAchievement().keySet()) {
             assertFalse(user.getMapOfAchievement().get(achievement));
         }
     }
