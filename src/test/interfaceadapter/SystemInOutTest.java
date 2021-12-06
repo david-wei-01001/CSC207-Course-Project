@@ -16,7 +16,6 @@ class SystemInOutTest {
     public static void main(String[] args) throws Exception {
         SystemInOut inOut = new SystemInOut();
         inOut.run();
-
     }
 
     @Test

@@ -1,5 +1,7 @@
 package constants;
 
+import user.UserList;
+
 import java.util.Map;
 
 /**
@@ -46,6 +48,7 @@ public class Achievements {
      */
     public static final int FIRST_LOGIN_THRESHOLD = 1;
     public static final String FIRST_LOGIN = "First Login";
+    private static final int FIRST_LOGIN_REWARD = 5;
 
     public static final int[] ARRAY_OF_TOTAL_LOGINS_THRESHOLDS = {FIRST_LOGIN_THRESHOLD};
     public static final Map<Integer, String> MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT = Map.ofEntries(
@@ -53,6 +56,9 @@ public class Achievements {
     );
 
 
-    public static final String[] ARRAY_OF_ALL_ACHIEVEMENTS = {FIRST_LOGIN, TENTH_POST, FIRST_POST, FIFTH_POST,
+    public static final String[] ARRAY_OF_ALL_ACHIEVEMENTS = {FIRST_LOGIN, TENTH_POST, FIRST_POST, FIFTH_POST
             };
+    public static final Map<Integer, Integer> MAP_TOTAL_LOGINS_THRESHOLDS_TO_REWARD = Map.ofEntries(
+            Map.entry(FIRST_LOGIN_THRESHOLD, FIRST_LOGIN_REWARD)
+    );
 }

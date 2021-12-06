@@ -6,10 +6,20 @@ import java.util.List;
 import java.util.Iterator;
 
 /**
- * Algorithms class which contains supporting algorithms for building the directed tree
+ * Algorithms class Including all algorithms required for sorting searching and comparing different data structures.
  */
 public class Algorithm {
 
+    /**
+     * Return the index at where the given item need to be inserted without disrrupting the sorted nature of given list.
+     * @param lst a sorted list that the given item will be inserted.
+     * @param toInsert
+     * @param comparator
+     * @param b
+     * @param e
+     * @param <T>
+     * @return
+     */
     public static <T> int recBinaryInsertIndex(List<T> lst, T toInsert, Comparator<T> comparator, int b, int e) {
         if (b == e) {
             if (comparator.compare(toInsert, lst.get(b)) < 0) {
