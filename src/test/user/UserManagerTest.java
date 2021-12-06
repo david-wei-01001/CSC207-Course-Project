@@ -1,5 +1,7 @@
 package user;
 
+import achievementsystem.AchievementManager;
+import constants.Achievements;
 import constants.BuiltInGraphs;
 import graph.DirectedGraph;
 import graphbuilders.GraphArchitect;
@@ -12,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * implement this test
@@ -27,7 +30,7 @@ class UserManagerTest {
     User user = new User(USERNAME, EMAIL, PASSWORD);
 
     UserManager userManager;
-    Map<String, User> mapOfUser;
+    UserList mapOfUser;
 
     DirectedGraph graph1;
     DirectedGraph graph2;
@@ -36,9 +39,10 @@ class UserManagerTest {
     @BeforeEach
     void setUp() throws Exception {
 
-        mapOfUser = new HashMap<>();
-        mapOfUser.put(USERNAME, user);
+        mapOfUser = new UserList();
+        mapOfUser.add(user);
         userManager = new UserManager();
+        userManager.setMapOfUser(mapOfUser);
         userManager.setCurrentUser(USERNAME);
 
         graph1 = GraphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
@@ -151,5 +155,17 @@ class UserManagerTest {
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.setCurrentUser(ANOTHER_USERNAME));
         Assertions.assertEquals("Cannot recognize this main.user", thrown.getMessage());
+    }
+
+    @Test
+    void testDisplayAchievement() {
+        user.addToListOfPostId("1");
+        AchievementManager achievementManager = new AchievementManager();
+        achievementManager.setCurrentUser(user);
+        achievementManager.requestAchievement(Achievements.ARRAY_OF_POST_THRESHOLDS,
+                Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
+                user.getListOfPostId().size());
+        assertTrue(user.getMapOfAchievement().get(Achievements.FIRST_POST));
+        assertEquals(userManager.displayAchievement(), "a");
     }
 }

@@ -16,13 +16,15 @@ class AchievementManagerTest {
 
     @BeforeEach
     void setUp() {
-        User user = new User(USERNAME, EMAIL, PASSWORD);
+        user = new User(USERNAME, EMAIL, PASSWORD);
         achievementManager = new AchievementManager();
         achievementManager.setCurrentUser(user);
     }
 
     @Test
     void requestAchievement() {
+        assertEquals(user.displayAchievement(), "First Login: not acquired\nTenth Post: not acquired\nFirst Post: not acquired\nFifth Post: not acquired\n" );
+
         user.addToListOfPostId("1");
         achievementManager.requestAchievement(Achievements.ARRAY_OF_POST_THRESHOLDS,
                 Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
@@ -53,5 +55,7 @@ class AchievementManagerTest {
                 Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT,
                 user.getTotalLogins());
         assertTrue(user.getMapOfAchievement().get(Achievements.FIRST_LOGIN));
+
+        assertEquals(user.displayAchievement(), user.getMapOfAchievement().toString());
     }
 }

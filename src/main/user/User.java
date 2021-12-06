@@ -161,8 +161,9 @@ public class User implements HasName, Serializable {
             Boolean status = mapOfAchievement.get(name);
             if(status) {
                 achievements.append(name).append(": acquired").append("\n");
+            } else {
+                achievements.append(name).append(": not acquired").append("\n");
             }
-            achievements.append(name).append(": not acquired").append("\n");
         }
         return achievements.toString();
     }
