@@ -1,4 +1,4 @@
-package commandline;
+package interfaceadapter;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,6 @@ class SystemInOutTest {
     public static void main(String[] args) throws Exception {
         SystemInOut inOut = new SystemInOut();
         inOut.run();
-
     }
 
     @Test
