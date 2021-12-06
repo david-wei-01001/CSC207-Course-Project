@@ -122,10 +122,8 @@ public class DirectedGraphTest {
             Vertex[] edge2 = {python, Intro165};
             graph.addEdge(edge2);
             graph.complete("Introductory Python");
-            Map<String, Vertex> testMap = new HashMap<>();
-            testMap.put("0", javaIntro);
-            testMap.put("1", Intro165);
-            assertEquals(graph.availableVertex(), testMap);
+            assertTrue(graph.availableVertex().containsValue(javaIntro));
+            assertTrue(graph.availableVertex().containsValue(Intro165));
         } catch (Exception e) {
             fail();
         }
@@ -192,7 +190,8 @@ public class DirectedGraphTest {
             graph.addEdge(v6);
             graph.addEdge(vx);
             graph.complete("Introductory Python");
-            assertEquals(graph.availableVertex().toString(), "{0=Introductory C++, 1=CSC165}");
+            assertTrue(graph.availableVertex().containsValue(CIntro));
+            assertTrue(graph.availableVertex().containsValue(Intro165));
             assertEquals(JavaIntro.getInLevel(), 1);
         } catch (Exception e) {
             fail();
@@ -264,7 +263,7 @@ public class DirectedGraphTest {
             Vertex PhilIntro = new Vertex("Introductory Philosophy");
             Vertex[] v7 = {PhilIntro, Intro165};
             try{
-                graph.addEdge(v7);
+                graph.deleteEdge(v7);
                 fail();
             } catch (Exception e) {
                 assertEquals(e.getMessage(), VERTEX_NOT_FOUND);
@@ -391,41 +390,37 @@ public class DirectedGraphTest {
     }
 
     @Test
-    public void testGetVertexArrayVertexThrowException() {
-        try {
-            Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Cobb");
-            Vertex Intro165 = new Vertex("CSC165");
-            Vertex JavaIntro = new Vertex("Introductory Java");
-            Vertex CIntro = new Vertex("Introductory C++");
-            Vertex Intro236 = new Vertex("CSC236");
-            Vertex Intro209 = new Vertex("CSC209");
-            Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
-            Vertex[] v1 = {pythonIntro, JavaIntro};
-            Vertex[] vx = {compIntro, JavaIntro};
-            Vertex[] v2 = {pythonIntro, CIntro};
-            Vertex[] v3 = {Intro165, Intro236};
-            Vertex[] v4 = {Intro236, Intro263};
-            Vertex[] v5 = {JavaIntro, Intro209};
-            Vertex[] v6 = {pythonIntro, Intro165};
-            graph.addEdge(v1);
-            graph.addEdge(v2);
-            graph.addEdge(v3);
-            graph.addEdge(v4);
-            graph.addEdge(v5);
-            graph.addEdge(v6);
-            graph.addEdge(vx);
-            Vertex PhilIntro = new Vertex("Introductory Philosophy");
-            try{
-                graph.getVertexArray(PhilIntro);
-                fail();
-            } catch (Exception e) {
-                assertEquals(e.getMessage(), VERTEX_NOT_FOUND);
-            }
-        } catch (Exception e) {
+    public void testGetVertexArrayVertexThrowException() throws Exception {
+        Vertex pythonIntro = new Vertex("Introductory Python");
+        Vertex compIntro = new Vertex("Introductory Cobb");
+        Vertex Intro165 = new Vertex("CSC165");
+        Vertex JavaIntro = new Vertex("Introductory Java");
+        Vertex CIntro = new Vertex("Introductory C++");
+        Vertex Intro236 = new Vertex("CSC236");
+        Vertex Intro209 = new Vertex("CSC209");
+        Vertex Intro263 = new Vertex("CSC263");
+        Vertex[] starter = {pythonIntro};
+        DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
+        Vertex[] v1 = {pythonIntro, JavaIntro};
+        Vertex[] vx = {compIntro, JavaIntro};
+        Vertex[] v2 = {pythonIntro, CIntro};
+        Vertex[] v3 = {Intro165, Intro236};
+        Vertex[] v4 = {Intro236, Intro263};
+        Vertex[] v5 = {JavaIntro, Intro209};
+        Vertex[] v6 = {pythonIntro, Intro165};
+        graph.addEdge(v1);
+        graph.addEdge(v2);
+        graph.addEdge(v3);
+        graph.addEdge(v4);
+        graph.addEdge(v5);
+        graph.addEdge(v6);
+        graph.addEdge(vx);
+        Vertex PhilIntro = new Vertex("Introductory Philosophy");
+        try{
+            graph.getVertexArray(PhilIntro);
             fail();
+        } catch (Exception e) {
+            assertEquals(e.getMessage(), VERTEX_NOT_FOUND);
         }
     }
 
@@ -506,42 +501,37 @@ public class DirectedGraphTest {
     }
 
     @Test
-    public void testCompleteAlreadyComplete() {
-        try {
-            Vertex pythonIntro = new Vertex("Introductory Python");
-            Vertex compIntro = new Vertex("Introductory Cobb");
-            Vertex Intro165 = new Vertex("CSC165");
-            Vertex JavaIntro = new Vertex("Introductory Java");
-            Vertex CIntro = new Vertex("Introductory C++");
-            Vertex Intro236 = new Vertex("CSC236");
-            Vertex Intro209 = new Vertex("CSC209");
-            Vertex Intro263 = new Vertex("CSC263");
-            Vertex[] starter = {pythonIntro};
-            DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
-            Vertex[] v1 = {pythonIntro, JavaIntro};
-            Vertex[] vx = {compIntro, JavaIntro};
-            Vertex[] v2 = {pythonIntro, CIntro};
-            Vertex[] v3 = {Intro165, Intro236};
-            Vertex[] v4 = {Intro236, Intro263};
-            Vertex[] v5 = {JavaIntro, Intro209};
-            Vertex[] v6 = {pythonIntro, Intro165};
-            graph.addEdge(v1);
-            graph.addEdge(v2);
-            graph.addEdge(v3);
-            graph.addEdge(v4);
-            graph.addEdge(v5);
-            graph.addEdge(v6);
-            graph.addEdge(vx);
+    public void testCompleteAlreadyComplete() throws Exception {
+        Vertex pythonIntro = new Vertex("Introductory Python");
+        Vertex compIntro = new Vertex("Introductory Cobb");
+        Vertex Intro165 = new Vertex("CSC165");
+        Vertex JavaIntro = new Vertex("Introductory Java");
+        Vertex CIntro = new Vertex("Introductory C++");
+        Vertex Intro236 = new Vertex("CSC236");
+        Vertex Intro209 = new Vertex("CSC209");
+        Vertex Intro263 = new Vertex("CSC263");
+        Vertex[] starter = {pythonIntro};
+        DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
+        Vertex[] v1 = {pythonIntro, JavaIntro};
+        Vertex[] vx = {compIntro, JavaIntro};
+        Vertex[] v2 = {pythonIntro, CIntro};
+        Vertex[] v3 = {Intro165, Intro236};
+        Vertex[] v4 = {Intro236, Intro263};
+        Vertex[] v5 = {JavaIntro, Intro209};
+        Vertex[] v6 = {pythonIntro, Intro165};
+        graph.addEdge(v1);
+        graph.addEdge(v2);
+        graph.addEdge(v3);
+        graph.addEdge(v4);
+        graph.addEdge(v5);
+        graph.addEdge(v6);
+        graph.addEdge(vx);
+        graph.complete("Introductory Python");
+        try{
             graph.complete("Introductory Python");
-            try{
-                graph.complete("Introductory Python");
-                fail();
-            } catch (Exception e) {
-                System.out.println((e.getMessage()));
-                assertEquals(e.getMessage(), VERTEX_ALREADY_COMPLETED);
-            }
-        } catch (Exception e) {
             fail();
+        } catch (Exception e) {
+            assertEquals(e.getMessage(), VERTEX_ALREADY_COMPLETED);
         }
     }
 
