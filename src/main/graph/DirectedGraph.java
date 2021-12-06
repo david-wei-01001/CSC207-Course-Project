@@ -315,6 +315,9 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         return NAME;
     }
 
+    /**
+     * @return an iterable version of this DirectedGraph
+     */
     @Override
     public Iterator<VertexArray> iterator() {
         return new GraphItr();
@@ -370,35 +373,5 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     public boolean isLearnedGraph() {
         int number = COMPLETED.size();
         return number != 0;
-    }
-
-    public static void main(String[] args) throws Exception {
-        Vertex pythonIntro = new Vertex("Introductory Python");
-        Vertex compIntro = new Vertex("Introductory Cobb");
-        Vertex Intro165 = new Vertex("CSC165");
-        Vertex JavaIntro = new Vertex("Introductory Java");
-        Vertex CIntro = new Vertex("Introductory C++");
-        Vertex Intro236 = new Vertex("CSC236");
-        Vertex Intro209 = new Vertex("CSC209");
-        Vertex Intro263 = new Vertex("CSC263");
-        Vertex[] starter = {pythonIntro};
-        DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
-        Vertex[] v1 = {pythonIntro, JavaIntro};
-        Vertex[] vx = {compIntro, JavaIntro};
-        Vertex[] v2 = {pythonIntro, CIntro};
-        Vertex[] v3 = {Intro165, Intro236};
-        Vertex[] v4 = {Intro236, Intro263};
-        Vertex[] v5 = {JavaIntro, Intro209};
-        Vertex[] v6 = {pythonIntro, Intro165};
-        graph.addEdge(v1);
-        graph.addEdge(v2);
-        graph.addEdge(v3);
-        graph.addEdge(v4);
-        graph.addEdge(v5);
-        graph.addEdge(v6);
-        graph.addEdge(vx);
-        graph.complete("Introductory Python");
-        graph.complete("Introductory Python");
-
     }
 }
