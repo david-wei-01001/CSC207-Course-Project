@@ -316,7 +316,8 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     }
 
     /**
-     * @return an iterable version of this DirectedGraph
+     * Apply Iterator design pattern to DirectedGraph.
+     * @return an iterator class representation of DirectedGraph
      */
     @Override
     public Iterator<VertexArray> iterator() {
