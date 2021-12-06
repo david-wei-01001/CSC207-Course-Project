@@ -1,6 +1,5 @@
-package jsonreadwriter;
+package commandline;
 
-import interfaceadapter.SystemInOut;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,10 +15,7 @@ class SystemInOutTest {
     @Test
     public static void main(String[] args) throws Exception {
         SystemInOut inOut = new SystemInOut();
-
-//        inOut.getNonEmptyCredential("username");
         inOut.run();
-//        inOut.mainMenu();
 
     }
 

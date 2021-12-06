@@ -15,7 +15,6 @@ public class GraphArchitect {
      * @throws Exception if the name does not represent a default tree
      */
     public static DirectedGraph setBuilderAndBuildGraph(String treeName) throws Exception {
-
         // create more if statements when we come up with more built-in Technical Trees.
         GraphBuilder graphBuilder;
         switch (treeName) {
@@ -31,11 +30,7 @@ public class GraphArchitect {
             default:
                 throw new Exception(Exceptions.CANNOT_RECOGNIZE_BUILT_IN_TREE);
         }
-
-        // if no exception is thrown, graphBuilder != null/
-//        if (graphBuilder != null) {
             return graphBuilder.buildGraph();
-//        }
     }
 }
 
