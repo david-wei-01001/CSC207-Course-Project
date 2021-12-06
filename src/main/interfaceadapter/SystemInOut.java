@@ -203,6 +203,8 @@ public class SystemInOut {
         }
 
         else {
+            DirectedGraph graph = graphManager.getAllGraphs().get(input);
+            userManager.getCurrentUser().addGraph(graph);
             technicalTreePage(input);
         }
 
