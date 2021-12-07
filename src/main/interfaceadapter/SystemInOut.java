@@ -20,7 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * TODO: JavaDoc
+ * The SystemInOut class is the controller of our program
  */
 public class SystemInOut {
     private final UserManager userManager;
@@ -33,6 +33,11 @@ public class SystemInOut {
     private final Presenter presenter;
     private final TreeIdMap idMap;
 
+    /**
+     * Constructor of the SystemInOut controller
+     *
+     * @throws Exception if the username has already been taken
+     */
     public SystemInOut() throws Exception {
         graphManager = new GraphManager();
         userManager = new UserManager();
@@ -47,6 +52,9 @@ public class SystemInOut {
         idMap = graphManager.getIdMap();
     }
 
+    /**
+     * run the commandline
+     */
     public void run() {
         load();
         logIn();
@@ -54,6 +62,9 @@ public class SystemInOut {
         scanner.close();
     }
 
+    /**
+     * Set up the main menu and process the user input
+     */
     public void mainMenu() {
             presenter.mainMenuOptions();
             String input = scanner.nextLine();
@@ -86,6 +97,9 @@ public class SystemInOut {
             }
     }
 
+    /**
+     * Set up the my tree main page and process the user input
+     */
     private void myTreeMainPage(){
         if(userManager.getCurrentUser().getMapOfGraph().size() == 0){
             presenter.myTreePageEmpty();
@@ -115,9 +129,20 @@ public class SystemInOut {
             }
         }
     }
+
+    /**
+     * set up a tree page and process the user input
+     *
+     * @param treeId the id of the tree whose page is to be set up
+     * @throws Exception according to the exceptions
+     */
     private void myTreePage(String treeId) throws Exception {
         technicalTreePage(treeId);
     }
+
+    /**
+     * set up the achievement page and process the user input
+     */
     private void achievementPage() {
         presenter.achievementPage();
         presenter.mainMenuReturn();
@@ -125,6 +150,9 @@ public class SystemInOut {
         mainMenu();
     }
 
+    /**
+     * set up the resource page and process the user input
+     */
     private void resourcePage() {
         presenter.rewardPoints();
         presenter.resourcePage();
@@ -150,8 +178,9 @@ public class SystemInOut {
         }
     }
 
-
-
+    /**
+     * process the request of displaying all resources and process the user input
+     */
     private void myResource() {
         presenter.currentResource();
         presenter.mainMenuReturn();
@@ -159,6 +188,9 @@ public class SystemInOut {
         mainMenu();
         }
 
+    /**
+     * process the request of download a resource and process the user input
+     */
     private void downloadResources() {
         presenter.resourceChoose();
         String content = scanner.nextLine();
@@ -176,6 +208,9 @@ public class SystemInOut {
         }
     }
 
+    /**
+     * process the request of create a resource and process the user input
+     */
     private void createResource() {
         Scanner scanner = new Scanner(System.in);
         presenter.resourceDescription();
@@ -192,6 +227,11 @@ public class SystemInOut {
     }
 
 
+    /**
+     * set up the technical tree main page and process the user input
+     *
+     * @throws Exception according to the exceptions
+     */
     private void technicalTreeMainPage() throws Exception {
         presenter.technicalTreeMainPage();
         String input = scanner.nextLine();
@@ -213,6 +253,11 @@ public class SystemInOut {
 
     }
 
+    /**
+     * set up a built-in tree page and process the user input
+     *
+     *  @throws Exception according to the exceptions
+     */
     private void technicalTreePage(String treeId) throws Exception {
 
         DirectedGraph currGraph= null;
@@ -251,6 +296,9 @@ public class SystemInOut {
 
     }
 
+    /**
+     * process the request of study a vertex and process the user input
+     */
     private void studyVertex(String vertexName, String treeId) throws Exception {
 
         presenter.studyVertex();
@@ -289,7 +337,9 @@ public class SystemInOut {
 
     }
 
-
+    /**
+     * process the request of user login and process the user input
+     */
     public void logIn() {
         String input = presenter.LoginOptions();
 
@@ -317,6 +367,9 @@ public class SystemInOut {
         }
     }
 
+    /**
+     * process the request of user signin and process the user input
+     */
     public boolean signIn() {
         String username = getUsernameSignIn();
         if (username.equals(Presenter.RETURN)) {
@@ -330,7 +383,8 @@ public class SystemInOut {
     }
 
     /**
-     * fully implement this.
+     * set the currentUser of all Use Case to be the given user
+     *
      * @param username the username of the user
      */
     public void setCurrentUser(String username) {
@@ -345,6 +399,12 @@ public class SystemInOut {
         }
     }
 
+    /**
+     * Prompting the user to enter a password
+     *
+     * @param username the username of a user
+     * @return whether the password is valid
+     */
     public boolean enterPassword(String username) {
         String password = presenter.getNonEmptyPassword();
         while (!getCorrectPassword(username).equals(password)) {
@@ -357,6 +417,12 @@ public class SystemInOut {
         return true;
     }
 
+    /**
+     * Get the correct password of the given user
+     *
+     * @param username the username of a user
+     * @return the password of the user
+     */
     public String getCorrectPassword(String username) {
         String password = null;
         try {
@@ -367,6 +433,11 @@ public class SystemInOut {
         return password;
     }
 
+    /**
+     * Get the username of a user in the situation of signin
+     *
+     * @return the username in the situation of signin
+     */
     private String getUsernameSignIn() {
         String username = presenter.getNonEmptyUsername();
         while (!userManager.containsUsername(username)) {
@@ -379,6 +450,11 @@ public class SystemInOut {
         return username;
     }
 
+    /**
+     * Get the username of a user in the situation of register
+     *
+     * @return the username in the situation of register
+     */
     public String getUsernameRegister() {
         String username = presenter.getNonEmptyUsername();
         while (userManager.containsUsername(username)) {
@@ -391,6 +467,11 @@ public class SystemInOut {
         return username;
     }
 
+    /**
+     * Get the email of a user in the situation of register
+     *
+     * @return the email in the situation of register
+     */
     public String getEmailRegister() {
         presenter.getEmail();
         String email = scanner.nextLine();
@@ -407,11 +488,19 @@ public class SystemInOut {
         return email;
     }
 
+    /**
+     * Get the password of a user in the situation of register
+     *
+     * @return the password in the situation of register
+     */
     public String getPasswordRegister() {
         return presenter.getNonEmptyPassword();
     }
 
 
+    /**
+     * process the request of user register and process the user input
+     */
     private boolean register() {
         String username = getUsernameRegister();
         if (username.equals(Presenter.RETURN)) {
@@ -431,9 +520,9 @@ public class SystemInOut {
         return true;
     }
 
-
-
-
+    /**
+     * process the request of exist the program
+     */
     public void exitProgram() {
         try {
             save();
@@ -455,6 +544,11 @@ public class SystemInOut {
         }
     }
 
+    /**
+     * Save the data
+     *
+     * @throws IOException if the saving causes an exception
+     */
     private void save() throws IOException {
         checkForMyTree();
         WholeReadWriter.saveToFile("src/main/interfaceadapter/user.json",
@@ -463,6 +557,9 @@ public class SystemInOut {
                 communityLibrary.getMapOfCommunity());
     }
 
+    /**
+     * load the data
+     */
     private void load() {
         List<Object> data;
         try {

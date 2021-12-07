@@ -36,7 +36,7 @@ public class WholeReadWriter{
      * @param pathForCommunity path of the file which stores all community information
      * @return all the information retrieved from storage
      * @throws IOException if the retrieving causes an exception
-     * @throws ClassNotFoundException is the data is not found
+     * @throws ClassNotFoundException if the data is not found
      */
     public static List<Object> readFromFile(String pathForUser, String pathForCommunity)
             throws IOException, ClassNotFoundException {
