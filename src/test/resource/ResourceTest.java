@@ -7,12 +7,18 @@ import user.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+/**
+ * Test the Resource class
+ */
 class ResourceTest {
     ResourceManager manager;
     Resource resource;
     User user;
 
+    /**
+     * The setup method that setup each test.
+     * It creates a ResourceManager, a resource and a user.
+     */
     @BeforeEach
     void setUp() {
         user = new User("Tong", "123@mail.com", "123");
@@ -22,10 +28,9 @@ class ResourceTest {
                 0, "Please do not download it.", user);
     }
 
-    @AfterEach
-    void tearDown() {
-    }
-
+    /**
+     * Test if the getDownloadTimes method correctly return the total number of downloads
+     */
     @Test
     void addDownloadTimes() {
         manager.addResource(resource.getContent(), resource.getPointsRequired(), resource.getDescription());
@@ -33,6 +38,9 @@ class ResourceTest {
         assertEquals(1, manager.getMapOfResource().get("Resource #0").getDownloadTimes());
     }
 
+    /**
+     * test if the resource is properly converted to string format
+     */
     @Test
     void testToString() {
         assertEquals( "Resource{" +

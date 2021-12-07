@@ -8,6 +8,9 @@ import user.User;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test the Community class
+ */
 public class communityTest {
     Community community;
     User user;
@@ -31,9 +34,10 @@ public class communityTest {
         assertEquals(community.getNextId(), "Post #0");
     }
 
-
-    @Test(timeout = 500)
-
+    /**
+     * Test if the add method correctly add a post
+     */
+    @Test
     public void testAdd() {
         Post post1 = new Post("abc", community.getNextId(), user);
         community.addPublishedContent(post1.getContent(), user);
@@ -44,6 +48,7 @@ public class communityTest {
         assertEquals( post1.toString(),community.getMapOfPost().get("Post #0").toString());
         assertEquals(post2.toString(),community.getMapOfPost().get("Post #1").toString());
     }
+
     /**
      * Test if the NextId method correctly generate the id for next post when a post is added.
      */
@@ -55,6 +60,7 @@ public class communityTest {
         community.addPublishedContent(post2.getContent(), user);
         assertEquals("Post #2",community.getNextId());
     }
+
     /**
      * Test if the getNumPost method correctly reflect the number of main. posts in the community.
      */
@@ -67,7 +73,9 @@ public class communityTest {
         assertEquals( 2,community.getNumberOfPosts());
     }
 
-
+    /**
+     * Test if the delete method correctly throws exception.
+     */
     @Test
     public void testDeleteUnsuccessful() {
         try {
@@ -82,8 +90,10 @@ public class communityTest {
         }
     }
 
-    @Test(timeout = 500)
-
+    /**
+     * Test if the delete method correctly delete a post in the community.
+     */
+    @Test
     public void testDelete() {
         try {
             Post post0 = new Post("abc", community.getNextId(), user);
