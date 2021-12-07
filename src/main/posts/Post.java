@@ -1,6 +1,6 @@
 package posts;
 
-import constants.IterableMap;
+import maps.IterableMap;
 import user.User;
 
 import java.util.Map;

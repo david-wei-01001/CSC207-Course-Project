@@ -1,10 +1,11 @@
-package constants;
+package comparator;
 
+import comparator.InLevelComparator;
 import graph.VertexArray;
 
 import java.util.Comparator;
 
-import static constants.Algorithm.pairwiseCompare;
+import static algorithm.Algorithm.pairwiseCompare;
 
 public class VertexArrayDefaultComparator implements Comparator<VertexArray> {
 

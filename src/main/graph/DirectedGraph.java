@@ -1,14 +1,14 @@
 package graph;
 
 import constants.Exceptions;
-import constants.HasName;
-import constants.IterableMap;
-import constants.VertexArrayDefaultComparator;
+import comparator.HasName;
+import maps.IterableMap;
+import comparator.VertexArrayDefaultComparator;
 
 import java.io.Serializable;
 import java.util.*;
 
-import static constants.Algorithm.*;
+import static algorithm.Algorithm.*;
 
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.

@@ -3,7 +3,7 @@ package graph;
 import communitysystem.CommunityLibrary;
 import constants.BuiltInGraphs;
 import constants.Exceptions;
-import constants.TreeIdMap;
+import maps.TreeIdMap;
 import graphbuilders.GraphArchitect;
 
 import java.util.HashMap;

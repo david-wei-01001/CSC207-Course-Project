@@ -1,4 +1,4 @@
-package constants;
+package comparator;
 
 import graph.Vertex;
 

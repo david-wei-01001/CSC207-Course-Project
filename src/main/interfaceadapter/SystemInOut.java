@@ -4,7 +4,7 @@ import achievementsystem.AchievementManager;
 import communitysystem.CommunityLibrary;
 import communitysystem.CommunityList;
 import constants.Achievements;
-import constants.TreeIdMap;
+import maps.TreeIdMap;
 import graph.DirectedGraph;
 import graph.GraphManager;
 import jsonreadwriter.WholeReadWriter;

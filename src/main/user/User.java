@@ -1,7 +1,6 @@
 package user;
 
-import constants.HasName;
-import constants.IterableMap;
+import comparator.HasName;
 import graph.DirectedGraph;
 import resource.Resource;
 import constants.Achievements;
@@ -17,7 +16,7 @@ import java.util.Map;
  */
 public class User implements HasName, Serializable {
     private static final long serialVersionUID = 1113799434508676095L;
-    private String userName;
+    private String username;
     private String email;
     private String password;
     private int rewardPoints;
@@ -32,12 +31,12 @@ public class User implements HasName, Serializable {
     /**
      * The constructor called when a user is created.
      *
-     * @param userName the username of a user
+     * @param username the username of a user
      * @param email the email of a user
      * @param password the password of a user
      */
-    public User(String userName, String email, String password) {
-        this.userName = userName;
+    public User(String username, String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.rewardPoints = 0;
@@ -72,57 +71,106 @@ public class User implements HasName, Serializable {
         }
     }
 
+    /**
+     * @return the name of this HasName Object.
+     */
     @Override
     public String getName() {
-        return userName;
+        return username;
     }
 
-    public void setUsername(String newName) {
-        this.userName = newName;
+    /**
+     * set the username to be the given name
+     *
+     * @param newname a new username
+     */
+    public void setUsername(String newname) {
+        this.username = newname;
     }
 
+    /**
+     * set the email to be the given email
+     *
+     * @param newEmail a new email
+     */
     public void setEmail(String newEmail) {
         email = newEmail;
     }
 
+    /**
+     * set the password to be the given password
+     *
+     * @param newPassword a new password
+     */
     public void setPassword(String newPassword) {
         password = newPassword;
     }
 
+    /**
+     * @return the reward points of this user
+     */
     public int getRewardPoints() {
         return this.rewardPoints;
     }
 
+    /**
+     * set the reward points to be the given reward points
+     *
+     * @param rewardPoints a new amount of reward points
+     */
     public void setRewardPoints(int rewardPoints) {
         this.rewardPoints = rewardPoints;
     }
 
+    /**
+     * add the reward points to this user
+     *
+     * @param rewardPoints amount of reward points to be incremented
+     */
     public void addRewardPoints(int rewardPoints) {
         this.rewardPoints += rewardPoints;
     }
 
+    /**
+     * add the DirectedGraph to this user
+     *
+     * @param graph a DirectedGraph to be added
+     */
     public void addGraph(DirectedGraph graph){
         mapOfGraph.put(graph.getName(), graph);
     }
 
+    /**
+     * @return a map of all DirectedGraphs of this user
+     */
     public Map<String, DirectedGraph> getMapOfGraph(){
         return this.mapOfGraph;
     }
 
+    /**
+     * add theresource to this user
+     *
+     * @param resource a resource to be added
+     */
     public void addResource(Resource resource){
         mapOfResource.put(resource.getId(), resource);
     }
 
+    /**
+     * @return a map of all resources of this user
+     */
     public Map<String, Resource> getMapOfResource(){
         return this.mapOfResource;
     }
 
 
-
+    /**
+     * @return a string representation of this user.
+     */
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + userName + '\'' +
+                "userName='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", rewardPoints=" + rewardPoints +
@@ -135,26 +183,46 @@ public class User implements HasName, Serializable {
                 '}';
     }
 
+    /**
+     * @return a list of the IDs of all posts of this user
+     */
     public ArrayList<String> getListOfPostId() {
         return listOfPostId;
     }
 
+    /**
+     * @return the total number of logins of this user
+     */
     public int getTotalLogins() {
         return totalLogins;
     }
 
+    /**
+     * @return the user's email
+     */
     public String getEmail() {
         return email;
     }
-
+    /**
+     * @return the user's password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * @return a map of all achievements of this user
+     */
     public Map<String, Boolean> getMapOfAchievement() {
         return mapOfAchievement;
     }
 
+    /**
+     * Check if the given graph is in the user's mapOfGraph
+     *
+     *  @param graphName the name of a graph to be checked
+     * @return whether the given graph is in the user's mapOfGraph
+     */
     public boolean hasGraph(String graphName) {
         return mapOfGraph.containsKey(graphName);
     }

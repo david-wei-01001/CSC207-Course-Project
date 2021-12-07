@@ -1,6 +1,6 @@
 package communitysystem;
 
-import constants.IterableMap;
+import maps.IterableMap;
 import posts.HasPublishedContents;
 import posts.Post;
 import user.User;

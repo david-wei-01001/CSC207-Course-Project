@@ -1,6 +1,6 @@
 package graph;
 
-import constants.HasName;
+import comparator.HasName;
 
 import java.io.Serializable;
 
