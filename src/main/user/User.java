@@ -1,6 +1,6 @@
 package user;
 
-import comparator.HasName;
+import constants.HasName;
 import graph.DirectedGraph;
 import resource.Resource;
 import constants.Achievements;

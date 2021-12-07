@@ -1,4 +1,4 @@
-package comparator;
+package constants;
 
 /**
  * An interface specifies all Objects that has a name.

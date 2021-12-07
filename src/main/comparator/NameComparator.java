@@ -1,6 +1,6 @@
 package comparator;
 
-import comparator.HasName;
+import constants.HasName;
 
 import java.util.Comparator;
 
