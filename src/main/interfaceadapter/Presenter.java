@@ -1,5 +1,6 @@
 package interfaceadapter;
 
+import communitysystem.CommunityLibrary;
 import constants.Exceptions;
 import graph.DirectedGraph;
 import graph.GraphManager;
@@ -16,6 +17,7 @@ public class Presenter {
     private final UserManager userManager;
     private final ResourceManager resourceManager;
     private final GraphManager graphManager;
+    private final CommunityLibrary communityLibrary;
 
     protected static final String ZERO = "0";
     protected static final String ONE = "1";
@@ -45,11 +47,13 @@ public class Presenter {
      * @param resourceManager The Use Case resourceManager which controls
      *                        all actions a user may perform on resource system.
      * @param graphManager The Use Case graphManager which actions that can perform on DirectedGraphs.
+     * @param communityLibrary The Use Case communityLibrary contains all the communities.
      */
-    public Presenter(UserManager userManager, ResourceManager resourceManager, GraphManager graphManager) {
+    public Presenter(UserManager userManager, ResourceManager resourceManager, GraphManager graphManager, CommunityLibrary communityLibrary) {
         this.userManager = userManager;
         this.resourceManager = resourceManager;
         this.graphManager = graphManager;
+        this.communityLibrary = communityLibrary;
 
     }
 
@@ -232,6 +236,15 @@ public class Presenter {
         System.out.println("Congratulations! You've made one giant step toward success! Now let's make some posts " +
                 "on what you've just learned.");
     }
+
+    /**
+     * Display the current community the vertex refers to.
+     * @param vertexName The name of the vertex.
+     */
+    public void displayVertexCommunity(String vertexName){
+        System.out.println(this.communityLibrary.getMapOfCommunity().get(vertexName).toString());
+    }
+
 
     /**
      * Information to display when finishing a node and prompted for a comment.
