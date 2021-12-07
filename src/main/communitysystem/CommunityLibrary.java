@@ -14,6 +14,7 @@ public class CommunityLibrary {
 
     /**
      * Setter function for mapOfCommunity
+     *
      * @param mapOfCommunity the map of community
      */
     public void setMapOfCommunity(CommunityList mapOfCommunity) {
@@ -22,6 +23,7 @@ public class CommunityLibrary {
 
     /**
      * Setter function for currentUser
+     *
      * @param currentUser the current user
      */
     public void setCurrentUser(User currentUser) {
@@ -31,7 +33,8 @@ public class CommunityLibrary {
 
     /**
      * Check if this community exists or not
-     * @param name: The community name
+     *
+     *  @param name: The community name
      * @return: This community exists or not
      */
     public boolean checkCommunityExist(String name){
@@ -40,6 +43,7 @@ public class CommunityLibrary {
 
     /**
      * Create a new community.
+     *
      * @param name: The community name
      */
     public void addCommunity(String name){
@@ -50,13 +54,11 @@ public class CommunityLibrary {
     }
 
     /**
-     //     * Add a post to a community.
-     //     * @param user the main. user adding this post
-     //     * @param communityName the name of the community this post is being added to
-     //     * @param content the content of the post being added
-     //     * @return the id of the post being added.
-     //     * @throws Exception throws an exception if the community with the communityName is not found.
-     //     */
+     * Add a post to a community.
+     *
+     * @param content the content of the post being added
+     * @param rewardManager The rewardManager Use Case that is going to award reward points for creating this Post.
+     */
     public void createPost(String content,
                            RewardManager rewardManager) {
         String postId = currentCommunity.addPublishedContent(content, currentUser);
@@ -68,6 +70,7 @@ public class CommunityLibrary {
 
     /**
      * Set the currentCommunity with the given communityName
+     *
      * @param communityName: The name of the community to set for currentCommunity
      */
     public void setCurrentCommunity(String communityName) throws Exception {
@@ -81,6 +84,7 @@ public class CommunityLibrary {
 
     /**
      * The getter function for mapOfCommunity
+     *
      * @return mapOfCommunity
      */
     public CommunityList getMapOfCommunity() {

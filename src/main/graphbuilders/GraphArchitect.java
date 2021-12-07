@@ -10,6 +10,7 @@ import constants.Exceptions;
 public class GraphArchitect {
     /**
      * select GraphBuilders according to treeName and build corresponding graphs.
+     *
      * @param treeName the name of a default tree to be build
      * @return a DirectedGraph with the treeName
      * @throws Exception if the name does not represent a default tree

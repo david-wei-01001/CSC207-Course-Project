@@ -10,6 +10,7 @@ public class VertexArrayDefaultComparator implements Comparator<VertexArray> {
 
     /**
      * comparing two VertexArray by pairwiseCompare
+     *
      * @param o1 the first VertexArray to be compared
      * @param o2 the second VertexArray to be compared
      * @return returning hte result of the comparison

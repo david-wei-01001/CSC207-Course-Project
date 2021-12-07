@@ -12,6 +12,7 @@ public class Algorithm {
 
     /**
      * Return the index at where the given item need to be inserted without disrrupting the sorted nature of given list.
+     *
      * @param lst a sorted list that the given item will be inserted.
      * @param toInsert an element that is to be inserted into the list
      * @param comparator a comparator that specifies the comparing strategy
@@ -39,6 +40,7 @@ public class Algorithm {
 
     /**
      * Comparing two iterable items and return the result of the compare
+     *
      * @param itr1 first iterable object to be compared
      * @param itr2 second iterable object to be compared
      * @param comparator a comparator that specifies the comparing strategy
@@ -69,6 +71,7 @@ public class Algorithm {
 
     /**
      * Sort the unsorted list in ascending order
+     *
      * @param unsorted a list to be sorted
      * @param b the beginning index to be sorted
      * @param e the ending index to be sorted
@@ -87,6 +90,7 @@ public class Algorithm {
 
     /**
      * Helper method for mergesort, merging two half sorted list together in ascending order.
+     *
      * @param unsorted a list that is half sorted
      * @param b the beginning index of the first sorted half
      * @param m the ending index of the first sorted half as well as
