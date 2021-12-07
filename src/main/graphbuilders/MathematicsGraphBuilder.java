@@ -9,6 +9,10 @@ import java.util.Map;
 
 public class MathematicsGraphBuilder implements GraphBuilder{
 
+    /**
+     * build vertices for a DirectedGraph.
+     * @return a Map maps the name of vertices to vertices itself
+     */
     @Override
     public Map<String, Vertex> buildVertices() {
         Map<String, Vertex> result = new HashMap<>();
@@ -49,6 +53,11 @@ public class MathematicsGraphBuilder implements GraphBuilder{
         return result;
     }
 
+    /**
+     * Build directed edges where vertices of edges are from vertices.
+     * @param vertices contains all vertex as building blocks of directed edges
+     * @return return an Array of DirectedEdges
+     */
     @Override
     public Vertex[][] buildDirectedEdges(Map<String, Vertex> vertices) {
         return new Vertex[][]{
@@ -79,6 +88,10 @@ public class MathematicsGraphBuilder implements GraphBuilder{
         };
     }
 
+    /**
+     * @return a DirectedGraph that is a built-in default main. graph
+     * @throws Exception if the name of the first vertex in edge does not exist in the DirectedGraph
+     */
     @Override
     public DirectedGraph buildGraph() throws Exception {
         Map<String, Vertex> vertices = buildVertices();
