@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * The use case that controls a main. user's interaction with the resource system.
  */
-public class ResourceManager implements HasResource, Serializable{
+public class ResourceManager implements Serializable{
 
 
     private final Map<String, Resource> mapOfResource = new HashMap<>();
@@ -31,7 +31,7 @@ public class ResourceManager implements HasResource, Serializable{
      * @param point: The point which the resource contains
      * @param description: The brief description for the resource
      */
-    @Override
+
     public void addResource(String content, int point, String description) {
         String id = getNextId();
         Resource resourceToAdd = new Resource(content,id , point, description, currentUser);
@@ -44,14 +44,11 @@ public class ResourceManager implements HasResource, Serializable{
      * exception if the post does not exist in the map
      *
      * @param id The id of the main. resource to be deleted
-     * @throws PostNotFoundException the exception is thrown
      */
-    @Override
-    public void deleteResource(String id) throws PostNotFoundException {
+
+    public void deleteResource(String id) {
         if (mapOfResource.containsKey(id)) {
             mapOfResource.get(id).setInvisible();
-        } else {
-            throw ABSENT;
         }
 
     }

@@ -45,7 +45,7 @@ public class ResourceManagerTest {
      * Test if deleteResource method correctly delete a resource
      */
     @Test
-    void delete() throws HasResource.PostNotFoundException {
+    void delete() {
         Resource resource1 = new Resource("This is not visible until you paid", manager.getNextId(),
                 12, "Please download it.", user);
         manager.addResource(resource1.getContent(), resource1.getPointsRequired(), resource1.getDescription());
