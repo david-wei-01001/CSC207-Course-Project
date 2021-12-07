@@ -7,7 +7,6 @@ import java.util.Map;
 /**
  * A map of community name —> Community object.
  */
-
 public class CommunityList implements Serializable {
     private final Map<String, Community> communityList = new HashMap<>();
 
@@ -17,6 +16,7 @@ public class CommunityList implements Serializable {
 
     /**
      * Add community to this community list.
+     *
      * @param community is the community need to add
      */
     public void add(Community community) {
@@ -25,6 +25,7 @@ public class CommunityList implements Serializable {
 
     /**
      * Remove community to this community list.
+     *
      * @param nameOfCommunity is the community need to add
      */
     public void remove(String nameOfCommunity){
@@ -33,6 +34,7 @@ public class CommunityList implements Serializable {
 
     /**
      * Return the User associated with username.
+     *
      * @param nameOfCommunity the username of the user to get.
      */
     public Community get(String nameOfCommunity) {
@@ -41,6 +43,7 @@ public class CommunityList implements Serializable {
 
     /**
      * Check whether the given key is in the list
+     *
      * @param nameOfCommunity is the key to check whether this community is in the list
      */
     public boolean containsKey(String nameOfCommunity){ return communityList.containsKey(nameOfCommunity); }

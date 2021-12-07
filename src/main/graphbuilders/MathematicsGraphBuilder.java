@@ -11,6 +11,7 @@ public class MathematicsGraphBuilder implements GraphBuilder{
 
     /**
      * build vertices for a DirectedGraph.
+     *
      * @return a Map maps the name of vertices to vertices itself
      */
     @Override
@@ -55,6 +56,7 @@ public class MathematicsGraphBuilder implements GraphBuilder{
 
     /**
      * Build directed edges where vertices of edges are from vertices.
+     *
      * @param vertices contains all vertex as building blocks of directed edges
      * @return return an Array of DirectedEdges
      */

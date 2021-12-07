@@ -43,6 +43,7 @@ public class Presenter {
     /**
      * The constructor of a Presenter.
      * When a Presenter is instantiated, this is called to set up its contents.
+     *
      * @param userManager The Use Case userManager which controls all actions of a user.
      * @param resourceManager The Use Case resourceManager which controls
      *                        all actions a user may perform on resource system.
@@ -178,11 +179,21 @@ public class Presenter {
         System.out.println("Enter \"main\" to return to main page.");
 
     }
+
+    /**
+     * Information to display when a user haven't begun learning any field of knowledge.
+     */
     public void myTreePageEmpty(){
         System.out.println("Oops, your have not begin the study for any graph.");
         System.out.println("To begin your learning experience, back to main menu and select Tech Tree!");
     }
 
+    /**
+     * Display the names of all DirectedGraphs.
+     *
+     * @param mapOfGraphs a collection of DirectedGraphs
+     * @return the names of all DirectedGraphs in mapOfGraphs
+     */
     public String getAllGraphName(HashMap<String,DirectedGraph> mapOfGraphs){
         StringBuilder stringBuilder = new StringBuilder();
         for(String i : mapOfGraphs.keySet()){
@@ -192,6 +203,10 @@ public class Presenter {
         }
         return stringBuilder.toString();
     }
+
+    /**
+     *  Information to display in the technical tree page.
+     */
     public void technicalTreeMainPage(){
         System.out.println("Hi! Now you've entered the technical tree page.");
         System.out.println("Select the tree you want to study!");
@@ -239,6 +254,7 @@ public class Presenter {
 
     /**
      * Display the current community the vertex refers to.
+     *
      * @param vertexName The name of the vertex.
      */
     public void displayVertexCommunity(String vertexName){
@@ -270,6 +286,8 @@ public class Presenter {
 
     /**
      * Requiring for the login options
+     *
+     * @return the respond of the User's Login respond.
      */
     protected String LoginOptions() {
         Scanner scanner = new Scanner(System.in);

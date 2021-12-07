@@ -7,6 +7,7 @@ public class NameComparator implements Comparator<HasName> {
 
     /**
      * comparing two HasName by name
+     *
      * @param o1 the first HasName to be compared
      * @param o2 the second HasName to be compared
      * @return returning hte result of the comparison

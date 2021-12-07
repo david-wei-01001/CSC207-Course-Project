@@ -10,6 +10,7 @@ public class TreeIdMap {
 
     /**
      * TreeId Map Constructor.
+     *
      * @param idMap the id of the map
      */
     public TreeIdMap(HashMap<String, String> idMap) {
@@ -18,6 +19,7 @@ public class TreeIdMap {
 
     /**
      * UserId to get IDMap.
+     *
      * @return return the id of the map
      */
     public HashMap<String, String> getIdMap() {
@@ -26,6 +28,7 @@ public class TreeIdMap {
 
     /**
      * Used set for new tree ID relationship.
+     *
      * @param treeId the id of the tree
      * @param graphName the name of the graph
      */
@@ -41,6 +44,7 @@ public class TreeIdMap {
 
     /**
      * Retrieve the DirectedGraph corresponding to this treeId.
+     *
      * @param treeId The ID of the DirectedGraph to be retrieved
      * @return the DirectedGraph which has the given treeId
      */

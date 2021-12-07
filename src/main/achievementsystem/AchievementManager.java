@@ -11,6 +11,7 @@ public class AchievementManager {
 
     /**
      * set the instance variable currentUserInfo to be the user who is going to interact with the achievement system.
+     *
      * @param currentUser A user who is going to interact with the achievement system.
      */
     public void setCurrentUser(User currentUser) {

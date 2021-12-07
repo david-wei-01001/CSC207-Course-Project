@@ -8,6 +8,7 @@ public class InLevelComparator implements Comparator<Vertex> {
 
     /**
      * comparing two vertex by inlevel
+     *
      * @param o1 the first vertex to be compared
      * @param o2 the second vertex to be compared
      * @return returning hte result of the comparison

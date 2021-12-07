@@ -18,30 +18,19 @@ public class GraphManager {
     private final Map<String, DirectedGraph> mapOfGraphs = new HashMap<>();
     private DirectedGraph currentGraph;
     private CommunityLibrary communityLibrary;
-    private TreeIdMap idMap = new TreeIdMap(new HashMap<>());
-
-    public TreeIdMap getIdMap() {
-        return idMap;
-    }
+    private final TreeIdMap IDMAP = new TreeIdMap(new HashMap<>());
 
     /**
-     * Update the graph with user's private graph.
+     * @return IDMAP
      */
-    public void updateWithPrivateGraph(DirectedGraph newGraph){
-        String graphName = newGraph.getName();
-        String treeId = "0";
-        if (Objects.equals(graphName, "Introductory Makeup Steps")) {
-            treeId = "1";
-        }
-
-        if(mapOfGraphs.get(treeId).getNumOfCOMPLETED() <= newGraph.getNumOfCOMPLETED()){
-            mapOfGraphs.replace(treeId, newGraph);
-        }
-
+    public TreeIdMap getIdMap() {
+        return IDMAP;
     }
 
     /**
      * Constructor of GraphManager
+     *
+     * @param communityLibrary a communityLibrary Use Case to be specified in this GraphManager
      */
     public void addBuiltInGraph(CommunityLibrary communityLibrary){
         setCommunityLibrary(communityLibrary);
@@ -49,7 +38,7 @@ public class GraphManager {
         for (String builtInGraph : BuiltInGraphs.BUILT_IN_GRAPHS) {
             try {
 
-                idMap.setIdMap(Integer.toString(i), builtInGraph);
+                IDMAP.setIdMap(Integer.toString(i), builtInGraph);
                 DirectedGraph graphToAdd = GraphArchitect.setBuilderAndBuildGraph(builtInGraph);
                 graphToAdd.setTreeId();
                 createCommunities(graphToAdd);
@@ -61,6 +50,28 @@ public class GraphManager {
         }
     }
 
+    /**
+     * Update the graph with user's private graph.
+     *
+     * @param newGraph a user's private graph to be updated
+     */
+    public void updateWithPrivateGraph(DirectedGraph newGraph){
+        String graphName = newGraph.getName();
+        String treeId = "0";
+        if (Objects.equals(graphName, "Introductory Makeup Steps")) {
+            treeId = "1";
+        }
+
+        if(mapOfGraphs.get(treeId).getNumOfCOMPLETED() <= newGraph.getNumOfCOMPLETED()){
+            mapOfGraphs.replace(treeId, newGraph);
+        }
+    }
+
+    /**
+     * Update the communityLibrary instance variable in this GraphManager
+     *
+     * @param communityLibrary a communityLibrary Use Case to be updated in this GraphManager
+     */
     public void setCommunityLibrary(CommunityLibrary communityLibrary){
         this.communityLibrary = communityLibrary;
     }
@@ -77,6 +88,7 @@ public class GraphManager {
 
 
     /**
+     * Set the currentGraph to be the DirectedGraph with the given graphId
      *
      * @param graphId the id of the graph
      * @throws Exception the error is thrown
@@ -90,7 +102,8 @@ public class GraphManager {
     }
 
     /**
-     * Create the communities corresponding to the vertices of the inputted main. graph
+     * Create the communities corresponding to the vertices of the inputted graph
+     *
      * @param graph the main. graph whose vertices' community need to be created
      */
     private void createCommunities(DirectedGraph graph) {
@@ -100,10 +113,11 @@ public class GraphManager {
     }
 
     /**
-     *  complete a vertex in the current main.graph.
+     * complete a vertex in the current main.graph.
+     *
      * @param name the name of the vertex to be completed
      * @throws Exception if the name of the vertex does not exist in the current main. graph
-     * or if the vertex is currently locked or if the vertex is already completed.
+     *                   or if the vertex is currently locked or if the vertex is already completed.
      */
     public void complete(String name) throws Exception {
         currentGraph.complete(name);

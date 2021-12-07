@@ -8,6 +8,7 @@ import interfaceadapter.SystemInOut;
 public class TechnicalTree {
     /**
      * The main method of our program. Call this method to begin.
+     *
      * TODO: write JavaDoc for Exception
      * @throws Exception
      */
