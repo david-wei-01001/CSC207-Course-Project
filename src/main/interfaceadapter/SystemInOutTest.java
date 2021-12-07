@@ -17,17 +17,4 @@ class SystemInOutTest {
         SystemInOut inOut = new SystemInOut();
         inOut.run();
     }
-
-    @Test
-    void getUsernameRegister() {
-        inOut.getUsernameRegister();
-    }
-
-    @Test
-    void getEmailRegister() {
-    }
-
-    @Test
-    void getPasswordRegister() {
-    }
 }

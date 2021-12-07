@@ -40,7 +40,7 @@ public class SystemInOut {
         achievementManager = new AchievementManager();
         communityLibrary = new CommunityLibrary();
         graphManager.addBuiltInGraph(communityLibrary);
-        presenter = new Presenter(userManager, resourceManager, graphManager);
+        presenter = new Presenter(userManager, resourceManager, graphManager, communityLibrary);
         idMap = graphManager.getIdMap();
     }
 
@@ -278,6 +278,7 @@ public class SystemInOut {
                     Achievements.MAP_POST_THRESHOLDS_TO_REWARD.get(userManager.getListOfPostId().size()));
         }
         presenter.publishPostSuccessful();
+        presenter.displayVertexCommunity(vertexName);
         presenter.nodeCompleted();
         scanner.nextLine(); // Let the user enter anything they want here to proceed
 
