@@ -19,6 +19,9 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * TODO: JavaDoc
+ */
 public class SystemInOut {
     private final UserManager userManager;
     private final GraphManager graphManager;

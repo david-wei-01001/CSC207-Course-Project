@@ -3,6 +3,9 @@ package resource;
 import posts.PublishedContents;
 import user.User;
 
+/**
+ * A resource in which a main.user can share what he/she used to study a session.
+ */
 public class Resource extends PublishedContents {
     private final String content;
     private final int pointsRequired;
@@ -12,6 +15,7 @@ public class Resource extends PublishedContents {
 
     /**
      * Constructor for the main. resource class
+     *
      * @param content The content of the main. resource
      * @param id The ID of the main. resource
      * @param point The reward point needed for the main. resource
@@ -27,6 +31,7 @@ public class Resource extends PublishedContents {
 
     /**
      * Get the description of the main. resource
+     *
      * @return The description of the main. resource
      */
     public String getDescription(){
@@ -35,6 +40,7 @@ public class Resource extends PublishedContents {
 
     /**
      * Get the total download time of the main. resource
+     *
      * @return: The total download time of the main. resource
      */
     public int getDownloadTimes(){
@@ -43,6 +49,7 @@ public class Resource extends PublishedContents {
 
     /**
      * Get the required points for download of the main. resource
+     *
      * @return: The required points of the main. resource
      */
     public int getPointsRequired(){
@@ -51,6 +58,7 @@ public class Resource extends PublishedContents {
 
     /**
      * Get the content of the main. resource
+     *
      * @return: The content of the main. resource
      */
     public String getContent(){

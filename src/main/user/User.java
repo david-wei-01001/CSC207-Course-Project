@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class User implements HasName, Serializable {
     private static final long serialVersionUID = 1113799434508676095L;
-    private String username;
+    private String userName;
     private String email;
     private String password;
     private int rewardPoints;
@@ -29,9 +29,15 @@ public class User implements HasName, Serializable {
     private final Map<String, Boolean> mapOfAchievement = new HashMap<>();
 
 
- 
-    public User(String username, String email, String password) {
-        this.username = username;
+    /**
+     * The constructor called when a user is created.
+     *
+     * @param userName the username of a user
+     * @param email the email of a user
+     * @param password the password of a user
+     */
+    public User(String userName, String email, String password) {
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.rewardPoints = 0;
@@ -43,6 +49,7 @@ public class User implements HasName, Serializable {
 
     /**
      * add a post id.
+     *
      * @param id the id of the post being added.
      */
     public void addToListOfPostId(String id) {
@@ -67,11 +74,11 @@ public class User implements HasName, Serializable {
 
     @Override
     public String getName() {
-        return username;
+        return userName;
     }
 
     public void setUsername(String newName) {
-        this.username = newName;
+        this.userName = newName;
     }
 
     public void setEmail(String newEmail) {
@@ -115,7 +122,7 @@ public class User implements HasName, Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + username + '\'' +
+                "userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", rewardPoints=" + rewardPoints +

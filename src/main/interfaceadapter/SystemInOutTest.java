@@ -3,6 +3,9 @@ package interfaceadapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * TODO: JavaDoc
+ */
 class SystemInOutTest {
     SystemInOut inOut;
 

@@ -22,6 +22,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
 
     /**
      * Constructor of the post
+     *
      * @param content: The content of the post
      * @param id: The ID of the post
      * @param creator: The creator of the post
@@ -34,6 +35,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
 
     /**
      * Add a comment to this post.
+     *
      * @param content the content of the comment being added
      * @param creator the creator of the comment being added
      * @return the id of the comment added.
@@ -48,6 +50,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
 
     /**
      * Delete a comment.
+     *
      * @param id the id of the comment being deleted
      * @throws PostNotFoundException if no comment with the inputted id was found.
      */
@@ -63,6 +66,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
 
     /**
      * Get the number of comments
+     *
      * @return The number of the comments
      */
     public int getNumberOfComments(){
@@ -71,6 +75,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
 
     /**
      * Get the ID for the comment to be added
+     *
      * @return: The ID for the comment to be added
      */
     public String getNextId(){
@@ -79,6 +84,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
 
     /**
      * Get function for the map of comments
+     *
      * @return: The map of comments
      */
     public Map<String, Comment> getMapOfComments(){
@@ -109,7 +115,8 @@ public class Post extends PublishedContents implements HasPublishedContents {
                 "------------------------------------------------------------------------------------------------------"
                 +'\n'+
                 comments +
-                "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::";
+                "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+                ;
     }
 
     /**
