@@ -3,6 +3,9 @@ package jsonreadwriter;
 
 import java.io.IOException;
 
+/**
+ * An interface specifying what all ReadWriter's need to read from and write to a json file
+ */
 public interface ReadWriter {
 
     /**

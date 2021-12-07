@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test the AchievementManager class
+ */
 class AchievementManagerTest {
     final String USERNAME = "userName";
     final String EMAIL = "email@.com";
@@ -14,6 +17,9 @@ class AchievementManagerTest {
     User user;
     AchievementManager achievementManager;
 
+    /**
+     * Set up the test
+     */
     @BeforeEach
     void setUp() {
         user = new User(USERNAME, EMAIL, PASSWORD);
@@ -21,9 +27,13 @@ class AchievementManagerTest {
         achievementManager.setCurrentUser(user);
     }
 
+    /**
+     * test if the AchievementManager class behave as intended.
+     */
     @Test
     void requestAchievement() {
-        assertEquals(user.displayAchievement(), "First Login: not acquired\nTenth Post: not acquired\nFirst Post: not acquired\nFifth Post: not acquired\n" );
+        assertEquals(user.displayAchievement(), "First Login: not acquired\nTenth Post: not acquired\n" +
+                "First Post: not acquired\nFifth Post: not acquired\n" );
 
         user.addToListOfPostId("1");
         achievementManager.requestAchievement(Achievements.ARRAY_OF_POST_THRESHOLDS,

@@ -3,6 +3,9 @@ import user.UserList;
 
 import java.io.*;
 
+/**
+ * A class responsible for reading and writing users for json file
+ */
 public class UserReadWriter implements ReadWriter {
 
     /**

@@ -10,7 +10,9 @@ import java.util.Map;
 import static constants.Exceptions.*;
 import static org.junit.Assert.*;
 
-
+/**
+ * Test the DirectedGraph class
+ */
 public class DirectedGraphTest {
     DirectedGraph graph;
 
@@ -59,6 +61,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if addEdge method correctly add a DirectedEdge to the main.graph.
+     */
     @Test
     public void testAddEdge() {
         try {
@@ -75,6 +80,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if deleteEdge method correctly delete a DirectedEdge from the main.graph.
+     */
     @Test
     public void testDeleteEdge() {
         try {
@@ -91,6 +99,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if deleteVertex method correctly delete a vertex from the main.graph.
+     */
     @Test
     public void testDeleteVertex() {
         try {
@@ -109,6 +120,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if availableVertex method function as intended.
+     */
     @Test
     public void testAvailableVertex() {
         try {
@@ -129,6 +143,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if the class update inLevel correctly if a vertex has two level of prerequisites.
+     */
     @Test
     public void testCaseWithTwoPreForAdd() {
         try {
@@ -162,6 +179,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * test if the complete method update inLevel correctly if a vertex has two level of prerequisites.
+     */
     @Test
     public void testCaseWithTwoPreForComplete() {
         try {
@@ -198,6 +218,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if the class update inLevel correctly if a vertex has two level of prerequisites and one is deleted.
+     */
     @Test
     public void testCaseWithTwoPreForDelete() {
         try {
@@ -233,6 +256,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if the deleteEdge method correctly throws an exception if the starting vertex is not found
+     */
     @Test
     public void testDeleteEdgeThrowExceptionFirstNotExist() {
         try {
@@ -273,6 +299,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if the deleteEdge method correctly throws an exception if the ending vertex is not found
+     */
     @Test
     public void testDeleteEdgeThrowExceptionSecondNotExist() {
         try {
@@ -313,6 +342,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if the deleteVertex method correctly throws an exception
+     */
     @Test
     public void testDeleteVertexThrowException() {
         try {
@@ -351,6 +383,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if the string version of getVertexArray method correctly throws an exception
+     */
     @Test
     public void testGetVertexArrayStringThrowException() {
         try {
@@ -389,6 +424,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if the vertex version of getVertexArray method correctly throws an exception
+     */
     @Test
     public void testGetVertexArrayVertexThrowException() throws Exception {
         Vertex pythonIntro = new Vertex("Introductory Python");
@@ -424,6 +462,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if the getVertex method correctly throws an exception
+     */
     @Test
     public void testGetVertexThrowException() {
         try {
@@ -462,6 +503,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if the complete method correctly throws an exception if the vertex does not exist
+     */
     @Test
     public void testCompleteNotExist() {
         try {
@@ -500,6 +544,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if the complete method correctly throws an exception if the vertex has already been completed
+     */
     @Test
     public void testCompleteAlreadyComplete() throws Exception {
         Vertex pythonIntro = new Vertex("Introductory Python");
@@ -535,6 +582,9 @@ public class DirectedGraphTest {
         }
     }
 
+    /**
+     * Test if the complete method correctly throws an exception if the vertex is locked
+     */
     @Test
     public void testCompleteLocked() {
         try {

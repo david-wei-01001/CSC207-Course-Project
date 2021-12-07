@@ -1,4 +1,4 @@
-package constants;
+package algorithm;
 
 import java.util.ArrayList;
 import java.util.Comparator;

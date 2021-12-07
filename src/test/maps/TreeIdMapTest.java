@@ -1,21 +1,31 @@
-package constants;
+package maps;
 
+import maps.TreeIdMap;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 
+/**
+ * Test the TreeIdMap class
+ */
 class TreeIdMapTest {
 
+    /**
+     * Test if the getIdMap method correctly retrieve an idMap.
+     */
     @Test
-    void getIdMap() {
+    void testGetIdMap() {
         HashMap<String, String> map = new HashMap<>();
         map.put("1", "Introductory CS Series");
         TreeIdMap idMap = new TreeIdMap(map);
         assert (map.equals(idMap.getIdMap()));
     }
 
+    /**
+     * Test if the setIdMap method correctly set an idMap.
+     */
     @Test
-    void setIdMap() {
+    void testSetIdMap() {
         HashMap<String, String> map = new HashMap<>();
         map.put("1", "Introductory CS Series");
         TreeIdMap idMap = new TreeIdMap(map);

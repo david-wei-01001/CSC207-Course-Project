@@ -9,10 +9,17 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test the Post class
+ */
 public class postTest {
     Post post;
     User user;
 
+    /**
+     * The setup method that setup each test.
+     * It creates a post and a user.
+     */
     @Before
     public void setUp() {
         user = new User("Tong", "123@mail.com", "123");
@@ -21,6 +28,10 @@ public class postTest {
         post.addPublishedContent("aa", user);
     }
 
+    /**
+     * Test if the getMapOfComments method successfully retrieve a comment
+     * and the getMapOfComments method functions as intended
+     */
     @Test
     public void testAddCommentSuccessfulAndGetMapOfContents() {
         Comment c1 = new Comment("testing", "Comment #0",user);
@@ -37,11 +48,8 @@ public class postTest {
     }
 
     /**
-     * TODO: How can this be unsuccessful? In the method, a comment can always be added.
+     * Test if the deletePublishedContent correctly throw an exception
      */
-    @Test
-    public void testAddCommentUnsuccessful() {}
-
     @Test
     public void testDeleteCommentUnsuccessful() {
         try{
@@ -51,12 +59,15 @@ public class postTest {
     }
 
     /**
-     *
-     * @throws HasPublishedContents.PostNotFoundException the exception is thrown
+     * Test if the deletePublishedContent and getNumberOfComments methods function as intended
      */
     @Test
-    public void testDeleteAndNumberOfComments() throws HasPublishedContents.PostNotFoundException {
-        post.deletePublishedContent("Comment #0");
+    public void testDeleteAndNumberOfComments() {
+        try {
+            post.deletePublishedContent("Comment #0");
+        } catch (HasPublishedContents.PostNotFoundException e) {
+            fail();
+        }
 
         Comment c1 = new Comment("testing", "Comment #0",user);
 
@@ -71,12 +82,18 @@ public class postTest {
         assertFalse(post.getMapOfComments().get("Comment #0").visibility());
     }
 
+    /**
+     * Test if the getNextId methods function as intended when there was no deletion
+     */
     @Test
     public void testGetNextIdNoDelete() {
         post.addPublishedContent("debugging", user);
         assertEquals("Comment #2", post.getNextId());
     }
 
+    /**
+     * Test if the getNextId methods function as intended when there was deletion
+     */
     @Test
     public void testGetNextIdWithDelete() throws HasPublishedContents.PostNotFoundException {
         post.addPublishedContent("debugging", user);
@@ -84,6 +101,9 @@ public class postTest {
         assertEquals("Comment #2", post.getNextId());
     }
 
+    /**
+     * Test if the getContent methods function as intended
+     */
     @Test
     public void testGetContent() {
         assertEquals("nothing", post.getContent());

@@ -13,16 +13,20 @@ public class ResourceManager implements HasResource, Serializable{
 
 
     private final Map<String, Resource> mapOfResource = new HashMap<>();
-
-
     private User currentUser;
 
+    /**
+     * Set the currentUser instance variable to be the User specified
+     *
+     * @param currentUser the currentUser that is interacting with this Use Case
+     */
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
 
     /**
      * Add the target resource to the map of resource
+     *
      * @param content: The content that the resource contains, normally a link
      * @param point: The point which the resource contains
      * @param description: The brief description for the resource
@@ -36,6 +40,9 @@ public class ResourceManager implements HasResource, Serializable{
     }
 
     /**
+     * Delete the intended content from the map which the content belongs to, throw an
+     * exception if the post does not exist in the map
+     *
      * @param id The id of the main. resource to be deleted
      * @throws PostNotFoundException the exception is thrown
      */
@@ -51,6 +58,7 @@ public class ResourceManager implements HasResource, Serializable{
 
     /**
      * Get the ID for the main. resource to be added
+     *
      * @return: The string for the next ID
      */
     public String getNextId(){
@@ -60,9 +68,10 @@ public class ResourceManager implements HasResource, Serializable{
 
     /**
      * Return the download link for the resources if the main. user have had enough points to redeem it
+     *
      * @param resourceId The ID of the main. resource
      * @return: A notification if the main. user does not have enough points to redeem the main. resource,
-     * or a download link if the main. user have enough points to redeem the main. resource
+     *          or a download link if the main. user have enough points to redeem the main. resource
      */
     public String downloadResource(String resourceId) {
         Resource resource = this.mapOfResource.get(resourceId);
@@ -80,6 +89,7 @@ public class ResourceManager implements HasResource, Serializable{
 
     /**
      * Get the total number of the resources in the map
+     *
      * @return: The number of the resources in the map
      */
     public int getNumberOfResources(){
@@ -88,12 +98,16 @@ public class ResourceManager implements HasResource, Serializable{
 
     /**
      * Getter for the map of main. resource
+     *
      * @return: The map of resources
      */
     public Map<String, Resource> getMapOfResource() {
         return mapOfResource;
     }
 
+    /**
+     * set up the default user and its default resource
+     */
     public void addDefault() {
         User user = new User("Tong", "123@mail.com", "123");
         Resource resourceToAdd1 = new Resource("https://www.teach.cs.toronto.edu/~csc110y/fall/notes/",

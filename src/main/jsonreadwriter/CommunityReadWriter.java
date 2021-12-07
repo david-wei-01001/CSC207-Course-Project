@@ -4,6 +4,9 @@ import communitysystem.CommunityList;
 
 import java.io.*;
 
+/**
+ * A class responsible for reading and writing communities for json file
+ */
 public class CommunityReadWriter implements ReadWriter {
 
     /**

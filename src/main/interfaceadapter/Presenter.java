@@ -287,7 +287,7 @@ public class Presenter {
     /**
      * Requiring for the login options
      *
-     * @return the respond of the User's Login respond.
+     * @return the response of the User's Login respond.
      */
     protected String LoginOptions() {
         Scanner scanner = new Scanner(System.in);
@@ -297,6 +297,8 @@ public class Presenter {
 
     /**
      * Prompting the user to enter the correct login option
+     *
+     * @return the response of the User's Login respond.
      */
     protected String getCorrectLoginOption(String input) {
         Scanner scanner = new Scanner(System.in);
@@ -309,6 +311,8 @@ public class Presenter {
 
     /**
      * Prompting the user to enter a non-empty credential
+     *
+     * @return the response of the User's input Credential.
      */
     protected String getNonEmptyCredential(String credential) {
         Scanner scanner = new Scanner(System.in);
@@ -323,6 +327,8 @@ public class Presenter {
 
     /**
      * Prompting the user to enter a non-empty password
+     *
+     * @return the response of the User's input password
      */
     protected String getNonEmptyPassword() {
         return getNonEmptyCredential(PASSWORD);
@@ -330,6 +336,8 @@ public class Presenter {
 
     /**
      * Prompting the user to enter a non-empty username
+     *
+     * @return the response of the User's input username
      */
     protected String getNonEmptyUsername() {
         return getNonEmptyCredential(USERNAME);

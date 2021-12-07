@@ -2,13 +2,13 @@ package graph;
 
 import constants.Exceptions;
 import constants.HasName;
-import constants.IterableMap;
-import constants.VertexArrayDefaultComparator;
+import maps.IterableMap;
+import comparator.VertexArrayDefaultComparator;
 
 import java.io.Serializable;
 import java.util.*;
 
-import static constants.Algorithm.*;
+import static algorithm.Algorithm.*;
 
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.
@@ -69,8 +69,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         if (!checkEdgeExistence(edge)) {
             addVertex(edge[0]);
             addVertex(edge[1]);
-            edge[1].addInLevel();
-            updateAll(edge[1]);
+            update(getVertexArray(edge[1]), false);
             getVertexArray(edge[0]).addEdge(edge[1]);
         } else {
             throw new Exception(Exceptions.EDGE_ALREADY_EXIST);
@@ -136,8 +135,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
      */
     public void deleteEdge(Vertex[] edge) throws Exception {
         getVertexArray(edge[0]).deleteThisEdge(edge[1]);
-        edge[1].minusInLevel();
-        updateAll(edge[1]);
+        update(getVertexArray(edge[1]), true);
         if (edge[1].getInLevel() == 0) {
             CURRENTUNLOCK.add(edge[1].getName());
         }
@@ -146,16 +144,31 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     /**
      * Update the inlevel of vertices in all DirectedEdges starting from vertex
      *
-     * @param vertex a vertex specifying whose DirectedEdges needs to be updated.
+     * @param va a VertexArray whose DirectedEdges needs to be updated.
+     * @param decrease true if minusInLevel, false if addInLevel
      */
-    public void updateAll(Vertex vertex) {
-        for (String name : VERTICES) {
-            try {
-                if (getVertexArray(name).isEnd(vertex)) {
-                    getVertexArray(name).updateVertex(vertex);
+    public void update(VertexArray va, boolean decrease) {
+        if (decrease) {
+            va.getStart().minusInLevel();
+            if (!va.isEmpty()) {
+                for (Vertex end : va) {
+                    try {
+                        update(getVertexArray(end), true);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            }
+        } else {
+            va.getStart().addInLevel();
+            if (!va.isEmpty()) {
+                for (Vertex end : va) {
+                    try {
+                        update(getVertexArray(end), false);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
@@ -169,9 +182,8 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
      */
     public void deleteVertex(String name) throws Exception {
         Vertex delete = getVertexArray(name).getStart();
+        update(getVertexArray(name), true);
         for (Vertex v : getVertexArray(name)) {
-            v.minusInLevel();
-            updateAll(v);
             if (v.getInLevel() == 0) {
                 CURRENTUNLOCK.add(v.getName());
             }
@@ -254,11 +266,11 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
          } else {
             COMPLETED.add(name);
             CURRENTUNLOCK.remove(name);
-            for (Vertex next : getVertexArray(name)) {
-                next.minusInLevel();
-                updateAll(next);
-                if (next.getInLevel() == 0) {
-                    CURRENTUNLOCK.add(next.getName());
+            VertexArray next = getVertexArray(name);
+            update(next, true);
+            for (Vertex vertex : next) {
+                if (vertex.getInLevel() == 0) {
+                    CURRENTUNLOCK.add(vertex.getName());
                 }
             }
         }
@@ -428,5 +440,9 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     public boolean isLearnedGraph() {
         int number = COMPLETED.size();
         return number != 0;
+    }
+
+    public static void main(String[] args) {
+
     }
 }
