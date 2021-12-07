@@ -9,9 +9,6 @@ import java.io.Serializable;
 import java.util.*;
 
 import static constants.Algorithm.*;
-import static constants.Exceptions.VERTEX_NOT_FOUND;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.
@@ -19,9 +16,8 @@ import static org.junit.Assert.fail;
 public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasName {
 
     /**
-     * The key of VERTICES is a String which is the name of a Vertex, the value of the VERTICES is an Array of length
-     * 2 where the first element is a Vertex which is the starting vertex of many edges and the second element is an
-     * ArrayList containing all Vertices that is the ending vertex which the starting vertex points to.
+     * The key of VERTICES is a String which is the name of a Vertex, the value of the VERTICES is an VertexArray object
+     * containing a starting vertex and all Vertices that is the ending vertex which the starting vertex points to.
      */
     private final IterableMap<String, VertexArray> VERTICES = new IterableMap<>();
     private final String NAME;
@@ -38,6 +34,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     }
 
     /**
+     * TODO： What is this?
      * set tree id
      */
     public void setTreeId() {
@@ -80,18 +77,34 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         }
     }
 
-    public boolean checkEdgeExistence(Vertex[] edge) throws Exception {
+    /**
+     * @param edge a DirectedEdge to check if it is in the DirectedGraph
+     * @return Whether the given DirectedEdge exists in the DirectedGraph.
+     */
+    public boolean checkEdgeExistence(Vertex[] edge) {
         if (checkVertexExistence(edge[0])) {
-            if (getVertexArray(edge[0]).isEnd(edge[1])) {
-                return true;
+            try {
+                if (getVertexArray(edge[0]).isEnd(edge[1])) {
+                    return true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         if (checkVertexExistence(edge[1])) {
-            return getVertexArray(edge[1]).isEnd(edge[0]);
+            try {
+                return getVertexArray(edge[1]).isEnd(edge[0]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
 
+    /**
+     * @param vertex a vertex to check if it is in the DirectedGraph
+     * @return whether the given vertex is in the DirectedGraph
+     */
     public boolean checkVertexExistence(Vertex vertex) {
         return VERTICES.containsKey(vertex.getName());
     }
@@ -130,10 +143,19 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         }
     }
 
-    public void updateAll(Vertex vertex) throws Exception {
+    /**
+     * Update the inlevel of vertices in all DirectedEdges starting from vertex
+     *
+     * @param vertex a vertex specifying whose DirectedEdges needs to be updated.
+     */
+    public void updateAll(Vertex vertex) {
         for (String name : VERTICES) {
-            if (getVertexArray(name).isEnd(vertex)) {
-                getVertexArray(name).updateVertex(vertex);
+            try {
+                if (getVertexArray(name).isEnd(vertex)) {
+                    getVertexArray(name).updateVertex(vertex);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -262,6 +284,14 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         return stringBuilder.toString();
     }
 
+    /**
+     * Helper method for DirectedGraph.toString. Specifying the String representation of the DirectedGraph starting
+     * from this edge.
+     *
+     * @param edge a starting vertex which String representation is required
+     * @param numInward the number of indentations preceding this String representation
+     * @return the String representation of the DirectedGraph starting from this edge.
+     */
     public String singleVertexToString(VertexArray edge, int numInward) {
         if (edge.isEmpty()) {
             return edge.getStart().toString();
@@ -304,7 +334,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
      * Only intended to be used for testing.
      * It should not be used for any other purpose.
      *
-     * @return Vertices
+     * @return VERTICES
      */
     public Map<String, VertexArray> getVertices() {
         return VERTICES;
@@ -315,11 +345,21 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         return NAME;
     }
 
+    /**
+     * Apply Iterator design pattern to DirectedGraph.
+     *
+     * @return an iterator class representation of DirectedGraph
+     */
     @Override
     public Iterator<VertexArray> iterator() {
         return new GraphItr();
     }
 
+    /**
+     * Helper method to be used by the GraphItr class.
+     *
+     * @return a sorted list of VertexArray which is then going to be iterated.
+     */
     private List<VertexArray> arrangeArray() {
         List<VertexArray> vertexArray = new ArrayList<>();
         for (String vertexName : VERTICES) {
@@ -328,7 +368,6 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
         if (vertexArray.isEmpty()) {
             return vertexArray;
@@ -340,20 +379,37 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         return vertexArray;
     }
 
+    /**
+     * The iterator class of DirectedGraph which is used when looping through a DirectedGraph.
+     */
     private class GraphItr implements Iterator<VertexArray> {
 
         private final List<VertexArray> arranged;
         private int index;
 
+        /**
+         * Constructor of the GraphItr which stores the already-sorted list of VertexArrays in the DirectedGraph
+         */
         public GraphItr() {
             arranged = arrangeArray();
         }
 
+        /**
+         * returns true if the iteration has more elements.
+         * (In other words, returns true if next would return an element rather than throwing an exception.)
+         *
+         * @return true if the iteration has more elements
+         */
         @Override
         public boolean hasNext() {
             return index < arranged.size();
         }
 
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         */
         @Override
         public VertexArray next() {
             VertexArray toReturn = arranged.get(index);
@@ -366,39 +422,11 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
      * Check if the completed set is zero, in other word, this
      * method is used to check whether the tree/graph was
      * began to learn
+     *
+     * @return if the graph has begun learning
      */
     public boolean isLearnedGraph() {
         int number = COMPLETED.size();
         return number != 0;
-    }
-
-    public static void main(String[] args) throws Exception {
-        Vertex pythonIntro = new Vertex("Introductory Python");
-        Vertex compIntro = new Vertex("Introductory Cobb");
-        Vertex Intro165 = new Vertex("CSC165");
-        Vertex JavaIntro = new Vertex("Introductory Java");
-        Vertex CIntro = new Vertex("Introductory C++");
-        Vertex Intro236 = new Vertex("CSC236");
-        Vertex Intro209 = new Vertex("CSC209");
-        Vertex Intro263 = new Vertex("CSC263");
-        Vertex[] starter = {pythonIntro};
-        DirectedGraph graph = new DirectedGraph(starter, "CS Introduction Series");
-        Vertex[] v1 = {pythonIntro, JavaIntro};
-        Vertex[] vx = {compIntro, JavaIntro};
-        Vertex[] v2 = {pythonIntro, CIntro};
-        Vertex[] v3 = {Intro165, Intro236};
-        Vertex[] v4 = {Intro236, Intro263};
-        Vertex[] v5 = {JavaIntro, Intro209};
-        Vertex[] v6 = {pythonIntro, Intro165};
-        graph.addEdge(v1);
-        graph.addEdge(v2);
-        graph.addEdge(v3);
-        graph.addEdge(v4);
-        graph.addEdge(v5);
-        graph.addEdge(v6);
-        graph.addEdge(vx);
-        graph.complete("Introductory Python");
-        graph.complete("Introductory Python");
-
     }
 }

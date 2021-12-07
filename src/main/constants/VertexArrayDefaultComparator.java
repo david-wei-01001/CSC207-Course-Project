@@ -7,6 +7,14 @@ import java.util.Comparator;
 import static constants.Algorithm.pairwiseCompare;
 
 public class VertexArrayDefaultComparator implements Comparator<VertexArray> {
+
+    /**
+     * comparing two VertexArray by pairwiseCompare
+     *
+     * @param o1 the first VertexArray to be compared
+     * @param o2 the second VertexArray to be compared
+     * @return returning hte result of the comparison
+     */
     @Override
     public int compare(VertexArray o1, VertexArray o2) {
         InLevelComparator inLevelComparator = new InLevelComparator();

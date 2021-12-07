@@ -11,12 +11,14 @@ import java.util.Map;
 public interface GraphBuilder {
     /**
      * build vertices for a DirectedGraph.
+     *
      * @return a Map maps the name of vertices to vertices itself
      */
     Map<String, Vertex> buildVertices();
 
     /**
      * Build directed edges where vertices of edges are from vertices.
+     *
      * @param vertices contains all vertex as building blocks of directed edges
      * @return return an Array of DirectedEdges
      */
