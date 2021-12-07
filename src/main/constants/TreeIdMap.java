@@ -2,6 +2,9 @@ package constants;
 
 import java.util.HashMap;
 
+/**
+ * This Object stores a reference of the id of a DirectedGraph to a DirectedGraph for a user.
+ */
 public class TreeIdMap {
     private final HashMap<String, String> idMap;
 
@@ -36,6 +39,11 @@ public class TreeIdMap {
         }
     }
 
+    /**
+     * Retrieve the DirectedGraph corresponding to this treeId.
+     * @param treeId The ID of the DirectedGraph to be retrieved
+     * @return the DirectedGraph which has the given treeId
+     */
     public String useIdToGetName(String treeId) {
         return idMap.get(treeId);
     }

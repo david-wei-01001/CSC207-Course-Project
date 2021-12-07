@@ -9,9 +9,6 @@ import java.io.Serializable;
 import java.util.*;
 
 import static constants.Algorithm.*;
-import static constants.Exceptions.VERTEX_NOT_FOUND;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.
@@ -19,9 +16,8 @@ import static org.junit.Assert.fail;
 public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasName {
 
     /**
-     * The key of VERTICES is a String which is the name of a Vertex, the value of the VERTICES is an Array of length
-     * 2 where the first element is a Vertex which is the starting vertex of many edges and the second element is an
-     * ArrayList containing all Vertices that is the ending vertex which the starting vertex points to.
+     * The key of VERTICES is a String which is the name of a Vertex, the value of the VERTICES is an VertexArray object
+     * containing a strating vertex and all Vertices that is the ending vertex which the starting vertex points to.
      */
     private final IterableMap<String, VertexArray> VERTICES = new IterableMap<>();
     private final String NAME;
@@ -38,6 +34,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     }
 
     /**
+     * TODO： What is this?
      * set tree id
      */
     public void setTreeId() {
@@ -92,6 +89,10 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         return false;
     }
 
+    /**
+     * @param vertex a vertex to check if it is in the DirectedGraph
+     * @return whether the given vertex is in the DirectedGraph
+     */
     public boolean checkVertexExistence(Vertex vertex) {
         return VERTICES.containsKey(vertex.getName());
     }
