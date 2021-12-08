@@ -40,7 +40,6 @@ public class GraphManager {
 
                 IDMAP.setIdMap(Integer.toString(i), builtInGraph);
                 DirectedGraph graphToAdd = GraphArchitect.setBuilderAndBuildGraph(builtInGraph);
-                graphToAdd.setTreeId();
                 createCommunities(graphToAdd);
                 mapOfGraphs.put(Integer.toString(i), graphToAdd);
                 i++;

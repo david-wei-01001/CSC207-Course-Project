@@ -34,13 +34,6 @@ public class DirectedGraph implements Serializable, HasName {
     }
 
     /**
-     * TODO： What is this?
-     * set tree id
-     */
-    public void setTreeId() {
-    }
-
-    /**
      * The constructor of the DirectedGraph class.
      *
      * @param lstVertex A list of vertex to be added to the instance of DirectedGraph
