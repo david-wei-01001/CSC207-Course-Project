@@ -5,11 +5,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * TODO: JavaDoc
+ * Test for SystemInOut class
  */
 class SystemInOutTest {
     SystemInOut inOut;
 
+    /**
+     *
+     * @throws Exception
+     */
     @BeforeEach
     void setUp() throws Exception {
         inOut = new SystemInOut();
