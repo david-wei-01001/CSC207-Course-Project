@@ -99,7 +99,8 @@ public class Post extends PublishedContents implements HasPublishedContents {
         StringBuilder comments = new StringBuilder();
         for(String commentName: mapOfComments){
             Comment comment = mapOfComments.get(commentName);
-            comments.append(comment.toString()).append('\n').append("-----------------------------------------------" +
+            comments.append(commentName).append("=").append(comment.toString()).append('\n').append(
+                    "-----------------------------------------------" +
                     "-------------------------------------------------------").append('\n');
         }
         return "Post" + '\n' +
