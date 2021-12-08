@@ -1,7 +1,7 @@
 package interfaceadapter;
 
 /**
- * Apply Dependency Iversion Principle so that the controller SystemInOut no longer depends on the specific UI
+ * Apply Dependency Inversion Principle so that the controller SystemInOut no longer depends on the specific UI
  */
 public interface UIAdapter {
 

@@ -1,7 +1,5 @@
 package constants;
 
-import user.UserList;
-
 import java.util.Map;
 
 /**

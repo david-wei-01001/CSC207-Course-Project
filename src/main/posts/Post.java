@@ -6,7 +6,7 @@ import user.User;
 import java.util.Map;
 
 /**
- * A post in which a main.user can share his/her reflection on a study session.
+ * A post in which a user can share his/her reflection on a study session.
  */
 public class Post extends PublishedContents implements HasPublishedContents {
     /**

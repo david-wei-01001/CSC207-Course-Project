@@ -15,7 +15,6 @@ public class Exceptions {
     public static final String USER_NAME_TAKEN = "This username has already been taken.";
     public static final String INCORRECT_USERNAME = "Invalid username";
     public static final String SAME_USERNAME_AS_CURRENT = "Same username as your current one.";
-    public static final String EMAIL_ALREADY_EXIST = "This email already exists. Please try a different one.";
 
     //error messages used by GraphManager
     public static final String CANNOT_RECOGNIZE_TREE = "Cannot recognize this tree.";
