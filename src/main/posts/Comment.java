@@ -11,6 +11,7 @@ public class Comment extends PublishedContents {
 
     /**
      * Constructor for the comment class
+     *
      * @param content : The content of the comment
      * @param id: The id of the comment
      * @param creator: The creator of the comment
@@ -22,6 +23,7 @@ public class Comment extends PublishedContents {
 
     /**
      * Get the content of the comment
+     *
      * @return Then content of the comment
      */
     public String getContent() {

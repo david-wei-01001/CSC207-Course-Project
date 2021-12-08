@@ -1,6 +1,6 @@
 package communitysystem;
 
-import constants.IterableMap;
+import maps.IterableMap;
 import posts.HasPublishedContents;
 import posts.Post;
 import user.User;
@@ -17,6 +17,7 @@ public class Community implements HasPublishedContents, Serializable {
 
     /**
      * Return the name of the community
+     *
      * @return the name of given community
      */
     public String getNameOfCommunity() {
@@ -26,6 +27,7 @@ public class Community implements HasPublishedContents, Serializable {
 
     /**
      * The constructor of Community class
+     *
      * @param name the name of this community
      */
 
@@ -46,6 +48,7 @@ public class Community implements HasPublishedContents, Serializable {
 
     /**
      * add a post into this community.
+     *
      * @param content content of the post being added
      * @param creator creator of the post being added
      * @return the id of the post being added.
@@ -59,6 +62,7 @@ public class Community implements HasPublishedContents, Serializable {
 
     /**
      * delete a post in this community.
+     *
      * @param id the id of the post being deleted
      * @throws PostNotFoundException if the post with the inputted id is not found in this community.
      */
@@ -73,6 +77,7 @@ public class Community implements HasPublishedContents, Serializable {
 
     /**
      * display all main. posts in this community in the form of text.
+     *
      * @return all main. posts in the form of text
      */
     public String displayPosts() {
@@ -103,6 +108,7 @@ public class Community implements HasPublishedContents, Serializable {
 
     /**
      * Generate the id of the next post
+     *
      * @return a string representation of the id of the next potential post
      */
     public String getNextId(){

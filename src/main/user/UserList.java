@@ -1,6 +1,6 @@
 package user;
 
-import constants.IterableMap;
+import maps.IterableMap;
 
 import java.io.Serializable;
 import java.util.Iterator;
@@ -16,6 +16,7 @@ public class UserList implements Serializable, Iterable<String>{
 
     /**
      * Return the userLists.
+     *
      * @return the userList in this UserList class
      */
     public Map<String, User> getUsersList() {
@@ -24,6 +25,7 @@ public class UserList implements Serializable, Iterable<String>{
 
     /**
      * Add user to this user list.
+     *
      * @param user the userinfo to add
      */
     public void add(User user) {
@@ -32,6 +34,7 @@ public class UserList implements Serializable, Iterable<String>{
 
     /**
      * Return the User associated with username.
+     *
      * @param username the username of the user to get.
      */
     public User get(String username) {
@@ -41,10 +44,16 @@ public class UserList implements Serializable, Iterable<String>{
     /**
      *
      * @param username the username od the user
+     *
      * @return if the user with given username in current userList.
      */
     public boolean containsKey(String username){ return usersList.containsKey(username); }
 
+    /**
+     * Apply Iterator design pattern to UserList.
+     *
+     * @return an iterator class representation of UserList
+     */
     @Override
     public Iterator<String> iterator() {
         return usersList.iterator();

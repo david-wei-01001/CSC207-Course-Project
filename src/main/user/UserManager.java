@@ -1,15 +1,17 @@
 package user;
 
 
+import achievementsystem.AchievementManager;
+import constants.Achievements;
 import constants.Exceptions;
 import graphbuilders.GraphArchitect;
+import rewardsystem.RewardManager;
 
 import java.util.ArrayList;
 
 /**
  * The use case that control all actions of the User currently using our application.
  */
-
 public class UserManager {
     /**
      * The info of the User currently using our application.
@@ -82,14 +84,25 @@ public class UserManager {
         }
     }
 
+    /**
+     * @return mapOfUser
+     */
     public UserList getMapOfUser() {
         return mapOfUser;
     }
 
+    /**
+     * @return currentUser
+     */
     public User getCurrentUser() {
         return currentUser;
     }
 
+    /**
+     * Set the currentUser instance variable to be the given user
+     * @param username the username of a user
+     * @throws Exception if the given username does not correspond to a user
+     */
     public void setCurrentUser(String username) throws Exception {
         if (mapOfUser.containsKey(username)) {
             this.currentUser = mapOfUser.get(username);
@@ -98,22 +111,52 @@ public class UserManager {
         }
     }
 
+    /**
+     * CHeck if the given username corresponds to a user
+     * @param username a username to be checked
+     * @return whether the given username corresponds to a user
+     */
     public boolean containsUsername(String username) {
         return mapOfUser.containsKey(username);
     }
 
-    public void incrementTotalLogins() {
+    /**
+     * increment the total number of logins of the currentUser
+     *
+     * @param rewardManager the rewardManager Use Case
+     * @param achievementManager the achievementManager Use Case
+     */
+    public void incrementTotalLogins(RewardManager rewardManager, AchievementManager achievementManager) {
         currentUser.incrementTotalLogins();
+        boolean achievementAwarded = achievementManager.requestAchievement(
+                Achievements.ARRAY_OF_TOTAL_LOGINS_THRESHOLDS,
+                Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT,
+                currentUser.getTotalLogins());
+        if (achievementAwarded) {
+            rewardManager.addRewardPoint(
+                    Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_REWARD.get(currentUser.getTotalLogins()));
+        }
+
     }
 
+    /**
+     * Set the mapOfUser instance variable to be the given mapOfUser
+     * @param mapOfUser a UserList storing users
+     */
     public void setMapOfUser(UserList mapOfUser) {
         this.mapOfUser = mapOfUser;
     }
 
+    /**
+     * @return all the achievements of the currentUser
+     */
     public String displayAchievement() {
         return currentUser.displayAchievement();
     }
 
+    /**
+     * @return all the posts of the currentUser
+     */
     public ArrayList<String> getListOfPostId() {
         return currentUser.getListOfPostId();
     }

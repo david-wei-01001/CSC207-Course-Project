@@ -4,6 +4,9 @@ import user.User;
 
 import java.io.Serializable;
 
+/**
+ * A super class that specifies all the properties of a PublishedContent
+ */
 public class PublishedContents implements Visible, Serializable {
     private final String id;
     private boolean visible = true;
@@ -11,6 +14,7 @@ public class PublishedContents implements Visible, Serializable {
 
     /**
      * Constructor for the published contents class
+     *
      * @param id: The id of the comment
      * @param creator: The creator of the comment
      */
@@ -21,6 +25,7 @@ public class PublishedContents implements Visible, Serializable {
 
     /**
      * Get the ID of the published contents
+     *
      * @return Then ID of the published contents
      */
     public String getId() {
@@ -30,6 +35,7 @@ public class PublishedContents implements Visible, Serializable {
 
     /**
      * Get the creator of the published contents
+     *
      * @return Then creator of the published contents
      */
     public User getCreator() {

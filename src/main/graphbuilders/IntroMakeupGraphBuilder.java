@@ -11,7 +11,8 @@ public class IntroMakeupGraphBuilder implements GraphBuilder{
 
     /**
      * build vertices for a DirectedGraph.
-     * @return a Map maps the name of vertices to vertices itself
+     *
+     *  @return a Map maps the name of vertices to vertices itself
      */
     @Override
     public Map<String, Vertex> buildVertices() {
@@ -36,6 +37,7 @@ public class IntroMakeupGraphBuilder implements GraphBuilder{
 
     /**
      * Build directed edges where vertices of edges are from vertices.
+     *
      * @param vertices contains all vertex as building blocks of directed edges
      * @return return an Array of DirectedEdges
      */

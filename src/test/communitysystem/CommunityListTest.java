@@ -6,10 +6,16 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test the CommunityList class
+ */
 class CommunityListTest {
 
+    /**
+     * Test if the add method correctly add a community
+     */
     @Test
-    void add() {
+    void testAdd() {
         CommunityList communitylist = new CommunityList();
         Community community = new Community("python");
         communitylist.add(community);
@@ -18,8 +24,11 @@ class CommunityListTest {
         assertEquals(communitylist.getCommunityList(), target);
     }
 
+    /**
+     * Test if the remove method correctly remove a community
+     */
     @Test
-    void remove() {
+    void testRemove() {
         CommunityList communitylist = new CommunityList();
         Community community = new Community("python");
         communitylist.add(community);
@@ -28,16 +37,22 @@ class CommunityListTest {
         assertEquals(communitylist.getCommunityList(), target);
     }
 
+    /**
+     * Test if the get method correctly retrieve a community
+     */
     @Test
-    void get() {
+    void testGet() {
         CommunityList communitylist = new CommunityList();
         Community community = new Community("python");
         communitylist.add(community);
         assertEquals(communitylist.get("python"), community);
     }
 
+    /**
+     * Test if the containsKey method works as intended
+     */
     @Test
-    void containsKey() {
+    void testContainsKey() {
         CommunityList communitylist = new CommunityList();
         Community community = new Community("python");
         communitylist.add(community);

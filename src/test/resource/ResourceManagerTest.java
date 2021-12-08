@@ -6,11 +6,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import user.User;
 
-
+/**
+ * Test the ResourceManager class
+ */
 public class ResourceManagerTest {
     ResourceManager manager;
     User user;
 
+    /**
+     * The setup method that setup each test.
+     * It creates a ResourceManager and a user.
+     */
     @BeforeEach
     public void setUp() {
         user = new User("Tong", "123@mail.com", "123");
@@ -18,10 +24,9 @@ public class ResourceManagerTest {
         manager.setCurrentUser(user);
     }
 
-    @AfterEach
-    public void tearDown() {
-    }
-
+    /**
+     * Test if addResource method correctly add a resource and getMapOfResource functions as intended
+     */
     @Test
      public void testAddAndGetMapOfResource() {
         Resource resource1 = new Resource("This is not visible until you paid", manager.getNextId(),
@@ -36,10 +41,11 @@ public class ResourceManagerTest {
         Assertions.assertEquals(resource2.toString(),manager.getMapOfResource().get("Resource #1").toString());
     }
 
-
-
+    /**
+     * Test if deleteResource method correctly delete a resource
+     */
     @Test
-    void delete() throws HasResource.PostNotFoundException {
+    void testDelete() {
         Resource resource1 = new Resource("This is not visible until you paid", manager.getNextId(),
                 12, "Please download it.", user);
         manager.addResource(resource1.getContent(), resource1.getPointsRequired(), resource1.getDescription());
@@ -53,8 +59,11 @@ public class ResourceManagerTest {
         Assertions.assertEquals( 2,manager.getNumberOfResources());
     }
 
+    /**
+     * Test if getNextId method correctly return the ID of the next resource
+     */
     @Test
-    void getNextId() {
+    void testGetNextId() {
         Assertions.assertEquals(manager.getNextId(), "Resource #0");
         Resource resource1 = new Resource("This is not visible until you paid", manager.getNextId(),
                 12, "Please download it.", user);
@@ -62,8 +71,11 @@ public class ResourceManagerTest {
         Assertions.assertEquals("Resource #1",manager.getNextId());
     }
 
+    /**
+     * Test if downloadResource method functions as intended
+     */
     @Test
-    void downloadResource() {
+    void testDownloadResource() {
         User otherUser = new User("Su", "123@mail.com", "123");
         Resource resource1 = new Resource("This is not visible until you paid", manager.getNextId(),
                 12, "Please download it.", otherUser);

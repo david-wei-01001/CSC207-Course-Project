@@ -19,16 +19,16 @@ public class Exceptions {
 
     //error messages used by GraphManager
     public static final String CANNOT_RECOGNIZE_TREE = "Cannot recognize this tree.";
-    public static final String GRAPH_ALREADY_EXISTS = "This main.graph already exists in this userinfo.";
+    public static final String GRAPH_ALREADY_EXISTS = "This main.graph already exists in this user.";
 
 
     //error messages used by CommunityLibrary
     public static String CANNOT_RECOGNIZE_COMMUNITY = "Cannot recognize this community.";
 
     //error messages used by DirectedGraph
-    public static String Vertex_NOT_FOUND ="Vertex is absent in the main.graph.";
-    public static String Vertex_LOCKED ="This vertex is locked.";
-    public static String Vertex_ALREADY_COMPLETED ="This vertex is already completed.";
+    public static String VERTEX_NOT_FOUND ="Vertex is absent in the main.graph.";
+    public static String VERTEX_LOCKED ="This vertex is locked.";
+    public static String VERTEX_ALREADY_COMPLETED ="This vertex is already completed.";
     public static String EDGE_NOT_FOUND ="Vertex is absent in the main.graph, " +
             "OR there is no relation between these two vertices.";
     public static String EDGE_ALREADY_EXIST ="This edge already exists.";

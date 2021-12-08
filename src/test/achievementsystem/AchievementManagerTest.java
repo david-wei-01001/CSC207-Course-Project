@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test the AchievementManager class
+ */
 class AchievementManagerTest {
     final String USERNAME = "userName";
     final String EMAIL = "email@.com";
@@ -14,15 +17,24 @@ class AchievementManagerTest {
     User user;
     AchievementManager achievementManager;
 
+    /**
+     * Set up the test
+     */
     @BeforeEach
     void setUp() {
-        User user = new User(USERNAME, EMAIL, PASSWORD);
+        user = new User(USERNAME, EMAIL, PASSWORD);
         achievementManager = new AchievementManager();
         achievementManager.setCurrentUser(user);
     }
 
+    /**
+     * test if the AchievementManager class behave as intended.
+     */
     @Test
     void requestAchievement() {
+        assertEquals(user.displayAchievement(), "First Login: not acquired\nTenth Post: not acquired\n" +
+                "First Post: not acquired\nFifth Post: not acquired\n" );
+
         user.addToListOfPostId("1");
         achievementManager.requestAchievement(Achievements.ARRAY_OF_POST_THRESHOLDS,
                 Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
@@ -53,5 +65,10 @@ class AchievementManagerTest {
                 Achievements.MAP_TOTAL_LOGINS_THRESHOLDS_TO_ACHIEVEMENT,
                 user.getTotalLogins());
         assertTrue(user.getMapOfAchievement().get(Achievements.FIRST_LOGIN));
+
+        assertEquals(user.displayAchievement(), "First Login: acquired" + "\n" +
+        "Tenth Post: acquired" + "\n" +
+        "First Post: acquired" + "\n" +
+        "Fifth Post: acquired" + "\n");
     }
 }

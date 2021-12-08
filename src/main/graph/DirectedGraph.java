@@ -2,23 +2,22 @@ package graph;
 
 import constants.Exceptions;
 import constants.HasName;
-import constants.IterableMap;
-import constants.VertexArrayDefaultComparator;
+import maps.IterableMap;
+import comparator.VertexArrayDefaultComparator;
 
 import java.io.Serializable;
 import java.util.*;
 
-import static constants.Algorithm.*;
+import static algorithm.Algorithm.*;
 
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.
  */
-public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasName {
+public class DirectedGraph implements Serializable, HasName {
 
     /**
-     * The key of VERTICES is a String which is the name of a Vertex, the value of the VERTICES is an Array of length
-     * 2 where the first element is a Vertex which is the starting vertex of many edges and the second element is an
-     * ArrayList containing all Vertices that is the ending vertex which the starting vertex points to.
+     * The key of VERTICES is a String which is the name of a Vertex, the value of the VERTICES is an VertexArray object
+     * containing a starting vertex and all Vertices that is the ending vertex which the starting vertex points to.
      */
     private final IterableMap<String, VertexArray> VERTICES = new IterableMap<>();
     private final String NAME;
@@ -27,6 +26,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
 
     /**
      * get the number of completed vertex
+     *
      * @return number of complete
      */
     public int getNumOfCOMPLETED() {
@@ -34,6 +34,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     }
 
     /**
+     * TODO： What is this?
      * set tree id
      */
     public void setTreeId() {
@@ -41,11 +42,12 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
 
     /**
      * The constructor of the DirectedGraph class.
+     *
      * @param lstVertex A list of vertex to be added to the instance of DirectedGraph
-     * @param name The name of the DirectedGraph
+     * @param name      The name of the DirectedGraph
      */
     public DirectedGraph(Vertex[] lstVertex, String name) {
-        for(Vertex v: lstVertex){
+        for (Vertex v : lstVertex) {
 
             addVertex(v);
             CURRENTUNLOCK.add(v.getName());
@@ -67,26 +69,37 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         if (!checkEdgeExistence(edge)) {
             addVertex(edge[0]);
             addVertex(edge[1]);
-            edge[1].addInLevel();
-            updateAll(edge[1]);
+            update(getVertexArray(edge[1]), false);
             getVertexArray(edge[0]).addEdge(edge[1]);
         } else {
             throw new Exception(Exceptions.EDGE_ALREADY_EXIST);
         }
     }
 
-    public boolean checkEdgeExistence(Vertex[] edge) throws Exception {
+    /**
+     * @param edge a DirectedEdge to check if it is in the DirectedGraph
+     * @return Whether the given DirectedEdge exists in the DirectedGraph.
+     */
+    public boolean checkEdgeExistence(Vertex[] edge) {
         if (checkVertexExistence(edge[0])) {
-            if (getVertexArray(edge[0]).isEnd(edge[1])){
-                return true;
-            }
+            try {
+                if (getVertexArray(edge[0]).isEnd(edge[1])) {
+                    return true;
+                }
+            } catch (Exception ignored) {}
         }
         if (checkVertexExistence(edge[1])) {
-            return getVertexArray(edge[1]).isEnd(edge[0]);
+            try {
+                return getVertexArray(edge[1]).isEnd(edge[0]);
+            } catch (Exception ignored) {}
         }
         return false;
     }
 
+    /**
+     * @param vertex a vertex to check if it is in the DirectedGraph
+     * @return whether the given vertex is in the DirectedGraph
+     */
     public boolean checkVertexExistence(Vertex vertex) {
         return VERTICES.containsKey(vertex.getName());
     }
@@ -114,21 +127,40 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
      * @param edge An array of length 2 which represents a directed edge
      *             containing the starting vertex at index 0 and ending vertex at index 1.
      * @throws Exception if the name of the first vertex in edge does not exist in the DirectedGraph
-     * or if the directed edge to be deleted does not exist.
+     *                   or if the directed edge to be deleted does not exist.
      */
     public void deleteEdge(Vertex[] edge) throws Exception {
         getVertexArray(edge[0]).deleteThisEdge(edge[1]);
-        edge[1].minusInLevel();
-        updateAll(edge[1]);
-        if(edge[1].getInLevel() == 0){
+        update(getVertexArray(edge[1]), true);
+        if (edge[1].getInLevel() == 0) {
             CURRENTUNLOCK.add(edge[1].getName());
         }
     }
 
-    public void updateAll(Vertex vertex) throws Exception {
-        for (String name: VERTICES) {
-            if (getVertexArray(name).isEnd(vertex)) {
-                getVertexArray(name).updateVertex(vertex);
+    /**
+     * Update the inlevel of vertices in all DirectedEdges starting from vertex
+     *
+     * @param va a VertexArray whose DirectedEdges needs to be updated.
+     * @param decrease true if minusInLevel, false if addInLevel
+     */
+    public void update(VertexArray va, boolean decrease) {
+        if (decrease) {
+            va.getStart().minusInLevel();
+            if (!va.isEmpty()) {
+                for (Vertex end : va) {
+                    try {
+                        update(getVertexArray(end), true);
+                    } catch (Exception ignored) {}
+                }
+            }
+        } else {
+            va.getStart().addInLevel();
+            if (!va.isEmpty()) {
+                for (Vertex end : va) {
+                    try {
+                        update(getVertexArray(end), false);
+                    } catch (Exception ignored) {}
+                }
             }
         }
     }
@@ -142,10 +174,9 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
      */
     public void deleteVertex(String name) throws Exception {
         Vertex delete = getVertexArray(name).getStart();
-        for (Vertex v: getVertexArray(name)){
-            v.minusInLevel();
-            updateAll(v);
-            if (v.getInLevel() == 0){
+        update(getVertexArray(name), true);
+        for (Vertex v : getVertexArray(name)) {
+            if (v.getInLevel() == 0) {
                 CURRENTUNLOCK.add(v.getName());
             }
         }
@@ -163,15 +194,15 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     /**
      * An overloaded version of getVertexArray.
      * This implementation takes in the name of a vertex and return the VertexArray corresponding to this name.
+     *
      * @param name the name of a vertex
      * @return a VertexArray that stores all DirectedEdges starting from this vertex
      * @throws Exception if the name of the vertex does not exist in the DirectedGraph
      */
     public VertexArray getVertexArray(String name) throws Exception {
         if (!VERTICES.containsKey(name)) {
-            throw new Exception(Exceptions.Vertex_NOT_FOUND);
-        }
-        else {
+            throw new Exception(Exceptions.VERTEX_NOT_FOUND);
+        } else {
             return VERTICES.get(name);
         }
     }
@@ -179,6 +210,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     /**
      * An overloaded version of getVertexArray.
      * This implementation takes in a vertex and return the VertexArray corresponding to this vertex.
+     *
      * @param vertex a vertex
      * @return a VertexArray that stores all DirectedEdges starting from this vertex
      * @throws Exception if the name of the vertex does not exist in the DirectedGraph
@@ -186,60 +218,64 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     public VertexArray getVertexArray(Vertex vertex) throws Exception {
         String name = vertex.getName();
         if (!VERTICES.containsKey(name)) {
-            throw new Exception(Exceptions.Vertex_NOT_FOUND);
-        }
-        else {
+            throw new Exception(Exceptions.VERTEX_NOT_FOUND);
+        } else {
             return VERTICES.get(name);
         }
     }
 
     /**
      * Given a name, return vertex
+     *
      * @param name The name of Vertex
      * @return Return the vertex with name
      * @throws Exception if the name of the vertex does not exist in the DirectedGraph
      */
     public Vertex getVertex(String name) throws Exception {
-        for (String vertexName : VERTICES){
+        for (String vertexName : VERTICES) {
             if (vertexName.equals(name)) {
-                return  getVertexArray(name).getStart();
+                return getVertexArray(name).getStart();
             }
         }
-        throw new Exception(Exceptions.Vertex_NOT_FOUND);
+        throw new Exception(Exceptions.VERTEX_NOT_FOUND);
     }
 
     /**
      * To mark the complete for the vertex.
+     *
      * @param name: The name for vertex
      * @throws Exception if the name of the vertex does not exist in the DirectedGraph
-     * or if the vertex is currently locked or if the vertex is already completed.
+     *                   or if the vertex is currently locked or if the vertex is already completed.
      */
     public void complete(String name) throws Exception {
-        if (!VERTICES.containsKey(name)){
-            throw new Exception(Exceptions.Vertex_NOT_FOUND);
-        }else if (!CURRENTUNLOCK.contains(name)){
-            throw new Exception(Exceptions.Vertex_LOCKED);
+        if (!VERTICES.containsKey(name)) {
+            throw new Exception(Exceptions.VERTEX_NOT_FOUND);
         } else if (COMPLETED.contains(name)) {
-            throw new Exception(Exceptions.Vertex_ALREADY_COMPLETED);
-        } else {
+            throw new Exception(Exceptions.VERTEX_ALREADY_COMPLETED);
+        } else if (!CURRENTUNLOCK.contains(name))
+        {
+        throw new Exception(Exceptions.VERTEX_LOCKED);
+         } else {
             COMPLETED.add(name);
             CURRENTUNLOCK.remove(name);
-            for (Vertex next : getVertexArray(name)) {
-                next.minusInLevel();
-                updateAll(next);
-                if(next.getInLevel() == 0){
-                    CURRENTUNLOCK.add(next.getName());}
+            VertexArray next = getVertexArray(name);
+            update(next, true);
+            for (Vertex vertex : next) {
+                if (vertex.getInLevel() == 0) {
+                    CURRENTUNLOCK.add(vertex.getName());
+                }
             }
         }
     }
 
     /**
      * Override ToString method
+     *
      * @return the string representation of the TechTree(main.graph)
      */
     @Override
     public String toString() {
-       StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Name of TechTree: ");
         stringBuilder.append(NAME);
         stringBuilder.append("\n");
@@ -252,6 +288,14 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         return stringBuilder.toString();
     }
 
+    /**
+     * Helper method for DirectedGraph.toString. Specifying the String representation of the DirectedGraph starting
+     * from this edge.
+     *
+     * @param edge a starting vertex which String representation is required
+     * @param numInward the number of indentations preceding this String representation
+     * @return the String representation of the DirectedGraph starting from this edge.
+     */
     public String singleVertexToString(VertexArray edge, int numInward) {
         if (edge.isEmpty()) {
             return edge.getStart().toString();
@@ -265,9 +309,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
                     stringBuilder.append("    ".repeat(numInward));
                     stringBuilder.append("-> ");
                     stringBuilder.append(singleVertexToString(vertexArray, numInward + 1));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                } catch (Exception ignored) {}
             }
             return stringBuilder.toString();
         }
@@ -275,6 +317,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
 
     /**
      * Return the vertex available now.
+     *
      * @return Vertices that available now.
      * @throws Exception if the name of the vertex does not exist in the DirectedGraph
      */
@@ -292,9 +335,10 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
      * Return all vertices in the TechTree
      * Only intended to be used for testing.
      * It should not be used for any other purpose.
-     * @return Vertices
+     *
+     * @return VERTICES
      */
-    public Map<String, VertexArray> getVertices(){
+    public Map<String, VertexArray> getVertices() {
         return VERTICES;
     }
 
@@ -303,20 +347,17 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         return NAME;
     }
 
-    @Override
-    public Iterator<VertexArray> iterator() {
-        return new GraphItr();
-    }
-
+    /**
+     * Helper method to be used by the GraphItr class.
+     *
+     * @return a sorted list of VertexArray which is then going to be iterated.
+     */
     private List<VertexArray> arrangeArray() {
         List<VertexArray> vertexArray = new ArrayList<>();
         for (String vertexName : VERTICES) {
-            try{
+            try {
                 vertexArray.add(getVertexArray(vertexName));
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-
+            } catch (Exception ignored) {}
         }
         if (vertexArray.isEmpty()) {
             return vertexArray;
@@ -328,34 +369,14 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         return vertexArray;
     }
 
-    private class GraphItr implements Iterator<VertexArray> {
-
-        private final List<VertexArray> arranged;
-        private int index;
-
-        public GraphItr() {
-            arranged = arrangeArray();
-        }
-
-        @Override
-        public boolean hasNext() {
-            return index < arranged.size();
-        }
-
-        @Override
-        public VertexArray next() {
-            VertexArray toReturn = arranged.get(index);
-            index ++;
-            return toReturn;
-        }
-    }
-
     /**
      * Check if the completed set is zero, in other word, this
      * method is used to check whether the tree/graph was
      * began to learn
+     *
+     * @return if the graph has begun learning
      */
-    public boolean isLearnedGraph(){
+    public boolean isLearnedGraph() {
         int number = COMPLETED.size();
         return number != 0;
     }

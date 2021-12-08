@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * TODO: implement this test
+ * Test the User class
  */
 @SuppressWarnings("ALL")
 public class UserTest {
@@ -25,14 +25,13 @@ public class UserTest {
     final String PASSWORD = "password";
     User user;
 
+    /**
+     * The setup method that setup each test.
+     */
     @BeforeEach
     void setUp() {
 
         user = new User(USERNAME, EMAIL, PASSWORD);
-    }
-
-    @AfterEach
-    void tearDown() {
     }
 
     /**
@@ -56,7 +55,7 @@ public class UserTest {
         ArrayList<String> emptyArray = new ArrayList<>();
         Map<String, DirectedGraph> emptyMap = new HashMap<>();
 
-        Assertions.assertEquals("UserInfo{" +
+        Assertions.assertEquals("User{" +
                 "userName='" + USERNAME + '\'' +
                 ", email='" + EMAIL + '\'' +
                 ", password='" + PASSWORD + '\'' +
@@ -65,11 +64,14 @@ public class UserTest {
                 ", totalLogins=" + 0 +
                 ", listOfPostId=" + emptyArray +
                 ", listOfGraph=" + emptyMap +
-                ", mapOfResource=" + emptyArray +
+                ", mapOfResource=" + emptyMap +
                 ", mapOfAchievement=" + user.getMapOfAchievement() +
                 '}', user.toString());
     }
 
+    /**
+     * Test if the incrementTotalLogins method correctly increase the number of logins
+     */
     @Test
     void incrementTotalLogins() {
         user.incrementTotalLogins();
