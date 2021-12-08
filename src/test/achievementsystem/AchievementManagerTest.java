@@ -66,6 +66,9 @@ class AchievementManagerTest {
                 user.getTotalLogins());
         assertTrue(user.getMapOfAchievement().get(Achievements.FIRST_LOGIN));
 
-        assertEquals(user.displayAchievement(), user.getMapOfAchievement().toString());
+        assertEquals(user.displayAchievement(), "First Login: acquired" + "\n" +
+        "Tenth Post: acquired" + "\n" +
+        "First Post: acquired" + "\n" +
+        "Fifth Post: acquired" + "\n");
     }
 }
