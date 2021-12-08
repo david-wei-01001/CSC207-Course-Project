@@ -1,6 +1,7 @@
 package application;
 
 import interfaceadapter.SystemInOut;
+import interfaceadapter.UIAdapter;
 
 /**
  * The main class of our application. This is where to start the program.
@@ -11,7 +12,8 @@ public class TechnicalTree {
      */
     public static void main(String[] args) {
         try {
-            SystemInOut inOut = new SystemInOut();
+            UIAdapter uiAdapter = new CommandLineInput();
+            SystemInOut inOut = new SystemInOut(uiAdapter);
             inOut.run();
         } catch (Exception ignored) {}
     }
