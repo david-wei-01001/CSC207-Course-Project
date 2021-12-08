@@ -23,6 +23,7 @@ public class DirectedGraph implements Serializable, HasName {
     private final String NAME;
     private final List<String> CURRENTUNLOCK = new ArrayList<>();
     private final List<String> COMPLETED = new ArrayList<>();
+    private int treeid;
 
     /**
      * get the number of completed vertex
@@ -34,11 +35,9 @@ public class DirectedGraph implements Serializable, HasName {
     }
 
     /**
-     * TODO： What is this?
+     *
      * set tree id
      */
-    public void setTreeId() {
-    }
 
     /**
      * The constructor of the DirectedGraph class.

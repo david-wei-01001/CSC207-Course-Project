@@ -107,7 +107,6 @@ public class MathematicsGraphBuilder implements GraphBuilder{
         for (Vertex[] directedEdge : directedEdges) {
             result.addEdge(directedEdge);
         }
-        result.setTreeId();
         return result;
     }
 }
