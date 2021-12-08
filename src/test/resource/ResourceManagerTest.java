@@ -45,7 +45,7 @@ public class ResourceManagerTest {
      * Test if deleteResource method correctly delete a resource
      */
     @Test
-    void delete() {
+    void testDelete() {
         Resource resource1 = new Resource("This is not visible until you paid", manager.getNextId(),
                 12, "Please download it.", user);
         manager.addResource(resource1.getContent(), resource1.getPointsRequired(), resource1.getDescription());
@@ -63,7 +63,7 @@ public class ResourceManagerTest {
      * Test if getNextId method correctly return the ID of the next resource
      */
     @Test
-    void getNextId() {
+    void testGetNextId() {
         Assertions.assertEquals(manager.getNextId(), "Resource #0");
         Resource resource1 = new Resource("This is not visible until you paid", manager.getNextId(),
                 12, "Please download it.", user);
@@ -75,7 +75,7 @@ public class ResourceManagerTest {
      * Test if downloadResource method functions as intended
      */
     @Test
-    void downloadResource() {
+    void testDownloadResource() {
         User otherUser = new User("Su", "123@mail.com", "123");
         Resource resource1 = new Resource("This is not visible until you paid", manager.getNextId(),
                 12, "Please download it.", otherUser);

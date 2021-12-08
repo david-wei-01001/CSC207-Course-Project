@@ -32,7 +32,7 @@ class ResourceTest {
      * Test if the getDownloadTimes method correctly return the total number of downloads
      */
     @Test
-    void addDownloadTimes() {
+    void testAddDownloadTimes() {
         manager.addResource(resource.getContent(), resource.getPointsRequired(), resource.getDescription());
         manager.downloadResource("Resource #0");
         assertEquals(1, manager.getMapOfResource().get("Resource #0").getDownloadTimes());

@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 /**
  * Test the Post class
  */
-public class postTest {
+public class PostTest {
     Post post;
     User user;
 

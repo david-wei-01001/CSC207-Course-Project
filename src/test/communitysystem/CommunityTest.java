@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 /**
  * Test the Community class
  */
-public class communityTest {
+public class CommunityTest {
     Community community;
     User user;
 
