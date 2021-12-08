@@ -73,8 +73,9 @@ public class DirectedGraphTest {
             ArrayList<Vertex> test = new ArrayList<>();
             test.add(javaIntro);
             assertTrue(graph.getVertexArray("Introductory Python").endEqual(test));
+            graph.addEdge(edge);
         } catch (Exception e) {
-            fail();
+            assertEquals("This edge already exists.", e.getMessage());
         }
     }
 
@@ -211,6 +212,7 @@ public class DirectedGraphTest {
             assertTrue(graph.availableVertex().containsValue(CIntro));
             assertTrue(graph.availableVertex().containsValue(Intro165));
             assertEquals(JavaIntro.getInLevel(), 1);
+            assertEquals(graph.getNumOfCOMPLETED(), 1);
         } catch (Exception e) {
             fail();
         }
@@ -247,7 +249,6 @@ public class DirectedGraphTest {
             graph.addEdge(v6);
             graph.addEdge(vx);
             graph.deleteEdge(vx);
-//        assertEquals(main.graph.availableVertex(), 0);
             assertEquals(JavaIntro.getInLevel(), 1);
         } catch (Exception e) {
             fail();
@@ -572,6 +573,7 @@ public class DirectedGraphTest {
         graph.addEdge(v6);
         graph.addEdge(vx);
         graph.complete("Introductory Python");
+        assertTrue(graph.isLearnedGraph());
         try{
             graph.complete("Introductory Python");
             fail();

@@ -13,7 +13,7 @@ import static algorithm.Algorithm.*;
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.
  */
-public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasName {
+public class DirectedGraph implements Serializable, HasName {
 
     /**
      * The key of VERTICES is a String which is the name of a Vertex, the value of the VERTICES is an VertexArray object
@@ -86,16 +86,12 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
                 if (getVertexArray(edge[0]).isEnd(edge[1])) {
                     return true;
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            } catch (Exception ignored) {}
         }
         if (checkVertexExistence(edge[1])) {
             try {
                 return getVertexArray(edge[1]).isEnd(edge[0]);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            } catch (Exception ignored) {}
         }
         return false;
     }
@@ -154,9 +150,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
                 for (Vertex end : va) {
                     try {
                         update(getVertexArray(end), true);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    } catch (Exception ignored) {}
                 }
             }
         } else {
@@ -165,9 +159,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
                 for (Vertex end : va) {
                     try {
                         update(getVertexArray(end), false);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    } catch (Exception ignored) {}
                 }
             }
         }
@@ -317,9 +309,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
                     stringBuilder.append("    ".repeat(numInward));
                     stringBuilder.append("-> ");
                     stringBuilder.append(singleVertexToString(vertexArray, numInward + 1));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                } catch (Exception ignored) {}
             }
             return stringBuilder.toString();
         }
@@ -358,16 +348,6 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
     }
 
     /**
-     * Apply Iterator design pattern to DirectedGraph.
-     *
-     * @return an iterator class representation of DirectedGraph
-     */
-    @Override
-    public Iterator<VertexArray> iterator() {
-        return new GraphItr();
-    }
-
-    /**
      * Helper method to be used by the GraphItr class.
      *
      * @return a sorted list of VertexArray which is then going to be iterated.
@@ -377,9 +357,7 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         for (String vertexName : VERTICES) {
             try {
                 vertexArray.add(getVertexArray(vertexName));
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            } catch (Exception ignored) {}
         }
         if (vertexArray.isEmpty()) {
             return vertexArray;
@@ -389,45 +367,6 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         VertexArrayDefaultComparator vertexArrayDefaultComparator = new VertexArrayDefaultComparator();
         mergeSort(vertexArray, b, e, vertexArrayDefaultComparator);
         return vertexArray;
-    }
-
-    /**
-     * The iterator class of DirectedGraph which is used when looping through a DirectedGraph.
-     */
-    private class GraphItr implements Iterator<VertexArray> {
-
-        private final List<VertexArray> arranged;
-        private int index;
-
-        /**
-         * Constructor of the GraphItr which stores the already-sorted list of VertexArrays in the DirectedGraph
-         */
-        public GraphItr() {
-            arranged = arrangeArray();
-        }
-
-        /**
-         * returns true if the iteration has more elements.
-         * (In other words, returns true if next would return an element rather than throwing an exception.)
-         *
-         * @return true if the iteration has more elements
-         */
-        @Override
-        public boolean hasNext() {
-            return index < arranged.size();
-        }
-
-        /**
-         * Returns the next element in the iteration.
-         *
-         * @return the next element in the iteration
-         */
-        @Override
-        public VertexArray next() {
-            VertexArray toReturn = arranged.get(index);
-            index++;
-            return toReturn;
-        }
     }
 
     /**
