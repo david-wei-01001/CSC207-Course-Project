@@ -27,5 +27,6 @@ public class CommandLineInput implements UIAdapter {
     @Override
     public void exit() {
         System.exit(0);
+        scanner.close();
     }
 }
