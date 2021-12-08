@@ -441,8 +441,4 @@ public class DirectedGraph implements Serializable, Iterable<VertexArray>, HasNa
         int number = COMPLETED.size();
         return number != 0;
     }
-
-    public static void main(String[] args) {
-
-    }
 }

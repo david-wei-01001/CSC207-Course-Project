@@ -8,6 +8,7 @@ import graphbuilders.GraphArchitect;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -72,7 +73,7 @@ class UserManagerTest {
 
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.addNewUser("userName", "antherEmail@", "anotherPassword"));
-        Assertions.assertEquals("This username has already been taken", thrown.getMessage());
+        Assertions.assertEquals("This username has already been taken.", thrown.getMessage());
 
         User userToCompare = new User(USERNAME, EMAIL, PASSWORD);
         assertEquals(userManager.getMapOfUser().get(USERNAME).toString(), userToCompare.toString());
@@ -102,7 +103,7 @@ class UserManagerTest {
 
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.getAUser("anotherUserName"));
-        Assertions.assertEquals("Cannot recognize this main.user", thrown.getMessage());
+        Assertions.assertEquals("Invalid username", thrown.getMessage());
     }
 
     /**
@@ -117,21 +118,22 @@ class UserManagerTest {
         mapToCompare.put(GRAPH, graph1);
 
         assertEquals(mapToCompare.toString(), userManager.getCurrentUser().getMapOfGraph().toString());
-        assertEquals(GRAPH, userManager.getCurrentUser().getMapOfGraph().get(GRAPH).toString());
+        assertEquals(GRAPH, userManager.getCurrentUser().getMapOfGraph().get(GRAPH).getName());
         assertEquals(1, userManager.getCurrentUser().getMapOfGraph().size());
     }
 
     /**
      * Test if the addGraphToCurrent method correctly throws an exception
-     * @throws Exception an exception to be thrown
      */
     @Test
-    void testAddGraphToCurrentUnsuccessful() throws Exception {
-        userManager.addGraphToCurrent(GRAPH);
-
-        Exception thrown = Assertions.assertThrows(Exception.class, () ->
-                userManager.addGraphToCurrent(GRAPH));
-        Assertions.assertEquals("This main.graph already exists in this user", thrown.getMessage());
+    void testAddGraphToCurrentUnsuccessful() {
+        try {
+            userManager.addGraphToCurrent(GRAPH);
+            userManager.addGraphToCurrent(GRAPH);
+            Assertions.fail();
+        } catch (Exception e) {
+            Assertions.assertEquals("This main.graph already exists in this user.", e.getMessage());
+        }
     }
 
     /**
@@ -152,7 +154,7 @@ class UserManagerTest {
 
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.setUserNameOfCurrent("userName"));
-        Assertions.assertEquals("Same username as your current one", thrown.getMessage());
+        Assertions.assertEquals("Same username as your current one.", thrown.getMessage());
 
     }
 
@@ -166,7 +168,7 @@ class UserManagerTest {
         userManager.addNewUser("anotherUsername", "anotherEmail", "anotherPassword");
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.setUserNameOfCurrent("anotherUsername"));
-        Assertions.assertEquals("This username has already been taken", thrown.getMessage());
+        Assertions.assertEquals("This username has already been taken.", thrown.getMessage());
     }
 
     /**
@@ -188,7 +190,7 @@ class UserManagerTest {
     void testSetCurrentUserUnsuccessful() {
         Exception thrown = Assertions.assertThrows(Exception.class, () ->
                 userManager.setCurrentUser(ANOTHER_USERNAME));
-        Assertions.assertEquals("Cannot recognize this main.user", thrown.getMessage());
+        Assertions.assertEquals("Invalid username", thrown.getMessage());
     }
 
     /**
@@ -203,6 +205,9 @@ class UserManagerTest {
                 Achievements.MAP_POST_THRESHOLDS_TO_ACHIEVEMENT,
                 user.getListOfPostId().size());
         assertTrue(user.getMapOfAchievement().get(Achievements.FIRST_POST));
-        assertEquals(userManager.displayAchievement(), "a");
+        assertEquals(userManager.displayAchievement(), "First Login: not acquired\n" +
+                "Tenth Post: not acquired\n" +
+                "First Post: acquired\n" +
+                "Fifth Post: not acquired\n");
     }
 }

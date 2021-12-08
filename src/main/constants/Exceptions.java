@@ -19,7 +19,7 @@ public class Exceptions {
 
     //error messages used by GraphManager
     public static final String CANNOT_RECOGNIZE_TREE = "Cannot recognize this tree.";
-    public static final String GRAPH_ALREADY_EXISTS = "This main.graph already exists in this userinfo.";
+    public static final String GRAPH_ALREADY_EXISTS = "This main.graph already exists in this user.";
 
 
     //error messages used by CommunityLibrary
