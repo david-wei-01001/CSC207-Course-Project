@@ -35,11 +35,6 @@ public class DirectedGraph implements Serializable, HasName {
     }
 
     /**
-     *
-     * set tree id
-     */
-
-    /**
      * The constructor of the DirectedGraph class.
      *
      * @param lstVertex A list of vertex to be added to the instance of DirectedGraph
