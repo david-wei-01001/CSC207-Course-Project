@@ -82,10 +82,10 @@ public class User implements HasName, Serializable {
     /**
      * set the username to be the given name
      *
-     * @param newname a new username
+     * @param newName a new username
      */
-    public void setUsername(String newname) {
-        this.username = newname;
+    public void setUsername(String newName) {
+        this.username = newName;
     }
 
     /**
