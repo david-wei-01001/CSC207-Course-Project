@@ -10,13 +10,10 @@ public class TechnicalTree {
      * The main method of our program. Call this method to begin.
      */
     public static void main(String[] args) {
-        SystemInOut inOut = null;
         try {
-            inOut = new SystemInOut();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        inOut.run();
+            SystemInOut inOut = new SystemInOut();
+            inOut.run();
+        } catch (Exception ignored) {}
     }
 
 }

@@ -49,8 +49,8 @@ class UserManagerTest {
         userManager.setCurrentUser(USERNAME);
 
         graph1 = GraphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
-        graph2 = GraphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
-        graph3 = GraphArchitect.setBuilderAndBuildGraph("Introductory CS Series");
+        graph2 = GraphArchitect.setBuilderAndBuildGraph("Introductory Makeup Steps");
+        graph3 = GraphArchitect.setBuilderAndBuildGraph("Mathematics: Foundation to Frontier");
     }
 
     /**
@@ -128,8 +128,8 @@ class UserManagerTest {
     @Test
     void testAddGraphToCurrentUnsuccessful() {
         try {
-            userManager.addGraphToCurrent(GRAPH);
-            userManager.addGraphToCurrent(GRAPH);
+            userManager.addGraphToCurrent("Mathematics: Foundation to Frontier");
+            userManager.addGraphToCurrent("Mathematics: Foundation to Frontier");
             Assertions.fail();
         } catch (Exception e) {
             Assertions.assertEquals("This main.graph already exists in this user.", e.getMessage());
