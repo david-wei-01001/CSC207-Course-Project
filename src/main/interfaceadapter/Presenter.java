@@ -50,7 +50,8 @@ public class Presenter {
      * @param graphManager The Use Case graphManager which actions that can perform on DirectedGraphs.
      * @param communityLibrary The Use Case communityLibrary contains all the communities.
      */
-    public Presenter(UserManager userManager, ResourceManager resourceManager, GraphManager graphManager, CommunityLibrary communityLibrary) {
+    public Presenter(UserManager userManager, ResourceManager resourceManager, GraphManager graphManager,
+                     CommunityLibrary communityLibrary) {
         this.userManager = userManager;
         this.resourceManager = resourceManager;
         this.graphManager = graphManager;
@@ -69,7 +70,8 @@ public class Presenter {
      * Information to display all Main Menu options.
      */
     public void mainMenuOptions(){
-        System.out.println("Main Menu: 0. My tree 1.Technical Tree, 2.Resource, 3.Achievement, or enter \"exit\" to exit program");
+        System.out.println("Main Menu: 0. My tree 1.Technical Tree, 2.Resource, 3.Achievement, " +
+                "or enter \"exit\" to exit program");
     }
 
     /**
@@ -166,7 +168,8 @@ public class Presenter {
         System.out.println("Hi! Now you've entered your tree");
         System.out.println("Select the tree you want to study!");
 
-        HashMap<String, DirectedGraph> myTree1 = (HashMap<String, DirectedGraph>) userManager.getCurrentUser().getMapOfGraph();
+        HashMap<String, DirectedGraph> myTree1 = (HashMap<String, DirectedGraph>)
+                userManager.getCurrentUser().getMapOfGraph();
         HashMap<String, DirectedGraph> myTree2 = new HashMap<>();
         HashMap<String, DirectedGraph> allTree = (HashMap<String, DirectedGraph>) graphManager.getAllGraphs();
         for(String id: allTree.keySet()){
@@ -210,7 +213,8 @@ public class Presenter {
     public void technicalTreeMainPage(){
         System.out.println("Hi! Now you've entered the technical tree page.");
         System.out.println("Select the tree you want to study!");
-        System.out.println("Tech Trees: " + "\n" + getAllGraphName((HashMap<String, DirectedGraph>) graphManager.getAllGraphs()));
+        System.out.println("Tech Trees: " + "\n" + getAllGraphName((HashMap<String, DirectedGraph>)
+                graphManager.getAllGraphs()));
         System.out.println("Enter \"main\" to return to main page.");
     }
 
@@ -286,61 +290,48 @@ public class Presenter {
 
     /**
      * Requiring for the login options
-     *
-     * @return the response of the User's Login respond.
      */
-    protected String LoginOptions() {
-        Scanner scanner = new Scanner(System.in);
+    protected void LoginOptions() {
         System.out.println(LOGIN_OPTIONS);
-        return scanner.nextLine();
     }
 
     /**
      * Prompting the user to enter the correct login option
-     *
-     * @return the response of the User's Login respond.
      */
-    protected String getCorrectLoginOption(String input) {
-        Scanner scanner = new Scanner(System.in);
-        while (!(input.equals(ONE) || input.equals(TWO) || input.equals(EXIT))) {
-            System.out.println(INCORRECT_INPUT + ", " + PLEASE_TRY_AGAIN + ".");
-            input = scanner.nextLine();
-        }
-        return input;
+    protected void getCorrectLoginOption() {
+        System.out.println(INCORRECT_INPUT + ", " + PLEASE_TRY_AGAIN + ".");
     }
 
     /**
-     * Prompting the user to enter a non-empty credential
+     * Check if the given input is incorrect
      *
-     * @return the response of the User's input Credential.
+     * @param input the input from the user
+     * @return true if the input is incorrect, false otherwise
      */
-    protected String getNonEmptyCredential(String credential) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(credential + ": ");
-        String nonEmptyCredential = scanner.nextLine();
-        while (nonEmptyCredential.length() == 0) {
-            System.out.println(YOU_DID_NOT_ENTER_A + " " + credential + ", " + PLEASE_TRY_AGAIN + ".");
-            nonEmptyCredential = scanner.nextLine();
-        }
-        return nonEmptyCredential;
+    protected boolean incorrectLoginOption(String input) {
+        return !(input.equals(ONE) || input.equals(TWO) || input.equals(EXIT));
     }
 
     /**
-     * Prompting the user to enter a non-empty password
-     *
-     * @return the response of the User's input password
+     * @return whether the user entered a credential or not.
      */
-    protected String getNonEmptyPassword() {
-        return getNonEmptyCredential(PASSWORD);
+    protected boolean isEmptyCredential(String input) {
+        return input.length() == 0;
+    }
+
+
+    /**
+     * Information to display when the user does not enter a password.
+     */
+    protected void emptyPassword() {
+        System.out.println(YOU_DID_NOT_ENTER_A + " " + PASSWORD + ", " + PLEASE_TRY_AGAIN + ".");
     }
 
     /**
-     * Prompting the user to enter a non-empty username
-     *
-     * @return the response of the User's input username
+     * Information to display when the user does not enter a username.
      */
-    protected String getNonEmptyUsername() {
-        return getNonEmptyCredential(USERNAME);
+    protected void emptyUsername() {
+        System.out.println(YOU_DID_NOT_ENTER_A + " " + USERNAME + ", " + PLEASE_TRY_AGAIN + ".");
     }
 
     /**
@@ -383,6 +374,20 @@ public class Presenter {
      */
     protected void getEmail() {
         System.out.println(EMAIL + ": ");
+    }
+
+    /**
+     * Prompting the user to enter the password
+     */
+    protected void getPassword() {
+        System.out.println(PASSWORD + ": ");
+    }
+
+    /**
+     * Prompting the user to enter the username
+     */
+    protected void getUsername() {
+        System.out.println(USERNAME + ": ");
     }
 
 
