@@ -33,6 +33,15 @@ public class SystemInOut {
     private final TreeIdMap idMap;
 
     /**
+     * get usermanager, for testing usage.
+     * @return
+     */
+    public UserManager getUserManager() {
+        return userManager;
+    }
+
+
+    /**
      * Constructor of the SystemInOut controller
      *
      * @throws Exception if the username has already been taken
