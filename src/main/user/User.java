@@ -98,15 +98,6 @@ public class User implements HasName, Serializable {
     }
 
     /**
-     * set the password to be the given password
-     *
-     * @param newPassword a new password
-     */
-    public void setPassword(String newPassword) {
-        password = newPassword;
-    }
-
-    /**
      * @return the reward points of this user
      */
     public int getRewardPoints() {
@@ -148,7 +139,7 @@ public class User implements HasName, Serializable {
     }
 
     /**
-     * add theresource to this user
+     * add the resource to this user
      *
      * @param resource a resource to be added
      */

@@ -1,6 +1,5 @@
 package comparator;
 
-import comparator.InLevelComparator;
 import graph.VertexArray;
 
 import java.util.Comparator;

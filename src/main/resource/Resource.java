@@ -4,7 +4,7 @@ import posts.PublishedContents;
 import user.User;
 
 /**
- * A resource in which a main.user can share what he/she used to study a session.
+ * A resource in which a user can share what he/she used to study a session.
  */
 public class Resource extends PublishedContents {
     private final String content;

@@ -8,7 +8,6 @@ import resource.ResourceManager;
 import user.UserManager;
 
 import java.util.HashMap;
-import java.util.Scanner;
 
 /**
  * Presenter class which is bridging Use Cases and the UI and contains information the UI outputs to user.

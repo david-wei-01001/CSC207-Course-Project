@@ -77,7 +77,7 @@ public class VertexArray implements Iterable<Vertex>, Serializable {
      * Check whether the END instance variable is exactly the same as other
      *
      * @param other a predefined list to be compared with END
-     * @return whtether END is exactly the same as other
+     * @return whether END is exactly the same as other
      */
     public boolean endEqual(ArrayList<Vertex> other) {
         InLevelComparator inLevelComparator = new InLevelComparator();

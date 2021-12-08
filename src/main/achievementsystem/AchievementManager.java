@@ -31,8 +31,6 @@ public class AchievementManager {
     public boolean requestAchievement(int[] thresholds, Map<Integer, String> thresholdsToAchievement, int property) {
         for (int threshold : thresholds) {
             if (property == threshold) {
-//                currentUser.getMapOfAchievement().replace(thresholdsToAchievement.get(property),
-//                        false, true);
                 currentUser.getMapOfAchievement().put(thresholdsToAchievement.get(property),
                         true);
                 return true;

@@ -11,7 +11,7 @@ import java.util.Iterator;
 public class Algorithm {
 
     /**
-     * Return the index at where the given item need to be inserted without disrrupting the sorted nature of given list.
+     * Return the index at where the given item need to be inserted without disrupting the sorted nature of given list.
      *
      * @param lst a sorted list that the given item will be inserted.
      * @param toInsert an element that is to be inserted into the list
@@ -45,7 +45,7 @@ public class Algorithm {
      * @param itr2 second iterable object to be compared
      * @param comparator a comparator that specifies the comparing strategy
      * @param <T> The type of objects stored in both iterable objects
-     * @return the result of comparation: -1 for the first element less than the second element,
+     * @return the result of comparison: -1 for the first element less than the second element,
      *         0 for the first element equal to the second element,
      *         1 for the first element greater than the second element
      */
