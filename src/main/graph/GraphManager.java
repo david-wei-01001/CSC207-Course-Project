@@ -3,8 +3,8 @@ package graph;
 import communitysystem.CommunityLibrary;
 import constants.BuiltInGraphs;
 import constants.Exceptions;
-import maps.TreeIdMap;
 import graphbuilders.GraphArchitect;
+import maps.TreeIdMap;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +32,7 @@ public class GraphManager {
      *
      * @param communityLibrary a communityLibrary Use Case to be specified in this GraphManager
      */
-    public void addBuiltInGraph(CommunityLibrary communityLibrary){
+    public void addBuiltInGraph(CommunityLibrary communityLibrary) {
         setCommunityLibrary(communityLibrary);
         int i = 0;
         for (String builtInGraph : BuiltInGraphs.BUILT_IN_GRAPHS) {
@@ -54,14 +54,14 @@ public class GraphManager {
      *
      * @param newGraph a user's private graph to be updated
      */
-    public void updateWithPrivateGraph(DirectedGraph newGraph){
+    public void updateWithPrivateGraph(DirectedGraph newGraph) {
         String graphName = newGraph.getName();
         String treeId = "0";
         if (Objects.equals(graphName, "Introductory Makeup Steps")) {
             treeId = "1";
         }
 
-        if(mapOfGraphs.get(treeId).getNumOfCOMPLETED() <= newGraph.getNumOfCOMPLETED()){
+        if (mapOfGraphs.get(treeId).getNumOfCOMPLETED() <= newGraph.getNumOfCOMPLETED()) {
             mapOfGraphs.replace(treeId, newGraph);
         }
     }
@@ -71,19 +71,17 @@ public class GraphManager {
      *
      * @param communityLibrary a communityLibrary Use Case to be updated in this GraphManager
      */
-    public void setCommunityLibrary(CommunityLibrary communityLibrary){
+    public void setCommunityLibrary(CommunityLibrary communityLibrary) {
         this.communityLibrary = communityLibrary;
     }
-
 
 
     /**
      * @return the instance variable mapOfGraphs
      */
-    public Map<String, DirectedGraph> getAllGraphs(){
+    public Map<String, DirectedGraph> getAllGraphs() {
         return mapOfGraphs;
     }
-
 
 
     /**
@@ -133,7 +131,7 @@ public class GraphManager {
     /**
      * @return a string representation of the current main. graph
      */
-    public String displayCurrentGraph(){
+    public String displayCurrentGraph() {
         return currentGraph.toString();
     }
 }

@@ -33,15 +33,6 @@ public class SystemInOut {
     private final TreeIdMap idMap;
 
     /**
-     * get usermanager, for testing usage.
-     * @return
-     */
-    public UserManager getUserManager() {
-        return userManager;
-    }
-
-
-    /**
      * Constructor of the SystemInOut controller
      *
      * @throws Exception if the username has already been taken
@@ -90,7 +81,8 @@ public class SystemInOut {
             case Presenter.ONE:
                 try {
                     technicalTreeMainPage();
-                } catch (Exception ignored) {}
+                } catch (Exception ignored) {
+                }
                 break;
             case Presenter.TWO:
                 resourcePage();
@@ -107,14 +99,13 @@ public class SystemInOut {
     /**
      * Set up my tree main page and process the user input
      */
-    private void myTreeMainPage(){
-        if(userManager.getCurrentUser().getMapOfGraph().size() == 0){
+    private void myTreeMainPage() {
+        if (userManager.getCurrentUser().getMapOfGraph().size() == 0) {
             presenter.myTreePageEmpty();
             presenter.mainMenuReturn();
             uiAdapter.getInput();
             mainMenu();
-        }
-        else{
+        } else {
             presenter.myTreePage();
 
             String input = uiAdapter.getInput();
@@ -124,10 +115,9 @@ public class SystemInOut {
                 input = uiAdapter.getInput();
             }
 
-            if (input.equals("main")){
+            if (input.equals("main")) {
                 mainMenu();
-            }
-            else{
+            } else {
                 try {
                     myTreePage(input);
                 } catch (Exception e) {
@@ -193,7 +183,7 @@ public class SystemInOut {
         presenter.mainMenuReturn();
         uiAdapter.getInput();
         mainMenu();
-        }
+    }
 
     /**
      * process the request of download a resource and process the user input
@@ -201,12 +191,12 @@ public class SystemInOut {
     private void downloadResources() {
         presenter.resourceChoose();
         String content = uiAdapter.getInput();
-        while(resourceManager.downloadResource(content).equals(Presenter.INSUFFICIENT_POINTS)){
+        while (resourceManager.downloadResource(content).equals(Presenter.INSUFFICIENT_POINTS)) {
             presenter.insufficientPoints();
             presenter.resourceChoose();
             content = uiAdapter.getInput();
         }
-        while(!resourceManager.downloadResource(content).equals(Presenter.INSUFFICIENT_POINTS)){
+        while (!resourceManager.downloadResource(content).equals(Presenter.INSUFFICIENT_POINTS)) {
             presenter.downloadSuccessfully();
             resourceManager.downloadResource(content);
             presenter.mainMenuReturn();
@@ -246,11 +236,9 @@ public class SystemInOut {
             input = uiAdapter.getInput();
         }
 
-        if (input.equals(Presenter.MAIN)){
+        if (input.equals(Presenter.MAIN)) {
             mainMenu();
-        }
-
-        else {
+        } else {
             DirectedGraph graph = graphManager.getAllGraphs().get(input);
             userManager.getCurrentUser().addGraph(graph);
             technicalTreePage(input);
@@ -261,20 +249,19 @@ public class SystemInOut {
     /**
      * set up a built-in tree page and process the user input
      *
-     *  @throws Exception according to the exceptions
+     * @throws Exception according to the exceptions
      */
     private void technicalTreePage(String treeId) throws Exception {
 
-        DirectedGraph currGraph= null;
-        if(treeId.equals("0")){
+        DirectedGraph currGraph = null;
+        if (treeId.equals("0")) {
             currGraph = userManager.getCurrentUser().getMapOfGraph().get("Introductory CS Series");
-        }
-        else if(treeId.equals("1")){
+        } else if (treeId.equals("1")) {
             currGraph = userManager.getCurrentUser().getMapOfGraph().get("Introductory Makeup Steps");
         }
 
 
-        if (currGraph != null){
+        if (currGraph != null) {
             graphManager.updateWithPrivateGraph(currGraph);
         }
 
@@ -285,15 +272,14 @@ public class SystemInOut {
 
         presenter.technicalTreePage();
         String input = uiAdapter.getInput();
-        while (!graphManager.getCurrentGraph().availableVertex().containsKey(input) && !input.equals(Presenter.MAIN)){
+        while (!graphManager.getCurrentGraph().availableVertex().containsKey(input) && !input.equals(Presenter.MAIN)) {
             presenter.incorrectInput();
             input = uiAdapter.getInput();
         }
 
-        if (input.equals(Presenter.MAIN)){
+        if (input.equals(Presenter.MAIN)) {
             mainMenu();
-        }
-        else {
+        } else {
             String vertexName = graphManager.getCurrentGraph().availableVertex().get(input).toString();
 
             studyVertex(vertexName, treeId);
@@ -308,7 +294,7 @@ public class SystemInOut {
 
         presenter.studyVertex();
         String input = uiAdapter.getInput();
-        while (!input.equals(Presenter.YES)){
+        while (!input.equals(Presenter.YES)) {
             presenter.studyVertexNotFinished();
             input = uiAdapter.getInput();
         }
@@ -404,7 +390,8 @@ public class SystemInOut {
             rewardManager.setCurrentUser(userManager.getCurrentUser());
             communityLibrary.setCurrentUser(userManager.getCurrentUser());
             resourceManager.setCurrentUser(userManager.getCurrentUser());
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
     /**
@@ -450,7 +437,8 @@ public class SystemInOut {
         String password = null;
         try {
             password = userManager.getAUser(username).getPassword();
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
         return password;
     }
 
@@ -549,7 +537,8 @@ public class SystemInOut {
         String password = getPasswordRegister();
         try {
             userManager.addNewUser(username, email, password);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
         setCurrentUser(username);
         return true;
     }
@@ -560,17 +549,18 @@ public class SystemInOut {
     public void exitProgram() {
         try {
             save();
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
         uiAdapter.exit();
     }
 
     /**
      * Check for the learned tree and update them into user's info storage.
      */
-    public void checkForMyTree(){
-        for(DirectedGraph graph: graphManager.getAllGraphs().values()){
-            if(graph.isLearnedGraph()){
-                user.User currUser=userManager.getCurrentUser();
+    public void checkForMyTree() {
+        for (DirectedGraph graph : graphManager.getAllGraphs().values()) {
+            if (graph.isLearnedGraph()) {
+                user.User currUser = userManager.getCurrentUser();
                 currUser.addGraph(graph);
             }
         }

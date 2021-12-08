@@ -40,7 +40,7 @@ public class TestingInput implements UIAdapter {
      * Only intended to be used for testing.
      * return whether the test reaches the end of the inputs
      *
-     *  @return true if the test reaches the end of the inputs, false otherwise
+     * @return true if the test reaches the end of the inputs, false otherwise
      */
     public boolean getToEnd() {
         return reachEnd;

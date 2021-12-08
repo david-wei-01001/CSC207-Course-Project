@@ -1,9 +1,9 @@
 package user;
 
+import constants.Achievements;
 import constants.HasName;
 import graph.DirectedGraph;
 import resource.Resource;
-import constants.Achievements;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -32,7 +32,7 @@ public class User implements HasName, Serializable {
      * The constructor called when a user is created.
      *
      * @param username the username of a user
-     * @param email the email of a user
+     * @param email    the email of a user
      * @param password the password of a user
      */
     public User(String username, String email, String password) {
@@ -127,14 +127,14 @@ public class User implements HasName, Serializable {
      *
      * @param graph a DirectedGraph to be added
      */
-    public void addGraph(DirectedGraph graph){
+    public void addGraph(DirectedGraph graph) {
         mapOfGraph.put(graph.getName(), graph);
     }
 
     /**
      * @return a map of all DirectedGraphs of this user
      */
-    public Map<String, DirectedGraph> getMapOfGraph(){
+    public Map<String, DirectedGraph> getMapOfGraph() {
         return this.mapOfGraph;
     }
 
@@ -143,14 +143,14 @@ public class User implements HasName, Serializable {
      *
      * @param resource a resource to be added
      */
-    public void addResource(Resource resource){
+    public void addResource(Resource resource) {
         mapOfResource.put(resource.getId(), resource);
     }
 
     /**
      * @return a map of all resources of this user
      */
-    public Map<String, Resource> getMapOfResource(){
+    public Map<String, Resource> getMapOfResource() {
         return this.mapOfResource;
     }
 
@@ -194,6 +194,7 @@ public class User implements HasName, Serializable {
     public String getEmail() {
         return email;
     }
+
     /**
      * @return the user's password
      */
@@ -211,7 +212,7 @@ public class User implements HasName, Serializable {
     /**
      * Check if the given graph is in the user's mapOfGraph
      *
-     *  @param graphName the name of a graph to be checked
+     * @param graphName the name of a graph to be checked
      * @return whether the given graph is in the user's mapOfGraph
      */
     public boolean hasGraph(String graphName) {
@@ -223,9 +224,9 @@ public class User implements HasName, Serializable {
      */
     public String displayAchievement() {
         StringBuilder achievements = new StringBuilder();
-        for(String name: mapOfAchievement.keySet()){
+        for (String name : mapOfAchievement.keySet()) {
             Boolean status = mapOfAchievement.get(name);
-            if(status) {
+            if (status) {
                 achievements.append(name).append(": acquired").append("\n");
             } else {
                 achievements.append(name).append(": not acquired").append("\n");

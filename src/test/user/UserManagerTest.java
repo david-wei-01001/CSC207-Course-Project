@@ -54,6 +54,7 @@ class UserManagerTest {
 
     /**
      * Test if the addNewUser correctly add a user
+     *
      * @throws Exception an exception to be thrown
      */
     @Test
@@ -82,6 +83,7 @@ class UserManagerTest {
 
     /**
      * Test if the getAUser correctly retrieve a user
+     *
      * @throws Exception an exception to be thrown
      */
     @Test
@@ -107,6 +109,7 @@ class UserManagerTest {
 
     /**
      * Test if the addGraphToCurrent method correctly add a graph to the user
+     *
      * @throws Exception an exception to be thrown
      */
     @Test
@@ -137,6 +140,7 @@ class UserManagerTest {
 
     /**
      * Test if the setUserNameOfCurrent method correctly set a username
+     *
      * @throws Exception an exception to be thrown
      */
     @Test
@@ -159,6 +163,7 @@ class UserManagerTest {
 
     /**
      * Test if the setUserNameOfCurrent method correctly set the user to a different set of credentials
+     *
      * @throws Exception an exception to be thrown
      */
     @Test
@@ -172,6 +177,7 @@ class UserManagerTest {
 
     /**
      * Test if the getCurrentUser method correctly retrieve the current user
+     *
      * @throws Exception an exception to be thrown
      */
     @Test

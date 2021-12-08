@@ -34,8 +34,8 @@ public class PostTest {
      */
     @Test
     public void testAddCommentSuccessfulAndGetMapOfContents() {
-        Comment c1 = new Comment("testing", "Comment #0",user);
-        Comment c2 = new Comment("aa", "Comment #1",user);
+        Comment c1 = new Comment("testing", "Comment #0", user);
+        Comment c2 = new Comment("aa", "Comment #1", user);
 
         Map<String, Comment> mapToCompare = new HashMap<>();
 
@@ -54,10 +54,11 @@ public class PostTest {
      */
     @Test
     public void testDeleteCommentUnsuccessful() {
-        try{
+        try {
             post.deletePublishedContent("Comment #100");
             fail();
-        } catch (HasPublishedContents.PostNotFoundException ignored){}
+        } catch (HasPublishedContents.PostNotFoundException ignored) {
+        }
     }
 
     /**
@@ -71,8 +72,8 @@ public class PostTest {
             fail();
         }
 
-        Comment c1 = new Comment("testing", "Comment #0",user);
-        Comment c2 = new Comment("aa", "Comment #1",user);
+        Comment c1 = new Comment("testing", "Comment #0", user);
+        Comment c2 = new Comment("aa", "Comment #1", user);
 
         Map<String, Comment> mapToCompare = new HashMap<>();
 
@@ -121,39 +122,39 @@ public class PostTest {
         Comment comment0 = post.getMapOfComments().get("Comment #0");
         Comment comment1 = post.getMapOfComments().get("Comment #1");
         assertEquals("Post" + '\n' +
-                "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
-                        +'\n'
+                        "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+                        + '\n'
                         + "id=" + post.getId()
                         + ", creator=" + post.getCreator().getName()
-                        +'\n'
-                        +"------------------------------------------------------------------------------------------" +
+                        + '\n'
+                        + "------------------------------------------------------------------------------------------" +
                         "------------"
-                        +'\n'
+                        + '\n'
                         + post.getContent()
                         + '\n'
                         + "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +
                         "::::::::::::"
-                        +'\n'
+                        + '\n'
                         + "Comments"
                         + '\n'
                         + "----------------------------------------------------------------------------------------" +
                         "--------------"
-                        +'\n'
+                        + '\n'
                         + comment0.getId()
-                        +'='
-                        +'\n'
+                        + '='
+                        + '\n'
                         + comment0.getCreator().getName()
-                        +'\n'
+                        + '\n'
                         + comment0.getContent()
                         + '\n'
                         + "----------------------------------------------------------------------------------------" +
                         "--------------"
-                        +'\n'
+                        + '\n'
                         + comment1.getId()
-                        +'='
-                        +'\n'
+                        + '='
+                        + '\n'
                         + comment1.getCreator().getName()
-                        +'\n'
+                        + '\n'
                         + comment1.getContent()
                         + '\n'
                         + "----------------------------------------------------------------------------------------" +

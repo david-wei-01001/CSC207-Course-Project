@@ -28,8 +28,8 @@ class TreeIdMapTest {
         HashMap<String, String> map = new HashMap<>();
         map.put("1", "Introductory CS Series");
         TreeIdMap idMap = new TreeIdMap(map);
-        idMap.setIdMap("2","Introductory Makeup Steps");
-        map.put("2","Introductory Makeup Steps");
+        idMap.setIdMap("2", "Introductory Makeup Steps");
+        map.put("2", "Introductory Makeup Steps");
         assert (map.equals(idMap.getIdMap()));
     }
 }

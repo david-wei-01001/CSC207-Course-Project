@@ -41,7 +41,7 @@ public class VertexArrayTest {
      * Test if indexToInsert method returns the correct index if END is empty.
      */
     @Test
-    public void testIndexToInsertEmpty(){
+    public void testIndexToInsertEmpty() {
         Vertex java = new Vertex("Introductory Java");
         assertEquals(va.indexToInsert(java), 0);
     }
@@ -50,7 +50,7 @@ public class VertexArrayTest {
      * Test if indexToInsert method returns the correct index if vertices have the same inLevel.
      */
     @Test
-    public void testIndexToInsertSameInLevel(){
+    public void testIndexToInsertSameInLevel() {
         Vertex java = new Vertex("Introductory Java");
         va.addEdge(java);
         Vertex toc = new Vertex("Theory of Computation");
@@ -63,7 +63,7 @@ public class VertexArrayTest {
      * Test if indexToInsert method returns the correct index if vertex to be inserted has more inLevel.
      */
     @Test
-    public void testIndexToInsertMoreInLevel(){
+    public void testIndexToInsertMoreInLevel() {
         Vertex java = new Vertex("Introductory Java");
         va.addEdge(java);
         Vertex toc = new Vertex("Theory of Computation");
@@ -77,7 +77,7 @@ public class VertexArrayTest {
      * Test if indexToInsert method returns the correct index if vertex to be inserted has less inLevel.
      */
     @Test
-    public void testIndexToInsertLessInLevel(){
+    public void testIndexToInsertLessInLevel() {
         Vertex java = new Vertex("Introductory Java");
         java.addInLevel();
         va.addEdge(java);
@@ -92,7 +92,7 @@ public class VertexArrayTest {
      * Test if indexToInsert method returns the correct index if vertex to be inserted has inLevel between two vertices.
      */
     @Test
-    public void testIndexToInsertMiddleInLevel(){
+    public void testIndexToInsertMiddleInLevel() {
         Vertex java = new Vertex("Introductory Java");
         va.addEdge(java);
         Vertex toc = new Vertex("Theory of Computation");
@@ -108,7 +108,7 @@ public class VertexArrayTest {
      * Test if getStart method correctly fetch the starting vertex.
      */
     @Test
-    public void testGetStart(){
+    public void testGetStart() {
         assertEquals("Introductory Python", va.getStart().toString());
     }
 
@@ -116,7 +116,7 @@ public class VertexArrayTest {
      * Test if deleteThisEdge method correctly delete a DirectedEdge.
      */
     @Test
-    public void testDeleteThisEdge(){
+    public void testDeleteThisEdge() {
         try {
             Vertex java = new Vertex("Introductory Java");
             va.addEdge(java);
@@ -154,7 +154,7 @@ public class VertexArrayTest {
      * Test if toString method function as intended if there is no ending vertex.
      */
     @Test
-    public void testToStringNoEndingVertex(){
+    public void testToStringNoEndingVertex() {
         assertEquals(va.toString(), "Introductory Python\n");
     }
 
@@ -162,7 +162,7 @@ public class VertexArrayTest {
      * Test if toString method function as intended if there are ending vertices.
      */
     @Test
-    public void testToStringWithEndingVertex(){
+    public void testToStringWithEndingVertex() {
         Vertex java = new Vertex("Introductory Java");
         va.addEdge(java);
         Vertex toc = new Vertex("Theory of Computation");
@@ -175,7 +175,7 @@ public class VertexArrayTest {
      * Test if updateVertex method function as intended.
      */
     @Test
-    public void testUpdateVertex(){
+    public void testUpdateVertex() {
         try {
             Vertex java = new Vertex("Introductory Java");
             va.addEdge(java);

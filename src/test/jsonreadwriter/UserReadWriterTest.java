@@ -1,14 +1,8 @@
 package jsonreadwriter;
 
 import interfaceadapter.SystemInOut;
-import interfaceadapter.UIAdapter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import user.User;
-import user.UserList;
-import user.UserManager;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserReadWriterTest {
 

@@ -25,22 +25,4 @@ class SystemInOutTest {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

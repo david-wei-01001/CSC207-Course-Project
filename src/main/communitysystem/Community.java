@@ -31,7 +31,7 @@ public class Community implements HasPublishedContents, Serializable {
      * @param name the name of this community
      */
 
-    public Community(String name){
+    public Community(String name) {
         nameOfCommunity = name;
     }
 
@@ -84,7 +84,7 @@ public class Community implements HasPublishedContents, Serializable {
         StringBuilder result = new StringBuilder();
         for (String postName : mapOfPost) {
             Post post = mapOfPost.get(postName);
-            if(post.visibility()) {
+            if (post.visibility()) {
                 result.append(post).append("\n");
             }
         }
@@ -102,7 +102,7 @@ public class Community implements HasPublishedContents, Serializable {
     /**
      * @return the size of the mapOfPost instance variable
      */
-    public int getNumberOfPosts(){
+    public int getNumberOfPosts() {
         return mapOfPost.size();
     }
 
@@ -111,7 +111,7 @@ public class Community implements HasPublishedContents, Serializable {
      *
      * @return a string representation of the id of the next potential post
      */
-    public String getNextId(){
+    public String getNextId() {
         return "Post #" + mapOfPost.size();
     }
 }

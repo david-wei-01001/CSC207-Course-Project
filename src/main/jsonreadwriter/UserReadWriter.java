@@ -1,4 +1,5 @@
 package jsonreadwriter;
+
 import user.UserList;
 
 import java.io.*;
@@ -12,7 +13,7 @@ public class UserReadWriter implements ReadWriter {
      * Writes the users to file at filePath.
      *
      * @param filePath the file to write the records to
-     * @param o    stores the list of users to be serialized
+     * @param o        stores the list of users to be serialized
      * @throws IOException the exception is thrown
      */
     @Override

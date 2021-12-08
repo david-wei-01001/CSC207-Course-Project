@@ -11,7 +11,7 @@ public interface HasPublishedContents {
      * Create a specific exception for PostNotFoundException
      */
     class PostNotFoundException extends Exception {
-        public PostNotFoundException () {
+        public PostNotFoundException() {
             super();
         }
     }
@@ -19,7 +19,7 @@ public interface HasPublishedContents {
     /**
      * Name the exception by ABSENT
      */
-   PostNotFoundException ABSENT = new PostNotFoundException ();
+    PostNotFoundException ABSENT = new PostNotFoundException();
 
     /**
      * Add the intended content to the map which the content belongs to
