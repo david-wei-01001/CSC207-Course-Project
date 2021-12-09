@@ -17,8 +17,8 @@ import java.util.Map;
 public class User implements HasName, Serializable {
     private static final long serialVersionUID = 1113799434508676095L;
     private String username;
-    private String email;
-    private String password;
+    private final String email;
+    private final String password;
     private int rewardPoints;
     private final LocalDate lastLogin;
     private int totalLogins;
@@ -86,15 +86,6 @@ public class User implements HasName, Serializable {
      */
     public void setUsername(String newName) {
         this.username = newName;
-    }
-
-    /**
-     * set the email to be the given email
-     *
-     * @param newEmail a new email
-     */
-    public void setEmail(String newEmail) {
-        email = newEmail;
     }
 
     /**
@@ -186,13 +177,6 @@ public class User implements HasName, Serializable {
      */
     public int getTotalLogins() {
         return totalLogins;
-    }
-
-    /**
-     * @return the user's email
-     */
-    public String getEmail() {
-        return email;
     }
 
     /**
