@@ -287,7 +287,7 @@ public class DirectedGraphTest {
             graph.addEdge(vx);
             Vertex PhilIntro = new Vertex("Introductory Philosophy");
             Vertex[] v7 = {PhilIntro, Intro165};
-            try{
+            try {
                 graph.deleteEdge(v7);
                 fail();
             } catch (Exception e) {
@@ -330,7 +330,7 @@ public class DirectedGraphTest {
             graph.addEdge(vx);
             Vertex PhilIntro = new Vertex("Introductory Philosophy");
             Vertex[] v7 = {Intro165, PhilIntro};
-            try{
+            try {
                 graph.deleteEdge(v7);
                 fail();
             } catch (Exception e) {
@@ -371,7 +371,7 @@ public class DirectedGraphTest {
             graph.addEdge(v5);
             graph.addEdge(v6);
             graph.addEdge(vx);
-            try{
+            try {
                 graph.deleteVertex("Introductory Philosophy");
                 fail();
             } catch (Exception e) {
@@ -412,7 +412,7 @@ public class DirectedGraphTest {
             graph.addEdge(v5);
             graph.addEdge(v6);
             graph.addEdge(vx);
-            try{
+            try {
                 graph.getVertexArray("Introductory Philosophy");
                 fail();
             } catch (Exception e) {
@@ -453,7 +453,7 @@ public class DirectedGraphTest {
         graph.addEdge(v6);
         graph.addEdge(vx);
         Vertex PhilIntro = new Vertex("Introductory Philosophy");
-        try{
+        try {
             graph.getVertexArray(PhilIntro);
             fail();
         } catch (Exception e) {
@@ -491,7 +491,7 @@ public class DirectedGraphTest {
             graph.addEdge(v5);
             graph.addEdge(v6);
             graph.addEdge(vx);
-            try{
+            try {
                 graph.getVertex("Introductory Philosophy");
                 fail();
             } catch (Exception e) {
@@ -532,7 +532,7 @@ public class DirectedGraphTest {
             graph.addEdge(v5);
             graph.addEdge(v6);
             graph.addEdge(vx);
-            try{
+            try {
                 graph.complete("Introductory Philosophy");
                 fail();
             } catch (Exception e) {
@@ -574,7 +574,7 @@ public class DirectedGraphTest {
         graph.addEdge(vx);
         graph.complete("Introductory Python");
         assertTrue(graph.isLearnedGraph());
-        try{
+        try {
             graph.complete("Introductory Python");
             fail();
         } catch (Exception e) {
@@ -612,7 +612,7 @@ public class DirectedGraphTest {
             graph.addEdge(v5);
             graph.addEdge(v6);
             graph.addEdge(vx);
-            try{
+            try {
                 graph.complete("CSC263");
                 fail();
             } catch (Exception e) {

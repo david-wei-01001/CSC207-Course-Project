@@ -1,8 +1,8 @@
 package graphbuilders;
 
 import constants.BuiltInGraphs;
-import graph.DirectedGraph;
 import constants.Exceptions;
+import graph.DirectedGraph;
 
 /**
  * A class to select GraphBuilders and build corresponding graphs.
@@ -31,7 +31,7 @@ public class GraphArchitect {
             default:
                 throw new Exception(Exceptions.CANNOT_RECOGNIZE_BUILT_IN_TREE);
         }
-            return graphBuilder.buildGraph();
+        return graphBuilder.buildGraph();
     }
 }
 

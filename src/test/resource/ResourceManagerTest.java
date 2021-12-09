@@ -27,7 +27,7 @@ public class ResourceManagerTest {
      * Test if addResource method correctly add a resource and getMapOfResource functions as intended
      */
     @Test
-     public void testAddAndGetMapOfResource() {
+    public void testAddAndGetMapOfResource() {
         Resource resource1 = new Resource("This is not visible until you paid", manager.getNextId(),
                 12, "Please download it.", user);
         manager.addResource(resource1.getContent(), resource1.getPointsRequired(), resource1.getDescription());
@@ -36,8 +36,8 @@ public class ResourceManagerTest {
         manager.addResource(resource2.getContent(), resource2.getPointsRequired(), resource2.getDescription());
         Assertions.assertTrue(manager.getMapOfResource().containsKey("Resource #0"));
         Assertions.assertTrue(manager.getMapOfResource().containsKey("Resource #1"));
-        Assertions.assertEquals( resource1.toString(),manager.getMapOfResource().get("Resource #0").toString());
-        Assertions.assertEquals(resource2.toString(),manager.getMapOfResource().get("Resource #1").toString());
+        Assertions.assertEquals(resource1.toString(), manager.getMapOfResource().get("Resource #0").toString());
+        Assertions.assertEquals(resource2.toString(), manager.getMapOfResource().get("Resource #1").toString());
     }
 
     /**
@@ -55,7 +55,7 @@ public class ResourceManagerTest {
         Assertions.assertTrue(manager.getMapOfResource().containsKey("Resource #1"));
         Assertions.assertFalse(manager.getMapOfResource().get("Resource #0").visibility());
         Assertions.assertEquals(manager.getMapOfResource().get("Resource #1").toString(), resource2.toString());
-        Assertions.assertEquals( 2,manager.getNumberOfResources());
+        Assertions.assertEquals(2, manager.getNumberOfResources());
     }
 
     /**
@@ -67,7 +67,7 @@ public class ResourceManagerTest {
         Resource resource1 = new Resource("This is not visible until you paid", manager.getNextId(),
                 12, "Please download it.", user);
         manager.addResource(resource1.getContent(), resource1.getPointsRequired(), resource1.getDescription());
-        Assertions.assertEquals("Resource #1",manager.getNextId());
+        Assertions.assertEquals("Resource #1", manager.getNextId());
     }
 
     /**
@@ -83,6 +83,6 @@ public class ResourceManagerTest {
         Assertions.assertEquals("Sorry, you do not have enough points", message1);
         user.setRewardPoints(300);
         String message2 = manager.downloadResource("Resource #0");
-        Assertions.assertEquals(resource1.getContent(),message2);
+        Assertions.assertEquals(resource1.getContent(), message2);
     }
 }

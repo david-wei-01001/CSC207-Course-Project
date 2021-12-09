@@ -10,7 +10,7 @@ import java.util.Map;
  * A map of username —> User object.
  */
 
-public class UserList implements Serializable, Iterable<String>{
+public class UserList implements Serializable, Iterable<String> {
 
     private final IterableMap<String, User> usersList = new IterableMap<>();
 
@@ -42,12 +42,12 @@ public class UserList implements Serializable, Iterable<String>{
     }
 
     /**
-     *
      * @param username the username od the user
-     *
      * @return if the user with given username in current userList.
      */
-    public boolean containsKey(String username){ return usersList.containsKey(username); }
+    public boolean containsKey(String username) {
+        return usersList.containsKey(username);
+    }
 
     /**
      * Apply Iterator design pattern to UserList.

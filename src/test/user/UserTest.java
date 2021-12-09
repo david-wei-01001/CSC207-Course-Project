@@ -83,10 +83,10 @@ public class UserTest {
      * test if the achievements are displayed properly with no requirement to the order of display
      */
     @Test
-    void testDisplayAchievements(){
+    void testDisplayAchievements() {
         user.initializeMapOfAchievement();
         Object[] achievementNames = user.getMapOfAchievement().keySet().toArray();
-        Assertions.assertEquals( achievementNames[0]
+        Assertions.assertEquals(achievementNames[0]
                         + ": "
                         + "not acquired"
                         + '\n'
@@ -103,6 +103,6 @@ public class UserTest {
                         + "not acquired"
                         + '\n'
 
-                ,user.displayAchievement());
+                , user.displayAchievement());
     }
 }

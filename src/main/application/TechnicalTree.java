@@ -15,7 +15,8 @@ public class TechnicalTree {
             UIAdapter uiAdapter = new CommandLineInput();
             SystemInOut inOut = new SystemInOut(uiAdapter);
             inOut.run();
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
 }

@@ -55,7 +55,7 @@ public class Achievements {
 
 
     public static final String[] ARRAY_OF_ALL_ACHIEVEMENTS = {FIRST_LOGIN, TENTH_POST, FIRST_POST, FIFTH_POST
-            };
+    };
     public static final Map<Integer, Integer> MAP_TOTAL_LOGINS_THRESHOLDS_TO_REWARD = Map.ofEntries(
             Map.entry(FIRST_LOGIN_THRESHOLD, FIRST_LOGIN_REWARD)
     );

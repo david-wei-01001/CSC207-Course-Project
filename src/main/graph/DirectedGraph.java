@@ -1,14 +1,17 @@
 package graph;
 
+import comparator.VertexArrayDefaultComparator;
 import constants.Exceptions;
 import constants.HasName;
 import maps.IterableMap;
-import comparator.VertexArrayDefaultComparator;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static algorithm.Algorithm.*;
+import static algorithm.Algorithm.mergeSort;
 
 /**
  * A Directed Graph, which is the data structure used to represent a field of knowledge.
@@ -79,12 +82,14 @@ public class DirectedGraph implements Serializable, HasName {
                 if (getVertexArray(edge[0]).isEnd(edge[1])) {
                     return true;
                 }
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         }
         if (checkVertexExistence(edge[1])) {
             try {
                 return getVertexArray(edge[1]).isEnd(edge[0]);
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         }
         return false;
     }
@@ -133,7 +138,7 @@ public class DirectedGraph implements Serializable, HasName {
     /**
      * Update the inlevel of vertices in all DirectedEdges starting from vertex
      *
-     * @param va a VertexArray whose DirectedEdges needs to be updated.
+     * @param va       a VertexArray whose DirectedEdges needs to be updated.
      * @param decrease true if minusInLevel, false if addInLevel
      */
     public void update(VertexArray va, boolean decrease) {
@@ -143,7 +148,8 @@ public class DirectedGraph implements Serializable, HasName {
                 for (Vertex end : va) {
                     try {
                         update(getVertexArray(end), true);
-                    } catch (Exception ignored) {}
+                    } catch (Exception ignored) {
+                    }
                 }
             }
         } else {
@@ -152,7 +158,8 @@ public class DirectedGraph implements Serializable, HasName {
                 for (Vertex end : va) {
                     try {
                         update(getVertexArray(end), false);
-                    } catch (Exception ignored) {}
+                    } catch (Exception ignored) {
+                    }
                 }
             }
         }
@@ -245,10 +252,9 @@ public class DirectedGraph implements Serializable, HasName {
             throw new Exception(Exceptions.VERTEX_NOT_FOUND);
         } else if (COMPLETED.contains(name)) {
             throw new Exception(Exceptions.VERTEX_ALREADY_COMPLETED);
-        } else if (!CURRENTUNLOCK.contains(name))
-        {
-        throw new Exception(Exceptions.VERTEX_LOCKED);
-         } else {
+        } else if (!CURRENTUNLOCK.contains(name)) {
+            throw new Exception(Exceptions.VERTEX_LOCKED);
+        } else {
             COMPLETED.add(name);
             CURRENTUNLOCK.remove(name);
             VertexArray next = getVertexArray(name);
@@ -285,7 +291,7 @@ public class DirectedGraph implements Serializable, HasName {
      * Helper method for DirectedGraph.toString. Specifying the String representation of the DirectedGraph starting
      * from this edge.
      *
-     * @param edge a starting vertex which String representation is required
+     * @param edge      a starting vertex which String representation is required
      * @param numInward the number of indentations preceding this String representation
      * @return the String representation of the DirectedGraph starting from this edge.
      */
@@ -302,7 +308,8 @@ public class DirectedGraph implements Serializable, HasName {
                     stringBuilder.append("    ".repeat(numInward));
                     stringBuilder.append("-> ");
                     stringBuilder.append(singleVertexToString(vertexArray, numInward + 1));
-                } catch (Exception ignored) {}
+                } catch (Exception ignored) {
+                }
             }
             return stringBuilder.toString();
         }
@@ -350,7 +357,8 @@ public class DirectedGraph implements Serializable, HasName {
         for (String vertexName : VERTICES) {
             try {
                 vertexArray.add(getVertexArray(vertexName));
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         }
         if (vertexArray.isEmpty()) {
             return vertexArray;

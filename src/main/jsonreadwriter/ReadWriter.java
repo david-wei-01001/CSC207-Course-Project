@@ -10,7 +10,7 @@ public interface ReadWriter {
 
     /**
      * @param filepath location of ser file
-     * @param o object to be serialized
+     * @param o        object to be serialized
      */
     void saveToFile(String filepath, Object o) throws IOException;
 

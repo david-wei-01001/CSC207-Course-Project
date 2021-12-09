@@ -7,7 +7,7 @@ import graph.Vertex;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MathematicsGraphBuilder implements GraphBuilder{
+public class MathematicsGraphBuilder implements GraphBuilder {
 
     /**
      * build vertices for a DirectedGraph.
@@ -99,7 +99,7 @@ public class MathematicsGraphBuilder implements GraphBuilder{
         Map<String, Vertex> vertices = buildVertices();
 
         Vertex[][] directedEdges = buildDirectedEdges(vertices);
-        DirectedGraph result = new DirectedGraph(new Vertex[] {vertices.get("Single Variable Calculus"),
+        DirectedGraph result = new DirectedGraph(new Vertex[]{vertices.get("Single Variable Calculus"),
                 vertices.get("Linear Algebra"),
                 vertices.get("Discrete Mathematics"),
         },

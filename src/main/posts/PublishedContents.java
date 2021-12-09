@@ -15,7 +15,7 @@ public class PublishedContents implements Visible, Serializable {
     /**
      * Constructor for the published contents class
      *
-     * @param id: The id of the comment
+     * @param id:      The id of the comment
      * @param creator: The creator of the comment
      */
     public PublishedContents(String id, User creator) {

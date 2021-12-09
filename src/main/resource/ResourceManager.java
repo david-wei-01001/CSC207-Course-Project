@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * The use case that controls a main. user's interaction with the resource system.
  */
-public class ResourceManager implements Serializable{
+public class ResourceManager implements Serializable {
 
 
     private final Map<String, Resource> mapOfResource = new HashMap<>();
@@ -27,14 +27,14 @@ public class ResourceManager implements Serializable{
     /**
      * Add the target resource to the map of resource
      *
-     * @param content: The content that the resource contains, normally a link
-     * @param point: The point which the resource contains
+     * @param content:     The content that the resource contains, normally a link
+     * @param point:       The point which the resource contains
      * @param description: The brief description for the resource
      */
 
     public void addResource(String content, int point, String description) {
         String id = getNextId();
-        Resource resourceToAdd = new Resource(content,id , point, description, currentUser);
+        Resource resourceToAdd = new Resource(content, id, point, description, currentUser);
         mapOfResource.put(resourceToAdd.getId(), resourceToAdd);
         currentUser.addResource(resourceToAdd);
     }
@@ -58,7 +58,7 @@ public class ResourceManager implements Serializable{
      *
      * @return: The string for the next ID
      */
-    public String getNextId(){
+    public String getNextId() {
         return "Resource #" + mapOfResource.size();
     }
 
@@ -68,14 +68,13 @@ public class ResourceManager implements Serializable{
      *
      * @param resourceId The ID of the main. resource
      * @return: A notification if the main. user does not have enough points to redeem the main. resource,
-     *          or a download link if the main. user have enough points to redeem the main. resource
+     * or a download link if the main. user have enough points to redeem the main. resource
      */
     public String downloadResource(String resourceId) {
         Resource resource = this.mapOfResource.get(resourceId);
         if (currentUser.getRewardPoints() < resource.getPointsRequired()) {
             return "Sorry, you do not have enough points";
-        }
-        else{
+        } else {
             int newPoints = currentUser.getRewardPoints() - resource.getPointsRequired();
             currentUser.setRewardPoints(newPoints);
             currentUser.addResource(resource);
@@ -89,7 +88,7 @@ public class ResourceManager implements Serializable{
      *
      * @return: The number of the resources in the map
      */
-    public int getNumberOfResources(){
+    public int getNumberOfResources() {
         return mapOfResource.size();
     }
 

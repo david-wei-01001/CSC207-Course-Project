@@ -1,8 +1,8 @@
 package graphbuilders;
 
+import constants.BuiltInGraphs;
 import graph.DirectedGraph;
 import graph.Vertex;
-import constants.BuiltInGraphs;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,12 +21,12 @@ public class IntroCSGraphBuilder implements GraphBuilder {
 
         Map<String, Vertex> result = new HashMap<>();
         String[] vertexNames = {"Introductory Python",
-                                "CSC165",
-                                "Introductory Java",
-                                "Introductory C++",
-                                "CSC236",
-                                "CSC209",
-                                "CSC263"};
+                "CSC165",
+                "Introductory Java",
+                "Introductory C++",
+                "CSC236",
+                "CSC209",
+                "CSC263"};
 
         for (String vertexName : vertexNames) {
             result.put(vertexName, new Vertex(vertexName));
@@ -65,7 +65,7 @@ public class IntroCSGraphBuilder implements GraphBuilder {
         Map<String, Vertex> vertices = buildVertices();
 
         Vertex[][] directedEdges = buildDirectedEdges(vertices);
-        DirectedGraph result = new DirectedGraph(new Vertex[] {vertices.get("Introductory Python")},
+        DirectedGraph result = new DirectedGraph(new Vertex[]{vertices.get("Introductory Python")},
                 BuiltInGraphs.INTRODUCTORY_CS_SERIES);
         for (Vertex[] directedEdge : directedEdges) {
             result.addEdge(directedEdge);

@@ -24,10 +24,10 @@ public class Post extends PublishedContents implements HasPublishedContents {
      * Constructor of the post
      *
      * @param content: The content of the post
-     * @param id: The ID of the post
+     * @param id:      The ID of the post
      * @param creator: The creator of the post
      */
-  public Post(String content, String id, User creator) {
+    public Post(String content, String id, User creator) {
         super(id, creator);
         this.content = content;
     }
@@ -44,7 +44,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
     public String addPublishedContent(String content, User creator) {
         String commentId = getNextId();
         mapOfComments.put(commentId, new Comment(content, commentId, creator));
-        numberOfComments ++;
+        numberOfComments++;
         return commentId;
     }
 
@@ -69,7 +69,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
      *
      * @return The number of the comments
      */
-    public int getNumberOfComments(){
+    public int getNumberOfComments() {
         return numberOfComments;
     }
 
@@ -78,7 +78,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
      *
      * @return: The ID for the comment to be added
      */
-    public String getNextId(){
+    public String getNextId() {
         return "Comment #" + numberOfComments;
     }
 
@@ -87,7 +87,7 @@ public class Post extends PublishedContents implements HasPublishedContents {
      *
      * @return: The map of comments
      */
-    public Map<String, Comment> getMapOfComments(){
+    public Map<String, Comment> getMapOfComments() {
         return this.mapOfComments;
     }
 
@@ -97,24 +97,24 @@ public class Post extends PublishedContents implements HasPublishedContents {
     @Override
     public String toString() {
         StringBuilder comments = new StringBuilder();
-        for(String commentName: mapOfComments){
+        for (String commentName : mapOfComments) {
             Comment comment = mapOfComments.get(commentName);
             comments.append(commentName).append("=").append(comment.toString()).append('\n').append(
                     "-----------------------------------------------" +
-                    "-------------------------------------------------------").append('\n');
+                            "-------------------------------------------------------").append('\n');
         }
         return "Post" + '\n' +
                 "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
-                +'\n'+
+                + '\n' +
                 "id=" + super.getId() + ", creator=" + this.getCreator().getName() + '\n' +
                 "------------------------------------------------------------------------------------------------------"
-                +'\n'+
+                + '\n' +
                 content + '\n' +
                 "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
-                +'\n'+
+                + '\n' +
                 "Comments" + '\n' +
                 "------------------------------------------------------------------------------------------------------"
-                +'\n'+
+                + '\n' +
                 comments +
                 "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
                 ;
