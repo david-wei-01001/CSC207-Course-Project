@@ -1,14 +1,9 @@
 package jsonreadwriter;
 
 import interfaceadapter.SystemInOut;
-import interfaceadapter.UIAdapter;
+import SystemInOut.TestingInput;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import user.User;
-import user.UserList;
-import user.UserManager;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserReadWriterTest {
 
@@ -29,7 +24,6 @@ class UserReadWriterTest {
 
     @Test
     void readFromFile() throws Exception {
-//        String[] registers = {"1", "ash", "123", "exit"};
         String[] registers = {"2", "ashe", "ashe@123.com", "123", "return", "exit", "exit"};
         TestingInput uiAdapter1 = new TestingInput(registers);
         SystemInOut inOut1 = new SystemInOut(uiAdapter1);
