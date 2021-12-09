@@ -1,7 +1,0 @@
-Class name: Main
-
-Responsibilities:
-newUser()
-getGraph()
-gotVertex()
-completeVertex()
