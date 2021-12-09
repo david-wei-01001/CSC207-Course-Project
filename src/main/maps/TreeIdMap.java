@@ -29,15 +29,13 @@ public class TreeIdMap {
     /**
      * Used set for new tree ID relationship.
      *
-     * @param treeId the id of the tree
+     * @param treeId    the id of the tree
      * @param graphName the name of the graph
      */
     public void setIdMap(String treeId, String graphName) {
-        if(idMap.containsKey(treeId)) {
+        if (idMap.containsKey(treeId)) {
             this.idMap.replace(treeId, graphName);
-        }
-        else
-        {
+        } else {
             idMap.put(treeId, graphName);
         }
     }

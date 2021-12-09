@@ -1,11 +1,12 @@
 package achievementsystem;
 
-import user.User;
 import constants.Achievements;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import user.User;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test the AchievementManager class
@@ -33,7 +34,7 @@ class AchievementManagerTest {
     @Test
     void requestAchievement() {
         assertEquals(user.displayAchievement(), "First Login: not acquired\nTenth Post: not acquired\n" +
-                "First Post: not acquired\nFifth Post: not acquired\n" );
+                "First Post: not acquired\nFifth Post: not acquired\n");
 
         user.addToListOfPostId("1");
         achievementManager.requestAchievement(Achievements.ARRAY_OF_POST_THRESHOLDS,
@@ -67,8 +68,8 @@ class AchievementManagerTest {
         assertTrue(user.getMapOfAchievement().get(Achievements.FIRST_LOGIN));
 
         assertEquals(user.displayAchievement(), "First Login: acquired" + "\n" +
-        "Tenth Post: acquired" + "\n" +
-        "First Post: acquired" + "\n" +
-        "Fifth Post: acquired" + "\n");
+                "Tenth Post: acquired" + "\n" +
+                "First Post: acquired" + "\n" +
+                "Fifth Post: acquired" + "\n");
     }
 }

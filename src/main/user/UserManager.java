@@ -23,6 +23,7 @@ public class UserManager {
      * of the User with that userName.
      */
     private UserList mapOfUser = new UserList();
+
     /**
      * Create a User for a new User and stores it in mapOfUser.
      *
@@ -33,7 +34,7 @@ public class UserManager {
      */
     public void addNewUser(String userName, String email, String password) throws Exception {
         if (!mapOfUser.containsKey(userName)) {
-            mapOfUser.add(new User(userName,email, password));
+            mapOfUser.add(new User(userName, email, password));
         } else {
             throw new Exception(Exceptions.USER_NAME_TAKEN);
         }
@@ -100,6 +101,7 @@ public class UserManager {
 
     /**
      * Set the currentUser instance variable to be the given user
+     *
      * @param username the username of a user
      * @throws Exception if the given username does not correspond to a user
      */
@@ -113,6 +115,7 @@ public class UserManager {
 
     /**
      * CHeck if the given username corresponds to a user
+     *
      * @param username a username to be checked
      * @return whether the given username corresponds to a user
      */
@@ -123,7 +126,7 @@ public class UserManager {
     /**
      * increment the total number of logins of the currentUser
      *
-     * @param rewardManager the rewardManager Use Case
+     * @param rewardManager      the rewardManager Use Case
      * @param achievementManager the achievementManager Use Case
      */
     public void incrementTotalLogins(RewardManager rewardManager, AchievementManager achievementManager) {
@@ -141,6 +144,7 @@ public class UserManager {
 
     /**
      * Set the mapOfUser instance variable to be the given mapOfUser
+     *
      * @param mapOfUser a UserList storing users
      */
     public void setMapOfUser(UserList mapOfUser) {

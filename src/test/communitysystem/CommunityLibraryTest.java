@@ -8,8 +8,6 @@ import rewardsystem.RewardManager;
 import user.User;
 
 
-
-
 /**
  * Test the CommunityLibrary class
  */
@@ -52,12 +50,12 @@ class CommunityLibraryTest {
      */
     @Test
     void testCheckCommunityExist() {
-       Community community = new Community("hi");
-       CommunityList communityList = new CommunityList();
-       communityList.add(community);
-       communityLibrary.setMapOfCommunity(communityList);
-       Assertions.assertTrue(communityLibrary.checkCommunityExist("hi"));
-       Assertions.assertFalse(communityLibrary.checkCommunityExist("hello"));
+        Community community = new Community("hi");
+        CommunityList communityList = new CommunityList();
+        communityList.add(community);
+        communityLibrary.setMapOfCommunity(communityList);
+        Assertions.assertTrue(communityLibrary.checkCommunityExist("hi"));
+        Assertions.assertFalse(communityLibrary.checkCommunityExist("hello"));
 
     }
 

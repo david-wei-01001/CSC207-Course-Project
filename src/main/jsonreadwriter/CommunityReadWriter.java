@@ -12,8 +12,8 @@ public class CommunityReadWriter implements ReadWriter {
     /**
      * Writes the community to file at filePath.
      *
-     * @param filePath the file to write the records to
-     * @param communityList   stores the list of communities to be serialized
+     * @param filePath      the file to write the records to
+     * @param communityList stores the list of communities to be serialized
      * @throws IOException the exception is thrown
      */
     @Override

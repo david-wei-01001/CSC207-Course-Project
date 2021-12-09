@@ -45,8 +45,8 @@ public class CommunityTest {
         community.addPublishedContent(post2.getContent(), user);
         assertTrue(community.getMapOfPost().containsKey("Post #0"));
         assertTrue(community.getMapOfPost().containsKey("Post #1"));
-        assertEquals( post1.toString(),community.getMapOfPost().get("Post #0").toString());
-        assertEquals(post2.toString(),community.getMapOfPost().get("Post #1").toString());
+        assertEquals(post1.toString(), community.getMapOfPost().get("Post #0").toString());
+        assertEquals(post2.toString(), community.getMapOfPost().get("Post #1").toString());
     }
 
     /**
@@ -58,7 +58,7 @@ public class CommunityTest {
         community.addPublishedContent(post1.getContent(), user);
         Post post2 = new Post("abc", community.getNextId(), user);
         community.addPublishedContent(post2.getContent(), user);
-        assertEquals("Post #2",community.getNextId());
+        assertEquals("Post #2", community.getNextId());
     }
 
     /**
@@ -70,7 +70,7 @@ public class CommunityTest {
         community.addPublishedContent(post1.getContent(), user);
         Post post2 = new Post("abc", community.getNextId(), user);
         community.addPublishedContent(post2.getContent(), user);
-        assertEquals( 2,community.getNumberOfPosts());
+        assertEquals(2, community.getNumberOfPosts());
     }
 
     /**
@@ -102,9 +102,9 @@ public class CommunityTest {
             community.addPublishedContent(post1.getContent(), user);
             community.deletePublishedContent("Post #1");
             assertTrue(community.getMapOfPost().containsKey("Post #0"));
-            assertEquals( post0.toString(),community.getMapOfPost().get("Post #0").toString());
+            assertEquals(post0.toString(), community.getMapOfPost().get("Post #0").toString());
             assertFalse(community.getMapOfPost().get("Post #1").visibility());
-            assertEquals(2,community.getNumberOfPosts());
+            assertEquals(2, community.getNumberOfPosts());
         } catch (HasPublishedContents.PostNotFoundException e) {
             fail();
         }
@@ -133,7 +133,7 @@ public class CommunityTest {
         assertEquals("Community{" +
                 "mapOfPost=" + "{}" +
                 ", nameOfCommunity='" + "hi" + '\'' +
-                '}',community.toString());
+                '}', community.toString());
 
     }
 }

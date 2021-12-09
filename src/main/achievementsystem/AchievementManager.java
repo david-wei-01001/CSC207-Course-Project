@@ -1,5 +1,7 @@
 package achievementsystem;
+
 import user.User;
+
 import java.util.Map;
 
 /**
@@ -22,10 +24,10 @@ public class AchievementManager {
      * Check if the user is eligible for any achievement that he/she has not received. If there is any, award that
      * achievement to main.user.
      *
-     * @param thresholds the requirements of the type of achievements.
+     * @param thresholds              the requirements of the type of achievements.
      * @param thresholdsToAchievement the Map of requirements to their particular achievement.
-     * @param property the property of user that can be awarded with achievement.
-     *                 For example, the number of post created.
+     * @param property                the property of user that can be awarded with achievement.
+     *                                For example, the number of post created.
      * @return true if any achievement is awarded.
      */
     public boolean requestAchievement(int[] thresholds, Map<Integer, String> thresholdsToAchievement, int property) {

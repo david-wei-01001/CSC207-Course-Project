@@ -10,15 +10,15 @@ import java.util.List;
 /**
  * A class responsible for directing CommunityReadWriter and UserReadWriter to perform saving task
  */
-public class WholeReadWriter{
+public class WholeReadWriter {
 
     /**
      * Save data to a file
      *
-     * @param pathForUser path of the file which stores all user information
+     * @param pathForUser      path of the file which stores all user information
      * @param pathForCommunity path of the file which stores all community information
-     * @param userList a UserList storing all users
-     * @param communityList a CommunityList storing all communities
+     * @param userList         a UserList storing all users
+     * @param communityList    a CommunityList storing all communities
      * @throws IOException if the saving causes an exception
      */
     public static void saveToFile(String pathForUser, String pathForCommunity,
@@ -32,10 +32,10 @@ public class WholeReadWriter{
     /**
      * Retrieve data to a file
      *
-     * @param pathForUser path of the file which stores all user information
+     * @param pathForUser      path of the file which stores all user information
      * @param pathForCommunity path of the file which stores all community information
      * @return all the information retrieved from storage
-     * @throws IOException if the retrieving causes an exception
+     * @throws IOException            if the retrieving causes an exception
      * @throws ClassNotFoundException if the data is not found
      */
     public static List<Object> readFromFile(String pathForUser, String pathForCommunity)

@@ -34,10 +34,10 @@ public class CommunityLibrary {
     /**
      * Check if this community exists or not
      *
-     *  @param name: The community name
+     * @param name: The community name
      * @return: This community exists or not
      */
-    public boolean checkCommunityExist(String name){
+    public boolean checkCommunityExist(String name) {
         return mapOfCommunity.containsKey(name);
     }
 
@@ -46,8 +46,8 @@ public class CommunityLibrary {
      *
      * @param name: The community name
      */
-    public void addCommunity(String name){
-        if(!checkCommunityExist(name)){
+    public void addCommunity(String name) {
+        if (!checkCommunityExist(name)) {
             Community com = new Community(name);
             mapOfCommunity.add(com);
         }
@@ -56,7 +56,7 @@ public class CommunityLibrary {
     /**
      * Add a post to a community.
      *
-     * @param content the content of the post being added
+     * @param content       the content of the post being added
      * @param rewardManager The rewardManager Use Case that is going to award reward points for creating this Post.
      */
     public void createPost(String content,

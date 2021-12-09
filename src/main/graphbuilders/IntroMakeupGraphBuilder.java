@@ -1,18 +1,18 @@
 package graphbuilders;
 
+import constants.BuiltInGraphs;
 import graph.DirectedGraph;
 import graph.Vertex;
-import constants.BuiltInGraphs;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class IntroMakeupGraphBuilder implements GraphBuilder{
+public class IntroMakeupGraphBuilder implements GraphBuilder {
 
     /**
      * build vertices for a DirectedGraph.
      *
-     *  @return a Map maps the name of vertices to vertices itself
+     * @return a Map maps the name of vertices to vertices itself
      */
     @Override
     public Map<String, Vertex> buildVertices() {
@@ -65,7 +65,7 @@ public class IntroMakeupGraphBuilder implements GraphBuilder{
         Map<String, Vertex> vertices = buildVertices();
 
         Vertex[][] directedEdges = buildDirectedEdges(vertices);
-        DirectedGraph result = new DirectedGraph(new Vertex[] {vertices.get("Foundation")},
+        DirectedGraph result = new DirectedGraph(new Vertex[]{vertices.get("Foundation")},
                 BuiltInGraphs.INTRODUCTORY_MAKEUP);
         for (Vertex[] directedEdge : directedEdges) {
             result.addEdge(directedEdge);

@@ -21,7 +21,7 @@ public class Vertex implements Serializable, HasName {
      *
      * @param name the name of the vertex
      */
-    public Vertex(String name){
+    public Vertex(String name) {
         this.name = name;
 //        CommunityLibrary.addCommunity(name);
     }
@@ -29,15 +29,15 @@ public class Vertex implements Serializable, HasName {
     /**
      * increase the inLevel of this vertex by one.
      */
-    public void addInLevel(){
+    public void addInLevel() {
         inLevel += 1;
     }
 
     /**
      * decrease the inLevel of this vertex by one.
      */
-    public void minusInLevel(){
-        if(inLevel != 0){
+    public void minusInLevel() {
+        if (inLevel != 0) {
             inLevel -= 1;
         }
     }
@@ -45,7 +45,7 @@ public class Vertex implements Serializable, HasName {
     /**
      * @return the inLevel of this Vertex.
      */
-    public int getInLevel(){
+    public int getInLevel() {
         return inLevel;
     }
 
@@ -54,7 +54,7 @@ public class Vertex implements Serializable, HasName {
      *
      * @param name a new name for this vertex
      */
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -62,7 +62,7 @@ public class Vertex implements Serializable, HasName {
      * @return the name of this vertex
      */
     @Override
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -70,7 +70,7 @@ public class Vertex implements Serializable, HasName {
      * @return a string representation of the object.
      */
     @Override
-    public String toString(){
+    public String toString() {
         return getName();
     }
 }

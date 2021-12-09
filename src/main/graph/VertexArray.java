@@ -1,14 +1,15 @@
 package graph;
 
-import constants.Exceptions;
 import comparator.InLevelComparator;
+import constants.Exceptions;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static algorithm.Algorithm.*;
+import static algorithm.Algorithm.pairwiseCompare;
+import static algorithm.Algorithm.recBinaryInsertIndex;
 
 /**
  * A special Array which stores a vertex and all DirectedEdges started from a vertex.
@@ -94,7 +95,7 @@ public class VertexArray implements Iterable<Vertex>, Serializable {
     /**
      * Delete a DirectedEdge.
      *
-     *  @param end the ending vertex of the DirectedEdge to be deleted
+     * @param end the ending vertex of the DirectedEdge to be deleted
      * @throws Exception if the DirectedEdge to be deleted does not exist
      */
     public void deleteThisEdge(Vertex end) throws Exception {
@@ -129,7 +130,7 @@ public class VertexArray implements Iterable<Vertex>, Serializable {
     /**
      * @return whether END is empty
      */
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return END.isEmpty();
     }
 
@@ -139,7 +140,7 @@ public class VertexArray implements Iterable<Vertex>, Serializable {
      * return its name preceded by an arrow and followed by a newline character.
      *
      * @return the name of each ending vertices preceded
-     *         by an arrow and followed by a newline character
+     * by an arrow and followed by a newline character
      */
     public String arrowEnd() {
         StringBuilder stringBuilder = new StringBuilder();

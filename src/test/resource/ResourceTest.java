@@ -42,11 +42,11 @@ class ResourceTest {
      */
     @Test
     void testToString() {
-        assertEquals( "Resource{" +
+        assertEquals("Resource{" +
                 "content='" + "nothing" + '\'' +
                 ", pointsRequired=" + 0 +
                 ", description='" + "Please do not download it." + '\'' +
                 ", downloadTimes=" + 0 +
-                '}',resource.toString());
+                '}', resource.toString());
     }
 }
